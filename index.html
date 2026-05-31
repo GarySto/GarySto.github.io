@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gary Stow — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0f0f;
+    --paper: #f5f2eb;
+    --accent: #c8410a;
+    --accent-light: #e8c4b0;
+    --muted: #6b6560;
+    --rule: #d4cfc7;
+    --mono: 'DM Mono', monospace;
+    --serif: 'DM Serif Display', serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    border-bottom: 1px solid var(--ink);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  nav a {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    margin-left: 2.5rem;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 7rem 4rem 5rem;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+  }
+
+  .hero-label {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-right {
+    padding-bottom: 0.5rem;
+  }
+
+  .hero-intro {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .hero-intro strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn-accent {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+  .btn-accent:hover {
+    background: #a33308;
+    border-color: #a33308;
+    color: white;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  section {
+    padding: 5rem 4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 5rem;
+  }
+
+  .about-body p {
+    margin-bottom: 1.25rem;
+    color: #2a2a2a;
+  }
+
+  .about-facts {
+    border-left: 1px solid var(--rule);
+    padding-left: 3rem;
+  }
+
+  .fact {
+    margin-bottom: 2rem;
+  }
+
+  .fact-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.35rem;
+  }
+
+  .fact-value {
+    font-size: 0.95rem;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  /* ── FEATURED PROJECT ── */
+  .project-featured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--ink);
+  }
+
+  .project-visual {
+    background: var(--ink);
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 420px;
+  }
+
+  .project-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .project-visual h3 {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--paper);
+    line-height: 1.15;
+  }
+
+  .project-visual h3 em {
+    font-style: italic;
+    color: var(--accent-light);
+  }
+
+  .stack-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+
+  .pill {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid rgba(245, 242, 235, 0.25);
+    color: rgba(245, 242, 235, 0.6);
+    text-transform: uppercase;
+  }
+
+  .project-content {
+    padding: 3rem;
+    border-left: 1px solid var(--ink);
+  }
+
+  .project-content h4 {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 2rem 0 0.75rem;
+  }
+  .project-content h4:first-child { margin-top: 0; }
+
+  .project-content p, .project-content li {
+    font-size: 0.95rem;
+    color: #2a2a2a;
+    line-height: 1.65;
+  }
+
+  .project-content ul {
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-content li {
+    margin-bottom: 0.4rem;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  /* ── ARCHITECTURE ── */
+  .arch-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--rule);
+  }
+
+  .arch-step {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--rule);
+    position: relative;
+  }
+  .arch-step:last-child { border-right: none; }
+
+  .arch-num {
+    font-family: var(--mono);
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: var(--rule);
+    line-height: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  .arch-step h4 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+    color: var(--ink);
+  }
+
+  .arch-step p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  .arch-arrow {
+    position: absolute;
+    right: -0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    color: var(--muted);
+    z-index: 1;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--rule);
+  }
+
+  .skill-block {
+    background: var(--paper);
+    padding: 2.5rem 2rem;
+  }
+
+  .skill-block h4 {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+
+  .skill-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    color: #2a2a2a;
+    margin-bottom: 0.6rem;
+  }
+
+  .skill-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── CONTEXT ── */
+  .context-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 1.5rem 0 1.5rem 2rem;
+    margin: 2rem 0;
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    line-height: 1.4;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  blockquote em { font-style: italic; color: var(--accent); }
+
+  .context-right p {
+    font-size: 0.95rem;
+    color: #2a2a2a;
+    margin-bottom: 1.1rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  .footer-links a {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-decoration: none;
+    margin-left: 2rem;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--accent); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+  }
+
+  .fade-up:nth-child(1) { animation-delay: 0.1s; }
+  .fade-up:nth-child(2) { animation-delay: 0.25s; }
+  .fade-up:nth-child(3) { animation-delay: 0.4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    header { padding: 1.5rem 2rem; }
+    header nav { display: none; }
+    .hero, .about-grid, .project-featured,
+    .context-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    section { padding: 4rem 2rem; }
+    .hero { padding: 4rem 2rem 3rem; }
+    .arch-grid { grid-template-columns: 1fr 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .project-visual { min-height: auto; }
+    .project-content { border-left: none; border-top: 1px solid var(--ink); }
+    .about-facts { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 2rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+    .footer-links a:first-child { margin-left: 0; }
+  }
+
+  @media (max-width: 600px) {
+    .arch-grid, .skills-grid { grid-template-columns: 1fr; }
+    .arch-step { border-right: none; border-bottom: 1px solid var(--rule); }
+    .arch-step:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <span class="logo">Gary Stow</span>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#project">Project</a>
+    <a href="#architecture">How it works</a>
+    <a href="#skills">Skills</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-label">Portfolio · 2026</div>
+    <h1 class="fade-up">PPC &amp; AI<br><em>practitioner.</em><br>Builder.</h1>
+  </div>
+  <div class="hero-right fade-up">
+    <p class="hero-intro">
+      I'm a <strong>performance marketing specialist</strong> who builds things. Not talks about building things. Builds them.
+      This portfolio documents a project I started from scratch with no development background:
+      a fully automated momentum trading scanner that runs every weekday and flags opportunities before the US market opens.
+    </p>
+    <div class="cta-row">
+      <a href="https://market-universe-generator-7jrhjfbttwfzlappdxaaysq.streamlit.app/" target="_blank" class="btn btn-accent">Live Dashboard ↗</a>
+      <a href="https://github.com/GarySto/market-universe-generator" target="_blank" class="btn">GitHub Repo ↗</a>
+      <a href="https://linkedin.com/in/garystow" target="_blank" class="btn">LinkedIn ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>About</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-body">
+      <p>I've spent over a decade in performance marketing — predominantly PPC and more recently AI-powered campaign tooling, particularly around Performance Max. I've been published, I've built internal tools, and I've spent a lot of time trying to cut through as someone who actually does things rather than just writes about doing things.</p>
+      <p>In 2026 I started learning to code. Not because I needed to for my job, but because I'd reached the ceiling of what I could do by pointing AI at problems without understanding what was happening underneath. I wanted to build agents properly — the kind that do genuinely useful things and keep doing them when nobody's watching.</p>
+      <p>This project is the result of that. It started as a trading idea, became a data engineering problem, then a dashboard, then a backtesting tool. Along the way I learned GitHub, Python, GitHub Actions, Streamlit, and how to debug a pandas error at 11pm without losing my mind entirely. I'm a Type 1 diabetic with ADHD and a hint of autism, two daughters, and a background that didn't include any of the things this project required. None of that stopped it working.</p>
+    </div>
+    <div class="about-facts">
+      <div class="fact">
+        <div class="fact-label">Specialism</div>
+        <div class="fact-value">PPC · Performance Max · AI tooling</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">Location</div>
+        <div class="fact-value">United Kingdom</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">This project started</div>
+        <div class="fact-value">May 2026 — 72 hours to first deployment</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">Infrastructure cost</div>
+        <div class="fact-value">£0 — entirely free tier</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">Prior coding experience</div>
+        <div class="fact-value">None</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECT -->
+<section id="project">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Featured project</h2>
+  </div>
+
+  <div class="project-featured">
+    <div class="project-visual">
+      <div>
+        <div class="project-tag">Active · Daily · Free to run</div>
+        <h3>Momentum<br><em>Scanner</em></h3>
+      </div>
+      <div class="stack-pills">
+        <span class="pill">Python</span>
+        <span class="pill">yfinance</span>
+        <span class="pill">Pandas</span>
+        <span class="pill">Streamlit</span>
+        <span class="pill">GitHub Actions</span>
+        <span class="pill">Altair</span>
+        <span class="pill">Streamlit Cloud</span>
+      </div>
+    </div>
+
+    <div class="project-content">
+      <h4>The problem</h4>
+      <p>US stocks that gap up in premarket with above-average volume tend to continue moving in the first 15 minutes of regular trading. Identifying which ones are worth acting on — before the market opens — requires scanning hundreds of tickers, scoring them across multiple signals, and having that information ready by 13:30 BST. Doing it manually every day is not realistic.</p>
+
+      <h4>What it does</h4>
+      <ul>
+        <li>Runs automatically every weekday at 13:00 BST via GitHub Actions</li>
+        <li>Scores 250+ US stocks across five momentum signals</li>
+        <li>Publishes results to a live Streamlit dashboard before the NYSE opens</li>
+        <li>Pre-trade confirmation check at 14:00 BST re-scores top candidates live</li>
+        <li>14-day backtest with 1-minute candle replay and trade simulation</li>
+        <li>Premarket momentum assessment flags the Hub Cyber Security pattern</li>
+      </ul>
+
+      <h4>The scoring model</h4>
+      <p>Score = (3 × gap%) + (2 × RVOL) + (0.5 × trend) + (2 × breakout) + (1 × volatility). Stocks scoring above 9 with a live premarket gap are the primary trade candidates.</p>
+
+      <div class="project-links">
+        <a href="https://market-universe-generator-7jrhjfbttwfzlappdxaaysq.streamlit.app/" target="_blank" class="btn btn-accent">Live dashboard ↗</a>
+        <a href="https://github.com/GarySto/market-universe-generator" target="_blank" class="btn">View code ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="architecture">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>How it works</h2>
+  </div>
+
+  <div class="arch-grid">
+    <div class="arch-step">
+      <div class="arch-num">01</div>
+      <h4>Scheduled pipeline</h4>
+      <p>GitHub Actions triggers universe.py at 12:00 UTC (13:00 BST) Monday to Friday. No manual intervention required.</p>
+      <div class="arch-arrow">→</div>
+    </div>
+    <div class="arch-step">
+      <div class="arch-num">02</div>
+      <h4>Data retrieval</h4>
+      <p>yfinance pulls 15 days of OHLCV data plus live premarket price and volume for each ticker in the watchlist.</p>
+      <div class="arch-arrow">→</div>
+    </div>
+    <div class="arch-step">
+      <div class="arch-num">03</div>
+      <h4>Scoring &amp; ranking</h4>
+      <p>Five signals computed per ticker. Weighted score calculated. Results written to output/universe.csv and committed back to the repo.</p>
+      <div class="arch-arrow">→</div>
+    </div>
+    <div class="arch-step">
+      <div class="arch-num">04</div>
+      <h4>Live dashboard</h4>
+      <p>Streamlit Cloud reads the CSV directly from GitHub. Dashboard updates automatically. No server to manage.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS DEMONSTRATED -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Skills demonstrated</h2>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-block">
+      <h4>Data engineering</h4>
+      <div class="skill-item"><span class="skill-dot"></span>Automated data pipelines</div>
+      <div class="skill-item"><span class="skill-dot"></span>API integration (yfinance)</div>
+      <div class="skill-item"><span class="skill-dot"></span>Feature engineering</div>
+      <div class="skill-item"><span class="skill-dot"></span>Historical backtesting</div>
+      <div class="skill-item"><span class="skill-dot"></span>Time series handling</div>
+    </div>
+    <div class="skill-block">
+      <h4>Infrastructure &amp; automation</h4>
+      <div class="skill-item"><span class="skill-dot"></span>GitHub Actions (CI/CD)</div>
+      <div class="skill-item"><span class="skill-dot"></span>Scheduled workflows</div>
+      <div class="skill-item"><span class="skill-dot"></span>Version control (Git)</div>
+      <div class="skill-item"><span class="skill-dot"></span>Cloud deployment (Streamlit)</div>
+      <div class="skill-item"><span class="skill-dot"></span>Free-tier architecture</div>
+    </div>
+    <div class="skill-block">
+      <h4>Python development</h4>
+      <div class="skill-item"><span class="skill-dot"></span>Pandas, NumPy</div>
+      <div class="skill-item"><span class="skill-dot"></span>Streamlit (dashboard)</div>
+      <div class="skill-item"><span class="skill-dot"></span>Altair (data visualisation)</div>
+      <div class="skill-item"><span class="skill-dot"></span>Caching &amp; session state</div>
+      <div class="skill-item"><span class="skill-dot"></span>Timezone handling (pytz)</div>
+    </div>
+    <div class="skill-block">
+      <h4>Product thinking</h4>
+      <div class="skill-item"><span class="skill-dot"></span>Problem → system design</div>
+      <div class="skill-item"><span class="skill-dot"></span>Iterative improvement</div>
+      <div class="skill-item"><span class="skill-dot"></span>User-facing documentation</div>
+      <div class="skill-item"><span class="skill-dot"></span>Honest limitation analysis</div>
+      <div class="skill-item"><span class="skill-dot"></span>Data quality assessment</div>
+    </div>
+    <div class="skill-block">
+      <h4>AI-assisted development</h4>
+      <div class="skill-item"><span class="skill-dot"></span>Prompt engineering</div>
+      <div class="skill-item"><span class="skill-dot"></span>Debugging with AI tools</div>
+      <div class="skill-item"><span class="skill-dot"></span>Code review and iteration</div>
+      <div class="skill-item"><span class="skill-dot"></span>Agent-building mindset</div>
+      <div class="skill-item"><span class="skill-dot"></span>Understanding AI output</div>
+    </div>
+    <div class="skill-block">
+      <h4>Domain knowledge</h4>
+      <div class="skill-item"><span class="skill-dot"></span>Momentum trading theory</div>
+      <div class="skill-item"><span class="skill-dot"></span>Premarket microstructure</div>
+      <div class="skill-item"><span class="skill-dot"></span>Technical indicators (ATR, RVOL)</div>
+      <div class="skill-item"><span class="skill-dot"></span>Trade simulation logic</div>
+      <div class="skill-item"><span class="skill-dot"></span>Risk/reward framing</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXT -->
+<section>
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2>Why this matters</h2>
+  </div>
+
+  <div class="context-grid">
+    <div class="context-left">
+      <blockquote>
+        "I recently went for a role building internal AI agents. Made the final five. Didn't get it — apparently others had gone further to demonstrate what they could do. <em>Fair enough. This is me going further.</em>"
+      </blockquote>
+    </div>
+    <div class="context-right">
+      <p>This project isn't a tutorial I followed. It isn't a Kaggle notebook. It's something I built from nothing because I had an idea and wanted to know if I could make it work.</p>
+      <p>I'm a performance marketer. My day job is making advertising systems perform better. What I've discovered is that the skills behind that — structured thinking, data interpretation, identifying signals in noise, knowing when to act and when to wait — transfer directly into building data-driven automation systems.</p>
+      <p>The AI tools I used accelerated my learning. They didn't replace the decision-making. Every design choice in this system, every fix when something broke, every time the backtest showed a result that didn't make sense and I had to figure out why — that was me.</p>
+      <p>If you're building a team that works with AI-powered systems and you want someone who understands both the marketing domain and the technical infrastructure around it, that's what this demonstrates.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+    <a href="https://github.com/GarySto/market-universe-generator" target="_blank">GitHub ↗</a>
+    <a href="https://market-universe-generator-7jrhjfbttwfzlappdxaaysq.streamlit.app/" target="_blank">Live project ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>
