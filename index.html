@@ -3,7 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gary Stow — Portfolio</title>
+<title>Gary Stow — AI Practitioner, Builder &amp; Trainer</title>
+<meta name="description" content="Gary Stow — performance marketing specialist and AI practitioner. I build AI agents and automated systems, teach AI skills to others, and document the projects here.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garysto.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gary Stow — AI Practitioner, Builder & Trainer">
+<meta property="og:description" content="Performance marketing specialist and AI practitioner. I build AI agents and automated systems, and teach AI skills to others.">
+<meta property="og:url" content="https://garysto.github.io/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gary Stow — AI Practitioner, Builder & Trainer">
+<meta name="twitter:description" content="Performance marketing specialist and AI practitioner. I build AI agents and automated systems, and teach AI skills to others.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Gary Stow",
+  "url": "https://garysto.github.io/",
+  "sameAs": [
+    "https://linkedin.com/in/garystow",
+    "https://github.com/GarySto"
+  ],
+  "jobTitle": "Performance Marketing Specialist & AI Practitioner",
+  "knowsAbout": [
+    "Performance Max",
+    "Paid Search",
+    "AI Agents",
+    "Prompt Engineering",
+    "Python",
+    "Streamlit",
+    "GitHub Actions"
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
@@ -374,6 +406,60 @@
     z-index: 1;
   }
 
+  /* ── AGENTS ── */
+  .agents-intro {
+    font-size: 0.98rem;
+    color: #2a2a2a;
+    max-width: 62ch;
+    margin-bottom: 3rem;
+  }
+
+  .agents-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--rule);
+  }
+
+  .agent-card {
+    background: var(--paper);
+    padding: 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .agent-tag {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.9rem;
+  }
+
+  .agent-card h4 {
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+    color: var(--ink);
+  }
+
+  .agent-card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .agents-note {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    max-width: 62ch;
+  }
+
   /* ── SKILLS ── */
   .skills-grid {
     display: grid;
@@ -490,6 +576,7 @@
     .hero { padding: 4rem 2rem 3rem; }
     .arch-grid { grid-template-columns: 1fr 1fr; }
     .skills-grid { grid-template-columns: 1fr 1fr; }
+    .agents-grid { grid-template-columns: 1fr 1fr; }
     .project-visual { min-height: auto; }
     .project-content { border-left: none; border-top: 1px solid var(--ink); }
     .about-facts { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 2rem; }
@@ -499,6 +586,7 @@
 
   @media (max-width: 600px) {
     .arch-grid, .skills-grid { grid-template-columns: 1fr; }
+    .agents-grid { grid-template-columns: 1fr; }
     .arch-step { border-right: none; border-bottom: 1px solid var(--rule); }
     .arch-step:last-child { border-bottom: none; }
   }
@@ -512,10 +600,10 @@
   <nav>
     <a href="#about">About</a>
     <a href="#project">Project</a>
+    <a href="#agents">AI &amp; agents</a>
     <a href="#architecture">How it works</a>
     <a href="#skills">Skills</a>
     <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
-    <a href="https://www.youtube.com/@GarAI-13" target="_blank">YouTube ↗</a>
   </nav>
 </header>
 
@@ -523,18 +611,18 @@
 <div class="hero">
   <div class="hero-left">
     <div class="hero-label">Portfolio · 2026</div>
-    <h1 class="fade-up">PPC &amp; AI<br><em>practitioner.</em><br>Builder.</h1>
+    <h1 class="fade-up">PPC &amp; AI<br><em>practitioner.</em><br>Builder. Teacher.</h1>
   </div>
   <div class="hero-right fade-up">
     <p class="hero-intro">
       I'm a <strong>performance marketing specialist</strong> who builds things. Not talks about building things. Builds them.
-      This portfolio documents a project I started from scratch with no development background:
-      a fully automated momentum trading scanner that runs every weekday and flags opportunities before the US market opens.
+      This site covers two sides of that: AI agents and training I build as part of my day-to-day work, and a project I started
+      from scratch with no development background, a fully automated momentum trading scanner that runs every weekday and
+      flags opportunities before the US market opens.
     </p>
     <div class="cta-row">
       <a href="https://market-universe-generator-7jrhjfbttwfzlappdxaaysq.streamlit.app/" target="_blank" class="btn btn-accent">Live Dashboard ↗</a>
       <a href="https://github.com/GarySto/market-universe-generator" target="_blank" class="btn">GitHub Repo ↗</a>
-      <a href="https://www.youtube.com/@GarAI-13" target="_blank" class="btn">YouTube ↗</a>
       <a href="https://linkedin.com/in/garystow" target="_blank" class="btn">LinkedIn ↗</a>
     </div>
   </div>
@@ -555,7 +643,7 @@
     <div class="about-facts">
       <div class="fact">
         <div class="fact-label">Specialism</div>
-        <div class="fact-value">PPC · Performance Max · AI tooling</div>
+        <div class="fact-value">PPC · Performance Max · AI agents &amp; training</div>
       </div>
       <div class="fact">
         <div class="fact-label">Location</div>
@@ -626,10 +714,55 @@
   </div>
 </section>
 
+<!-- AI & AGENTS -->
+<section id="agents">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>AI &amp; agents</h2>
+  </div>
+
+  <p class="agents-intro">The trading scanner is one visible project. Alongside it, AI agent building and teaching sits right in the middle of my day-to-day work in performance marketing, and I spend a fair amount of my own time on it too, both for colleagues and for external industry audiences.</p>
+
+  <div class="agents-grid">
+    <div class="agent-card">
+      <div class="agent-tag">Built end-to-end</div>
+      <h4>Campaign audit agent</h4>
+      <p>An AI agent that audits paid search campaigns against best practice and flags issues automatically. The prompt logic behind it was later adapted to support a cross-company AI proof-of-concept, demoed at a major international industry event.</p>
+    </div>
+    <div class="agent-card">
+      <div class="agent-tag">Built in two days</div>
+      <h4>AI maturity assessment agent</h4>
+      <p>A working agent that scores an organisation's AI maturity and produces a structured assessment, built with full handoff documentation so someone else could rebuild or extend it without me.</p>
+    </div>
+    <div class="agent-card">
+      <div class="agent-tag">Hackathon build</div>
+      <h4>Career-guidance agent</h4>
+      <p>An agent that matches a person's experience and interests against a large role library to suggest a sensible starting point for their next move, built during an internal hackathon day.</p>
+    </div>
+    <div class="agent-card">
+      <div class="agent-tag">Runs daily</div>
+      <h4>Market-intelligence agent</h4>
+      <p>An agent that produces a daily market and industry signals briefing, now used by colleagues beyond the person it was originally built for.</p>
+    </div>
+    <div class="agent-card">
+      <div class="agent-tag">IAB UK Ad Labs</div>
+      <h4>Industry AI training</h4>
+      <p>Designed and delivered a hands-on, laptops-open AI training session for the IAB's Ad Labs series, reformatted into a practitioner workshop after feedback from an earlier, more theoretical session.</p>
+    </div>
+    <div class="agent-card">
+      <div class="agent-tag">Ongoing</div>
+      <h4>One-to-one AI coaching</h4>
+      <p>Regular coaching and desk-side training for colleagues building their first AI agents or adopting new tools, arising from direct requests rather than a formal programme.</p>
+    </div>
+  </div>
+
+  <p class="agents-note">Descriptions above are deliberately general. Specific employers, clients and internal systems aren't named, in line with normal workplace confidentiality, and everything here reflects my own personal views and projects, not any employer's.</p>
+</section>
+
 <!-- ARCHITECTURE -->
 <section id="architecture">
   <div class="section-header">
-    <span class="section-num">03</span>
+    <span class="section-num">04</span>
     <h2>How it works</h2>
   </div>
 
@@ -663,7 +796,7 @@
 <!-- SKILLS DEMONSTRATED -->
 <section id="skills">
   <div class="section-header">
-    <span class="section-num">04</span>
+    <span class="section-num">05</span>
     <h2>Skills demonstrated</h2>
   </div>
 
@@ -722,21 +855,21 @@
 <!-- CONTEXT -->
 <section>
   <div class="section-header">
-    <span class="section-num">05</span>
+    <span class="section-num">06</span>
     <h2>Why this matters</h2>
   </div>
 
   <div class="context-grid">
     <div class="context-left">
       <blockquote>
-        "I recently went for a role building internal AI agents. Made the final five. Didn't get it — apparently others had gone further to demonstrate what they could do. <em>Fair enough. This is me going further.</em>"
+        "I've always had a million ideas. ADHD makes them arrive all at once, loud, and rarely in order. For years the gap wasn't ideas, it was turning them into something real. <em>Learning to build closed that gap.</em>"
       </blockquote>
     </div>
     <div class="context-right">
       <p>This project isn't a tutorial I followed. It isn't a Kaggle notebook. It's something I built from nothing because I had an idea and wanted to know if I could make it work.</p>
-      <p>I'm a performance marketer. My day job is making advertising systems perform better. What I've discovered is that the skills behind that — structured thinking, data interpretation, identifying signals in noise, knowing when to act and when to wait — transfer directly into building data-driven automation systems.</p>
+      <p>I'm a performance marketer. My day job is making advertising systems perform better. What I've discovered is that the skills behind that — structured thinking, data interpretation, identifying signals in noise, knowing when to act and when to wait — transfer directly into building data-driven automation systems and the AI agents documented above.</p>
       <p>The AI tools I used accelerated my learning. They didn't replace the decision-making. Every design choice in this system, every fix when something broke, every time the backtest showed a result that didn't make sense and I had to figure out why — that was me.</p>
-      <p>If you're building a team that works with AI-powered systems and you want someone who understands both the marketing domain and the technical infrastructure around it, that's what this demonstrates.</p>
+      <p>If you're building a team that works with AI-powered systems, or that needs someone who can build them and teach others to use them, this is what that looks like in practice.</p>
     </div>
   </div>
 </section>
@@ -746,7 +879,6 @@
   <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
   <div class="footer-links">
     <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
-    <a href="https://www.youtube.com/@GarAI-13" target="_blank">YouTube ↗</a>
     <a href="https://github.com/GarySto/market-universe-generator" target="_blank">GitHub ↗</a>
     <a href="https://market-universe-generator-7jrhjfbttwfzlappdxaaysq.streamlit.app/" target="_blank">Live project ↗</a>
   </div>
