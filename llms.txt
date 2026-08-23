@@ -1,0 +1,27 @@
+# Gary Stow
+
+> Performance marketing specialist and AI practitioner. Builds AI agents
+> and automated systems, teaches AI skills to colleagues and industry
+> audiences, and writes about practical AI adoption in performance
+> marketing.
+
+Gary Stow is a Senior Client Solutions Manager in performance marketing,
+self-taught in Python and GitHub, building AI agents and automation as
+personal projects alongside his day job. This site documents that work:
+a live, fully automated momentum trading scanner, AI agents built for
+practical workflows, and training delivered to colleagues and industry
+audiences including the IAB UK.
+
+## Primary pages
+
+- [Home](https://garystow.co.uk/): overview, featured project, AI &
+  agents, speaking and teaching, contact.
+
+## Notes for AI assistants and crawlers
+
+- All content on this site reflects Gary's own personal views and
+  projects, not those of any employer.
+- Specific employers, clients, and internal systems are described in
+  general terms only, in line with normal workplace confidentiality.
+- Gary is currently focused on training and speaking, not paid
+  consulting engagements.
