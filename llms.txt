@@ -14,8 +14,16 @@ audiences including the IAB UK.
 
 ## Primary pages
 
-- [Home](https://garystow.co.uk/): overview, featured project, AI &
-  agents, speaking and teaching, contact.
+- [Home](https://garystow.co.uk/): who I am, background, and links to
+  everything below.
+- [Work](https://garystow.co.uk/work/): the Momentum Scanner project,
+  AI agents built at work, how the system is put together, and the
+  skills behind it.
+- [Articles](https://garystow.co.uk/articles/): longer republished
+  pieces on practical AI adoption and building in public.
+- [Speaking & training](https://garystow.co.uk/speaking/): AI training
+  days, team workshops and one-to-one coaching.
+- [Contact](https://garystow.co.uk/contact/): how to get in touch.
 
 ## Notes for AI assistants and crawlers
 

@@ -1,13 +1,21 @@
+<!-- PAGE: ARTICLES INDEX (garystow.co.uk/articles/) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Articles — Gary Stow</title>
-<meta name="description" content="Articles on AI in practice, teaching AI skills, and industry observations from Gary Stow.">
+<meta name="description" content="Longer pieces from Gary Stow on practical AI adoption in performance marketing, building in public, and lessons from a decade in PPC.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://garystow.co.uk/articles/">
-<!-- Google tag (gtag.js) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Articles — Gary Stow">
+<meta property="og:description" content="Longer pieces on practical AI adoption, building in public, and lessons from a decade in performance marketing.">
+<meta property="og:url" content="https://garystow.co.uk/articles/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -15,81 +23,87 @@
   gtag('js', new Date());
   gtag('config', 'G-5S939E9N5T');
 </script>
-<!-- Microsoft UET tag -->
-<script>
-    (function(w, d, t, u, o) {
-        w[u] = w[u] || [], o.ts = (new Date).getTime();
-        var n = d.createElement(t);
-        n.src = "https://bat.bing.net/bat.js?ti=" + o.ti + ("uetq" != u ? "&q=" + u : ""),
-        n.async = 1, n.onload = n.onreadystatechange = function() {
-            var s = this.readyState;
-            s && "loaded" !== s && "complete" !== s ||
-            (o.q = w[u], w[u] = new UET(o), w[u].push("pageLoad"),
-            n.onload = n.onreadystatechange = null)
-    };
-        var i = d.getElementsByTagName(t)[0];
-        i.parentNode.insertBefore(n, i);
-    })(window, document, "script", "uetq", {
-        ti: "73014612",
-        enableAutoSpaTracking: true
-    });
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
 </script>
-<!-- Consent defaults to denied until a real cookie banner grants it -->
-<script>
-   window.uetq = window.uetq || [];
-   window.uetq.push('consent', 'default', {
-     'ad_storage': 'denied'
-   });
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #0f0f0f;
-    --paper: #f5f2eb;
-    --accent: #c8410a;
-    --accent-light: #e8c4b0;
-    --muted: #6b6560;
-    --rule: #d4cfc7;
-    --mono: 'DM Mono', monospace;
-    --serif: 'DM Serif Display', serif;
-    --sans: 'DM Sans', sans-serif;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.65; font-weight: 300; }
-  header { border-bottom: 1px solid var(--ink); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: baseline; }
-  .logo { font-family: var(--mono); font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
-  .back { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
-  .back:hover { color: var(--accent); }
-  main { max-width: 900px; margin: 0 auto; padding: 5rem 2rem; }
-  h1 { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 400; margin-bottom: 1rem; }
-  .intro { color: var(--muted); max-width: 60ch; margin-bottom: 3.5rem; font-size: 1.05rem; }
-  .article-list { list-style: none; border-top: 1px solid var(--rule); }
-  .article-item { border-bottom: 1px solid var(--rule); padding: 1.75rem 0; display: flex; justify-content: space-between; align-items: baseline; gap: 2rem; }
-  .article-item a { font-family: var(--serif); font-size: 1.4rem; color: var(--ink); text-decoration: none; }
-  .article-item a:hover { color: var(--accent); }
-  .article-meta { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
-  .empty { color: var(--muted); font-style: italic; padding: 2rem 0; }
-</style>
+<!-- Microsoft UET -->
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
 </head>
 <body>
 
 <header>
-  <a href="../" class="logo">Gary Stow</a>
-  <a href="../" class="back">← Back to home</a>
+  <a href="/" class="logo">Gary Stow</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/work/">Work</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
 </header>
 
-<main>
-  <h1>Articles</h1>
-  <p class="intro">Longer pieces on AI in practice, teaching AI skills, and industry observations — republished from LinkedIn, kept here as a permanent record.</p>
+<div class="page-hero">
+  <div class="hero-label">Writing</div>
+  <h1>Articles.</h1>
+  <p class="hero-intro">Longer, republished versions of things I've written on LinkedIn — practical AI adoption, building in public, and what a decade in performance marketing actually teaches you.</p>
+</div>
 
-  <ul class="article-list">
-    <!-- ARTICLE_LIST_START -->
-    <li class="empty">Nothing published here yet — check back soon.</li>
-    <!-- ARTICLE_LIST_END -->
-  </ul>
-</main>
+<section>
+  <div class="articles-list">
+    <a href="/articles/colleague-dared-me-to-build-something/" class="article-row">
+      <span class="article-date">Jun 2026</span>
+      <span class="article-title">My colleague joked and dared me to build something</span>
+      <span class="article-pillar">Building in public</span>
+    </a>
+    <a href="/articles/the-next-chapter-of-search/" class="article-row">
+      <span class="article-date">May 2026</span>
+      <span class="article-title">The Next Chapter of Search</span>
+      <span class="article-pillar">Industry</span>
+    </a>
+    <a href="/articles/why-change-feels-so-hard/" class="article-row">
+      <span class="article-date">Nov 2025</span>
+      <span class="article-title">Why Change Feels So Hard, and How We Can Make It Easier</span>
+      <span class="article-pillar">Lessons</span>
+    </a>
+    <a href="/articles/type-1-diabetes-shaped-my-ppc-career/" class="article-row">
+      <span class="article-date">Oct 2025</span>
+      <span class="article-title">How Type 1 Diabetes Shaped My PPC Career</span>
+      <span class="article-pillar">Lessons</span>
+    </a>
+    <a href="/articles/thriving-in-tech-neurodiverse-brain/" class="article-row">
+      <span class="article-date">Oct 2025</span>
+      <span class="article-title">Thriving in Tech with a Neurodiverse Brain</span>
+      <span class="article-pillar">Lessons</span>
+    </a>
+    <a href="/articles/digital-marketing-and-ai-collaboration/" class="article-row">
+      <span class="article-date">Nov 2025</span>
+      <span class="article-title">Digital Marketing and AI: A Future Built on Collaboration</span>
+      <span class="article-pillar">Teaching</span>
+    </a>
+  </div>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Want the next one first?</h2>
+  <p>New articles get posted on LinkedIn before they land here.</p>
+  <div class="cta-row">
+    <a href="https://linkedin.com/in/garystow" target="_blank" class="btn btn-accent">Follow on LinkedIn ↗</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="/contact/">Contact ↗</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+    <a href="https://github.com/GarySto/market-universe-generator" target="_blank">GitHub ↗</a>
+  </div>
+</footer>
 
 </body>
 </html>

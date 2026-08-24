@@ -1,3 +1,4 @@
+<!-- PAGE: HOMEPAGE (garystow.co.uk/) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,6 +42,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
 <script>
@@ -49,639 +51,28 @@
   gtag('js', new Date());
   gtag('config', 'G-5S939E9N5T');
 </script>
-<!-- Microsoft UET tag -->
-<script>
-    (function(w, d, t, u, o) {
-        w[u] = w[u] || [], o.ts = (new Date).getTime();
-        var n = d.createElement(t);
-        n.src = "https://bat.bing.net/bat.js?ti=" + o.ti + ("uetq" != u ? "&q=" + u : ""),
-        n.async = 1, n.onload = n.onreadystatechange = function() {
-            var s = this.readyState;
-            s && "loaded" !== s && "complete" !== s ||
-            (o.q = w[u], w[u] = new UET(o), w[u].push("pageLoad"),
-            n.onload = n.onreadystatechange = null)
-    };
-        var i = d.getElementsByTagName(t)[0];
-        i.parentNode.insertBefore(n, i);
-    })(window, document, "script", "uetq", {
-        ti: "73014612",
-        enableAutoSpaTracking: true
-    });
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
 </script>
-<!-- Consent defaults to denied until a real cookie banner grants it -->
-<script>
-   window.uetq = window.uetq || [];
-   window.uetq.push('consent', 'default', {
-     'ad_storage': 'denied'
-   });
-</script>
-<style>
-  :root {
-    --ink: #0f0f0f;
-    --paper: #f5f2eb;
-    --accent: #c8410a;
-    --accent-light: #e8c4b0;
-    --muted: #6b6560;
-    --rule: #d4cfc7;
-    --mono: 'DM Mono', monospace;
-    --serif: 'DM Serif Display', serif;
-    --sans: 'DM Sans', sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 17px;
-    line-height: 1.65;
-    font-weight: 300;
-    overflow-x: hidden;
-  }
-
-  /* ── HEADER ── */
-  header {
-    border-bottom: 1px solid var(--ink);
-    padding: 2rem 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    position: sticky;
-    top: 0;
-    background: var(--paper);
-    z-index: 100;
-  }
-
-  .logo {
-    font-family: var(--mono);
-    font-size: 0.85rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  nav a {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    margin-left: 2.5rem;
-    transition: color 0.2s;
-  }
-  nav a:hover { color: var(--accent); }
-
-  /* ── HERO ── */
-  .hero {
-    padding: 7rem 4rem 5rem;
-    border-bottom: 1px solid var(--rule);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: end;
-  }
-
-  .hero-label {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  .hero-label::before {
-    content: '';
-    display: inline-block;
-    width: 2rem;
-    height: 1px;
-    background: var(--accent);
-  }
-
-  h1 {
-    font-family: var(--serif);
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-  }
-
-  h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  .hero-right {
-    padding-bottom: 0.5rem;
-  }
-
-  .hero-intro {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--muted);
-    margin-bottom: 2rem;
-    font-weight: 300;
-  }
-
-  .hero-intro strong {
-    color: var(--ink);
-    font-weight: 500;
-  }
-
-  .cta-row {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 0.75rem 1.5rem;
-    border: 1px solid var(--ink);
-    color: var(--ink);
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-  .btn:hover {
-    background: var(--ink);
-    color: var(--paper);
-  }
-  .btn-accent {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: white;
-  }
-  .btn-accent:hover {
-    background: #a33308;
-    border-color: #a33308;
-    color: white;
-  }
-
-  /* ── SECTION WRAPPER ── */
-  section {
-    padding: 5rem 4rem;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 2rem;
-    margin-bottom: 3.5rem;
-  }
-
-  .section-num {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-  }
-
-  h2 {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-  }
-
-  /* ── ABOUT ── */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 5rem;
-  }
-
-  .about-body p {
-    margin-bottom: 1.25rem;
-    color: #2a2a2a;
-  }
-
-  .about-facts {
-    border-left: 1px solid var(--rule);
-    padding-left: 3rem;
-  }
-
-  .fact {
-    margin-bottom: 2rem;
-  }
-
-  .fact-label {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.35rem;
-  }
-
-  .fact-value {
-    font-size: 0.95rem;
-    color: var(--ink);
-    font-weight: 400;
-  }
-
-  /* ── FEATURED PROJECT ── */
-  .project-featured {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border: 1px solid var(--ink);
-  }
-
-  .project-visual {
-    background: var(--ink);
-    padding: 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 420px;
-  }
-
-  .project-tag {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-
-  .project-visual h3 {
-    font-family: var(--serif);
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: var(--paper);
-    line-height: 1.15;
-  }
-
-  .project-visual h3 em {
-    font-style: italic;
-    color: var(--accent-light);
-  }
-
-  .stack-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: auto;
-    padding-top: 2rem;
-  }
-
-  .pill {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    padding: 0.3rem 0.7rem;
-    border: 1px solid rgba(245, 242, 235, 0.25);
-    color: rgba(245, 242, 235, 0.6);
-    text-transform: uppercase;
-  }
-
-  .project-content {
-    padding: 3rem;
-    border-left: 1px solid var(--ink);
-  }
-
-  .project-content h4 {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 2rem 0 0.75rem;
-  }
-  .project-content h4:first-child { margin-top: 0; }
-
-  .project-content p, .project-content li {
-    font-size: 0.95rem;
-    color: #2a2a2a;
-    line-height: 1.65;
-  }
-
-  .project-content ul {
-    padding-left: 1.25rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .project-content li {
-    margin-bottom: 0.4rem;
-  }
-
-  .project-links {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-  }
-
-  /* ── ARCHITECTURE ── */
-  .arch-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    border: 1px solid var(--rule);
-  }
-
-  .arch-step {
-    padding: 2.5rem 2rem;
-    border-right: 1px solid var(--rule);
-    position: relative;
-  }
-  .arch-step:last-child { border-right: none; }
-
-  .arch-num {
-    font-family: var(--mono);
-    font-size: 2.5rem;
-    font-weight: 500;
-    color: var(--rule);
-    line-height: 1;
-    margin-bottom: 1.25rem;
-  }
-
-  .arch-step h4 {
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin-bottom: 0.6rem;
-    color: var(--ink);
-  }
-
-  .arch-step p {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.55;
-  }
-
-  .arch-arrow {
-    position: absolute;
-    right: -0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1.5rem;
-    height: 1.5rem;
-    background: var(--paper);
-    border: 1px solid var(--rule);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.65rem;
-    color: var(--muted);
-    z-index: 1;
-  }
-
-  /* ── AGENTS ── */
-  .agents-intro {
-    font-size: 0.98rem;
-    color: #2a2a2a;
-    max-width: 62ch;
-    margin-bottom: 3rem;
-  }
-
-  .agents-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--rule);
-  }
-
-  .agent-card {
-    background: var(--paper);
-    padding: 2.25rem 2rem;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .agent-tag {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.9rem;
-  }
-
-  .agent-card h4 {
-    font-size: 1.05rem;
-    font-weight: 500;
-    margin-bottom: 0.6rem;
-    color: var(--ink);
-  }
-
-  .agent-card p {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  .agents-note {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--muted);
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--rule);
-    max-width: 62ch;
-  }
-
-  /* ── SKILLS ── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--rule);
-  }
-
-  .skill-block {
-    background: var(--paper);
-    padding: 2.5rem 2rem;
-  }
-
-  .skill-block h4 {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.25rem;
-  }
-
-  .skill-item {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.88rem;
-    color: #2a2a2a;
-    margin-bottom: 0.6rem;
-  }
-
-  .skill-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
-
-  /* ── CONTEXT ── */
-  .context-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-  }
-
-  blockquote {
-    border-left: 3px solid var(--accent);
-    padding: 1.5rem 0 1.5rem 2rem;
-    margin: 2rem 0;
-    font-family: var(--serif);
-    font-size: 1.35rem;
-    line-height: 1.4;
-    color: var(--ink);
-    font-weight: 400;
-  }
-
-  blockquote em { font-style: italic; color: var(--accent); }
-
-  .context-right p {
-    font-size: 0.95rem;
-    color: #2a2a2a;
-    margin-bottom: 1.1rem;
-  }
-
-  /* ── CONTACT BAND ── */
-  .contact-band {
-    background: var(--ink);
-    padding: 5.5rem 4rem;
-    text-align: center;
-    border-bottom: 1px solid var(--ink);
-  }
-
-  .contact-band .section-num { color: var(--accent-light); }
-
-  .contact-band h2 {
-    font-family: var(--serif);
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
-    font-weight: 400;
-    color: var(--paper);
-    margin-bottom: 1.25rem;
-  }
-
-  .contact-band p {
-    font-size: 1rem;
-    color: rgba(245, 242, 235, 0.65);
-    max-width: 56ch;
-    margin: 0 auto 2.5rem;
-    line-height: 1.7;
-  }
-
-  .contact-band .cta-row {
-    justify-content: center;
-  }
-
-  .contact-band .btn {
-    border-color: rgba(245, 242, 235, 0.4);
-    color: var(--paper);
-  }
-  .contact-band .btn:hover {
-    background: var(--paper);
-    color: var(--ink);
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 3rem 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-left {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--muted);
-    letter-spacing: 0.06em;
-  }
-
-  .footer-links a {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--muted);
-    text-decoration: none;
-    margin-left: 2rem;
-    letter-spacing: 0.06em;
-    transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--accent); }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .fade-up {
-    opacity: 0;
-    animation: fadeUp 0.7s ease forwards;
-  }
-
-  .fade-up:nth-child(1) { animation-delay: 0.1s; }
-  .fade-up:nth-child(2) { animation-delay: 0.25s; }
-  .fade-up:nth-child(3) { animation-delay: 0.4s; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    header { padding: 1.5rem 2rem; }
-    header nav { display: none; }
-    .hero, .about-grid, .project-featured,
-    .context-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    section { padding: 4rem 2rem; }
-    .hero { padding: 4rem 2rem 3rem; }
-    .contact-band { padding: 4rem 2rem; }
-    .arch-grid { grid-template-columns: 1fr 1fr; }
-    .skills-grid { grid-template-columns: 1fr 1fr; }
-    .agents-grid { grid-template-columns: 1fr 1fr; }
-    .project-visual { min-height: auto; }
-    .project-content { border-left: none; border-top: 1px solid var(--ink); }
-    .about-facts { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 2rem; }
-    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
-    .footer-links a:first-child { margin-left: 0; }
-  }
-
-  @media (max-width: 600px) {
-    .arch-grid, .skills-grid { grid-template-columns: 1fr; }
-    .agents-grid { grid-template-columns: 1fr; }
-    .arch-step { border-right: none; border-bottom: 1px solid var(--rule); }
-    .arch-step:last-child { border-bottom: none; }
-  }
-</style>
+<!-- Microsoft UET -->
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
 </head>
 <body>
 
 <!-- HEADER -->
 <header>
-  <span class="logo">Gary Stow</span>
+  <a href="/" class="logo">Gary Stow</a>
   <nav>
     <a href="#about">About</a>
-    <a href="#project">Project</a>
-    <a href="#agents">AI &amp; agents</a>
-    <a href="#architecture">How it works</a>
-    <a href="#skills">Skills</a>
-    <a href="#speaking">Speaking</a>
-    <a href="articles/">Articles</a>
-    <a href="#contact">Contact</a>
+    <a href="/work/">Work</a>
+    <a href="/articles/">Articles</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
     <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
   </nav>
 </header>
@@ -695,14 +86,12 @@
   <div class="hero-right fade-up">
     <p class="hero-intro">
       I'm a <strong>performance marketing specialist</strong> who builds things. Not talks about building things. Builds them.
-      This site covers two sides of that: AI agents and training I build as part of my day-to-day work, and a project I started
-      from scratch with no development background, a fully automated momentum trading scanner that runs every weekday and
-      flags opportunities before the US market opens.
+      I build AI agents and automated systems as part of my day job, teach AI skills to colleagues and industry audiences,
+      and run a fully automated trading scanner as a public learning project — started with no development background at all.
     </p>
     <div class="cta-row">
-      <a href="https://market-universe-generator-7jrhjfbttwfzlappdxaaysq.streamlit.app/" target="_blank" class="btn btn-accent">Live Dashboard ↗</a>
-      <a href="https://github.com/GarySto/market-universe-generator" target="_blank" class="btn">GitHub Repo ↗</a>
-      <a href="#speaking" class="btn">Speaking &amp; training</a>
+      <a href="/work/" class="btn btn-accent">See the work ↗</a>
+      <a href="/speaking/" class="btn">Speaking &amp; training</a>
       <a href="https://linkedin.com/in/garystow" target="_blank" class="btn">LinkedIn ↗</a>
     </div>
   </div>
@@ -718,7 +107,7 @@
     <div class="about-body">
       <p>I've spent over a decade in performance marketing — predominantly PPC and more recently AI-powered campaign tooling, particularly around Performance Max. I've been published, I've built internal tools, and I've spent a lot of time trying to cut through as someone who actually does things rather than just writes about doing things.</p>
       <p>In 2026 I started learning to code. Not because I needed to for my job, but because I'd reached the ceiling of what I could do by pointing AI at problems without understanding what was happening underneath. I wanted to build agents properly — the kind that do genuinely useful things and keep doing them when nobody's watching.</p>
-      <p>This project is the result of that. It started as a trading idea, became a data engineering problem, then a dashboard, then a backtesting tool. Along the way I learned GitHub, Python, GitHub Actions, Streamlit, and how to debug a pandas error at 11pm without losing my mind entirely. I'm a Type 1 diabetic with ADHD and a hint of autism, two daughters, and a background that didn't include any of the things this project required. None of that stopped it working.</p>
+      <p>I'm a Type 1 diabetic with ADHD and a hint of autism, two daughters, and a background that didn't include any of the things this work required. None of that stopped it working. The pages linked below cover the project itself, the AI agents and training I build day to day, and the speaking and coaching I do on the side.</p>
     </div>
     <div class="about-facts">
       <div class="fact">
@@ -730,7 +119,7 @@
         <div class="fact-value">United Kingdom</div>
       </div>
       <div class="fact">
-        <div class="fact-label">This project started</div>
+        <div class="fact-label">Flagship project started</div>
         <div class="fact-value">May 2026 — 72 hours to first deployment</div>
       </div>
       <div class="fact">
@@ -745,254 +134,43 @@
   </div>
 </section>
 
-<!-- FEATURED PROJECT -->
-<section id="project">
+<!-- LINK CARDS -->
+<section id="explore">
   <div class="section-header">
     <span class="section-num">02</span>
-    <h2>Featured project</h2>
+    <h2>Explore</h2>
   </div>
-
-  <div class="project-featured">
-    <div class="project-visual">
-      <div>
-        <div class="project-tag">Active · Daily · Free to run</div>
-        <h3>Momentum<br><em>Scanner</em></h3>
-      </div>
-      <div class="stack-pills">
-        <span class="pill">Python</span>
-        <span class="pill">yfinance</span>
-        <span class="pill">Pandas</span>
-        <span class="pill">Streamlit</span>
-        <span class="pill">GitHub Actions</span>
-        <span class="pill">Altair</span>
-        <span class="pill">Streamlit Cloud</span>
-      </div>
-    </div>
-
-    <div class="project-content">
-      <h4>The problem</h4>
-      <p>US stocks that gap up in premarket with above-average volume tend to continue moving in the first 15 minutes of regular trading. Identifying which ones are worth acting on — before the market opens — requires scanning hundreds of tickers, scoring them across multiple signals, and having that information ready by 13:30 BST. Doing it manually every day is not realistic.</p>
-
-      <h4>What it does</h4>
-      <ul>
-        <li>Runs automatically every weekday at 13:00 BST via GitHub Actions</li>
-        <li>Scores 250+ US stocks across five momentum signals</li>
-        <li>Publishes results to a live Streamlit dashboard before the NYSE opens</li>
-        <li>Pre-trade confirmation check at 14:00 BST re-scores top candidates live</li>
-        <li>14-day backtest with 1-minute candle replay and trade simulation</li>
-        <li>Premarket momentum assessment flags the Hub Cyber Security pattern</li>
-      </ul>
-
-      <h4>The scoring model</h4>
-      <p>Score = (3 × gap%) + (2 × RVOL) + (0.5 × trend) + (2 × breakout) + (1 × volatility). Stocks scoring above 9 with a live premarket gap are the primary trade candidates.</p>
-
-      <div class="project-links">
-        <a href="https://market-universe-generator-7jrhjfbttwfzlappdxaaysq.streamlit.app/" target="_blank" class="btn btn-accent">Live dashboard ↗</a>
-        <a href="https://github.com/GarySto/market-universe-generator" target="_blank" class="btn">View code ↗</a>
-      </div>
-    </div>
+  <div class="link-cards">
+    <a href="/work/" class="link-card">
+      <div class="link-tag">Project · Agents · Skills</div>
+      <h4>The work</h4>
+      <p>The Momentum Scanner build, the AI agents I've built at work, how it's all put together, and the skills behind it.</p>
+      <div class="link-arrow">View the work →</div>
+    </a>
+    <a href="/articles/" class="link-card">
+      <div class="link-tag">Writing</div>
+      <h4>Articles</h4>
+      <p>Longer pieces on practical AI adoption, building in public, and what a decade in performance marketing actually teaches you.</p>
+      <div class="link-arrow">Read the articles →</div>
+    </a>
+    <a href="/speaking/" class="link-card">
+      <div class="link-tag">Training · Workshops · Coaching</div>
+      <h4>Speaking &amp; teaching</h4>
+      <p>Hands-on AI training days, team workshops and one-to-one coaching, in the style proven with the IAB UK Ad Labs series.</p>
+      <div class="link-arrow">See how I teach →</div>
+    </a>
   </div>
-</section>
-
-<!-- AI & AGENTS -->
-<section id="agents">
-  <div class="section-header">
-    <span class="section-num">03</span>
-    <h2>AI &amp; agents</h2>
-  </div>
-
-  <p class="agents-intro">The trading scanner is one visible project. Alongside it, AI agent building and teaching sits right in the middle of my day-to-day work in performance marketing, and I spend a fair amount of my own time on it too, both for colleagues and for external industry audiences.</p>
-
-  <div class="agents-grid">
-    <div class="agent-card">
-      <div class="agent-tag">Built end-to-end</div>
-      <h4>Campaign audit agent</h4>
-      <p>An AI agent that audits paid search campaigns against best practice and flags issues automatically. The prompt logic behind it was later adapted to support a cross-company AI proof-of-concept, demoed at a major international industry event.</p>
-    </div>
-    <div class="agent-card">
-      <div class="agent-tag">Built in two days</div>
-      <h4>AI maturity assessment agent</h4>
-      <p>A working agent that scores an organisation's AI maturity and produces a structured assessment, built with full handoff documentation so someone else could rebuild or extend it without me.</p>
-    </div>
-    <div class="agent-card">
-      <div class="agent-tag">Hackathon build</div>
-      <h4>Career-guidance agent</h4>
-      <p>An agent that matches a person's experience and interests against a large role library to suggest a sensible starting point for their next move, built during an internal hackathon day.</p>
-    </div>
-    <div class="agent-card">
-      <div class="agent-tag">Runs daily</div>
-      <h4>Market-intelligence agent</h4>
-      <p>An agent that produces a daily market and industry signals briefing, now used by colleagues beyond the person it was originally built for.</p>
-    </div>
-    <div class="agent-card">
-      <div class="agent-tag">IAB UK Ad Labs</div>
-      <h4>Industry AI training</h4>
-      <p>Designed and delivered a hands-on, laptops-open AI training session for the IAB's Ad Labs series, reformatted into a practitioner workshop after feedback from an earlier, more theoretical session.</p>
-    </div>
-    <div class="agent-card">
-      <div class="agent-tag">Ongoing</div>
-      <h4>One-to-one AI coaching</h4>
-      <p>Regular coaching and desk-side training for colleagues building their first AI agents or adopting new tools, arising from direct requests rather than a formal programme.</p>
-    </div>
-  </div>
-
-  <p class="agents-note">Descriptions above are deliberately general. Specific employers, clients and internal systems aren't named, in line with normal workplace confidentiality, and everything here reflects my own personal views and projects, not any employer's.</p>
-</section>
-
-<!-- ARCHITECTURE -->
-<section id="architecture">
-  <div class="section-header">
-    <span class="section-num">04</span>
-    <h2>How it works</h2>
-  </div>
-
-  <div class="arch-grid">
-    <div class="arch-step">
-      <div class="arch-num">01</div>
-      <h4>Scheduled pipeline</h4>
-      <p>GitHub Actions triggers universe.py at 12:00 UTC (13:00 BST) Monday to Friday. No manual intervention required.</p>
-      <div class="arch-arrow">→</div>
-    </div>
-    <div class="arch-step">
-      <div class="arch-num">02</div>
-      <h4>Data retrieval</h4>
-      <p>yfinance pulls 15 days of OHLCV data plus live premarket price and volume for each ticker in the watchlist.</p>
-      <div class="arch-arrow">→</div>
-    </div>
-    <div class="arch-step">
-      <div class="arch-num">03</div>
-      <h4>Scoring &amp; ranking</h4>
-      <p>Five signals computed per ticker. Weighted score calculated. Results written to output/universe.csv and committed back to the repo.</p>
-      <div class="arch-arrow">→</div>
-    </div>
-    <div class="arch-step">
-      <div class="arch-num">04</div>
-      <h4>Live dashboard</h4>
-      <p>Streamlit Cloud reads the CSV directly from GitHub. Dashboard updates automatically. No server to manage.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS DEMONSTRATED -->
-<section id="skills">
-  <div class="section-header">
-    <span class="section-num">05</span>
-    <h2>Skills demonstrated</h2>
-  </div>
-
-  <div class="skills-grid">
-    <div class="skill-block">
-      <h4>Data engineering</h4>
-      <div class="skill-item"><span class="skill-dot"></span>Automated data pipelines</div>
-      <div class="skill-item"><span class="skill-dot"></span>API integration (yfinance)</div>
-      <div class="skill-item"><span class="skill-dot"></span>Feature engineering</div>
-      <div class="skill-item"><span class="skill-dot"></span>Historical backtesting</div>
-      <div class="skill-item"><span class="skill-dot"></span>Time series handling</div>
-    </div>
-    <div class="skill-block">
-      <h4>Infrastructure &amp; automation</h4>
-      <div class="skill-item"><span class="skill-dot"></span>GitHub Actions (CI/CD)</div>
-      <div class="skill-item"><span class="skill-dot"></span>Scheduled workflows</div>
-      <div class="skill-item"><span class="skill-dot"></span>Version control (Git)</div>
-      <div class="skill-item"><span class="skill-dot"></span>Cloud deployment (Streamlit)</div>
-      <div class="skill-item"><span class="skill-dot"></span>Free-tier architecture</div>
-    </div>
-    <div class="skill-block">
-      <h4>Python development</h4>
-      <div class="skill-item"><span class="skill-dot"></span>Pandas, NumPy</div>
-      <div class="skill-item"><span class="skill-dot"></span>Streamlit (dashboard)</div>
-      <div class="skill-item"><span class="skill-dot"></span>Altair (data visualisation)</div>
-      <div class="skill-item"><span class="skill-dot"></span>Caching &amp; session state</div>
-      <div class="skill-item"><span class="skill-dot"></span>Timezone handling (pytz)</div>
-    </div>
-    <div class="skill-block">
-      <h4>Product thinking</h4>
-      <div class="skill-item"><span class="skill-dot"></span>Problem → system design</div>
-      <div class="skill-item"><span class="skill-dot"></span>Iterative improvement</div>
-      <div class="skill-item"><span class="skill-dot"></span>User-facing documentation</div>
-      <div class="skill-item"><span class="skill-dot"></span>Honest limitation analysis</div>
-      <div class="skill-item"><span class="skill-dot"></span>Data quality assessment</div>
-    </div>
-    <div class="skill-block">
-      <h4>AI-assisted development</h4>
-      <div class="skill-item"><span class="skill-dot"></span>Prompt engineering</div>
-      <div class="skill-item"><span class="skill-dot"></span>Debugging with AI tools</div>
-      <div class="skill-item"><span class="skill-dot"></span>Code review and iteration</div>
-      <div class="skill-item"><span class="skill-dot"></span>Agent-building mindset</div>
-      <div class="skill-item"><span class="skill-dot"></span>Understanding AI output</div>
-    </div>
-    <div class="skill-block">
-      <h4>Domain knowledge</h4>
-      <div class="skill-item"><span class="skill-dot"></span>Momentum trading theory</div>
-      <div class="skill-item"><span class="skill-dot"></span>Premarket microstructure</div>
-      <div class="skill-item"><span class="skill-dot"></span>Technical indicators (ATR, RVOL)</div>
-      <div class="skill-item"><span class="skill-dot"></span>Trade simulation logic</div>
-      <div class="skill-item"><span class="skill-dot"></span>Risk/reward framing</div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTEXT -->
-<section>
-  <div class="section-header">
-    <span class="section-num">06</span>
-    <h2>Why this matters</h2>
-  </div>
-
-  <div class="context-grid">
-    <div class="context-left">
-      <blockquote>
-        "I've always had a million ideas. ADHD makes them arrive all at once, loud, and rarely in order. For years the gap wasn't ideas, it was turning them into something real. <em>Learning to build closed that gap.</em>"
-      </blockquote>
-    </div>
-    <div class="context-right">
-      <p>This project isn't a tutorial I followed. It isn't a Kaggle notebook. It's something I built from nothing because I had an idea and wanted to know if I could make it work.</p>
-      <p>I'm a performance marketer. My day job is making advertising systems perform better. What I've discovered is that the skills behind that — structured thinking, data interpretation, identifying signals in noise, knowing when to act and when to wait — transfer directly into building data-driven automation systems and the AI agents documented above.</p>
-      <p>The AI tools I used accelerated my learning. They didn't replace the decision-making. Every design choice in this system, every fix when something broke, every time the backtest showed a result that didn't make sense and I had to figure out why — that was me.</p>
-      <p>If you're building a team that works with AI-powered systems, or that needs someone who can build them and teach others to use them, this is what that looks like in practice.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SPEAKING & TEACHING -->
-<section id="speaking">
-  <div class="section-header">
-    <span class="section-num">07</span>
-    <h2>Speaking &amp; teaching</h2>
-  </div>
-
-  <p class="agents-intro">Alongside the project above, I spend a good chunk of my own time teaching AI skills — to colleagues, and to industry audiences like the IAB. If you're planning a session, a workshop or a team day and want someone who builds the thing as well as explains it, here's the kind of thing I do.</p>
-
-  <div class="agents-grid">
-    <div class="agent-card">
-      <div class="agent-tag">Hands-on, not slides</div>
-      <h4>AI training days</h4>
-      <p>Laptops-open sessions where people leave having actually built something, not sat through a deck. Format proven with the IAB UK Ad Labs series.</p>
-    </div>
-    <div class="agent-card">
-      <div class="agent-tag">Built for your workflow</div>
-      <h4>Team workshops</h4>
-      <p>A practical look at where AI genuinely fits a team's existing work, not a generic AI 101. Grounded in real automation and agents I've built myself.</p>
-    </div>
-    <div class="agent-card">
-      <div class="agent-tag">Ongoing</div>
-      <h4>One-to-one coaching</h4>
-      <p>Desk-side coaching for people building their first AI agent or adopting a new tool, the same way I coach colleagues day to day.</p>
-    </div>
-  </div>
-
-  <p class="agents-note">This is a personal project, run in my own time, and reflects my own views rather than any employer's. I'm currently focused on training and speaking rather than paid consulting engagements.</p>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="contact-band">
   <div class="section-header" style="justify-content: center; margin-bottom: 1.5rem;">
-    <span class="section-num">08</span>
+    <span class="section-num">03</span>
   </div>
   <h2>Get in touch</h2>
   <p>If you're planning a training session, workshop or team day and think this might be a fit, drop me a line. I read everything myself.</p>
   <div class="cta-row">
-    <a href="mailto:garystow.hq@gmail.com?subject=Speaking%20%26%20training%20enquiry" class="btn btn-accent">Email me ↗</a>
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
     <a href="https://linkedin.com/in/garystow" target="_blank" class="btn">Message on LinkedIn ↗</a>
   </div>
 </section>
@@ -1001,7 +179,7 @@
 <footer>
   <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
   <div class="footer-links">
-    <a href="mailto:garystow.hq@gmail.com">Email ↗</a>
+    <a href="/contact/">Contact ↗</a>
     <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
     <a href="https://github.com/GarySto/market-universe-generator" target="_blank">GitHub ↗</a>
     <a href="https://market-universe-generator-7jrhjfbttwfzlappdxaaysq.streamlit.app/" target="_blank">Live project ↗</a>

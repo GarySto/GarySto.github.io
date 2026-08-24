@@ -1,0 +1,299 @@
+<!-- PAGE: WORK (garystow.co.uk/work/) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Work — Gary Stow, AI Practitioner &amp; Builder</title>
+<meta name="description" content="The Momentum Scanner, a fully automated trading system built from scratch with no prior coding experience, plus the AI agents I've built at work, how it all fits together, and the skills behind it.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/work/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Work — Gary Stow, AI Practitioner & Builder">
+<meta property="og:description" content="The Momentum Scanner, a fully automated trading system built from scratch, plus the AI agents I've built at work and the skills behind them.">
+<meta property="og:url" content="https://garystow.co.uk/work/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Work — Gary Stow, AI Practitioner & Builder">
+<meta name="twitter:description" content="The Momentum Scanner, a fully automated trading system built from scratch, plus the AI agents I've built at work and the skills behind them.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<!-- Microsoft UET -->
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/work/" class="active">Work</a>
+    <a href="/articles/">Articles</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
+</header>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="hero-label">The work</div>
+  <h1>Project. Agents. <em>Skills.</em></h1>
+  <p class="hero-intro">Everything I've actually built, not talked about building: a live trading scanner running every weekday, the AI agents I've shipped at work, how the system is put together end to end, and the skills behind it.</p>
+</div>
+
+<!-- FEATURED PROJECT -->
+<section id="project">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Featured project</h2>
+  </div>
+
+  <div class="project-featured">
+    <div class="project-visual">
+      <div>
+        <div class="project-tag">Active · Daily · Free to run</div>
+        <h3>Momentum<br><em>Scanner</em></h3>
+      </div>
+      <div class="stack-pills">
+        <span class="pill">Python</span>
+        <span class="pill">yfinance</span>
+        <span class="pill">Pandas</span>
+        <span class="pill">Streamlit</span>
+        <span class="pill">GitHub Actions</span>
+        <span class="pill">Altair</span>
+        <span class="pill">Streamlit Cloud</span>
+      </div>
+    </div>
+
+    <div class="project-content">
+      <h4>The problem</h4>
+      <p>US stocks that gap up in premarket with above-average volume tend to continue moving in the first 15 minutes of regular trading. Identifying which ones are worth acting on — before the market opens — requires scanning hundreds of tickers, scoring them across multiple signals, and having that information ready by 13:30 BST. Doing it manually every day is not realistic.</p>
+
+      <h4>What it does</h4>
+      <ul>
+        <li>Runs automatically every weekday at 13:00 BST via GitHub Actions</li>
+        <li>Scores 250+ US stocks across five momentum signals</li>
+        <li>Publishes results to a live Streamlit dashboard before the NYSE opens</li>
+        <li>Pre-trade confirmation check at 14:00 BST re-scores top candidates live</li>
+        <li>14-day backtest with 1-minute candle replay and trade simulation</li>
+        <li>Premarket momentum assessment flags the Hub Cyber Security pattern</li>
+      </ul>
+
+      <h4>The scoring model</h4>
+      <p>Score = (3 × gap%) + (2 × RVOL) + (0.5 × trend) + (2 × breakout) + (1 × volatility). Stocks scoring above 9 with a live premarket gap are the primary trade candidates.</p>
+
+      <p style="font-size: 0.82rem; color: var(--muted); margin-top: 1.5rem;">Any trading figures shown on the live dashboard are practice-account results, not real income.</p>
+
+      <div class="project-links">
+        <a href="https://market-universe-generator-7jrhjfbttwfzlappdxaaysq.streamlit.app/" target="_blank" class="btn btn-accent">Live dashboard ↗</a>
+        <a href="https://github.com/GarySto/market-universe-generator" target="_blank" class="btn">View code ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI & AGENTS -->
+<section id="agents">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>AI &amp; agents</h2>
+  </div>
+
+  <p class="agents-intro">The trading scanner is one visible project. Alongside it, AI agent building and teaching sits right in the middle of my day-to-day work in performance marketing, and I spend a fair amount of my own time on it too, both for colleagues and for external industry audiences.</p>
+
+  <div class="agents-grid">
+    <div class="agent-card">
+      <div class="agent-tag">Built end-to-end</div>
+      <h4>Campaign audit agent</h4>
+      <p>An AI agent that audits paid search campaigns against best practice and flags issues automatically. The prompt logic behind it was later adapted to support a cross-company AI proof-of-concept, demoed at a major international industry event.</p>
+    </div>
+    <div class="agent-card">
+      <div class="agent-tag">Built in two days</div>
+      <h4>AI maturity assessment agent</h4>
+      <p>A working agent that scores an organisation's AI maturity and produces a structured assessment, built with full handoff documentation so someone else could rebuild or extend it without me.</p>
+    </div>
+    <div class="agent-card">
+      <div class="agent-tag">Hackathon build</div>
+      <h4>Career-guidance agent</h4>
+      <p>An agent that matches a person's experience and interests against a large role library to suggest a sensible starting point for their next move, built during an internal hackathon day.</p>
+    </div>
+    <div class="agent-card">
+      <div class="agent-tag">Runs daily</div>
+      <h4>Market-intelligence agent</h4>
+      <p>An agent that produces a daily market and industry signals briefing, now used by colleagues beyond the person it was originally built for.</p>
+    </div>
+    <div class="agent-card">
+      <div class="agent-tag">IAB UK Ad Labs</div>
+      <h4>Industry AI training</h4>
+      <p>Designed and delivered a hands-on, laptops-open AI training session for the IAB's Ad Labs series, reformatted into a practitioner workshop after feedback from an earlier, more theoretical session.</p>
+    </div>
+    <div class="agent-card">
+      <div class="agent-tag">Ongoing</div>
+      <h4>One-to-one AI coaching</h4>
+      <p>Regular coaching and desk-side training for colleagues building their first AI agents or adopting new tools, arising from direct requests rather than a formal programme.</p>
+    </div>
+  </div>
+
+  <p class="agents-note">Descriptions above are deliberately general. Specific employers, clients and internal systems aren't named, in line with normal workplace confidentiality, and everything here reflects my own personal views and projects, not any employer's.</p>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="architecture">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>How it works</h2>
+  </div>
+
+  <div class="arch-grid">
+    <div class="arch-step">
+      <div class="arch-num">01</div>
+      <h4>Scheduled pipeline</h4>
+      <p>GitHub Actions triggers universe.py at 12:00 UTC (13:00 BST) Monday to Friday. No manual intervention required.</p>
+      <div class="arch-arrow">→</div>
+    </div>
+    <div class="arch-step">
+      <div class="arch-num">02</div>
+      <h4>Data retrieval</h4>
+      <p>yfinance pulls 15 days of OHLCV data plus live premarket price and volume for each ticker in the watchlist.</p>
+      <div class="arch-arrow">→</div>
+    </div>
+    <div class="arch-step">
+      <div class="arch-num">03</div>
+      <h4>Scoring &amp; ranking</h4>
+      <p>Five signals computed per ticker. Weighted score calculated. Results written to output/universe.csv and committed back to the repo.</p>
+      <div class="arch-arrow">→</div>
+    </div>
+    <div class="arch-step">
+      <div class="arch-num">04</div>
+      <h4>Live dashboard</h4>
+      <p>Streamlit Cloud reads the CSV directly from GitHub. Dashboard updates automatically. No server to manage.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Skills demonstrated</h2>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-block">
+      <h4>Data engineering</h4>
+      <div class="skill-item"><span class="skill-dot"></span>Automated data pipelines</div>
+      <div class="skill-item"><span class="skill-dot"></span>API integration (yfinance)</div>
+      <div class="skill-item"><span class="skill-dot"></span>Feature engineering</div>
+      <div class="skill-item"><span class="skill-dot"></span>Historical backtesting</div>
+      <div class="skill-item"><span class="skill-dot"></span>Time series handling</div>
+    </div>
+    <div class="skill-block">
+      <h4>Infrastructure &amp; automation</h4>
+      <div class="skill-item"><span class="skill-dot"></span>GitHub Actions (CI/CD)</div>
+      <div class="skill-item"><span class="skill-dot"></span>Scheduled workflows</div>
+      <div class="skill-item"><span class="skill-dot"></span>Version control (Git)</div>
+      <div class="skill-item"><span class="skill-dot"></span>Cloud deployment (Streamlit)</div>
+      <div class="skill-item"><span class="skill-dot"></span>Free-tier architecture</div>
+    </div>
+    <div class="skill-block">
+      <h4>Python development</h4>
+      <div class="skill-item"><span class="skill-dot"></span>Pandas, NumPy</div>
+      <div class="skill-item"><span class="skill-dot"></span>Streamlit (dashboard)</div>
+      <div class="skill-item"><span class="skill-dot"></span>Altair (data visualisation)</div>
+      <div class="skill-item"><span class="skill-dot"></span>Caching &amp; session state</div>
+      <div class="skill-item"><span class="skill-dot"></span>Timezone handling (pytz)</div>
+    </div>
+    <div class="skill-block">
+      <h4>Product thinking</h4>
+      <div class="skill-item"><span class="skill-dot"></span>Problem → system design</div>
+      <div class="skill-item"><span class="skill-dot"></span>Iterative improvement</div>
+      <div class="skill-item"><span class="skill-dot"></span>User-facing documentation</div>
+      <div class="skill-item"><span class="skill-dot"></span>Honest limitation analysis</div>
+      <div class="skill-item"><span class="skill-dot"></span>Data quality assessment</div>
+    </div>
+    <div class="skill-block">
+      <h4>AI-assisted development</h4>
+      <div class="skill-item"><span class="skill-dot"></span>Prompt engineering</div>
+      <div class="skill-item"><span class="skill-dot"></span>Debugging with AI tools</div>
+      <div class="skill-item"><span class="skill-dot"></span>Code review and iteration</div>
+      <div class="skill-item"><span class="skill-dot"></span>Agent-building mindset</div>
+      <div class="skill-item"><span class="skill-dot"></span>Understanding AI output</div>
+    </div>
+    <div class="skill-block">
+      <h4>Domain knowledge</h4>
+      <div class="skill-item"><span class="skill-dot"></span>Momentum trading theory</div>
+      <div class="skill-item"><span class="skill-dot"></span>Premarket microstructure</div>
+      <div class="skill-item"><span class="skill-dot"></span>Technical indicators (ATR, RVOL)</div>
+      <div class="skill-item"><span class="skill-dot"></span>Trade simulation logic</div>
+      <div class="skill-item"><span class="skill-dot"></span>Risk/reward framing</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXT -->
+<section id="why">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2>Why this matters</h2>
+  </div>
+
+  <div class="context-grid">
+    <div class="context-left">
+      <blockquote>
+        "I've always had a million ideas. ADHD makes them arrive all at once, loud, and rarely in order. For years the gap wasn't ideas, it was turning them into something real. <em>Learning to build closed that gap.</em>"
+      </blockquote>
+    </div>
+    <div class="context-right">
+      <p>This project isn't a tutorial I followed. It isn't a Kaggle notebook. It's something I built from nothing because I had an idea and wanted to know if I could make it work.</p>
+      <p>I'm a performance marketer. My day job is making advertising systems perform better. What I've discovered is that the skills behind that — structured thinking, data interpretation, identifying signals in noise, knowing when to act and when to wait — transfer directly into building data-driven automation systems and the AI agents documented above.</p>
+      <p>The AI tools I used accelerated my learning. They didn't replace the decision-making. Every design choice in this system, every fix when something broke, every time the backtest showed a result that didn't make sense and I had to figure out why — that was me.</p>
+      <p>If you're building a team that works with AI-powered systems, or that needs someone who can build them and teach others to use them, this is what that looks like in practice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-band">
+  <div class="section-header" style="justify-content: center; margin-bottom: 1.5rem;">
+    <span class="section-num">06</span>
+  </div>
+  <h2>Want to talk about this?</h2>
+  <p>If you're building a team that works with AI-powered systems and want someone who builds as well as explains, get in touch.</p>
+  <div class="cta-row">
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
+    <a href="/speaking/" class="btn">Speaking &amp; training</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="/contact/">Contact ↗</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+    <a href="https://github.com/GarySto/market-universe-generator" target="_blank">GitHub ↗</a>
+    <a href="https://market-universe-generator-7jrhjfbttwfzlappdxaaysq.streamlit.app/" target="_blank">Live project ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>

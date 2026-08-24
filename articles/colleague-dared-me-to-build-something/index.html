@@ -1,0 +1,112 @@
+<!-- PAGE: ARTICLE — My colleague joked and dared me to build something -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Colleague Joked and Dared Me to Build Something — Gary Stow</title>
+<meta name="description" content="72 hours, no coding experience, and a fully automated momentum trading scanner. How a Friday-afternoon dare from a colleague became a live, daily-running AI-built system.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/articles/colleague-dared-me-to-build-something/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="My Colleague Joked and Dared Me to Build Something">
+<meta property="og:description" content="72 hours, no coding experience, and a fully automated momentum trading scanner.">
+<meta property="og:url" content="https://garystow.co.uk/articles/colleague-dared-me-to-build-something/">
+<meta property="og:image" content="https://garystow.co.uk/assets/articles/colleague-dared-me.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<!-- Microsoft UET -->
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/work/">Work</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/articles/" class="article-back">← All articles</a>
+  <div class="hero-label">Building in public</div>
+  <h1>My colleague joked and dared me to build something.</h1>
+  <div class="article-meta">4 June 2026 · Gary Stow, Senior Client Solutions Manager, Financial Services, Microsoft Advertising / Microsoft AI</div>
+</div>
+
+<section>
+  <img src="/assets/articles/colleague-dared-me.png" alt="My colleague dared me to build something — 72 hours, no coding experience, £50 starting capital, 98 trades to £1,000,000" class="article-hero-img">
+  <div class="article-body">
+
+    <p>It was a Friday afternoon and I'd just had one of those trading moments where you do everything right, catch the momentum, make the gain, and then immediately jump back in just as it dumps. Jenn suggested that if I was going to keep messing around with trades I should probably build something to do it properly, so we could get rich and retire. She was mostly joking and I wasn't entirely.</p>
+
+    <p>The challenge I set myself was to build something useful using only the AI tools that everyone has access to, not the enterprise version with all the extra capabilities but the standard one, because if it works for me it works for anyone.</p>
+
+    <p>I started with Copilot and made progress, but I also went in circles for longer than I'd like to admit on problems that should have been straightforward. When I ran out of tokens I switched to Claude, which turned out to be better suited for what I was trying to do at that moment in time. It fixed a problem I'd been stuck on for a while, and didn't make me feel like I was explaining the same thing twice. That's not a criticism of either tool, just an honest account of what happened, because different tools suit different jobs and it's worth knowing which is which.</p>
+
+    <p>Seventy-two hours after Jenn sent that message, I had a fully automated momentum trading scanner running in production.</p>
+
+    <p>Every weekday at 09:00 BST a GitHub Action runs automatically, fetching data on over 470 US stocks and scoring each one across five signals: premarket gap, relative volume, trend, breakout position and volatility. It publishes a ranked list to a live dashboard, then runs again at 12:00, 13:00 and 14:00 BST to check whether the morning's top candidates are still holding their momentum. If anything looks genuinely strong it emails me. The US market opens at 14:30 BST and by that point I have everything I need in front of me with time to think about it, which is rather the point.</p>
+
+    <p>The scoring model weights premarket gap most heavily, because a stock that's trading significantly higher than yesterday's close with unusual volume behind it before the market even opens is sending a strong signal. What I've noticed already, even this early into the project, is that small caps with high volatility scores respond better than large caps. A large cap might score well on relative volume and trend but it genuinely won't move 10% in thirty minutes whereas a smaller, more volatile stock with something specific happening on that particular day is a very different proposition. The data is already bearing this out. On 29 May, one candidate ran +25% at the open with RSI surging through 80 and a massive volume spike. It was excluded from trading by the price filter, but the pattern was exactly what the model is designed to find.</p>
+
+    <p>The moment I knew this was actually real wasn't the first trade. I'd set up the GitHub Action and gone to bed without being entirely sure it would run correctly. The next morning I checked my phone and it had run, on its own, at the right time, fetching the data, scoring everything, committing the results and updating the dashboard without anyone telling it to or being there to supervise it. I know that's unremarkable to anyone who works in engineering, but it was the first time I'd built something that kept working when I wasn't watching it and I'm not going to pretend that didn't feel significant.</p>
+
+    <p>I should be honest about what I am, because it's relevant to why any of this is interesting. I'm a performance marketing specialist who has spent over a decade in PPC and the last few years working with AI-powered campaign tools. I build internal tools to help colleagues with repetitive tasks and I modify Power BI dashboards until they're actually useful for me and my peers. I am not a developer and had never written in Python, or used it to create anything useful before this project. I also have ADHD, which means that once something genuinely interests me I will work on it until it's finished and the sun has come up, which is both a feature and occasionally a problem depending on who you ask.</p>
+
+    <p>My first trade was last week. SPCE, Virgin Galactic, flagged by the scanner at 12:00 BST with a score of 12.75. I bought in premarket at 13:10 and at 13:45 it hit my 10% target price. My limit order didn't fill, because premarket OTC trades don't guarantee limit execution even when the price touches your level, and by 14:45, which is my hard exit time regardless of what's happening, the momentum had gone and I sold at market. I walked away with 60p profit instead of five pounds, which is trade 1 of 98 and approximately 97 trades away from the million. The aim of the game is 98 trades with 10% profit starting from £50, which gets you to a million.</p>
+
+    <p>The lesson, now permanently baked into my process, is to sell manually the moment the target is hit rather than relying on a limit order in premarket conditions. You build the thing, you run it, it tells you what you got wrong, and then you fix it and run it again. That's the whole game really.</p>
+
+    <p>I'm writing this because I think there's something worth saying about what happens when someone who isn't a developer decides to actually build something rather than just talk about building things. We're all surrounded by AI tools and most of us use them to write emails slightly faster or summarise documents we didn't really want to read in the first place, which is fine, but there's a version of this where you use the same tools to build something that runs every day and does something genuinely useful, and the gap between those two versions of AI use is much wider than the gap in the tools themselves.</p>
+
+    <p>Jenn's message was half a joke on a Friday afternoon and the scanner has run every weekday morning since.</p>
+
+    <p>The project is fully public. The GitHub repo is open source, the dashboard is live and runs every trading day, and the <a href="/work/">full technical write-up covering how the scoring works and what I got wrong along the way is here</a>.</p>
+
+    <p style="font-size: 0.9rem; color: var(--muted);">Everything here is my own opinion and my own project, not affiliated with or representative of my employer in any way, and also very much not financial advice. Figures shown are practice-account results, not real income.</p>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Building something of your own?</h2>
+  <p>If this is the kind of AI use you want your team doing more of, get in touch.</p>
+  <div class="cta-row">
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
+    <a href="/work/" class="btn">See the full project</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="/contact/">Contact ↗</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+    <a href="https://github.com/GarySto/market-universe-generator" target="_blank">GitHub ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>
