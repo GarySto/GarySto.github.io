@@ -3,6 +3,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Articles — Gary Stow</title>
 <meta name="description" content="Longer pieces from Gary Stow on practical AI adoption in performance marketing, building in public, and lessons from a decade in PPC.">
@@ -50,42 +53,81 @@
 <div class="page-hero">
   <div class="hero-label">Writing</div>
   <h1>Articles.</h1>
-  <p class="hero-intro">Longer, republished versions of things I've written on LinkedIn — practical AI adoption, building in public, and what a decade in performance marketing actually teaches you.</p>
+  <p class="hero-intro">Republished, longer versions of the LinkedIn posts and articles that actually landed — building the trading scanner in public, where search and AI are heading, and what a decade in performance marketing (and a fair bit of it outside it) actually teaches you.</p>
 </div>
 
 <section>
-  <div class="articles-list">
-    <a href="/articles/colleague-dared-me-to-build-something/" class="article-row">
+
+  <a href="/articles/colleague-dared-me-to-build-something/" class="featured-article">
+    <img src="/assets/articles/colleague-dared-me.png" alt="My colleague joked and dared me to build something" style="width:100%; max-height:320px; object-fit:contain; background:var(--ink); display:block;">
+    <div class="featured-article-body">
+      <span class="featured-article-tag">Latest</span>
+      <h3>My colleague joked and dared me to build something</h3>
+      <p>72 hours, no coding experience, and a fully automated momentum trading scanner. How a Friday-afternoon dare became a live, daily-running system.</p>
+      <div class="featured-article-meta">4 June 2026 · Building in public</div>
+    </div>
+  </a>
+
+  <div class="articles-filter">
+    <button class="filter-pill active" data-filter="all">All</button>
+    <button class="filter-pill" data-filter="Building in public">Building in public</button>
+    <button class="filter-pill" data-filter="Industry">Industry</button>
+    <button class="filter-pill" data-filter="Lessons">Lessons</button>
+    <button class="filter-pill" data-filter="Teaching">Teaching</button>
+  </div>
+
+  <div class="articles-list" id="articles-list">
+    <a href="/articles/colleague-dared-me-to-build-something/" class="article-row" data-pillar="Building in public">
       <span class="article-date">Jun 2026</span>
       <span class="article-title">My colleague joked and dared me to build something</span>
       <span class="article-pillar">Building in public</span>
     </a>
-    <a href="/articles/the-next-chapter-of-search/" class="article-row">
+    <a href="/articles/the-next-chapter-of-search/" class="article-row" data-pillar="Industry">
       <span class="article-date">May 2026</span>
       <span class="article-title">The Next Chapter of Search</span>
       <span class="article-pillar">Industry</span>
     </a>
-    <a href="/articles/why-change-feels-so-hard/" class="article-row">
+    <a href="/articles/why-change-feels-so-hard/" class="article-row" data-pillar="Lessons">
       <span class="article-date">Nov 2025</span>
       <span class="article-title">Why Change Feels So Hard, and How We Can Make It Easier</span>
       <span class="article-pillar">Lessons</span>
     </a>
-    <a href="/articles/type-1-diabetes-shaped-my-ppc-career/" class="article-row">
+    <a href="/articles/type-1-diabetes-shaped-my-ppc-career/" class="article-row" data-pillar="Lessons">
       <span class="article-date">Oct 2025</span>
       <span class="article-title">How Type 1 Diabetes Shaped My PPC Career</span>
       <span class="article-pillar">Lessons</span>
     </a>
-    <a href="/articles/thriving-in-tech-neurodiverse-brain/" class="article-row">
+    <a href="/articles/thriving-in-tech-neurodiverse-brain/" class="article-row" data-pillar="Lessons">
       <span class="article-date">Oct 2025</span>
       <span class="article-title">Thriving in Tech with a Neurodiverse Brain</span>
       <span class="article-pillar">Lessons</span>
     </a>
-    <a href="/articles/digital-marketing-and-ai-collaboration/" class="article-row">
+    <a href="/articles/digital-marketing-and-ai-collaboration/" class="article-row" data-pillar="Teaching">
       <span class="article-date">Nov 2025</span>
       <span class="article-title">Digital Marketing and AI: A Future Built on Collaboration</span>
       <span class="article-pillar">Teaching</span>
     </a>
   </div>
+
+  <script>
+    var pills = document.querySelectorAll('.filter-pill');
+    var rows = document.querySelectorAll('#articles-list .article-row');
+    pills.forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        pills.forEach(function(p) { p.classList.remove('active'); });
+        pill.classList.add('active');
+        var filter = pill.getAttribute('data-filter');
+        rows.forEach(function(row) {
+          if (filter === 'all' || row.getAttribute('data-pillar') === filter) {
+            row.classList.remove('is-hidden');
+          } else {
+            row.classList.add('is-hidden');
+          }
+        });
+      });
+    });
+  </script>
+
 </section>
 
 <section id="contact" class="contact-band">
@@ -102,6 +144,7 @@
     <a href="/contact/">Contact ↗</a>
     <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
     <a href="https://github.com/GarySto/market-universe-generator" target="_blank">GitHub ↗</a>
+    <a href="https://market-universe-generator-7jrhjfbttwfzlappdxaaysq.streamlit.app/" target="_blank">Live project ↗</a>
   </div>
 </footer>
 
