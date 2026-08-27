@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Actually Build Your Own Local AI Assistant — Gary Stow</title>
+<meta name="description" content="A complete beginner's path to a fully local AI voice assistant — hardware, LM Studio, wake words, and where the real trial-and-error begins.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/articles/build-your-own-local-ai-assistant/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Actually Build Your Own Local AI Assistant">
+<meta property="og:description" content="A complete beginner's path to a fully local AI voice assistant — hardware, LM Studio, wake words, and where the real trial-and-error begins.">
+<meta property="og:url" content="https://garystow.co.uk/articles/build-your-own-local-ai-assistant/">
+<meta property="og:image" content="https://garystow.co.uk/assets/articles/build-your-own-local-ai-assistant.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Actually Build Your Own Local AI Assistant: A Complete Beginner's Guide",
+  "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
+  "datePublished": "2026-08-27",
+  "url": "https://garystow.co.uk/articles/build-your-own-local-ai-assistant/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<!-- Microsoft UET -->
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/work/">Work</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/articles/" class="article-back">← All articles</a>
+  <div class="hero-label">Building in public</div>
+  <h1>How to Actually Build Your Own Local AI Assistant.</h1>
+  <div class="article-meta">27 August 2026 · Gary Stow, Senior Client Solutions Manager, Financial Services, Microsoft Advertising / Microsoft AI</div>
+</div>
+
+<section>
+  <img src="/assets/articles/build-your-own-local-ai-assistant.png" alt="Building WADE — a fully local AI assistant, zero cloud, zero subscription, free tools only" class="article-hero-img">
+  <div class="article-body">
+
+    <p>A few weeks ago I had nothing, no local AI setup, no idea where to even start, just a genuine question: could I build a proper voice assistant using only free tools. Here's the actual path, assuming you're starting from exactly nowhere.</p>
+
+    <h3>Start with your hardware, before you install anything</h3>
+    <p>This is the step everyone skips and it's the one that decides everything else. Local AI models don't run in the cloud, they run on your actual graphics card, and two numbers matter more than anything else.</p>
+    <ul>
+      <li><strong>VRAM</strong>, the dedicated memory on your graphics card. This is what actually holds the model while it's thinking. More VRAM means bigger, smarter models running at full speed. Less VRAM means the model either doesn't fit at all, or spills over into your regular system memory, which is dramatically slower.</li>
+      <li><strong>System RAM</strong>, your computer's general memory. Less critical than VRAM for speed, but you want headroom here too, 32GB is comfortable.</li>
+    </ul>
+    <p>Open Task Manager, go to Performance, click your GPU, and you'll see your dedicated VRAM figure right there. Then check whether you're on Nvidia or AMD. This matters because almost every tutorial online assumes Nvidia, using something called CUDA. If you're on AMD like me, that path isn't available, but it's not a dead end, it just means a different backend called Vulkan, which works properly and is built into the software you're about to install.</p>
+
+    <h3>Installing LM Studio</h3>
+    <p>This is the actual engine everything else sits on top of.</p>
+    <ol>
+      <li>Go to lmstudio.ai and download it. Make sure you get the plain version, there's a separate account-gated product on the same site called Bionic, that's not what you want.</li>
+      <li>Install it and open it up.</li>
+      <li>Load any small model to start (more on picking one below), ask it a basic question, and check Task Manager, Performance, your GPU, while it's replying. If you see GPU usage spike, it's actually using your graphics card properly rather than falling back to your CPU.</li>
+    </ol>
+
+    <h3>Picking your first model</h3>
+    <p>This is where people freeze, so here's the actual rule of thumb I use. Stick to models published by the model's original maker, so names like Qwen or openai, or by a group called lmstudio-community, who package models properly for this exact use case. Before downloading, check for a green badge saying full GPU offload possible, that confirms it'll actually fit on your card. And on quantisation, the technical-sounding number and letters after the model name, Q4_K_M is the standard, sensible default, a solid balance of speed, quality, and file size, don't overthink it beyond that at the start.</p>
+    <p>On my own machine right now I've got a small model for quick general chat, a 14B all-rounder, a dedicated coding model, and a larger 20B model that's become my actual daily driver, all running through this same setup. Start with something smaller than that, get it working end to end, then upgrade once you trust the process.</p>
+
+    <h3>Turning it on so other things can actually talk to it</h3>
+    <p>Right now your model only talks to you inside LM Studio's own chat window. To let something like a voice assistant actually reach it, you need the Local Server.</p>
+    <ol>
+      <li>In LM Studio, find the Developer tab.</li>
+      <li>Switch Local Server to running. You'll see an address, something like a local web address ending in colon 1234, that's the door everything else knocks on.</li>
+      <li>Leave Just-in-Time model loading switched on, this loads a model only when something actually asks for it, rather than eating your VRAM constantly.</li>
+      <li>Set an auto-unload time if you plan on using more than one model, mine's set to an hour of inactivity.</li>
+    </ol>
+    <p>Worth knowing honestly, if you switch between two different models regularly like I do, one for chat and one for code, only one properly fits in memory at a time on a 16GB card, so there's a genuine ten to thirty second wait the first time you switch. Not a bug, just physics.</p>
+
+    <h3>Giving it a personality, the fun bit</h3>
+    <p>Inside LM Studio there's a System Prompt field, this is a set of instructions the model reads before every single reply, and it's how a generic model becomes something that actually feels like your assistant rather than a chatbot. Mine's built in two modes, one for casual back and forth with real personality, and a completely separate one that drops that personality entirely and writes in my own voice instead whenever it's producing something meant to go out under my name. Worth deciding early which of those you actually need.</p>
+
+    <h3>What to actually type once it's running</h3>
+    <p>Start simple. Ask it to introduce itself, see if the personality you set actually comes through. Ask it something you already know the answer to, to confirm it's genuinely working. Then, and this is the one that matters most for trust, ask it something it has no way of actually knowing, and watch what it does. If it confidently makes something up rather than telling you it doesn't know, that's the very first thing worth fixing before you build anything else on top of it.</p>
+    <p>On LinkedIn I showed a live demo of this in action, worth a look if you want to see how it actually responds in real time.</p>
+
+    <h3>Teaching it to actually listen, without a click</h3>
+    <p>Everything so far still needs you to type. Getting it to genuinely listen, the way Wade does, needs something called a wake word, a tool called openWakeWord handles the actual detection. Here's a real snag worth knowing before you get your hopes up, there's no pre-trained wake phrase for whatever name you've picked for your own assistant. You get a short, fixed list, Alexa, Hey Mycroft, Hey Jarvis, that's genuinely it unless you train your own from scratch. Mine ended up answering to Hey Jarvis, still makes me laugh given the name I actually gave him.</p>
+    <p>Worth knowing too, once it's wired up, if wake detection feels unreliable, check your actual microphone before you touch a line of code. Mine looked completely normal in every settings menu and was quietly too quiet to be picked up properly, swapping to a proper USB headset mic fixed detection completely, no amount of code tuning would have solved it.</p>
+
+    <h3>Giving it ears and a voice</h3>
+    <p>Faster-Whisper handles turning your actual speech into text, running fully on your own machine, no cloud involved. Piper handles the reverse, turning replies back into a spoken voice, also entirely local. Worth setting expectations honestly here, free local voices have a real ceiling on how expressive and natural they sound compared to paid cloud options, it's a genuine trade-off for staying completely free, not a flaw you've caused.</p>
+
+    <h3>Tying it all together</h3>
+    <p>This is the part where it stops being configuration and becomes real software engineering. A Python backend, using something called Flask, has to actually manage the whole loop, listening for the wake word, capturing your voice, sending it to Whisper, passing the result to your model, sending the reply to Piper, and displaying all of it somewhere you can see, in my case a HUD I built from scratch using HTML, CSS and JavaScript.</p>
+    <p>And this is honestly where I have to stop holding your hand.</p>
+    <p>Everyone's setup from here genuinely differs, your hardware, your microphone, your exact file paths, your chosen wake phrase, enough that writing out generic code steps would do you more harm than good, you'd end up debugging my assumptions instead of building your own thing. This bit takes real trial and error, proper coding, and patience with things breaking in specific, findable ways rather than a big leap forward. I'm genuinely still learning as I go here myself, so I can't pretend I've got a clean, universal path from this point through to a finished voice loop.</p>
+    <p>If you've built something like this yourself, or you're further along than me, I'd genuinely love to hear how you approached it. If you're just getting started, you're already closer than you think. Good luck.</p>
+
+    <p class="contact-direct">Built something similar, or stuck on a step? Email me at <a href="mailto:garystow.hq@gmail.com?subject=Local%20AI%20Assistant">garystow.hq@gmail.com</a> — I read everything myself.</p>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="mailto:garystow.hq@gmail.com">Email ↗</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>
