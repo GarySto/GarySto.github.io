@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Getting a Website Ready for AI Search — Gary Stow</title>
+<meta name="description" content="What I actually changed on my own site to make it readable by AI crawlers and search engines — Microsoft Clarity, IndexNow, sitemaps, and the mistakes I made along the way.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/articles/website-seo-and-llm-readiness/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Getting a Website Ready for AI Search">
+<meta property="og:description" content="What I actually changed on my own site to make it readable by AI crawlers and search engines.">
+<meta property="og:url" content="https://garystow.co.uk/articles/website-seo-and-llm-readiness/">
+<meta property="og:image" content="https://garystow.co.uk/articles/website-seo-and-llm-readiness/website-seo-and-llm-readiness.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Getting a Website Ready for AI Search",
+  "description": "What I actually changed on my own site to make it readable by AI crawlers and search engines.",
+  "author": {
+    "@type": "Person",
+    "name": "Gary Stow",
+    "url": "https://garystow.co.uk/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Gary Stow"
+  },
+  "datePublished": "2026-09-04",
+  "mainEntityOfPage": "https://garystow.co.uk/articles/website-seo-and-llm-readiness/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<style>
+  :root {
+    --ink: #0f0f0f;
+    --paper: #f5f2eb;
+    --accent: #c8410a;
+    --accent-light: #e8c4b0;
+    --muted: #6b6560;
+    --rule: #d4cfc7;
+    --mono: 'DM Mono', monospace;
+    --serif: 'DM Serif Display', serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.7; font-weight: 300; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+  .kicker { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+  h1 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.15; margin-bottom: 1rem; }
+  .meta { font-family: var(--mono); font-size: 0.85rem; color: var(--muted); margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--rule); }
+  .hero-img { width: 100%; border-radius: 4px; margin: 2rem 0; background: var(--ink); }
+  h2 { font-family: var(--serif); font-size: 1.5rem; margin: 2.5rem 0 1rem; }
+  p { margin-bottom: 1.3rem; }
+  a { color: var(--accent); }
+  .callout { border-left: 3px solid var(--accent); padding: 0.2rem 1.2rem; margin: 2rem 0; background: rgba(200,65,10,0.05); }
+  .back-link { display: inline-block; margin-bottom: 2rem; font-family: var(--mono); font-size: 0.85rem; color: var(--muted); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back-link" href="/articles/">&larr; Back to Articles</a>
+  <div class="kicker">Building in public</div>
+  <h1>Getting a Website Ready for AI Search</h1>
+  <div class="meta">4 September 2026 &middot; Building in public</div>
+
+  <img class="hero-img" src="/articles/website-seo-and-llm-readiness/website-seo-and-llm-readiness.png" alt="Website SEO and AI readiness illustration">
+
+  <p>I built this site to be a hub for what I'm learning in AI. Somewhere along the way I realised there are actually two different audiences reading it: people, and machines. Google's crawler, Bing's crawler, Microsoft Copilot, and whatever reads a page before an AI assistant decides to mention it. Getting found by the first group is normal SEO. Getting found and <em>correctly cited</em> by the second group is a newer game, and most of it comes down to the boring, unglamorous plumbing under a site rather than the writing on top of it.</p>
+
+  <p>Here's what I've actually changed on garystow.co.uk, in the order it mattered.</p>
+
+  <h2>1. A sitemap and a robots.txt that actually agree with each other</h2>
+  <p>Every crawler starts in the same two places: <code>/sitemap.xml</code> and <code>/robots.txt</code>. If robots.txt blocks something the sitemap lists, or the sitemap is stale, you're sending mixed signals before a single word of content gets read. Both files need to be short, accurate, and updated whenever a new page goes live.</p>
+
+  <h2>2. IndexNow, so you don't wait around</h2>
+  <p>Google and Bing eventually find new pages on their own schedule, which can be days or weeks. IndexNow is a shared protocol both Microsoft and other search engines support, letting a site ping "this page changed, come look now" the moment it's published. It's a small thing to wire in but it's the difference between publishing an article and finding out about it via Search Console two weeks later.</p>
+
+  <h2>3. A file written for AI assistants, not just search engines</h2>
+  <p>There's a newer convention called <code>llms.txt</code>, a plain-language file at the root of a site that tells an AI assistant what the site is, who runs it, and what the primary pages are. It's not a ranking signal search engines use, but it's exactly the kind of concise, structured summary a language model finds useful when deciding whether and how to reference a site.</p>
+
+  <h2>4. Structured data, on every page that deserves it</h2>
+  <p>Schema.org markup, the JSON-LD block you can't see but crawlers can, tells a machine unambiguously "this is a person," "this is an article," "this was published on this date, by this author." Search engines have used this for years for rich results. AI assistants use the same structured signals to build confidence before they cite something. Every article on this site now carries Article schema; the homepage carries Person schema.</p>
+
+  <h2>5. Watching what's actually crawling you</h2>
+  <p>Microsoft Clarity has an AI Visibility view that shows which bots are hitting your site and how often, broken down by operator, Microsoft, Google, Apple, ByteDance, and by activity type, AI Crawler versus AI Assistant traffic. Watching this told me the crawlers were showing up well before any of them were citing anything back, which is the honest, unglamorous middle stage of this whole process. You do the plumbing, then you wait, then hopefully the citations follow.</p>
+
+  <div class="callout">
+    <p><strong>Where I am right now:</strong> the crawlers are visiting. Citations are still at zero. That's expected at this stage, not a failure, this is a volume-of-indexed-content problem more than a technical one now.</p>
+  </div>
+
+  <h2>What I'd tell someone starting from scratch</h2>
+  <p>Do the sitemap and robots.txt first, they're free and they take ten minutes. Add structured data to your most important pages next. Then IndexNow and an llms.txt file once you're actually publishing regularly, there's no point pinging search engines about a site that only has one page. None of this replaces good content, it just makes sure the content you've already written actually gets found and understood correctly once it's out there.</p>
+</div>
+</body>
+</html>
