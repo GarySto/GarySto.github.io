@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Microsoft Clarity's AI Visibility Actually Shows You — Gary Stow</title>
+<meta name="description" content="Grounding queries, share of authority, and query fan-out — what Microsoft Clarity's new AI Visibility features actually measure, and what mine is showing me so far.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/articles/understanding-microsoft-clarity-ai-visibility/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What Microsoft Clarity's AI Visibility Actually Shows You">
+<meta property="og:description" content="Grounding queries, share of authority, and query fan-out — what Clarity's AI Visibility features actually measure, and what mine is showing me so far.">
+<meta property="og:url" content="https://garystow.co.uk/articles/understanding-microsoft-clarity-ai-visibility/">
+<meta property="og:image" content="https://garystow.co.uk/articles/understanding-microsoft-clarity-ai-visibility/understanding-microsoft-clarity-ai-visibility.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Microsoft Clarity's AI Visibility Actually Shows You",
+  "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
+  "datePublished": "2026-09-05",
+  "url": "https://garystow.co.uk/articles/understanding-microsoft-clarity-ai-visibility/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<!-- Microsoft UET -->
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/work/">Work</a>
+    <a href="/agents/">AI &amp; Agents</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/articles/" class="article-back">← All articles</a>
+  <div class="hero-label">Building in public</div>
+  <h1>What Microsoft Clarity's AI Visibility Actually Shows You.</h1>
+  <div class="article-meta">5 September 2026 · Gary Stow, Senior Client Solutions Manager, Financial Services, Microsoft Advertising / Microsoft AI</div>
+</div>
+
+<section>
+  <img src="/articles/understanding-microsoft-clarity-ai-visibility/understanding-microsoft-clarity-ai-visibility.png" alt="Microsoft Clarity AI Visibility dashboard concept — grounding queries, share of authority, citations" class="article-hero-img">
+  <div class="article-body">
+
+    <p>In <a href="/articles/website-seo-and-llm-readiness/">my last piece on getting a site ready for AI search</a>, I ended on a slightly deflating note: the crawlers were visiting my site, but nothing was citing it back yet. Since then I've spent more time in Microsoft Clarity's AI Visibility reporting, and it's worth explaining properly what it's actually measuring, because it's a genuinely different lens on discovery to anything I've used before.</p>
+
+    <h3>Search terms tell you what. Grounding queries tell you how.</h3>
+    <p>Anyone who's spent time in paid search knows search terms inside out, the actual words someone typed before they clicked. AI-powered discovery doesn't work the same way. When someone asks an AI assistant a question, the system typically doesn't just look up that exact phrase. It breaks the question apart into several related retrieval queries, run in parallel, checked against web content, then stitched together into one answer. This is sometimes called query fan-out, and it means a single question can pull from half a dozen different angles before you ever see a reply.</p>
+    <p>Clarity surfaces this as grounding queries, which show the topics and phrasing an AI system actually used to connect your content to a question, rather than the question itself. It's a layer of discovery that simply wasn't visible before this kind of reporting existed.</p>
+
+    <h3>Share of authority is the new "where do I rank"</h3>
+    <p>The old competitive question in SEO was where you ranked for a keyword. The AI-era version is different: when an AI system answers something related to your field, how often is your content actually part of that answer, compared to everyone else covering the same ground? Clarity calls this share of authority, and it's a genuinely new kind of competitive intelligence, less about position on a page and more about whether you're in the conversation at all.</p>
+
+    <h3>What this actually looks like on my own dashboard right now</h3>
+    <p>Honestly, still early days. Bot traffic is real and growing, Microsoft, Google, Apple and ByteDance crawlers are all visiting regularly, but citations are sitting at zero and share of authority has nothing to show yet. That's not a broken setup, it's what a brand-new site with a handful of indexed pages looks like at this stage. The plumbing from my last article, sitemap, robots.txt, structured data, llms.txt, is what earns the crawl. Getting cited is a separate, later step that depends on having enough indexed, specific content that an AI system would actually want to reference.</p>
+
+    <h3>Why this matters beyond just this site</h3>
+    <p>What's changing here isn't just a new report to check, it's the customer journey itself. A growing share of research now happens inside an AI conversation before anyone reaches a website at all, which means the old assumption that visibility starts with a click is no longer reliable on its own. Clarity pairing AI Visibility with its existing behavioural tools, heatmaps, session recordings, rage-click detection, is a genuinely sensible response to that: understanding how you're discovered and understanding what happens once someone actually lands are now two halves of the same problem, not two separate tools.</p>
+
+    <h3>Where I'm taking this next</h3>
+    <p>More indexed articles, more structured data, and patience. I'll check back on this dashboard in a month or two and either report real citations starting to show, or an honest account of why they haven't. If you're watching your own AI Visibility numbers and seeing something different, especially if you're further along than zero citations, I'd genuinely like to compare notes.</p>
+
+    <p class="contact-direct">Watching your own AI Visibility numbers, or found something Clarity's reporting doesn't explain well? Email me at <a href="mailto:garystow.hq@gmail.com?subject=Clarity%20AI%20Visibility">garystow.hq@gmail.com</a> — I read everything myself.</p>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="mailto:garystow.hq@gmail.com">Email ↗</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>
