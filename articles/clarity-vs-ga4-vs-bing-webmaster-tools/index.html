@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microsoft Clarity vs GA4 vs Bing Webmaster Tools — What Each One Actually Tells You — Gary Stow</title>
+<meta name="description" content="Three questions worth answering plainly: how Clarity differs from GA4 and Bing Webmaster Tools, whether you can separate paid from organic AI traffic, and what data it actually collects.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/articles/clarity-vs-ga4-vs-bing-webmaster-tools/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Microsoft Clarity vs GA4 vs Bing Webmaster Tools — What Each One Actually Tells You">
+<meta property="og:description" content="How Clarity differs from GA4 and Bing Webmaster Tools, whether you can separate paid from organic AI traffic, and what data it actually collects.">
+<meta property="og:url" content="https://garystow.co.uk/articles/clarity-vs-ga4-vs-bing-webmaster-tools/">
+<meta property="og:image" content="https://garystow.co.uk/articles/clarity-vs-ga4-vs-bing-webmaster-tools/clarity-vs-ga4-vs-bing-webmaster-tools.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Microsoft Clarity vs GA4 vs Bing Webmaster Tools — What Each One Actually Tells You",
+  "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
+  "datePublished": "2026-09-05",
+  "url": "https://garystow.co.uk/articles/clarity-vs-ga4-vs-bing-webmaster-tools/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is Microsoft Clarity different from GA4?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GA4 tells you the quantitative what: how many sessions, which pages, which channels. Clarity is free behavioural analytics, session recordings, heatmaps, and automatic friction signals, that tell you the qualitative why behind those numbers. They're built to complement each other, not replace one another."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Microsoft Clarity distinguish paid from organic AI traffic?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Partially. Clarity's channel filter can separate AI Platform and Paid AI Platform as distinct values, but Microsoft hasn't published how that classification actually works under the hood. The capability is documented, the methodology isn't, so any conclusions drawn from it are worth validating against other signals before relying on them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What data does Microsoft Clarity collect, and what does it mask?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Clarity collects interaction data, mouse movement, clicks, scrolls, device, browser and operating system details, performance metrics, and JavaScript errors. Masking is on by default: text content never leaves the browser, and input boxes and dropdowns are masked in every mode and cannot be unmasked, even in the least restrictive setting."
+      }
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<!-- Microsoft UET -->
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/work/">Work</a>
+    <a href="/agents/">AI &amp; Agents</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/articles/" class="article-back">← All articles</a>
+  <div class="hero-label">Teaching &amp; demystifying</div>
+  <h1>Microsoft Clarity vs GA4 vs Bing Webmaster Tools.</h1>
+  <div class="article-meta">5 September 2026 · Gary Stow, Senior Client Solutions Manager, Financial Services, Microsoft Advertising / Microsoft AI</div>
+</div>
+
+<section>
+  <img src="/articles/clarity-vs-ga4-vs-bing-webmaster-tools/clarity-vs-ga4-vs-bing-webmaster-tools.png" alt="Microsoft Clarity vs GA4 vs Bing Webmaster Tools comparison" class="article-hero-img">
+  <div class="article-body">
+
+    <p>A few questions about Microsoft Clarity keep coming up whenever I talk about it, so I wanted to answer them properly and plainly, in one place, rather than half-explaining them in passing each time. If you're new to Clarity or trying to work out where it fits alongside tools you already use, this should genuinely help. Nothing here assumes you already know the jargon.</p>
+
+    <h3>How is Clarity different from GA4?</h3>
+    <p>The simplest way I've found to explain it: GA4 gives you the what, and Clarity gives you the why.</p>
+    <p>GA4 is quantitative. It counts things, sessions, page views, conversions, which channel brought someone to your site. It's the numbers layer, and it's genuinely good at that job. What it doesn't really show you is behaviour, what someone actually did once they landed, where they hesitated, what confused them.</p>
+    <p>That's where Clarity comes in. It's free behavioural analytics: session recordings you can watch back, heatmaps showing where people actually click and scroll, and automatic friction signals like rage clicks and dead clicks that flag confusion without you having to go looking for it. The two tools are built to complement each other rather than compete, GA4 tells you something changed, Clarity helps you understand why.</p>
+    <p>Bing Webmaster Tools is a different animal again, it's focused on search performance and technical health: indexing status, sitemap validation, crawl errors, keyword impressions in Bing specifically. It answers "is my site technically sound and visible to search," not "what are people doing once they're here." All three genuinely answer different questions, which is exactly why they're worth running together rather than picking just one.</p>
+
+    <h3>Can you tell paid AI traffic apart from organic AI traffic?</h3>
+    <p>Partially, and it's worth being honest about where that "partially" ends.</p>
+    <p>Clarity's channel filter lets you view AI Platform and Paid AI Platform as separate values, so the capability to distinguish them does exist. What Microsoft hasn't published is exactly how that classification happens underneath, what signals decide whether a visit gets labelled one way or the other. The capability is documented. The methodology behind it isn't.</p>
+    <p>Practically, that means I'd treat this split as a useful starting signal rather than a number to build a whole decision on. If it matters for something you're actually measuring, it's worth cross-checking against other data you trust before leaning on it too heavily.</p>
+
+    <h3>What does Clarity actually collect, and what gets masked?</h3>
+    <p>This is the one people are most cautious about, understandably, so here's exactly what happens.</p>
+    <p>Clarity collects interaction data: mouse movement, clicks, scrolls, plus device, browser and operating system details, performance metrics, and JavaScript errors when they occur. That's genuinely it, it's behavioural and technical data, not a transcript of what someone typed.</p>
+    <p>Masking is switched on by default, and it's more thorough than people often expect. Text content never leaves the browser. Input boxes and dropdown menus are masked automatically in every mode, including the least restrictive one, and there's no setting that unmasks them. If privacy is the thing holding you back from trying it, that default behaviour is worth knowing about before you decide either way.</p>
+
+    <h3>What my own site's numbers actually look like right now</h3>
+    <p>To make this less abstract, here's what my own Clarity dashboard is showing over the last 14 days.</p>
+    <p>On the AI bot side: 280 requests, making up 10.92% of total traffic, touching 7.83% of total HTML pages requested. Microsoft's own crawler accounts for 46.79% of that bot activity (131 requests), Google 28.57% (80), Apple 21.79% (61), and ByteDance 2.5% (7). Almost all of it, 99.64%, is crawler activity rather than AI Assistant traffic, which makes sense at this stage, I'm still building the volume of indexed content an assistant would actually reference.</p>
+    <p>On the human side: 111 real sessions in the same window, averaging 1.06 pages per session and 69.72% scroll depth, with about 29 seconds of active time per visit. Dead clicks sit at 14.41% across 16 sessions, which is genuinely useful, it tells me there's a spot on the site where someone's clicking something that doesn't respond the way they expect, worth finding and fixing rather than a number to ignore.</p>
+
+    <p class="contact-direct">Using Clarity alongside GA4 already, or thinking about it? Email me at <a href="mailto:garystow.hq@gmail.com?subject=Clarity%20vs%20GA4%20vs%20Bing%20Webmaster%20Tools">garystow.hq@gmail.com</a> — I read everything myself.</p>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Setting up your own analytics stack?</h2>
+  <p>If you're weighing up which tools actually earn their place, get in touch, happy to talk through what's worked for me.</p>
+  <div class="cta-row">
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
+    <a href="/articles/understanding-microsoft-clarity-ai-visibility/" class="btn">Read the AI Visibility piece</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="mailto:garystow.hq@gmail.com">Email ↗</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>
