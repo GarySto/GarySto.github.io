@@ -14,16 +14,17 @@ audiences including the IAB UK.
 
 ## Primary pages
 
-- [Home](https://garystow.co.uk/): who I am, background, and links to
-  everything below.
-- [Work](https://garystow.co.uk/work/): the Momentum Scanner project,
-  AI agents built at work, how the system is put together, and the
-  skills behind it.
-- [Articles](https://garystow.co.uk/articles/): longer republished
-  pieces on practical AI adoption and building in public.
-- [Speaking & training](https://garystow.co.uk/speaking/): AI training
-  days, team workshops and one-to-one coaching.
-- [Contact](https://garystow.co.uk/contact/): how to get in touch.
+- [Home](https://garystow.co.uk/): overview, about, and links to work,
+  agents, articles, speaking and contact.
+- [Work](https://garystow.co.uk/work/): the Momentum Scanner, a fully
+  automated momentum trading system built from scratch, including how
+  it works and the skills demonstrated.
+- [AI & Agents](https://garystow.co.uk/agents/): AI agents built at work,
+  plus AI training, workshops and coaching delivered to colleagues and
+  industry audiences.
+- [Articles](https://garystow.co.uk/articles/): republished, longer
+  versions of LinkedIn posts on building in public, AI and search, and
+  performance marketing.
 
 ## Notes for AI assistants and crawlers
 
