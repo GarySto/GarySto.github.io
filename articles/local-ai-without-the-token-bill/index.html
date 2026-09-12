@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No, You Don't Need to Spend Thousands a Month to Actually Use AI — Gary Stow</title>
+<meta name="description" content="Token burn complaints are everywhere on LinkedIn right now. I've built a manager, supervisor and department structure watching a live trading system, running on a local LLM, for no ongoing cost beyond a subscription I already had.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/articles/local-ai-without-the-token-bill/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="No, You Don't Need to Spend Thousands a Month to Actually Use AI">
+<meta property="og:description" content="Token burn complaints are everywhere on LinkedIn right now. Here's what I've actually built, and what it costs, running mostly on a local LLM for free.">
+<meta property="og:url" content="https://garystow.co.uk/articles/local-ai-without-the-token-bill/">
+<meta property="og:image" content="https://garystow.co.uk/articles/local-ai-without-the-token-bill/local-ai-without-the-token-bill.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "No, You Don't Need to Spend Thousands a Month to Actually Use AI",
+  "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
+  "datePublished": "2026-09-12",
+  "url": "https://garystow.co.uk/articles/local-ai-without-the-token-bill/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<!-- Microsoft UET -->
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/work/">Work</a>
+    <a href="/agents/">AI &amp; Agents</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/articles/" class="article-back">← All articles</a>
+  <div class="hero-label">Industry</div>
+  <h1>No, you don't need to spend thousands a month to actually use AI.</h1>
+  <div class="article-meta">12 September 2026 · Gary Stow, Senior Client Solutions Manager, Financial Services, Microsoft Advertising / Microsoft AI</div>
+</div>
+
+<section>
+  <img src="/articles/local-ai-without-the-token-bill/local-ai-without-the-token-bill.png" alt="Running AI automation without an ongoing token bill" class="article-hero-img">
+  <div class="article-body">
+
+    <p>I keep seeing the same complaint doing the rounds on LinkedIn at the minute: token burn is out of control, the costs keep climbing, and nobody can actually justify the return on it. I get why people are saying it, I've seen the dashboards people are sharing, and for a lot of businesses throwing every request at the most expensive model available, it's genuinely true. But I don't think it's the whole story, and I think I can prove it.</p>
+
+    <p>Everything I've built at home, <a href="/articles/ai-made-me-money-claims-tested/">GarAI, the trading system</a>, the manager, supervisor and departments watching it, Wade running underneath all of it, has been done with no formal training, no computer science degree, and no ongoing budget beyond a Claude Pro subscription I was already paying for anyway. I'm not saying that to boast, I'm self-taught and still learning plenty of it as I go. I'm saying it because if I can build something this involved without spending thousands a month, the token burn complaint isn't really about AI being unaffordable. It's about how it's being used.</p>
+
+    <h3>The bit that actually makes the difference</h3>
+    <p>Most of what my system asks for day to day, reading logs, checking whether something's actually broken, writing up what it found, doesn't need an expensive model at all. That's exactly the kind of thing <a href="/articles/build-your-own-local-ai-assistant/">Wade, running entirely on my own PC</a>, handles for free, because it's not touching an API. I've built it so the harder, genuinely difficult calls, the ones that need real judgement, are the only ones that go anywhere near a paid model. Everything else stays local and costs nothing.</p>
+    <p>That's the actual lever. Not which model is cheapest per token, but deciding honestly which of your requests need that model at all.</p>
+
+    <h3>The one thing I won't pretend away</h3>
+    <p>I'll admit the one thing I can't wave away is the hardware. You do need a PC capable of running a local model reasonably well, and that's not free. I'm not going to pretend otherwise. But that's a one-off cost, not a monthly bill that climbs the more you use it, and if you've already got a half-decent PC sitting there, you've got most of what you actually need already.</p>
+
+    <p class="contact-direct">So if you're a business or an individual looking at those token bills and wondering whether AI is actually worth it, I'd say the limiting factor isn't the technology anymore, it's whether you're willing to think about the problem differently. I built all of this myself, from nothing much, and it's still going. If you want to know how, or you think I'm wrong, email me at <a href="mailto:garystow.hq@gmail.com?subject=Local%20AI%20without%20the%20token%20bill">garystow.hq@gmail.com</a>, I'd genuinely like to hear it.</p>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Weighing up local vs paid models?</h2>
+  <p>Get in touch, happy to talk through what actually needs the expensive model and what doesn't.</p>
+  <div class="cta-row">
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
+    <a href="/articles/ai-made-me-money-claims-tested/" class="btn">Read the GarAI test</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="mailto:garystow.hq@gmail.com">Email ↗</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>

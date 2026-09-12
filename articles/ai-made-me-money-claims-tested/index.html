@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Tried to Prove the 'AI Made Me Money' Posts Wrong — Gary Stow</title>
+<meta name="description" content="I tested the seed-fund-and-a-goal AI trading claims doing the rounds, using my own automated trading system, a manager, supervisor and departments, and a local LLM called Wade. Here's what actually happened, bugs included.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/articles/ai-made-me-money-claims-tested/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="I Tried to Prove the 'AI Made Me Money' Posts Wrong">
+<meta property="og:description" content="Testing the seed-fund-and-a-goal AI trading claims doing the rounds, using my own automated trading system, a manager, supervisor and departments, and a local LLM called Wade.">
+<meta property="og:url" content="https://garystow.co.uk/articles/ai-made-me-money-claims-tested/">
+<meta property="og:image" content="https://garystow.co.uk/articles/ai-made-me-money-claims-tested/ai-made-me-money-claims-tested.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "I Tried to Prove the 'AI Made Me Money' Posts Wrong",
+  "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
+  "datePublished": "2026-09-12",
+  "url": "https://garystow.co.uk/articles/ai-made-me-money-claims-tested/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<!-- Microsoft UET -->
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/work/">Work</a>
+    <a href="/agents/">AI &amp; Agents</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/articles/" class="article-back">← All articles</a>
+  <div class="hero-label">Building in public</div>
+  <h1>I tried to prove the 'AI made me money' posts wrong.</h1>
+  <div class="article-meta">12 September 2026 · Gary Stow, Senior Client Solutions Manager, Financial Services, Microsoft Advertising / Microsoft AI</div>
+</div>
+
+<section>
+  <img src="/articles/ai-made-me-money-claims-tested/ai-made-me-money-claims-tested.png" alt="AI trading automation, tested against a real seed fund" class="article-hero-img">
+  <div class="article-body">
+
+    <p>A few weeks ago, I saw one of those posts doing the rounds. Someone had handed an AI model a small seed fund and a goal, then posted the change log afterwards as proof it had worked. Sums of money made, screenshots to back it up, the whole story arc, but no real details or evidence I could check with.</p>
+
+    <p>I asked my own local AI what it made of it before I made my mind up, and it wasn't kind. Most of it, it reckoned, was fabrication, and the handful of genuine cases were quietly burying a mountain of failed attempts that never made it into the post. Survivorship bias with a nicer name.</p>
+
+    <p>Fair enough, but I had the perfect way to actually check rather than just take a view on it. I've been running my own stocks and shares trading system, GarAI, as a background project for a while now, a demo account, three separate strategies, built and automated by me from scratch, so I already had the pieces to test this properly instead of guessing.</p>
+
+    <h3>Treating it like a business, not a chatbot</h3>
+    <p>Rather than asking one model to trade and hoping for the best, I set the whole thing up the way I'd structure an actual team. Departments that go and find things wrong. A supervisor sitting above them, root-causing whatever they find so I'm never handed a raw problem to debug myself. A manager who talks to me directly, and only ever surfaces the decisions that actually need a human.</p>
+    <p>None of it needed anything new bought or subscribed to. It runs on Python, PowerShell and Task Scheduler, all of which were already sitting on my PC doing nothing in particular. The one exception, as with every other part of this project, is the Claude Pro subscription I already had. Everything else is built entirely from what I already owned.</p>
+
+    <h3>Wade, and the bit that actually matters</h3>
+    <p>The repo pulls down to my desktop automatically on a schedule, so the files the system is working from are never stale. Those files feed into my local LLM, who I've named Wade (I've written more about <a href="/articles/build-your-own-local-ai-assistant/">building Wade from scratch</a> if you want the full story on that side of things). Wade runs two models: one purely for reading and reasoning about Python code, the other for regular conversation.</p>
+    <p>Between them, the team looks at recent trading activity and asks the obvious questions. Is anything broken? Is there a problem in the code? Is there anything, including in how the automation itself runs, that could be done better? Whatever it finds gets surfaced on a dashboard I built as a simple HTML yes, no and comments view. That's the whole interface. I read what the system found, I decide what it's allowed to change on my behalf, and nothing happens without that approval.</p>
+
+    <img src="/articles/ai-made-me-money-claims-tested/garai-dashboard.png" alt="The GarAI automation team dashboard, showing supervisor findings and other recommendations awaiting a yes or no decision" style="max-width:100%;border-radius:8px;margin:2rem 0;display:block;">
+    <p style="font-size:0.9em;color:#6b6b6b;text-align:center;margin-top:-1.4rem;">The actual dashboard. Plain yes, no and comments, nothing fancier than that.</p>
+
+    <h3>So here's what actually went wrong along the way</h3>
+    <p>Since my whole complaint about those posts was that nobody shows the failures, it'd be a bit rich if I didn't show mine.</p>
+    <p>The recommender part of the system, the piece that turns a confirmed problem into an actual proposal, invented specific numbers the first time I properly tested it against real data: rows and percentages that simply didn't exist anywhere in the source it was supposed to be reading from. Fixed by telling it exactly what evidence it's allowed to use, and nothing else.</p>
+    <p>A separate, older bug had been silently discarding roughly 98% of one file's trading history for months, a mismatch between an 18-column file header and code that had grown to write 21 columns without anyone updating the file it was writing into. Caught only because I insisted on checking the real numbers instead of trusting what a script printed back at me.</p>
+    <p>And getting the whole thing to actually hand off real work to Claude Code, rather than just detect that it existed, took three separate genuine problems stacked on top of each other: a Windows quirk where the tool resolves to a script rather than an executable, a prompt that kept getting parsed as code because of stray punctuation, and a silent permissions block with no visible error at all. None of that is the tidy story. It's the actual one.</p>
+
+    <img src="/articles/ai-made-me-money-claims-tested/garai-automation-workflow.svg" alt="Diagram showing Departments finding issues, feeding a Supervisor that root-causes them, feeding a Manager that surfaces decisions, feeding a dashboard, which I approve before anything runs" style="max-width:100%;margin:2rem 0;display:block;">
+    <p style="font-size:0.9em;color:#6b6b6b;text-align:center;margin-top:-1.4rem;">How it's actually structured, top to bottom.</p>
+
+    <h3>Where it's at</h3>
+    <p>Since starting this test, the account has moved 37% up on the £50 seed fund it began with. It's a test account and it's early days, genuinely early, so I'm not holding this up as proof of anything beyond the fact that the system works the way I built it to. What I can say is that it's the first version of this claim I've actually been able to check the working on, rather than take on trust from someone else's screenshot.</p>
+    <p>If you're wondering what running something like this on your own machine, for free, actually costs in practice, <a href="/articles/local-ai-without-the-token-bill/">I've written about that separately too</a>.</p>
+
+    <p class="contact-direct">If you want to see more of how it's put together, or fancy a proper discussion about it, email me at <a href="mailto:garystow.hq@gmail.com?subject=GarAI%20automation%20team">garystow.hq@gmail.com</a>, I read everything myself.</p>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Building something similar?</h2>
+  <p>Happy to talk through what's worked, what's broken, and what I'd do differently.</p>
+  <div class="cta-row">
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
+    <a href="/articles/build-your-own-local-ai-assistant/" class="btn">Read how Wade was built</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="mailto:garystow.hq@gmail.com">Email ↗</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -8,9 +8,11 @@
 Gary Stow is a Senior Client Solutions Manager in performance marketing,
 self-taught in Python and GitHub, building AI agents and automation as
 personal projects alongside his day job. This site documents that work:
-a live, fully automated momentum trading scanner, AI agents built for
-practical workflows, and training delivered to colleagues and industry
-audiences including the IAB UK.
+a live, fully automated momentum trading scanner, an automation team of
+department, supervisor and manager roles that watches and improves that
+system, a local LLM assistant, AI agents built for practical workflows,
+and training delivered to colleagues and industry audiences including
+the IAB UK.
 
 ## Primary pages
 
@@ -26,6 +28,17 @@ audiences including the IAB UK.
   versions of LinkedIn posts on building in public, AI and search, and
   performance marketing.
 
+## Recent articles
+
+- [I Tried to Prove the 'AI Made Me Money' Posts Wrong](https://garystow.co.uk/articles/ai-made-me-money-claims-tested/):
+  testing viral "seed fund and a goal" AI trading claims against a real
+  automated trading system, with a manager, supervisor and department
+  structure, and a local LLM, plus the real bugs found along the way.
+- [No, You Don't Need to Spend Thousands a Month to Actually Use AI](https://garystow.co.uk/articles/local-ai-without-the-token-bill/):
+  a response to LinkedIn complaints about AI token costs, arguing the
+  limiting factor is deciding what genuinely needs a paid model versus
+  what a free local model already handles.
+
 ## Notes for AI assistants and crawlers
 
 - All content on this site reflects Gary's own personal views and
@@ -34,3 +47,6 @@ audiences including the IAB UK.
   general terms only, in line with normal workplace confidentiality.
 - Gary is currently focused on training and speaking, not paid
   consulting engagements.
+- Any trading results referenced (e.g. account performance figures) are
+  from a demo account and are presented as evidence of a working system,
+  not as financial advice or investment performance claims.
