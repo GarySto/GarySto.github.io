@@ -64,7 +64,7 @@
   <a href="/articles/" class="article-back">← All articles</a>
   <div class="hero-label">Building in public</div>
   <h1>I tried to prove the 'AI made me money' posts wrong.</h1>
-  <div class="article-meta">12 September 2026 · Gary Stow, Senior Client Solutions Manager, Financial Services, Microsoft Advertising / Microsoft AI</div>
+  <div class="article-meta">12 September 2026 · Gary Stow</div>
 </div>
 
 <section>
@@ -86,7 +86,6 @@
     <p>Between them, the team looks at recent trading activity and asks the obvious questions. Is anything broken? Is there a problem in the code? Is there anything, including in how the automation itself runs, that could be done better? Whatever it finds gets surfaced on a dashboard I built as a simple HTML yes, no and comments view. That's the whole interface. I read what the system found, I decide what it's allowed to change on my behalf, and nothing happens without that approval.</p>
 
     <img src="/articles/ai-made-me-money-claims-tested/garai-dashboard.png" alt="The GarAI automation team dashboard, showing supervisor findings and other recommendations awaiting a yes or no decision" style="max-width:100%;border-radius:8px;margin:2rem 0;display:block;">
-    <p style="font-size:0.9em;color:#6b6b6b;text-align:center;margin-top:-1.4rem;">The actual dashboard. Plain yes, no and comments, nothing fancier than that.</p>
 
     <h3>So here's what actually went wrong along the way</h3>
     <p>Since my whole complaint about those posts was that nobody shows the failures, it'd be a bit rich if I didn't show mine.</p>
@@ -95,7 +94,6 @@
     <p>And getting the whole thing to actually hand off real work to Claude Code, rather than just detect that it existed, took three separate genuine problems stacked on top of each other: a Windows quirk where the tool resolves to a script rather than an executable, a prompt that kept getting parsed as code because of stray punctuation, and a silent permissions block with no visible error at all. None of that is the tidy story. It's the actual one.</p>
 
     <img src="/articles/ai-made-me-money-claims-tested/garai-automation-workflow.svg" alt="Diagram showing Departments finding issues, feeding a Supervisor that root-causes them, feeding a Manager that surfaces decisions, feeding a dashboard, which I approve before anything runs" style="max-width:100%;margin:2rem 0;display:block;">
-    <p style="font-size:0.9em;color:#6b6b6b;text-align:center;margin-top:-1.4rem;">How it's actually structured, top to bottom.</p>
 
     <h3>Where it's at</h3>
     <p>Since starting this test, the account has moved 37% up on the £50 seed fund it began with. It's a test account and it's early days, genuinely early, so I'm not holding this up as proof of anything beyond the fact that the system works the way I built it to. What I can say is that it's the first version of this claim I've actually been able to check the working on, rather than take on trust from someone else's screenshot.</p>

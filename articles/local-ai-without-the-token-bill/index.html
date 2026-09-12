@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>No, You Don't Need to Spend Thousands a Month to Actually Use AI — Gary Stow</title>
-<meta name="description" content="Token burn complaints are everywhere on LinkedIn right now. I've built a manager, supervisor and department structure watching a live trading system, running on a local LLM, for no ongoing cost beyond a subscription I already had.">
+<meta name="description" content="Token burn complaints are everywhere on LinkedIn right now. Here's the actual three-tier system deciding what goes to a free local model versus a paid one, and what it costs in practice.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://garystow.co.uk/articles/local-ai-without-the-token-bill/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="No, You Don't Need to Spend Thousands a Month to Actually Use AI">
-<meta property="og:description" content="Token burn complaints are everywhere on LinkedIn right now. Here's what I've actually built, and what it costs, running mostly on a local LLM for free.">
+<meta property="og:description" content="Token burn complaints are everywhere on LinkedIn right now. Here's the actual three-tier routing system deciding what goes to a free local model versus a paid one.">
 <meta property="og:url" content="https://garystow.co.uk/articles/local-ai-without-the-token-bill/">
 <meta property="og:image" content="https://garystow.co.uk/articles/local-ai-without-the-token-bill/local-ai-without-the-token-bill.png">
 <script type="application/ld+json">
@@ -64,20 +64,21 @@
   <a href="/articles/" class="article-back">← All articles</a>
   <div class="hero-label">Industry</div>
   <h1>No, you don't need to spend thousands a month to actually use AI.</h1>
-  <div class="article-meta">12 September 2026 · Gary Stow, Senior Client Solutions Manager, Financial Services, Microsoft Advertising / Microsoft AI</div>
+  <div class="article-meta">12 September 2026 · Gary Stow</div>
 </div>
 
 <section>
   <img src="/articles/local-ai-without-the-token-bill/local-ai-without-the-token-bill.png" alt="Running AI automation without an ongoing token bill" class="article-hero-img">
   <div class="article-body">
 
-    <p>I keep seeing the same complaint doing the rounds on LinkedIn at the minute: token burn is out of control, the costs keep climbing, and nobody can actually justify the return on it. I get why people are saying it, I've seen the dashboards people are sharing, and for a lot of businesses throwing every request at the most expensive model available, it's genuinely true. But I don't think it's the whole story, and I think I can prove it.</p>
+    <p>I keep seeing the same complaint doing the rounds on LinkedIn at the minute: token burn is out of control, the costs keep climbing, and nobody can actually justify the return on it. I get why people are saying it, I've seen the dashboards people are sharing, and for a lot of businesses throwing every request at the most expensive model available, it's genuinely true. But I don't think it's the whole story, and I can actually show my working rather than just assert it.</p>
 
     <p>Everything I've built at home, <a href="/articles/ai-made-me-money-claims-tested/">GarAI, the trading system</a>, the manager, supervisor and departments watching it, Wade running underneath all of it, has been done with no formal training, no computer science degree, and no ongoing budget beyond a Claude Pro subscription I was already paying for anyway. I'm not saying that to boast, I'm self-taught and still learning plenty of it as I go. I'm saying it because if I can build something this involved without spending thousands a month, the token burn complaint isn't really about AI being unaffordable. It's about how it's being used.</p>
 
-    <h3>The bit that actually makes the difference</h3>
-    <p>Most of what my system asks for day to day, reading logs, checking whether something's actually broken, writing up what it found, doesn't need an expensive model at all. That's exactly the kind of thing <a href="/articles/build-your-own-local-ai-assistant/">Wade, running entirely on my own PC</a>, handles for free, because it's not touching an API. I've built it so the harder, genuinely difficult calls, the ones that need real judgement, are the only ones that go anywhere near a paid model. Everything else stays local and costs nothing.</p>
-    <p>That's the actual lever. Not which model is cheapest per token, but deciding honestly which of your requests need that model at all.</p>
+    <h3>How the split actually works, in practice</h3>
+    <p>The bit that makes the real difference isn't which model is cheapest per token, it's deciding honestly which requests need a paid model at all. In my own system that's not a vague principle, it's an actual three-tier setup the automation runs through every time something needs looking at.</p>
+    <p>The first tier auto-resolves anything that matches a confirmed, expected pattern, no model involved at all. The second tier, the one that actually saves the money, routes routine, bounded questions (checking whether something's broken, reading logs, writing up a plain diagnosis) to a free local model running on my own PC through LM Studio, no API call, no cost. Only the third tier, genuinely complex judgement calls, things involving real strategy, performance thresholds or anything urgent, goes anywhere near a paid model.</p>
+    <p>Getting that local tier to actually work took real, unglamorous engineering, not just switching a setting. The local model's context window was too small for the amount of trade and pipeline data I was feeding it alongside a file to review, so requests were failing outright. Fixed by widening the model's context and by stripping out anything it didn't need for that specific question, so it's not loading trading data to answer "what does this file do." None of that is exciting to write about, but it's the actual reason the free tier works reliably instead of just working in a demo.</p>
 
     <h3>The one thing I won't pretend away</h3>
     <p>I'll admit the one thing I can't wave away is the hardware. You do need a PC capable of running a local model reasonably well, and that's not free. I'm not going to pretend otherwise. But that's a one-off cost, not a monthly bill that climbs the more you use it, and if you've already got a half-decent PC sitting there, you've got most of what you actually need already.</p>
