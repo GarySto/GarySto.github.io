@@ -24,7 +24,8 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="/assets/site.css">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
@@ -68,7 +69,7 @@
 </div>
 
 <section>
-  <img src="/articles/ai-made-me-money-claims-tested/ai-made-me-money-claims-tested.png" alt="AI trading automation, tested against a real seed fund" class="article-hero-img">
+  <img src="/articles/ai-made-me-money-claims-tested/ai-made-me-money-claims-tested.webp" width="1200" height="800" fetchpriority="high" decoding="async" alt="AI trading automation, tested against a real seed fund" class="article-hero-img">
   <div class="article-body">
 
     <p>A few weeks ago, I saw one of those posts doing the rounds. Someone had handed an AI model a small seed fund and a goal, then posted the change log afterwards as proof it had worked. Sums of money made, screenshots to back it up, the whole story arc, but no real details or evidence I could check with.</p>
@@ -85,7 +86,7 @@
     <p>The repo pulls down to my desktop automatically on a schedule, so the files the system is working from are never stale. Those files feed into my local LLM, who I've named Wade (I've written more about <a href="/articles/build-your-own-local-ai-assistant/">building Wade from scratch</a> if you want the full story on that side of things). Wade runs two models: one purely for reading and reasoning about Python code, the other for regular conversation.</p>
     <p>Between them, the team looks at recent trading activity and asks the obvious questions. Is anything broken? Is there a problem in the code? Is there anything, including in how the automation itself runs, that could be done better? Whatever it finds gets surfaced on a dashboard I built as a simple HTML yes, no and comments view. That's the whole interface. I read what the system found, I decide what it's allowed to change on my behalf, and nothing happens without that approval.</p>
 
-    <img src="/articles/ai-made-me-money-claims-tested/garai-dashboard.png" alt="The GarAI automation team dashboard, showing supervisor findings and other recommendations awaiting a yes or no decision" style="max-width:100%;border-radius:8px;margin:2rem 0;display:block;">
+    <img loading="lazy" decoding="async" src="/articles/ai-made-me-money-claims-tested/garai-dashboard.png" alt="The GarAI automation team dashboard, showing supervisor findings and other recommendations awaiting a yes or no decision" style="max-width:100%;border-radius:8px;margin:2rem 0;display:block;">
 
     <h3>So here's what actually went wrong along the way</h3>
     <p>Since my whole complaint about those posts was that nobody shows the failures, it'd be a bit rich if I didn't show mine.</p>
@@ -93,7 +94,7 @@
     <p>A separate, older bug had been silently discarding roughly 98% of one file's trading history for months, a mismatch between an 18-column file header and code that had grown to write 21 columns without anyone updating the file it was writing into. Caught only because I insisted on checking the real numbers instead of trusting what a script printed back at me.</p>
     <p>And getting the whole thing to actually hand off real work to Claude Code, rather than just detect that it existed, took three separate genuine problems stacked on top of each other: a Windows quirk where the tool resolves to a script rather than an executable, a prompt that kept getting parsed as code because of stray punctuation, and a silent permissions block with no visible error at all. None of that is the tidy story. It's the actual one.</p>
 
-    <img src="/articles/ai-made-me-money-claims-tested/garai-automation-workflow.svg" alt="Diagram showing Departments finding issues, feeding a Supervisor that root-causes them, feeding a Manager that surfaces decisions, feeding a dashboard, which I approve before anything runs" style="max-width:100%;margin:2rem 0;display:block;">
+    <img loading="lazy" decoding="async" src="/articles/ai-made-me-money-claims-tested/garai-automation-workflow.svg" alt="Diagram showing Departments finding issues, feeding a Supervisor that root-causes them, feeding a Manager that surfaces decisions, feeding a dashboard, which I approve before anything runs" style="max-width:100%;margin:2rem 0;display:block;">
 
     <h3>Where it's at</h3>
     <p>Since starting this test, the account has moved 37% up on the £50 seed fund it began with. It's a test account and it's early days, genuinely early, so I'm not holding this up as proof of anything beyond the fact that the system works the way I built it to. What I can say is that it's the first version of this claim I've actually been able to check the working on, rather than take on trust from someone else's screenshot.</p>
