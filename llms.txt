@@ -38,6 +38,10 @@ the IAB UK.
   a response to LinkedIn complaints about AI token costs, arguing the
   limiting factor is deciding what genuinely needs a paid model versus
   what a free local model already handles.
+- [How to Actually Build Your Own Local AI Assistant](https://garystow.co.uk/articles/build-your-own-local-ai-assistant/):
+  a beginner's guide to a fully local, free-tools voice assistant:
+  checking VRAM, installing LM Studio, picking a model, running the local
+  server, system prompts, wake words, and speech-to-text and text-to-speech.
 
 ## Notes for AI assistants and crawlers
 
