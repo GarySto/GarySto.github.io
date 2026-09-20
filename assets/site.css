@@ -299,7 +299,9 @@ footer { padding: 3rem 4rem; display: flex; justify-content: space-between; alig
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   header { padding: 1.5rem 2rem; }
-  header nav { display: none; }
+  header { flex-direction: column; gap: 0.9rem; align-items: flex-start; }
+  header nav { display: flex; flex-wrap: wrap; gap: 0.6rem 1.25rem; }
+  header nav a { margin-left: 0; }
   .hero, .about-grid, .project-featured, .context-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   section { padding: 4rem 2rem; }
   .hero, .page-hero { padding: 4rem 2rem 3rem; }
