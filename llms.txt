@@ -30,6 +30,9 @@ the IAB UK.
 
 ## Recent articles
 
+- [The Speed of Change in Search Driven by AI](https://garystow.co.uk/articles/the-speed-of-change-in-search-driven-by-ai/):
+  how quickly new technologies and business models are being adopted
+  into search, across advertising, pricing and partnership ecosystems.
 - [I Tried to Prove the 'AI Made Me Money' Posts Wrong](https://garystow.co.uk/articles/ai-made-me-money-claims-tested/):
   testing viral "seed fund and a goal" AI trading claims against a real
   automated trading system, with a manager, supervisor and department
