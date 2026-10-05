@@ -26,7 +26,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="/assets/site.css?v=20260922b">
+<style>body{background:#f5f2eb;color:#0f0f0f;font-family:'DM Sans',sans-serif}</style>
+<link rel="stylesheet" href="/assets/site.css?v=20260922b" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/assets/site.css?v=20260922b"></noscript>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
 <script>
@@ -86,7 +88,7 @@
     <p>The repo pulls down to my desktop automatically on a schedule, so the files the system is working from are never stale. Those files feed into my local LLM, who I've named Wade (I've written more about <a href="/articles/build-your-own-local-ai-assistant/">building Wade from scratch</a> if you want the full story on that side of things). Wade runs two models: one purely for reading and reasoning about Python code, the other for regular conversation.</p>
     <p>Between them, the team looks at recent trading activity and asks the obvious questions. Is anything broken? Is there a problem in the code? Is there anything, including in how the automation itself runs, that could be done better? Whatever it finds gets surfaced on a dashboard I built as a simple HTML yes, no and comments view. That's the whole interface. I read what the system found, I decide what it's allowed to change on my behalf, and nothing happens without that approval.</p>
 
-    <img loading="lazy" decoding="async" src="/articles/ai-made-me-money-claims-tested/garai-dashboard.png" alt="The GarAI automation team dashboard, showing supervisor findings and other recommendations awaiting a yes or no decision" style="max-width:100%;border-radius:8px;margin:2rem 0;display:block;">
+    <img loading="lazy" decoding="async" width="2159" height="1237" src="/articles/ai-made-me-money-claims-tested/garai-dashboard.webp" alt="The GarAI automation team dashboard, showing supervisor findings and other recommendations awaiting a yes or no decision" style="max-width:100%;border-radius:8px;margin:2rem 0;display:block;">
 
     <h3>So here's what actually went wrong along the way</h3>
     <p>Since my whole complaint about those posts was that nobody shows the failures, it'd be a bit rich if I didn't show mine.</p>
