@@ -38,6 +38,20 @@ if (-not $changes) {
     exit 0
 }
 
+# Keep sitemap.xml lastmod dates honest before committing — Bing uses
+# these to prioritise re-crawling far more than Google does, so a stale
+# or missing lastmod is a common cause of Bing lagging behind Search
+# Console on freshly changed pages.
+$pyLauncher = Get-Command py -ErrorAction SilentlyContinue
+$python3 = Get-Command python3 -ErrorAction SilentlyContinue
+if ($pyLauncher) {
+    & py -3 update_sitemap_lastmod.py
+} elseif ($python3) {
+    & python3 update_sitemap_lastmod.py
+} else {
+    Write-Host "Skipping sitemap lastmod update (no Python interpreter found)." -ForegroundColor Yellow
+}
+
 # Ask for a commit message if one wasn't passed in
 if (-not $CommitMessage) {
     Write-Host ""

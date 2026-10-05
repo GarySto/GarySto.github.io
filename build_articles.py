@@ -197,7 +197,12 @@ def update_sitemap(site_dir: Path, slug: str) -> None:
     url = f"https://garystow.co.uk/articles/{slug}.html"
     if url in content:
         return
-    entry = f"  <url>\n    <loc>{url}</loc>\n  </url>\n"
+    # lastmod matters more to Bing than Google for crawl prioritization —
+    # see update_sitemap_lastmod.py — so stamp it on new entries too.
+    entry = (
+        f"  <url>\n    <loc>{url}</loc>\n"
+        f"    <lastmod>{date.today().isoformat()}</lastmod>\n  </url>\n"
+    )
     content = content.replace(
         "<!-- SITEMAP_URLS_START -->\n",
         "<!-- SITEMAP_URLS_START -->\n" + entry,
