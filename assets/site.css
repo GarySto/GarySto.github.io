@@ -293,13 +293,6 @@ footer { padding: 3rem 4rem; display: flex; justify-content: space-between; alig
 .footer-links a { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); text-decoration: none; margin-left: 2rem; letter-spacing: 0.06em; transition: color 0.2s; }
 .footer-links a:hover { color: var(--accent); }
 
-/* ── ANIMATIONS ── */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-.fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
-.fade-up:nth-child(1) { animation-delay: 0.1s; }
-.fade-up:nth-child(2) { animation-delay: 0.25s; }
-.fade-up:nth-child(3) { animation-delay: 0.4s; }
-
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   header { padding: 1.5rem 2rem; }
