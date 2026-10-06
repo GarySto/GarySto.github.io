@@ -30,6 +30,9 @@ the IAB UK.
 
 ## Recent articles
 
+- [Practical AI Training in the UK](https://garystow.co.uk/articles/practical-ai-training-in-the-uk/):
+  the UK is racing to upskill its workforce, but how do you turn
+  theory into hands-on expertise?
 - [The Speed of Change in Search Driven by AI](https://garystow.co.uk/articles/the-speed-of-change-in-search-driven-by-ai/):
   how quickly new technologies and business models are being adopted
   into search, across advertising, pricing and partnership ecosystems.
