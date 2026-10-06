@@ -30,6 +30,9 @@ the IAB UK.
 
 ## Recent articles
 
+- [ADHD and AI Tools: How I Stop Things Slipping](https://garystow.co.uk/articles/adhd-and-ai-tools-how-i-stop-things-slipping/):
+  I get distracted and I can be forgetful. So I built AI tools that
+  remind me what is outstanding, check my work and help me prioritise.
 - [I Fell Into PPC: Advice I Would Give My Younger Self](https://garystow.co.uk/articles/i-fell-into-ppc-advice-i-would-give-my-younger-self/):
   I did not plan a career in PPC. I applied for a social media role,
   got asked about paid search instead, and said yes. Here is what I
