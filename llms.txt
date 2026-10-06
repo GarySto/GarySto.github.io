@@ -30,6 +30,10 @@ the IAB UK.
 
 ## Recent articles
 
+- [I Fell Into PPC: Advice I Would Give My Younger Self](https://garystow.co.uk/articles/i-fell-into-ppc-advice-i-would-give-my-younger-self/):
+  I did not plan a career in PPC. I applied for a social media role,
+  got asked about paid search instead, and said yes. Here is what I
+  have learned since.
 - [Why I Run AI at Home, and LM Studio Tips for Beginners](https://garystow.co.uk/articles/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners/):
   I run my own AI on my home PC with no token costs. It started as a
   principle about cost and control, and turned into a test of whether
