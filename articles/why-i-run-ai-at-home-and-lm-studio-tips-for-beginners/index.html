@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why I Run AI at Home, and LM Studio Tips for Beginners — Gary Stow</title>
+<meta name="description" content="I run my own AI on my home PC with no token costs. It started as a principle about cost and control, and turned into a test of whether I could do it.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/articles/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why I Run AI at Home, and LM Studio Tips for Beginners">
+<meta property="og:description" content="I run my own AI on my home PC with no token costs. It started as a principle about cost and control, and turned into a test of whether I could do it.">
+<meta property="og:url" content="https://garystow.co.uk/articles/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners/">
+<meta property="og:image" content="https://garystow.co.uk/articles/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why I Run AI at Home, and LM Studio Tips for Beginners",
+  "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
+  "datePublished": "2026-10-06",
+  "url": "https://garystow.co.uk/articles/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/assets/site.css?v=45260eab">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/work/">Work</a>
+    <a href="/agents/">AI &amp; Agents</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/articles/" class="article-back">← All articles</a>
+  <div class="hero-label">Industry</div>
+  <h1>Why I Run AI at Home, and LM Studio Tips for Beginners</h1>
+  <div class="article-meta">6 October 2026 · Gary Stow, performance marketing and AI</div>
+</div>
+
+<section>
+  <img src="/articles/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners.webp" width="1200" height="800" fetchpriority="high" decoding="async" alt="Why I Run AI at Home, and LM Studio Tips for Beginners" class="article-hero-img">
+  <div class="article-body">
+
+    <p>I grew up poor, homeless poor. What might be £20 to one person can be a week's worth of food for another. I know my hardware is pretty good, but I really wanted to stay true to my principles, and running AI at home with no token cost is a big part of that. I want to show that anyone can do what I do, and that it is a fair, level playing field.</p>
+
+    <h3>Control, Not Just Cost</h3>
+
+    <p>Cost was only part of it. I also wanted control over my AI system. I wanted to build my own things and get a deeper understanding of what it takes to have a really good working AI system, rather than just renting one.</p>
+
+    <p>If I am honest, I also wanted to know whether I could do it at all. I often feel like the idiot in the room when people use big words, and I prefer the direct, simple approach. Building my own local AI, Wade, was a way of pushing myself to find out whether I was smart enough for this kind of thing.</p>
+
+    <h3>What Wade Does</h3>
+
+    <p>Wade runs on my own PC, and its job is to help manage my automated trading and my website. I built it using only free tools, and wrote up exactly how in <a href="/articles/build-your-own-local-ai-assistant/">how to actually build your own local AI assistant</a>.</p>
+
+    <h3>My Advice for Trying LM Studio for the First Time</h3>
+
+    <p>LM Studio is how I run my local models, and if you are trying it for the first time, my advice is simple.</p>
+
+    <p>First, understand its limitations. A local model is not going to behave exactly like the big paid ones, and knowing that up front saves a lot of frustration. Second, ask your other AI for help. There is so much in LM Studio, but in reality you only need to use a few things, and the tools already out there can help you find what you want quickly. Third, start small and get one thing working before you try to build anything clever.</p>
+
+    <h3>The Honest Bit</h3>
+
+    <p>I love the fact there is no token cost, and I should probably use Wade more than I do. But I like Claude too much, so in practice I use both: Wade for the jobs it does well and cheaply at home, and Claude for the heavier coding and problem solving. Knowing which tool to use for which job is a skill in itself.</p>
+
+    <p>If cost is what is holding you back from AI, I wrote about exactly that in <a href="/articles/local-ai-without-the-token-bill/">no, you do not need to spend thousands a month to actually use AI</a>.</p>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Want to talk about Why I Run AI at Home, and LM Studio Tips for Beginners?</h2>
+  <p>Get in touch if this is relevant to what you're working on.</p>
+  <div class="cta-row">
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
+    <a href="/articles/" class="btn">More articles</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="mailto:garystow.hq@gmail.com">Email ↗</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>
