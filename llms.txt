@@ -30,6 +30,10 @@ the IAB UK.
 
 ## Recent articles
 
+- [What My Evenings Building With AI Actually Look Like](https://garystow.co.uk/articles/what-my-evenings-building-with-ai-actually-look-like/):
+  most of my AI projects happen in the evenings once my daughters are
+  in bed. This is what those sessions really involve, including the
+  bits that go wrong.
 - [Will AI Replace PPC Managers? Not the Good Ones](https://garystow.co.uk/articles/will-ai-replace-ppc-managers-not-the-good-ones/):
   AI can now do most of the heavy lifting in a PPC account, but
   someone still has to know when it is wrong, and that person matters
