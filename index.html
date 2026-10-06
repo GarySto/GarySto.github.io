@@ -7,17 +7,17 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gary Stow — AI Practitioner, Builder &amp; Trainer</title>
-<meta name="description" content="Gary Stow — performance marketing specialist and AI practitioner, building AI agents and automated systems, and teaching practical AI adoption.">
+<title>Gary Stow | Practical AI for PPC and Marketing Teams, UK</title>
+<meta name="description" content="I teach practical AI by building it first. Over ten years in PPC, self-taught in Python, building AI agents and automations and showing marketers how to do the same.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://garystow.co.uk/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Gary Stow — AI Practitioner, Builder & Trainer">
-<meta property="og:description" content="Performance marketing specialist and AI practitioner. I build AI agents and automated systems, teach AI skills to others, and run training sessions on practical AI adoption.">
+<meta property="og:title" content="Gary Stow | Practical AI for PPC and Marketing Teams">
+<meta property="og:description" content="I teach practical AI by building it first. Over ten years in PPC, self-taught in Python, building AI agents and automations and showing marketers how to do the same.">
 <meta property="og:url" content="https://garystow.co.uk/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gary Stow — AI Practitioner, Builder & Trainer">
-<meta name="twitter:description" content="Performance marketing specialist and AI practitioner. I build AI agents and automated systems, teach AI skills to others, and run training sessions on practical AI adoption.">
+<meta name="twitter:title" content="Gary Stow | Practical AI for PPC and Marketing Teams">
+<meta name="twitter:description" content="I teach practical AI by building it first. Over ten years in PPC, self-taught in Python, building AI agents and automations and showing marketers how to do the same.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -47,6 +47,50 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="/assets/site.css?v=45260eab">
+<style>
+/* Homepage revamp (6 Oct 2026). Kept on this page only so the shared site.css is untouched. */
+.home-hero { padding: 6rem 4rem 4.5rem; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 4rem; align-items: center; }
+.home-hero h1 { font-size: clamp(2.8rem, 5.4vw, 5rem); margin-bottom: 1.75rem; }
+.home-hero .hero-intro { font-size: 1.2rem; color: #2a2a2a; font-weight: 400; max-width: 46ch; }
+.home-hero-photo { width: 100%; max-width: 380px; justify-self: end; aspect-ratio: 4/5; height: auto; object-fit: cover; object-position: top center; border: 1px solid var(--ink); }
+.home-proof { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0 4rem; border-bottom: 2px solid var(--ink); }
+.home-proof div { padding: 2rem 1.75rem 2rem 0; }
+.home-proof div + div { padding-left: 1.75rem; border-left: 1px solid var(--rule); }
+.home-proof b { display: block; font-family: var(--serif); font-weight: 400; font-size: 2.1rem; line-height: 1.15; margin-bottom: 0.35rem; }
+.home-proof span { color: #2a2a2a; font-size: 1rem; font-weight: 400; }
+.home-topics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--rule); border: 2px solid var(--rule); }
+.home-topic { background: var(--paper); padding: 1.9rem 1.75rem; text-decoration: none; color: var(--ink); display: flex; flex-direction: column; gap: 0.4rem; transition: background 0.2s; }
+.home-topic:hover { background: #efeae0; }
+.home-topic b { font-family: var(--serif); font-weight: 400; font-size: 1.45rem; }
+.home-topic span { color: #2a2a2a; font-size: 1rem; font-weight: 400; }
+.home-topic i { font-style: normal; font-family: var(--mono); font-size: 0.8rem; color: var(--accent); margin-top: 0.5rem; }
+.home-latest-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 2.5rem; }
+.home-latest-head a { font-family: var(--mono); font-size: 0.85rem; color: var(--ink); }
+.home-latest { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.home-latest-card { text-decoration: none; color: var(--ink); display: flex; flex-direction: column; gap: 0.6rem; }
+.home-latest-img { width: 100%; height: auto; aspect-ratio: 3/2; object-fit: cover; border: 1px solid var(--ink); display: block; background: var(--ink); }
+.home-latest-noimg { background: #e9e3d8; border-color: var(--rule); }
+.home-latest-date { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+.home-latest-title { font-family: var(--serif); font-size: 1.4rem; line-height: 1.25; }
+.home-latest-card:hover .home-latest-title { color: var(--accent); }
+.home-about { display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 4rem; }
+.home-about p { margin-bottom: 1.25rem; color: #2a2a2a; font-weight: 400; font-size: 1.05rem; }
+.home-speaking { background: var(--ink); color: var(--paper); padding: 4rem; display: flex; justify-content: space-between; align-items: center; gap: 2.5rem; flex-wrap: wrap; border-bottom: none; }
+.home-speaking h2 { color: var(--paper); margin-bottom: 0.6rem; }
+.home-speaking p { color: rgba(245, 242, 235, 0.8); font-size: 1.05rem; max-width: 52ch; }
+.home-speaking .btn { border-color: rgba(245, 242, 235, 0.5); color: var(--paper); }
+.home-speaking .btn:hover { background: var(--paper); color: var(--ink); }
+.home-speaking .btn-accent { border-color: var(--accent); }
+@media (max-width: 900px) {
+  .home-hero { grid-template-columns: 1fr; padding: 4rem 2rem 3rem; gap: 2.5rem; }
+  .home-hero-photo { justify-self: start; max-width: 240px; }
+  .home-proof { grid-template-columns: 1fr; margin: 0 2rem; }
+  .home-proof div, .home-proof div + div { padding: 1.25rem 0; border-left: none; border-top: 1px solid var(--rule); }
+  .home-topics, .home-latest { grid-template-columns: 1fr; }
+  .home-about { grid-template-columns: 1fr; gap: 2rem; }
+  .home-speaking { padding: 3rem 2rem; }
+}
+</style>
 </head>
 <body>
 
@@ -65,37 +109,84 @@
 </header>
 
 <!-- HERO -->
-<div class="hero">
-  <div class="hero-left">
-    <h1>PPC &amp; AI<br><em>practitioner.</em><br>Builder. Teacher.</h1>
-  </div>
-  <div class="hero-right">
-    <p class="hero-intro">
-      I'm a <strong>performance marketing specialist</strong> who builds things. Not talks about building things. Builds them.
-      I build AI agents and automated systems as part of my day job, teach AI skills to colleagues and industry audiences,
-      and run a fully automated trading scanner as a public learning project — started with no development background at all.
-    </p>
+<div class="home-hero">
+  <div>
+    <div class="hero-label">PPC and AI practitioner, UK</div>
+    <h1>I teach practical AI <em>by building it first.</em></h1>
+    <p class="hero-intro">Over ten years in performance marketing and PPC. Self-taught in Python with no coding background, I build AI agents and automations in my evenings, then show marketers how to do the same.</p>
     <div class="cta-row">
-      <a href="/work/" class="btn btn-accent">See the work ↗</a>
-      <a href="/speaking/" class="btn">Speaking &amp; training</a>
-      <a href="https://linkedin.com/in/garystow" target="_blank" class="btn">LinkedIn ↗</a>
+      <a href="#about" class="btn btn-accent">Learn more about me</a>
+      <a href="/articles/" class="btn">Read the articles</a>
+      <a href="/speaking/" class="btn">Speaking and training</a>
     </div>
   </div>
+  <img src="/assets/gary-stow-photo.webp" width="900" height="1097" fetchpriority="high" decoding="async" alt="Gary Stow" class="home-hero-photo">
 </div>
+
+<!-- PROOF STRIP -->
+<div class="home-proof">
+  <div><b>10+ years</b><span>in performance marketing and PPC</span></div>
+  <div><b>Wade</b><span>my own local AI assistant, built with free tools</span></div>
+  <div><b>9 hrs to 30 min</b><span>a PPC audit, with an AI-assisted process</span></div>
+</div>
+
+<!-- TOPICS -->
+<section id="topics">
+  <div class="section-header">
+    <h2>Explore by topic</h2>
+  </div>
+  <div class="home-topics">
+    <a href="/articles/the-speed-of-change-in-search-driven-by-ai/" class="home-topic"><b>AI in PPC</b><span>How AI is changing paid search</span><i>Read →</i></a>
+    <a href="/articles/colleague-dared-me-to-build-something/" class="home-topic"><b>Learning AI by building</b><span>No coding background needed</span><i>Read →</i></a>
+    <a href="/articles/practical-ai-training-in-the-uk/" class="home-topic"><b>AI training and workshops</b><span>How to bring a team along</span><i>Read →</i></a>
+    <a href="/articles/getting-a-small-website-ready-for-ai-search-with-free-tools/" class="home-topic"><b>AI search and SEO</b><span>Getting found by AI assistants</span><i>Read →</i></a>
+    <a href="/articles/local-ai-without-the-token-bill/" class="home-topic"><b>Running AI at home</b><span>Local models, no token bill</span><i>Read →</i></a>
+    <a href="/articles/thriving-in-tech-neurodiverse-brain/" class="home-topic"><b>ADHD, careers and tech</b><span>The personal side of the work</span><i>Read →</i></a>
+  </div>
+</section>
+
+<!-- LATEST ARTICLES (cards are rebuilt automatically each time an article goes live) -->
+<section id="latest">
+  <div class="home-latest-head">
+    <h2>Latest articles</h2>
+    <a href="/articles/">All articles →</a>
+  </div>
+  <div class="home-latest">
+      <!-- LATEST-ARTICLES:START (filled in automatically by publish_draft.py - do not edit by hand) -->
+      <a href="/articles/adhd-and-ai-tools-how-i-stop-things-slipping/" class="home-latest-card">
+        <img src="/articles/adhd-and-ai-tools-how-i-stop-things-slipping/adhd-and-ai-tools-how-i-stop-things-slipping.webp" width="1200" height="800" loading="lazy" decoding="async" alt="" class="home-latest-img">
+        <span class="home-latest-date">Oct 2026</span>
+        <span class="home-latest-title">ADHD and AI Tools: How I Stop Things Slipping</span>
+      </a>
+      <a href="/articles/i-fell-into-ppc-advice-i-would-give-my-younger-self/" class="home-latest-card">
+        <img src="/articles/i-fell-into-ppc-advice-i-would-give-my-younger-self/i-fell-into-ppc-advice-i-would-give-my-younger-self.webp" width="1200" height="800" loading="lazy" decoding="async" alt="" class="home-latest-img">
+        <span class="home-latest-date">Oct 2026</span>
+        <span class="home-latest-title">I Fell Into PPC: Advice I Would Give My Younger Self</span>
+      </a>
+      <a href="/articles/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners/" class="home-latest-card">
+        <img src="/articles/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners.webp" width="1200" height="800" loading="lazy" decoding="async" alt="" class="home-latest-img">
+        <span class="home-latest-date">Oct 2026</span>
+        <span class="home-latest-title">Why I Run AI at Home, and LM Studio Tips for Beginners</span>
+      </a>
+      <!-- LATEST-ARTICLES:END -->
+  </div>
+</section>
 
 <!-- ABOUT -->
 <section id="about">
   <div class="section-header">
-    <span class="section-num">01</span>
     <h2>About</h2>
   </div>
-  <div class="about-grid">
-    <div class="about-body">
-      <p>I've spent over a decade in performance marketing — predominantly PPC and more recently AI-powered campaign tooling, particularly around Performance Max. I've been published, I've built internal tools, and I've spent a lot of time trying to cut through as someone who actually does things rather than just writes about doing things.</p>
-      <p>In 2026 I started learning to code. Not because I needed to for my job, but because I'd reached the ceiling of what I could do by pointing AI at problems without understanding what was happening underneath. I wanted to build agents properly — the kind that do genuinely useful things and keep doing them when nobody's watching.</p>
-      <p>I'm a Type 1 diabetic with ADHD and a hint of autism, two daughters, and a background that didn't include any of the things this work required. None of that stopped it working. The pages linked below cover the project itself, the AI agents and training I build day to day, and the speaking and coaching I do on the side.</p>
+  <div class="home-about">
+    <div>
+      <p>I've spent over a decade in performance marketing, predominantly PPC and more recently AI-powered campaign tooling, particularly around Performance Max. I've been published, I've built internal tools, and I've spent a lot of time trying to cut through as someone who actually does things rather than just writes about doing things.</p>
+      <p>In 2026 I started learning to code. Not because I needed to for my job, but because I'd reached the ceiling of what I could do by pointing AI at problems without understanding what was happening underneath. I wanted to build agents properly: the kind that do genuinely useful things and keep doing them when nobody's watching.</p>
+      <p>I'm a Type 1 diabetic with ADHD and a hint of autism, two daughters, and a background that didn't include any of the things this work required. None of that stopped it working.</p>
+      <div class="cta-row">
+        <a href="/work/" class="btn">See the work ↗</a>
+        <a href="/agents/" class="btn">AI &amp; agents ↗</a>
+      </div>
     </div>
-    <img src="/assets/gary-stow-photo.webp" width="900" height="1097" loading="lazy" decoding="async" alt="Gary Stow" class="about-photo">
     <div class="about-facts">
       <div class="fact">
         <div class="fact-label">Specialism</div>
@@ -113,44 +204,15 @@
   </div>
 </section>
 
-<!-- LINK CARDS -->
-<section id="explore">
-  <div class="section-header">
-    <span class="section-num">02</span>
-    <h2>Explore</h2>
+<!-- SPEAKING BANNER -->
+<section class="home-speaking">
+  <div>
+    <h2>Talks, workshops and build days</h2>
+    <p>What I teach and talk about, and the events I have done.</p>
   </div>
-  <div class="link-cards">
-    <a href="/work/" class="link-card">
-      <div class="link-tag">Project · Agents · Skills</div>
-      <h4>The work</h4>
-      <p>The Momentum Scanner build, the AI agents I've built at work, how it's all put together, and the skills behind it.</p>
-      <div class="link-arrow">View the work →</div>
-    </a>
-    <a href="/articles/" class="link-card">
-      <div class="link-tag">Writing</div>
-      <h4>Articles</h4>
-      <p>Longer pieces on practical AI adoption, building in public, and what a decade in performance marketing actually teaches you.</p>
-      <div class="link-arrow">Read the articles →</div>
-    </a>
-    <a href="/speaking/" class="link-card">
-      <div class="link-tag">Training · Workshops · Coaching</div>
-      <h4>Speaking &amp; teaching</h4>
-      <p>Hands-on AI training days, team workshops and one-to-one coaching, in the style proven with the IAB UK Ad Labs series.</p>
-      <div class="link-arrow">See how I teach →</div>
-    </a>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="contact-band">
-  <div class="section-header" style="justify-content: center; margin-bottom: 1.5rem;">
-    <span class="section-num">03</span>
-  </div>
-  <h2>Get in touch</h2>
-  <p>If you're planning a training session, workshop or team day and think this might be a fit, drop me a line. I read everything myself.</p>
   <div class="cta-row">
-    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
-    <a href="https://linkedin.com/in/garystow" target="_blank" class="btn">Message on LinkedIn ↗</a>
+    <a href="/speaking/" class="btn btn-accent">See speaking ↗</a>
+    <a href="/contact/" class="btn">Get in touch ↗</a>
   </div>
 </section>
 
