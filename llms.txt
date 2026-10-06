@@ -30,6 +30,10 @@ the IAB UK.
 
 ## Recent articles
 
+- [Getting a Small Website Ready for AI Search With Free Tools](https://garystow.co.uk/articles/getting-a-small-website-ready-for-ai-search-with-free-tools/):
+  I am using free tools and a small AI team to get my own website
+  found in AI search. Here is what I have set up so far and what I am
+  seeing.
 - [Practical AI Training in the UK](https://garystow.co.uk/articles/practical-ai-training-in-the-uk/):
   the UK is racing to upskill its workforce, but how do you turn
   theory into hands-on expertise?
