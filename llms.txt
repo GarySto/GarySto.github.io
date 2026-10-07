@@ -30,6 +30,10 @@ the IAB UK.
 
 ## Recent articles
 
+- [How to Get a Sceptical Colleague to Actually Try AI](https://garystow.co.uk/articles/how-to-get-a-sceptical-colleague-to-actually-try-ai/):
+  you cannot force someone to use AI, and trying usually backfires.
+  What works is understanding their doubts and finding one small, real
+  win for them.
 - [What My Evenings Building With AI Actually Look Like](https://garystow.co.uk/articles/what-my-evenings-building-with-ai-actually-look-like/):
   most of my AI projects happen in the evenings once my daughters are
   in bed. This is what those sessions really involve, including the
