@@ -30,6 +30,10 @@ the IAB UK.
 
 ## Recent articles
 
+- [How I Cut a PPC Audit From 9 Hours to 30 Minutes With AI](https://garystow.co.uk/articles/how-i-cut-a-ppc-audit-from-9-hours-to-30-minutes-with-ai/):
+  A full PPC account audit used to take me a working day. With the
+  right exports, rules and checks, an AI-assisted audit now takes
+  under thirty minutes.
 - [How to Get a Sceptical Colleague to Actually Try AI](https://garystow.co.uk/articles/how-to-get-a-sceptical-colleague-to-actually-try-ai/):
   you cannot force someone to use AI, and trying usually backfires.
   What works is understanding their doubts and finding one small, real
