@@ -30,6 +30,10 @@ the IAB UK.
 
 ## Recent articles
 
+- [Explaining AI to Non-Technical People: The Graduate Test](https://garystow.co.uk/articles/explaining-ai-to-non-technical-people-the-graduate-test/):
+  when I explain AI to people who are not technical, I compare it to a
+  bright graduate on day one. It works because it is honest about both
+  sides of AI.
 - [A Friday Build Day That Showed How Fast AI Is Moving](https://garystow.co.uk/articles/a-friday-build-day-that-showed-how-fast-ai-is-moving/):
   I was invited to a hands-on AI build day and billed as the AI expert
   in the room. What I saw people build in an afternoon stopped me in
