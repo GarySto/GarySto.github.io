@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Build a Live Village Dashboard for Your AI Agents — Gary Stow</title>
+<meta name="description" content="Every job my AI automations do now shows up as a cartoon village. This is the exact recipe, with the code, so you can build your own version.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/articles/how-to-build-a-live-village-dashboard-for-your-ai-agents/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Build a Live Village Dashboard for Your AI Agents">
+<meta property="og:description" content="Every job my AI automations do now shows up as a cartoon village. This is the exact recipe, with the code, so you can build your own version.">
+<meta property="og:url" content="https://garystow.co.uk/articles/how-to-build-a-live-village-dashboard-for-your-ai-agents/">
+<meta property="og:image" content="https://garystow.co.uk/articles/how-to-build-a-live-village-dashboard-for-your-ai-agents/how-to-build-a-live-village-dashboard-for-your-ai-agents.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Build a Live Village Dashboard for Your AI Agents",
+  "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
+  "datePublished": "2026-10-08",
+  "url": "https://garystow.co.uk/articles/how-to-build-a-live-village-dashboard-for-your-ai-agents/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/assets/site.css?v=45260eab">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Build a Live Village Dashboard for Your AI Agents",
+  "description": "Every job my AI automations do now shows up as a cartoon village. This is the exact recipe, with the code, so you can build your own version.",
+  "url": "https://garystow.co.uk/articles/how-to-build-a-live-village-dashboard-for-your-ai-agents/",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Step 1: Make every automation leave a trail",
+      "text": "The village can only show what your automations record. Give every script one shared function that adds a line to an activity log. One line of JSON per event, called JSON Lines, is the simplest format there is, because you only ever add to the end of the file."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 2: Decide what every building means",
+      "text": "Before drawing anything, write down what each building stands for. This is the part that makes the village make sense to someone who has never seen your system. Mine looks like this:"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 3: Turn the logs into one data file",
+      "text": "Save this as village_data.py. It reads the last 48 hours of the log and writes the file the page will draw from. Run it on a schedule, or every time the page asks for it (Step 9 does that)."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 4: Draw the ground with isometric tiles",
+      "text": "The RimWorld style look comes from isometric tiles: diamonds that are twice as wide as they are tall. One small function turns a grid square into a position on the screen, and everything else is built on top of it."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 5: Draw buildings in a paper cut-out style",
+      "text": "A building is three shapes: a darker left wall, a lighter right wall and a roof. Thick black outlines give it the cut-out look. Draw from the back of the map to the front, sorted by x + y, so nearer buildings cover the ones behind them."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 6: Make the people walk the real work",
+      "text": "This is the part that brings it to life. Every event in the data file sends a little person from one building to another. When the supervisor approves something, someone walks from the Town Hall to the executor. When an article goes live, a builder walks to the housing district."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 7: Let the data change the world",
+      "text": "Now connect the picture to real numbers. These two rules do most of the work in mine."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 8: Run the drawing loop",
+      "text": "Save the page as village/index.html, next to the data file, with a <canvas id=\"village\" width=\"1200\" height=\"750\"> in it. Fetch the data once, then redraw about sixty times a second."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 9: Serve a private version from your own computer",
+      "text": "My private village runs from the same small Flask app as my local dashboard, so it can show everything, including the actual requests waiting for me. Clicking a person outside the Town Hall opens the decision."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 10: Publish a safe public version",
+      "text": "The public version uses the same page with a different data file. Before anything leaves my computer, a function strips out anything private. Requests become a generic title, and money is rounded."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 11: Make it readable for everyone",
+      "text": "Small pixel text looks great and is impossible to read. Use a large, clear font for labels (I use Atkinson Hyperlegible, which was designed for low vision), strong contrast, and hide the smaller labels when someone zooms out so they never pile on top of each other. Test it on a phone before you share it."
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need to know JavaScript to build this?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. I am self-taught and built mine with help from AI tools. You need to be able to copy code, run it, read the error when it breaks and ask for help with that error. The canvas drawing above is the only JavaScript you need."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it safe to show my automations in public?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if the public version gets its own data file. Never point the public page at your private data. Build a function like make_public that removes names, request details and exact money figures, and check its output before every publish."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I build this without paying for anything?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Python, Flask, a browser canvas, GitHub Pages and Windows Task Scheduler are all free. If you want an AI assistant in the village too, you can run one at home with no token bill, which I explain in how to build your own local AI assistant."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why not use a game engine?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You could, but a game engine adds a lot to learn before you see anything. A single HTML page with a canvas loads anywhere, can be hosted for free and is easy for an AI assistant to help you change. Start simple and move to an engine only if you outgrow it."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* 8 Oct 2026: code in step-by-step articles - large, high contrast, never wider than the page */
+.article-body pre.code-block { background: #1d1a16; color: #f5f2eb; padding: 1.1rem 1.25rem; margin: 1.25rem 0 1.75rem; overflow-x: auto; max-width: 100%; border-radius: 4px; font-size: 0.95rem; line-height: 1.55; }
+.article-body pre.code-block code { font-family: var(--mono, monospace); background: none; padding: 0; color: inherit; white-space: pre; }
+.article-body code { font-family: var(--mono, monospace); background: #ece6da; padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.92em; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/work/">Work</a>
+    <a href="/agents/">AI &amp; Agents</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/articles/" class="article-back">← All articles</a>
+  <div class="hero-label">Teaching</div>
+  <h1>How to Build a Live Village Dashboard for Your AI Agents</h1>
+  <div class="article-meta">8 October 2026 · Gary Stow, performance marketing and AI</div>
+  <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Written by Gary Stow with help from AI tools. Every fact is checked and every article is approved by Gary before it goes live.</p>
+</div>
+
+<section>
+  <img src="/articles/how-to-build-a-live-village-dashboard-for-your-ai-agents/how-to-build-a-live-village-dashboard-for-your-ai-agents.webp" width="1200" height="629" fetchpriority="high" decoding="async" alt="A single person stands beside a handcrafted wooden village of small houses and fields, their hand pointing at one of the houses" class="article-hero-img">
+  <div class="article-body">
+
+    <p>I run a lot of automations. One team writes and checks articles for this site, another runs three demo trading strategies, and a supervisor sits over both deciding what needs me. For months the only way to see any of it was a dashboard full of tables. It worked for me, but when my wife or my children asked what I was actually building every evening, a table of job names meant nothing to them.</p>
+
+    <p>So I turned the whole thing into a village. I built it to help explain my work to my family, and the visual approach made it far easier for them to understand than anything I could say. The style is a cross between RimWorld and South Park: I love playing RimWorld, and I have always been a fan of South Park.</p>
+
+    <p>Every page on this site is a house. Every trading strategy is a field that grows or wilts with its results. Every request walks to the Town Hall, and builders are always working on the next house. You can see the live version in <a href="/village/">the Village</a>.</p>
+
+    <p>This guide shows you how to build your own, one step at a time. You do not need a game engine, and everything here is free. If you can run a Python script, you can do this.</p>
+
+    <h3>What you need before you start</h3>
+
+    <ul>
+      <li>Python 3 on your computer</li>
+      <li>A text editor (I use VS Code)</li>
+      <li>A web browser</li>
+      <li>Something that already runs on its own, such as a scheduled script, an AI agent or a bot, that you want to watch</li>
+      <li>Optional: a free GitHub Pages website, if you want a public version people can visit</li>
+    </ul>
+
+    <h3>How the village works</h3>
+
+    <p>There are only three moving parts, and keeping them separate is what makes this manageable.</p>
+
+    <ol>
+      <li>Your automations write a line to a log file every time they do something.</li>
+      <li>A small Python script reads those logs and writes one JSON file describing the village.</li>
+      <li>One HTML page reads that JSON file and draws the village on a canvas.</li>
+    </ol>
+
+    <p>The drawing never talks to your automations directly. That means a bug in the village can never break the real work, and you can rebuild the picture as often as you like.</p>
+
+    <h3>Step 1: Make every automation leave a trail</h3>
+
+    <p>The village can only show what your automations record. Give every script one shared function that adds a line to an activity log. One line of JSON per event, called JSON Lines, is the simplest format there is, because you only ever add to the end of the file.</p>
+
+    <pre class="code-block"><code>import json
+from datetime import datetime
+
+def log_activity(who, text, outcome="ok"):
+    row = {"ts": datetime.now().strftime("%Y-%m-%d %H:%M"),
+           "who": who, "text": text, "outcome": outcome}
+    with open("activity_log.jsonl", "a", encoding="utf-8") as f:
+        f.write(json.dumps(row) + "\n")
+
+log_activity("writer", "Drafted: how to build a village")</code></pre>
+
+    <p>Call it at the important moments: a job starting, finishing, failing, or waiting for a human.</p>
+
+    <h3>Step 2: Decide what every building means</h3>
+
+    <p>Before drawing anything, write down what each building stands for. This is the part that makes the village make sense to someone who has never seen your system. Mine looks like this:</p>
+
+    <ul>
+      <li>The Town Hall is the supervisor. Every request goes through it.</li>
+      <li>Each team has its own district: website on one side, trading on the other. Work from one never walks into the other.</li>
+      <li>Houses are web pages. Bigger houses get more visits.</li>
+      <li>Fields are trading strategies. They all start the same size, then grow or shrink with their profit or loss.</li>
+      <li>People standing outside the Town Hall are requests waiting for my decision.</li>
+    </ul>
+
+    <p>Keep a simple lookup from the names in your log to the building where that work happens.</p>
+
+    <h3>Step 3: Turn the logs into one data file</h3>
+
+    <p>Save this as <code>village_data.py</code>. It reads the last 48 hours of the log and writes the file the page will draw from. Run it on a schedule, or every time the page asks for it (Step 9 does that).</p>
+
+    <pre class="code-block"><code>import json
+from datetime import datetime, timedelta
+from pathlib import Path
+
+LOG = Path("activity_log.jsonl")
+OUT = Path("village/village_data.json")
+BUILDING_FOR = {"writer": "workshop", "checker": "hall",
+                "publisher": "site", "trader": "field"}
+
+def recent_events(hours=48):
+    cutoff = datetime.now() - timedelta(hours=hours)
+    events = []
+    for line in LOG.read_text(encoding="utf-8").splitlines():
+        e = json.loads(line)
+        if datetime.strptime(e["ts"], "%Y-%m-%d %H:%M") &gt;= cutoff:
+            events.append({"time": e["ts"][11:], "from": "hall",   # every job starts at the Town Hall
+                           "at": BUILDING_FOR.get(e["who"], "hall"), "text": e["text"]})
+    return events[-30:]
+
+def build(pages, results):
+    data = {"generated": datetime.now().isoformat(timespec="minutes"),
+            "pages": pages, "events": recent_events(), "fields": results}
+    OUT.parent.mkdir(exist_ok=True)
+    OUT.write_text(json.dumps(data), encoding="utf-8")
+
+def main():
+    build(pages=[{"title": "Home page", "url": "/", "views": 84}],
+          results={"strategy_a": 120, "strategy_b": -40})
+
+if __name__ == "__main__":
+    main()</code></pre>
+
+    <p>The page views can come from any analytics export you already have. Start with made-up numbers and swap in real ones once the picture works.</p>
+
+    <h3>Step 4: Draw the ground with isometric tiles</h3>
+
+    <p>The RimWorld style look comes from isometric tiles: diamonds that are twice as wide as they are tall. One small function turns a grid square into a position on the screen, and everything else is built on top of it.</p>
+
+    <pre class="code-block"><code>const TW = 64, TH = 32;                 // one tile: 64 wide, 32 tall
+
+function toScreen(x, y) {               // grid square -&gt; pixel position
+  return { sx: (x - y) * TW / 2, sy: (x + y) * TH / 2 };
+}
+
+function tile(ctx, x, y, colour) {
+  const { sx, sy } = toScreen(x, y);
+  ctx.beginPath();
+  ctx.moveTo(sx, sy);
+  ctx.lineTo(sx + TW / 2, sy + TH / 2);
+  ctx.lineTo(sx, sy + TH);
+  ctx.lineTo(sx - TW / 2, sy + TH / 2);
+  ctx.closePath();
+  ctx.fillStyle = colour;
+  ctx.fill();
+}</code></pre>
+
+    <p>Loop over a grid and call <code>tile</code> for every square. Use one colour for grass, another for roads, and blue for a river between districts.</p>
+
+    <h3>Step 5: Draw buildings in a paper cut-out style</h3>
+
+    <p>A building is three shapes: a darker left wall, a lighter right wall and a roof. Thick black outlines give it the cut-out look. Draw from the back of the map to the front, sorted by <code>x + y</code>, so nearer buildings cover the ones behind them.</p>
+
+    <pre class="code-block"><code>function poly(ctx, pts, fill) {
+  ctx.beginPath();
+  pts.forEach(([px, py], i) =&gt; i ? ctx.lineTo(px, py) : ctx.moveTo(px, py));
+  ctx.closePath();
+  ctx.fillStyle = fill;
+  ctx.fill();
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = "#000";
+  ctx.stroke();
+}
+
+function shade(hex, pct) {              // lighten or darken a colour
+  const n = parseInt(hex.slice(1), 16);
+  const f = c =&gt; Math.max(0, Math.min(255, c + Math.round(2.55 * pct)));
+  return "#" + [f(n &gt;&gt; 16), f((n &gt;&gt; 8) &amp; 255), f(n &amp; 255)]
+    .map(v =&gt; v.toString(16).padStart(2, "0")).join("");
+}
+
+function box(ctx, x, y, h, colour) {    // h = height in pixels
+  const { sx, sy } = toScreen(x, y);
+  const top = sy - h;
+  poly(ctx, [[sx - TW/2, top + TH/2], [sx, top + TH], [sx, sy + TH], [sx - TW/2, sy + TH/2]], shade(colour, -25));
+  poly(ctx, [[sx, top + TH], [sx + TW/2, top + TH/2], [sx + TW/2, sy + TH/2], [sx, sy + TH]], shade(colour, -10));
+  poly(ctx, [[sx, top], [sx + TW/2, top + TH/2], [sx, top + TH], [sx - TW/2, top + TH/2]], colour);
+}</code></pre>
+
+    <p>Add windows, doors and signs once the boxes look right. Resist the urge to make it pretty too early. Get the layout working with plain boxes first.</p>
+
+    <h3>Step 6: Make the people walk the real work</h3>
+
+    <p>This is the part that brings it to life. Every event in the data file sends a little person from one building to another. When the supervisor approves something, someone walks from the Town Hall to the executor. When an article goes live, a builder walks to the housing district.</p>
+
+    <pre class="code-block"><code>const walkers = [];
+
+function playEvent(ev) {                // ev.from and ev.at are building names
+  walkers.push({ from: BUILDINGS[ev.from], to: BUILDINGS[ev.at], t: 0 });
+}
+
+function moveWalkers(dt) {              // dt = milliseconds since last frame
+  for (const w of walkers) w.t = Math.min(1, w.t + dt / 4000);  // 4 seconds a trip
+  for (let i = walkers.length - 1; i &gt;= 0; i--) {
+    if (walkers[i].t &gt;= 1) walkers.splice(i, 1);
+  }
+}
+
+function walkerPos(w) {
+  return { x: w.from.x + (w.to.x - w.from.x) * w.t,
+           y: w.from.y + (w.to.y - w.from.y) * w.t };
+}</code></pre>
+
+    <p>Play one event every few seconds and loop back to the start when you run out. Draw a coloured path for each team's flow, so you can see at a glance that website work and trading work never cross.</p>
+
+    <h3>Step 7: Let the data change the world</h3>
+
+    <p>Now connect the picture to real numbers. These two rules do most of the work in mine.</p>
+
+    <pre class="code-block"><code>function fieldScale(net) {              // net = profit or loss in pounds
+  return Math.max(0.6, Math.min(1.45, 1 + net / 400));
+}
+
+function houseFloors(views) {
+  return views &gt; 200 ? 3 : views &gt; 50 ? 2 : 1;
+}</code></pre>
+
+    <p>Clamping matters. Without the limits, one great or terrible week would make a field fill the screen or vanish. Pick limits that keep the village readable.</p>
+
+    <h3>Step 8: Run the drawing loop</h3>
+
+    <p>Save the page as <code>village/index.html</code>, next to the data file, with a <code>&lt;canvas id="village" width="1200" height="750"&gt;</code> in it. Fetch the data once, then redraw about sixty times a second.</p>
+
+    <pre class="code-block"><code>const canvas = document.getElementById("village");
+const ctx = canvas.getContext("2d");
+let DATA = null, last = performance.now();
+
+function frame(now) {
+  const dt = now - last;
+  last = now;
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.setTransform(1, 0, 0, 1, canvas.width / 2, 80);  // grid square 0,0 sits top centre
+  drawGround();
+  drawBuildings();
+  moveWalkers(dt);
+  drawWalkers();
+  requestAnimationFrame(frame);
+}
+
+fetch("village_data.json")
+  .then(r =&gt; r.json())
+  .then(d =&gt; { DATA = d; requestAnimationFrame(frame); });</code></pre>
+
+    <p><code>drawGround</code>, <code>drawBuildings</code> and <code>drawWalkers</code> are your own functions built from the pieces above.</p>
+
+    <h3>Step 9: Serve a private version from your own computer</h3>
+
+    <p>My private village runs from the same small Flask app as my local dashboard, so it can show everything, including the actual requests waiting for me. Clicking a person outside the Town Hall opens the decision.</p>
+
+    <pre class="code-block"><code>from flask import Flask, send_from_directory
+import village_data          # the Step 3 script
+
+app = Flask(__name__)
+
+@app.route("/village/")
+def village():
+    return send_from_directory("village", "index.html")
+
+@app.route("/village/village_data.json")
+def data():
+    village_data.main()      # rebuild from the latest logs every time the page asks
+    return send_from_directory("village", "village_data.json")
+
+if __name__ == "__main__":
+    app.run(port=5007)</code></pre>
+
+    <p>Install Flask once with <code>pip install flask</code>, run the script, then open <code>localhost:5007/village/</code> in your browser and you are watching your own system.</p>
+
+    <h3>Step 10: Publish a safe public version</h3>
+
+    <p>The public version uses the same page with a different data file. Before anything leaves my computer, a function strips out anything private. Requests become a generic title, and money is rounded.</p>
+
+    <pre class="code-block"><code>def make_public(data):
+    pub = dict(data)
+    pub["requests"] = [{"id": r["id"], "from": r["from"], "title": "A decision for Gary"}
+                       for r in data.get("requests", [])]
+    pub["fields"] = {k: round(v / 50) * 50 for k, v in data["fields"].items()}
+    return pub</code></pre>
+
+    <p>A scheduled task then copies the page and the public data file into my website on a new branch, opens a pull request, and only merges it after an automatic layout check in a headless browser and an SEO checklist both pass. If either check fails, nothing goes live. I wrote about why I make automation check its own work in <a href="/articles/the-independent-audit-why-i-make-ai-check-its-own-work/">the independent audit</a>.</p>
+
+    <h3>Step 11: Make it readable for everyone</h3>
+
+    <p>Small pixel text looks great and is impossible to read. Use a large, clear font for labels (I use Atkinson Hyperlegible, which was designed for low vision), strong contrast, and hide the smaller labels when someone zooms out so they never pile on top of each other. Test it on a phone before you share it.</p>
+
+    <h3>What went wrong the first time</h3>
+
+    <p>Three things caught me out, so you can skip them.</p>
+
+    <ul>
+      <li>Labels overlapped as soon as the village grew. Showing department names only when zoomed in fixed it.</li>
+      <li>My first version let trading work walk into the housing district. Separate districts and separate colours for each team's flow made the picture honest.</li>
+      <li>My scheduled jobs run without a window, but every git command they started popped up its own black console box. On Windows, start those commands with the <code>CREATE_NO_WINDOW</code> flag from Python's <code>subprocess</code> module, or you will get a screen full of flashing windows.</li>
+    </ul>
+
+    <h3>Do I need to know JavaScript to build this?</h3>
+
+    <p>No. I am self-taught and built mine with help from AI tools. You need to be able to copy code, run it, read the error when it breaks and ask for help with that error. The canvas drawing above is the only JavaScript you need.</p>
+
+    <h3>Is it safe to show my automations in public?</h3>
+
+    <p>Yes, if the public version gets its own data file. Never point the public page at your private data. Build a function like <code>make_public</code> that removes names, request details and exact money figures, and check its output before every publish.</p>
+
+    <h3>Can I build this without paying for anything?</h3>
+
+    <p>Yes. Python, Flask, a browser canvas, GitHub Pages and Windows Task Scheduler are all free. If you want an AI assistant in the village too, you can run one at home with no token bill, which I explain in <a href="/articles/build-your-own-local-ai-assistant/">how to build your own local AI assistant</a>.</p>
+
+    <h3>Why not use a game engine?</h3>
+
+    <p>You could, but a game engine adds a lot to learn before you see anything. A single HTML page with a canvas loads anywhere, can be hosted for free and is easy for an AI assistant to help you change. Start simple and move to an engine only if you outgrow it.</p>
+
+    <h3>Start small</h3>
+
+    <p>You do not need eleven steps on day one. Get one building and one walking person working from a real log file. Once you see your own automation move across the screen for the first time, you will want to build the rest.</p>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Want to talk about How to Build a Live Village Dashboard for Your AI Agents?</h2>
+  <p>Get in touch if this is relevant to what you're working on.</p>
+  <div class="cta-row">
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
+    <a href="/articles/" class="btn">More articles</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="mailto:garystow.hq@gmail.com">Email ↗</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>
