@@ -635,7 +635,8 @@ function renderRequest(r) {
   if (!PRIVATE) { selBody.innerHTML = `<p style="margin:0">The ${esc(from)} is waiting for Gary's decision. He answers from the private version of this village, and the owner then walks the answer back to the team.</p>`; return; }
   const meta = `<div class="row"><span class="pill ok">From the ${esc(from)}</span>${r.count > 1 ? `<span class="pill warn">${r.count} the same</span>` : ""}</div>`;
   if (r.link) { selBody.innerHTML = `${meta}<p style="margin:0">${esc(r.why)}</p><p style="margin:0"><a class="btn" href="${esc(r.link)}" target="_blank" rel="noopener">Decide on the trading dashboard ↗</a></p>`; return; }
-  selBody.innerHTML = `${meta}<p style="margin:0">${esc(r.why)}</p>
+  const look = r.preview ? `<p style="margin:0"><a class="btn" href="${esc(r.preview)}" target="_blank" rel="noopener">${esc(r.previewLabel || "Read it first")} ↗</a></p>` : "";
+  selBody.innerHTML = `${meta}<p style="margin:0">${esc(r.why)}</p>${look}
     <label for="vnotes" class="muted">Notes or feedback (optional)</label><textarea id="vnotes" rows="3" style="width:100%;font:inherit;border:3px solid #000;border-radius:8px;padding:8px"></textarea>
     <div class="row"><button class="btn yes" data-a="yes">${esc(r.yesLabel || "YES")}</button><button class="btn no" data-a="no">${esc(r.noLabel || "NO")}</button><button class="btn" data-a="later">${esc(r.laterLabel || "NOT YET")}</button></div>
     <p class="muted" style="margin:0">${esc(r.note || "Same action as the dashboard button.")}</p>`;
