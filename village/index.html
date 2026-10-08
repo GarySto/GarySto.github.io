@@ -49,6 +49,7 @@ canvas:active{cursor:grabbing}
 .tools button,.btn{font-family:var(--body);font-weight:700;font-size:1rem;border-radius:8px;border:3px solid #000;background:#fff;color:#111;padding:8px 12px;cursor:pointer;box-shadow:3px 3px 0 #000}
 .tools button{width:52px;height:52px;font-size:1.35rem;padding:0}
 .tools button[aria-pressed="true"]{background:var(--gold)}
+a.btn{display:inline-block;text-decoration:none;line-height:1.3;white-space:normal}
 .tools button:active,.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
 button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .ticker{position:absolute;left:14px;right:14px;bottom:14px;display:flex;gap:12px;align-items:center;background:#fff;color:#111;border:3px solid #000;box-shadow:4px 4px 0 #000;border-radius:10px;padding:10px 14px;min-height:56px}
@@ -139,6 +140,7 @@ a{color:#9fd0ff}
       <h2>What is this?</h2>
       <p style="margin:0">These are the real AI teams that run my website and my demo trading system, drawn as a village. Every department is a small automation running on my own PC. They find problems, a Supervisor works out the cause, and anything that needs a human waits outside the Town Hall for me.</p>
       <p style="margin:0">Wade is my local AI (LM Studio, no token bill). Claude Code writes the code. The houses are this website's pages: more visits, bigger house. The fields are my three trading strategies on a demo account: profit makes them bloom, losses make them wilt.</p>
+      <p style="margin:0"><a href="/articles/how-to-build-a-live-village-dashboard-for-your-ai-agents/"><b>How to build your own village, step by step</b></a></p>
       <p style="margin:0"><a href="/agents/">How the AI teams work</a> · <a href="/articles/the-independent-audit-why-i-make-ai-check-its-own-work/">Why I make AI check its own work</a> · <a href="/">garystow.co.uk</a></p>
     </section>
     <p class="note" id="footNote">Characters are original. The village updates when the real scripts run.</p>
@@ -552,9 +554,11 @@ function frame(now) {
   const things = [...buildings, ...houses, site].map(o => ({k: "b", o, z: o.x + o.w + o.y + o.d}))
     .concat(trees.map(o => ({k: "t", o, z: o.x + o.y + .3})), people.map(o => ({k: "p", o, z: o.x + o.y + .5})), farmers.map(o => { const p = farmerPos(o); return {k: "f", o, z: p.x + p.y + .5}; }));
   things.sort((a, b) => a.z - b.z);
-  things.forEach(t => t.k === "b" ? drawBuilding(t.o) : t.k === "t" ? drawTree(t.o) : t.k === "f" ? drawFarmer(t.o) : drawWorker(t.o));
+  // 8 Oct 2026: people waiting for Gary are drawn LAST (after buildings and smoke) so nothing can hide them
+  things.forEach(t => t.k === "b" ? drawBuilding(t.o) : t.k === "t" ? drawTree(t.o) : t.k === "f" ? drawFarmer(t.o) : (t.o.owner ? null : drawWorker(t.o)));
   smoke.forEach(s => { s.y -= 16 * dt; s.x += 6 * dt; s.r += 6 * dt; s.a -= .3 * dt; }); for (let i = smoke.length - 1; i >= 0; i--) if (smoke[i].a <= 0) smoke.splice(i, 1);
   smoke.forEach(s => { ctx.globalAlpha = s.a; ctx.fillStyle = "#fff"; ctx.strokeStyle = INK; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 7); ctx.fill(); ctx.stroke(); ctx.globalAlpha = 1; });
+  people.filter(o => o.owner).sort((a, b) => (a.x + a.y) - (b.x + b.y)).forEach(drawWorker);
   drawWadeBeam();
   FIELDS.forEach(f => { const p = iso(f[3] + f[5] / 2, f[4] - .2), net = f[7].net || 0;
     const tag = PRIVATE ? (net >= 0 ? " · +£" : " · −£") + Math.abs(net).toFixed(0) : net > 0 ? " · growing" : net < 0 ? " · wilting" : "";
@@ -698,7 +702,10 @@ cv.addEventListener("pointermove", e => { if (pointers.has(e.pointerId)) pointer
 function release(e) {
   pointers.delete(e.pointerId); if (pointers.size < 2) pinch = null;
   if (drag && moved < 6) { const w = toWorld(e.clientX, e.clientY);
-    const hit = [...hits].reverse().find(h => w.x >= h.r.x && w.x <= h.r.x + h.r.w && w.y >= h.r.y && w.y <= h.r.y + h.r.h);
+    const under = [...hits].reverse().filter(h => w.x >= h.r.x && w.x <= h.r.x + h.r.w && w.y >= h.r.y && w.y <= h.r.y + h.r.h);
+    // a person waiting for Gary wins over anyone else, and any person wins over a building behind them
+    const near = list => list.sort((a, b) => Math.hypot(a.r.x + a.r.w / 2 - w.x, a.r.y + a.r.h / 2 - w.y) - Math.hypot(b.r.x + b.r.w / 2 - w.x, b.r.y + b.r.h / 2 - w.y))[0];
+    const hit = near(under.filter(h => h.p && h.p.owner)) || near(under.filter(h => h.p)) || under[0];
     selected = hit ? (hit.p || hit.b) : null;
     if (selected) renderSelected(); else { selName.textContent = "Click a building or a person"; selBody.textContent = "The teams work along Main Street and walk their work to your Town Hall."; } }
   drag = null;
