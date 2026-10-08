@@ -30,6 +30,10 @@ the IAB UK.
 
 ## Recent articles
 
+- [How to Learn AI as a Marketer With No Coding Background](https://garystow.co.uk/articles/how-to-learn-ai-as-a-marketer-with-no-coding-background/):
+  I tried to learn Python years ago and gave up. What finally worked
+  was building something I actually wanted, and learning whatever that
+  project needed.
 - [Start Small: The Mistakes I Made Building AI Tools](https://garystow.co.uk/articles/start-small-the-mistakes-i-made-building-ai-tools/):
   I have spent weeks building AI systems that were too complex or out
   of date the moment new tech arrived. Here is what I would do
