@@ -30,6 +30,10 @@ the IAB UK.
 
 ## Recent articles
 
+- [Start Small: The Mistakes I Made Building AI Tools](https://garystow.co.uk/articles/start-small-the-mistakes-i-made-building-ai-tools/):
+  I have spent weeks building AI systems that were too complex or out
+  of date the moment new tech arrived. Here is what I would do
+  differently today.
 - [How to Run an AI Workshop for a Marketing Team](https://garystow.co.uk/articles/how-to-run-an-ai-workshop-for-a-marketing-team/):
   the biggest barrier to AI in most marketing teams is not the tech,
   it is getting people to use it. Here is the two-hour workshop I
