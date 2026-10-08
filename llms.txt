@@ -30,6 +30,10 @@ the IAB UK.
 
 ## Recent articles
 
+- [A Friday Build Day That Showed How Fast AI Is Moving](https://garystow.co.uk/articles/a-friday-build-day-that-showed-how-fast-ai-is-moving/):
+  I was invited to a hands-on AI build day and billed as the AI expert
+  in the room. What I saw people build in an afternoon stopped me in
+  my tracks.
 - [How I Cut a PPC Audit From 9 Hours to 30 Minutes With AI](https://garystow.co.uk/articles/how-i-cut-a-ppc-audit-from-9-hours-to-30-minutes-with-ai/):
   A full PPC account audit used to take me a working day. With the
   right exports, rules and checks, an AI-assisted audit now takes
