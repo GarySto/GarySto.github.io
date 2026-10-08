@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gary HQ Village: watch my AI teams at work — Gary Stow</title>
+<meta name="description" content="My real AI automation teams, drawn as a cartoon village. Watch the website and trading teams find problems, Wade think, Claude Code build, and work wait at the Town Hall for my decision.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/village/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gary HQ Village: my AI teams at work">
+<meta property="og:description" content="Real AI automation teams on my own PC, drawn as a village you can watch and click around.">
+<meta property="og:url" content="https://garystow.co.uk/village/">
+<link rel="icon" href="/favicon.ico">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Gary HQ Village","url":"https://garystow.co.uk/village/","author":{"@type":"Person","name":"Gary Stow","url":"https://garystow.co.uk/"},"description":"Gary Stow's AI automation teams shown as a live cartoon village."}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-5S939E9N5T');</script>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","y7l6l2ea33");</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: a construction-paper cut-out village on a canvas, with a dark control rail. One committed look, high contrast for low vision. */
+:root{
+  --chrome:#141a22; --chrome-2:#1d2631; --line:#33414f;
+  --text:#f6f4ee; --muted:#c3c9d1;
+  --gold:#ffc23d; --web:#3f8fe6; --trade:#ee6a3c; --build:#43c271; --wade:#a97cf4;
+  --ok:#5fd17f; --warn:#ffc23d; --bad:#ff6b5e;
+  --display:"Luckiest Guy","Arial Black",Impact,sans-serif;
+  --body:"Atkinson Hyperlegible",Verdana,system-ui,sans-serif;
+  color-scheme:dark;
+}
+html,body{height:100%}
+body{background:var(--chrome);color:var(--text);font-family:var(--body);font-size:17px;line-height:1.45}
+*{box-sizing:border-box}
+.wrap{display:grid;grid-template-columns:minmax(0,1fr) 390px;grid-template-rows:auto minmax(0,1fr);height:100%}
+header{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:12px 18px;border-bottom:3px solid #000}
+h1{font-family:var(--display);font-weight:400;font-size:2rem;margin:0;letter-spacing:.03em;color:var(--gold);text-shadow:3px 3px 0 #000}
+.snap{color:var(--muted);font-size:.95rem}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:5px 10px;border-radius:6px;background:var(--chrome-2);border:2px solid #000;font-weight:700;font-size:.95rem}
+.dot{width:13px;height:13px;border-radius:3px;display:inline-block;border:2px solid #000}
+.stage{position:relative;min-width:0;min-height:460px;overflow:hidden;background:#8fd0ee}
+canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+canvas:active{cursor:grabbing}
+.tools{position:absolute;left:14px;top:14px;display:flex;flex-direction:column;gap:8px}
+.tools button,.btn{font-family:var(--body);font-weight:700;font-size:1rem;border-radius:8px;border:3px solid #000;background:#fff;color:#111;padding:8px 12px;cursor:pointer;box-shadow:3px 3px 0 #000}
+.tools button{width:52px;height:52px;font-size:1.35rem;padding:0}
+.tools button[aria-pressed="true"]{background:var(--gold)}
+.tools button:active,.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
+button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.ticker{position:absolute;left:14px;right:14px;bottom:14px;display:flex;gap:12px;align-items:center;background:#fff;color:#111;border:3px solid #000;box-shadow:4px 4px 0 #000;border-radius:10px;padding:10px 14px;min-height:56px}
+.ticker .when{font-family:var(--display);color:#b4401a;font-size:1.25rem;white-space:nowrap}
+.ticker .what{font-weight:700;min-width:0}
+aside{border-left:3px solid #000;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:16px;min-width:0}
+aside h2{font-family:var(--display);font-weight:400;letter-spacing:.03em;font-size:1.45rem;margin:0 0 4px}
+.card{background:var(--chrome-2);border:3px solid #000;box-shadow:4px 4px 0 #000;border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:9px}
+.card.hall{background:#2b2414;border-color:var(--gold)}
+.owner{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:#fff;color:#111;border:3px solid #000;border-radius:8px;padding:9px 11px;font:700 1rem var(--body);cursor:pointer;box-shadow:3px 3px 0 #000}
+.owner .bang{background:var(--gold);border:2px solid #000;border-radius:50%;width:28px;height:28px;display:grid;place-items:center;flex:none;font-family:var(--display)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px}
+.kv b{color:var(--muted);font-weight:400}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-weight:700;font-size:.85rem;color:#111;border:2px solid #000}
+.pill.ok{background:var(--ok)} .pill.new,.pill.warn{background:var(--gold)}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.yes{background:var(--ok)} .no{background:#ff8a7f}
+.flow{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;counter-reset:s}
+.flow li{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start}
+.flow li::before{counter-increment:s;content:counter(s);font-family:var(--display);font-size:1.15rem;color:#111;background:var(--c);border:2px solid #000;border-radius:6px;text-align:center;line-height:28px;height:30px}
+.flow b{display:block}
+.flow span{color:var(--muted);font-size:.95rem}
+.log{display:flex;flex-direction:column;gap:6px;font-size:.95rem}
+.log div{border-left:5px solid var(--line);padding-left:9px}
+.log .t{color:var(--gold);font-weight:700;margin-right:6px}
+.muted{color:var(--muted)}
+a{color:#9fd0ff}
+.note{font-size:.92rem;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin:0}
+@media (max-width:920px){
+  .wrap{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 66vh auto;height:auto}
+  aside{border-left:0;border-top:3px solid #000}
+  .legend{margin-left:0}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Gary HQ Village</h1>
+    <span class="snap" id="snap">Loading…</span><a class="snap" id="backLink" href="/" style="color:#9fd0ff"></a>
+    <div class="legend" aria-label="Map key">
+      <span class="chip"><span class="dot" style="background:var(--web)"></span>Website teams</span>
+      <span class="chip"><span class="dot" style="background:var(--trade)"></span>Trading teams</span>
+      <span class="chip"><span class="dot" style="background:#a8d86e"></span>Houses: the web pages</span>
+      <span class="chip"><span class="dot" style="background:#d9a94f"></span>Fields: the 3 strategies (bigger = more profit)</span>
+    </div>
+  </header>
+
+  <div class="stage">
+    <canvas id="map" aria-label="Cartoon village. Website and trading teams work along Main Street towards the Town Hall; Wade beams his thinking from his tower; Claude Code's builders put up the houses, which are your web pages; farmers work the strategy fields."></canvas>
+    <div class="tools">
+      <button id="zin" aria-label="Zoom in">+</button>
+      <button id="zout" aria-label="Zoom out">&minus;</button>
+      <button id="labels" aria-label="Show every name" aria-pressed="false">Aa</button>
+      <button id="flowBtn" aria-label="Show the flow of work" aria-pressed="true">&#10142;</button>
+      <button id="home" aria-label="Back to the Town Hall">&#8962;</button>
+    </div>
+    <div class="ticker" aria-live="polite"><span class="when" id="tWhen"></span><span class="what" id="tWhat">Opening the village…</span></div>
+  </div>
+
+  <aside>
+    <section class="card hall">
+      <h2>Waiting at the Town Hall</h2>
+      <div id="queue"></div>
+    </section>
+    <section class="card" id="selCard">
+      <h2 id="selName">Click a building or a person</h2>
+      <div id="selBody" class="muted">The teams work along Main Street and walk their work to your Town Hall. Wade thinks for them from his tower, Claude Code's builders put up and repair the houses, and farmers work the strategy fields.</div>
+    </section>
+    <section class="card">
+      <h2>How work flows</h2>
+      <ol class="flow">
+        <li style="--c:var(--web)"><div><b>Find</b><span>Departments spot problems and chances in the real data.</span></div></li>
+        <li style="--c:var(--web)"><div><b>Root-cause</b><span>The Supervisor turns each one into a solution and a recommendation. Wade does the thinking.</span></div></li>
+        <li style="--c:var(--web)"><div><b>Report</b><span>The Manager walks it down Main Street to you.</span></div></li>
+        <li style="--c:var(--gold)"><div><b>You decide</b><span>The owner waits outside the Town Hall for YES, NO or NOT YET.</span></div></li>
+        <li style="--c:var(--build)"><div><b>Do it</b><span>The Executor turns your YES into a job. Basic SEO skips you entirely.</span></div></li>
+        <li style="--c:var(--build)"><div><b>Build</b><span>Claude Code's builders write the code on their own branch.</span></div></li>
+        <li style="--c:var(--build)"><div><b>Live</b><span>After the layout and SEO checks pass, the house goes up in the housing district.</span></div></li>
+      </ol>
+    </section>
+    <section>
+      <h2>Today in the village</h2>
+      <div class="log" id="log"></div>
+    </section>
+    <section class="card" id="aboutCard" hidden>
+      <h2>What is this?</h2>
+      <p style="margin:0">These are the real AI teams that run my website and my demo trading system, drawn as a village. Every department is a small automation running on my own PC. They find problems, a Supervisor works out the cause, and anything that needs a human waits outside the Town Hall for me.</p>
+      <p style="margin:0">Wade is my local AI (LM Studio, no token bill). Claude Code writes the code. The houses are this website's pages: more visits, bigger house. The fields are my three trading strategies on a demo account: profit makes them bloom, losses make them wilt.</p>
+      <p style="margin:0"><a href="/agents/">How the AI teams work</a> · <a href="/articles/the-independent-audit-why-i-make-ai-check-its-own-work/">Why I make AI check its own work</a> · <a href="/">garystow.co.uk</a></p>
+    </section>
+    <p class="note" id="footNote">Characters are original. The village updates when the real scripts run.</p>
+  </aside>
+</div>
+
+<script>
+(async () => {
+"use strict";
+/* ================================================================ DATA
+   Loaded from village_data.json next to this page (built on Gary's PC by village_data.py).
+   Private version (localhost:5007/village): the real Town Hall queue, and buttons that do exactly what the dashboard does.
+   Public version (garystow.co.uk/village): public-safe data only, read-only. */
+async function loadData() {
+  try { const r = await fetch("village_data.json?ts=" + Date.now(), {cache: "no-store"}); if (r.ok) return await r.json(); } catch (e) {}
+  return window.VILLAGE_FALLBACK || null;
+}
+const DATA = await loadData();
+if (!DATA) { document.getElementById("tWhat").textContent = "Could not load the village data. Is the dashboard running?"; return; }
+const PRIVATE = DATA.mode === "private";
+/* ================================================================ LAYOUT: Main Street runs west to east; both
+   business districts face it and walk their work along it to the Town Hall in the middle. */
+// id, name, team, role, x, y, w, d, floors, job, new today
+const BUILDINGS = [
+  ["hall","Town Hall","hall","hall",21,9,4,4,2.4,"Where you decide. Anything that needs a YES arrives here as a solution with a recommendation, and its owner waits outside on Main Street until you answer."],
+  ["wade","Wade's Tower","wade","wade",22,2.5,2,2,6,"Wade is your local AI, running in LM Studio on your own PC. The Supervisors, the Managers and the Content Writer don't think for themselves: they send their work up here, Wade writes the answer, and it beams back. No token bill."],
+  ["cc","Claude Code Workshop","build","cc",21,17,4,3,1.6,"Where real code gets written. The Executors bring approved jobs; Claude Code's builders write it on their own branch and carry it out to the houses. Nothing reaches the live site until the layout and SEO checks pass."],
+  ["wsup","Website Supervisor","web","sup",9,9.5,3,3,2.6,"Reads every department's findings, finds the real cause and turns each one into a solution with a recommendation. Wade does the thinking."],
+  ["wman","Website Manager","web","man",14.2,10.3,3,2.4,2.1,"The one voice you deal with for the website. Walks what needs you down Main Street to the Town Hall."],
+  ["wexe","Website Executor","web","exe",14.6,16.2,2.6,2.2,1.7,"Turns your YES into a job and takes it to the Claude Code Workshop. Trivial fixes it does itself."],
+  ["seo","SEO Analyst","web","dept",0.6,1,2,2.2,1.6,"Tracks rankings in Google and Bing and spots searches you have no page for yet."],
+  ["writer","Content Writer","web","dept",3,1,2,2.2,1.6,"Drafts articles in your voice from your brain dumps and your facts file. Wade writes the words."],
+  ["rubric","Quality Rubric","web","dept",5.4,1,2,2.2,1.2,"Scores every draft out of 100 before it can reach you."],
+  ["claims","Claim Checker","web","dept",0.6,4.3,2,2.2,1.2,"Blocks any 'I did' sentence that isn't in your facts file."],
+  ["tech","Technical SEO","web","dept",3,4.3,2,2.2,1.2,"Broken links, crawl errors, structured data and page speed."],
+  ["aivis","AI Visibility Watch","web","dept",5.4,4.3,2,2.2,1.4,"Checks how your site shows up inside AI assistants such as Copilot."],
+  ["stdw","Standards Watch","web","dept",0.6,7.6,2,2.2,1.4,"Reads Google's and Bing's own rule pages every evening and raises any change.",1],
+  ["layout","Layout Guard","web","dept",3,7.6,2,2.2,1.2,"Opens every page in a hidden browser before and after a change and blocks anything that breaks the look."],
+  ["audit","System Auditor","web","dept",5.4,7.6,2,2.2,1.4,"Checks every 30 minutes that each automation really did its job."],
+  ["fixer","SEO Auto-Fixer","web","dept",3,10.9,2,2.2,1.4,"Fixes basic SEO by itself every evening and merges it: alt text, long descriptions, missing links.",1],
+  ["tsup","Trading Supervisor","trade","sup",34,9.5,3,3,2.6,"Triages everything the trading departments raise and root-causes it before you see it. Wade does the thinking."],
+  ["tman","Trading Manager","trade","man",28.8,10.3,3,2.4,2.1,"Your one contact for trading. Walks what needs you to the Town Hall and fills the trading dashboard."],
+  ["texe","Trading Executor","trade","exe",28.8,16.2,2.6,2.2,1.7,"Turns an approved YES into action. Code work goes to the Claude Code Workshop on its own branch."],
+  ["analyst","Analyst","trade","dept",39.4,1,2,2.2,1.6,"Reads every scan and trade and writes down what it sees, with numbers."],
+  ["recom","Recommender","trade","dept",41.8,1,2,2.2,1.2,"Proposes changes to the strategies. Never changes them without your YES."],
+  ["fill","Fill Analyst","trade","dept",44.2,1,2,2.2,1.2,"Works out why an order didn't fill, or filled at a worse price."],
+  ["perf","Performance Watch","trade","dept",39.4,4.3,2,2.2,1.4,"Tracks each strategy in pounds after fees against the go-live scorecard."],
+  ["fresh","Game Freshness Watchdog","trade","dept",41.8,4.3,2,2.2,1.2,"Makes sure the Game never trades on yesterday's premarket data."],
+  ["act","Trading Activity Monitor","trade","dept",44.2,4.3,2,2.2,1.4,"Health light, brakes, resting orders and the daily email after the US close."],
+  ["health","Task Health Watchdog","trade","dept",41.8,7.6,2,2.2,1.4,"Checks every scheduled job on your PC, and names the cause when one fails.",1],
+];
+// Every strategy field starts the same size, then grows or shrinks with its real result after fees (demo account for now).
+const FIELD_BASE = [["game","The Game","Premarket runners, scalp 10%",29.5,22.5],["m1","Model 1","Same-day continuation",38.5,22.5],["m2","Model 2","Range-bound bouncy ball",29.5,29]];
+const FIELDS = FIELD_BASE.map(([id, name, desc, x, y]) => {
+  const f = (DATA.fields || {})[id] || {net: 0}, k = Math.max(.6, Math.min(1.45, 1 + (f.net || 0) / 400));
+  const w = 4.4 * k, d = 3 * k;
+  return [id, name, desc, x + (6 - w) / 2, y + (3.6 - d) / 2, w, d, f, k];
+});
+const WADE_CLIENTS = ["wsup","wman","writer","tsup","tman"];
+
+/* ================================================================ engine */
+// the housing district grows with the site: one more row of houses every 8 pages, the river moves south
+const HOUSE_ROWS = Math.ceil((DATA.pages.length + 1) / 8), RIVER_Y = Math.max(35.3, 22.3 + HOUSE_ROWS * 3.5 + .4);
+const TW = 64, TH = 32, W = 48, H = Math.ceil(RIVER_Y + 1.7);
+const cv = document.getElementById("map"), ctx = cv.getContext("2d");
+const ctxRef = {c: ctx}; // ground is pre-rendered to its own canvas through the same helpers
+let cam = {x: 0, y: 0, z: 1}, showAll = false, showFlow = true, selected = null, dpr = 1, clock = 0, last = 0;
+const iso = (x, y, up = 0) => ({x: (x - y) * TW / 2, y: (x + y) * TH / 2 - up});
+const COL = {web: "#3f8fe6", trade: "#ee6a3c", hall: "#ffc23d", build: "#43c271", wade: "#a97cf4"};
+const INK = "#1b1b1b";
+let seed = 21; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const K = () => 1 / Math.max(.6, Math.min(1.6, cam.z)); // keeps text the same size on screen
+
+const buildings = BUILDINGS.map(b => ({kind: "b", id: b[0], name: b[1], team: b[2], role: b[3], x: b[4], y: b[5], w: b[6], d: b[7], floors: b[8], job: b[9], isNew: !!b[10]}));
+const houses = [];
+const maxArticle = Math.max(0, ...DATA.pages.filter(p => p[3] !== "Site page").map(p => p[4]));
+DATA.pages.forEach((p, i) => {
+  const [slug, title, path, section, views, imps] = p, col = i % 8, row = Math.floor(i / 8);
+  const tier = views >= 20 ? 5 : views >= 6 ? 4 : views >= 3 ? 3 : views >= 1 ? 2 : 1, size = [0, 1.05, 1.15, 1.35, 1.55, 1.85][tier];
+  houses.push({kind: "h", id: "page:" + slug, slug, title, path: path || "/articles/" + slug + "/", section, views, imps, tier,
+    x: 1 + col * 2.3 + (1.9 - size) / 2, y: 22.3 + row * 3.5 + (1.9 - size) / 2, w: size, d: size, floors: [0, .8, 1, 1.4, 1.8, 2.4][tier],
+    trophy: section !== "Site page" && views === maxArticle && views > 0, garden: imps >= 20, work: 0, pop: 0});
+});
+// the construction site: the next page is always being built
+const NEXT = DATA.next_house || {title: "Next article"};
+const siteIdx = DATA.pages.length, siteCol = siteIdx % 8, siteRow = Math.floor(siteIdx / 8);
+const site = {kind: "s", id: "site", name: "Building next: " + NEXT.title, x: 1 + siteCol * 2.3 + .2, y: 22.3 + siteRow * 3.5 + .2, w: 1.5, d: 1.5, floors: 1.6};
+const byId = Object.fromEntries([...buildings, ...houses, site].map(b => [b.id, b]));
+const front = id => { if (id.startsWith("field:")) { const f = FIELDS.find(f => "field:" + f[0] === id); return {x: f[3] + f[5] / 2, y: f[4] - .4}; }
+  const b = byId[id]; return {x: b.x + b.w / 2, y: b.y + b.d + .35}; };
+
+// work flows: [from, to, colour, step]
+const FLOWS = [];
+buildings.filter(b => b.role === "dept").forEach(b => FLOWS.push([b.id, b.team === "web" ? "wsup" : "tsup", COL[b.team], 0]));
+FLOWS.push(["wsup","wman",COL.web,2],["tsup","tman",COL.trade,2],["wman","hall",COL.hall,3],["tman","hall",COL.hall,3],
+  ["hall","wexe",COL.web,5],["hall","texe",COL.trade,5],["wexe","cc",COL.web,6],["texe","cc",COL.trade,6],["cc","site",COL.web,7],["cc","field:game",COL.trade,7]);
+
+function zoneOf(x, y) {
+  if (y > 13.3 && y < 15.9) return "street";
+  if (x >= 20 && x < 26.2 && y >= 7.5 && y < 21) return "plaza";
+  if (x >= .3 && x < 20 && y >= .3 && y < 21) return "web";
+  if (x >= 26.2 && x < 47.6 && y >= .3 && y < 21) return "trade";
+  if (x >= .3 && x < 19.6 && y >= 21.5 && y < RIVER_Y) return "homes";
+  return "grass";
+}
+const ZONE_FILL = {web: "#dfe7ef", trade: "#f1e1d2", plaza: "#f3e2b0", homes: "#a8d86e", grass: "#86c157", street: "#c9b27a"};
+
+// scenery
+const trees = [], tufts = [];
+const blocked = (x, y) => [...buildings, ...houses].some(b => x > b.x - .9 && x < b.x + b.w + .5 && y > b.y - .9 && y < b.y + b.d + .9) ||
+  FIELDS.some(f => x > f[3] - 1 && x < f[3] + f[5] + .6 && y > f[4] - 1 && y < f[4] + f[6] + .6) || (y > 13.3 && y < 15.9) || y > RIVER_Y - .3 || (x > 21.6 && x < 24.4 && y < 17);
+for (let i = 0; i < 400 && trees.length < 70; i++) { const x = rnd() * W, y = rnd() * H; if (!blocked(x, y) && (zoneOf(x, y) === "grass" || rnd() < .25)) trees.push({x, y, s: .8 + rnd() * .5, k: rnd()}); }
+for (let i = 0; i < 160; i++) { const x = rnd() * W, y = rnd() * (RIVER_Y - .3); if (!blocked(x, y)) tufts.push({x, y}); }
+
+/* ================================================================ people */
+const people = [];
+function person(o) { const p = Object.assign({x: 0, y: 0, path: [], wait: 0, msgT: 0, carry: false, walk: 0, face: 1}, o); people.push(p); return p; }
+function goTo(p, id) { const t = front(id); const y0 = Math.max(p.y, t.y) + .05;
+  p.path = (Math.abs(p.y - 14.6) < 6 && Math.abs(t.y - 14.6) < 6) ? [{x: p.x, y: 14.6}, {x: t.x, y: 14.6}, t] : [{x: p.x, y: y0}, {x: t.x, y: y0}, t]; p.target = id; }
+function place(p, id) { const t = front(id); p.x = t.x; p.y = t.y; }
+buildings.filter(b => b.role === "dept").forEach(b => { const p = person({team: b.team, loop: [b.id, b.team === "web" ? "wsup" : "tsup"], step: 0}); place(p, b.id); p.wait = 1 + rnd() * 9; });
+[["wsup","wman"],["tsup","tman"],["wman","hall"],["tman","hall"]].forEach(([a, b]) => { const p = person({team: byId[a].team, loop: [a, b], step: 0}); place(p, a); p.wait = rnd() * 6; });
+const farmers = [];
+FIELDS.forEach(f => { for (let i = 0; i < 2; i++) farmers.push({f, row: i * 2 + 1, t: rnd() * 10}); });
+const crew = [0, 1].map(i => person({team: "build", crew: true, name: i ? null : "Claude Code", hero: i === 0, tool: "hammer"}));
+crew.forEach((c, i) => { place(c, "site"); c.x += i ? .55 : -.55; c.home = {x: c.x, y: c.y}; });
+let wadeTarget = "wsup", wadeMsg = "root-causing a finding", wadeT = 0;
+const WADE_ON = !DATA.wade || DATA.wade.online !== false;
+const SPOTS = [{x: 22, y: 14.2}, {x: 23.2, y: 14.2}, {x: 24.4, y: 14.2}, {x: 20.8, y: 14.2}, {x: 22.6, y: 15.1}, {x: 23.8, y: 15.1}, {x: 21.4, y: 15.1}, {x: 25, y: 15.1}, {x: 19.8, y: 15.1}, {x: 26, y: 14.2}];
+let queue = (DATA.requests || []).slice();
+function spawnOwners() { people.filter(p => p.request).forEach(p => p.gone = true);
+  queue.slice(0, SPOTS.length).forEach((r, i) => { const p = person({team: r.team, request: r, owner: true}); place(p, r.from); const s = SPOTS[i % SPOTS.length]; p.path = [{x: p.x, y: 14.6}, {x: s.x, y: 14.6}, s]; }); }
+
+/* ================================================================ drawing helpers: flat paper, thick ink */
+function shade(hex, f) { const n = parseInt(hex.slice(1), 16); const c = [n >> 16, (n >> 8) & 255, n & 255].map(v => Math.max(0, Math.min(255, Math.round(v * f)))); return `rgb(${c})`; }
+function poly(pts, fill, ink = true, lw = 2) { const c = ctxRef.c; c.beginPath(); pts.forEach((p, i) => i ? c.lineTo(p.x, p.y) : c.moveTo(p.x, p.y)); c.closePath(); if (fill) { c.fillStyle = fill; c.fill(); } if (ink) { c.strokeStyle = INK; c.lineWidth = lw; c.lineJoin = "round"; c.stroke(); } }
+function tile(x, y, w, d, fill, ink = false, lw) { poly([iso(x, y), iso(x + w, y), iso(x + w, y + d), iso(x, y + d)], fill, ink, lw); }
+
+let groundCanvas = null, groundOrigin = null;
+function buildGround() {
+  const minX = iso(0, H).x - 300, maxX = iso(W, 0).x + 300, minY = iso(0, 0).y - 300, maxY = iso(W, H).y + 60;
+  const g = document.createElement("canvas"); g.width = Math.ceil(maxX - minX); g.height = Math.ceil(maxY - minY);
+  const c = g.getContext("2d"); groundOrigin = {x: minX, y: minY}; c.translate(-minX, -minY); ctxRef.c = c;
+  // paper hills on the horizon behind both back edges
+  const a = iso(0, 0), b = iso(W, 0), l = iso(0, H);
+  [[150, "#6aa646", 0], [90, "#7cb855", 1.3]].forEach(([hgt, col, ph]) => {
+    c.fillStyle = col; c.strokeStyle = INK; c.lineWidth = 3; c.beginPath(); c.moveTo(b.x + 200, b.y + 30);
+    for (let i = 0; i <= 24; i++) { const t = i / 24, x = b.x + (a.x - b.x) * t, y = b.y + (a.y - b.y) * t; c.lineTo(x, y - hgt - Math.sin(t * 9 + ph) * 40); }
+    for (let i = 0; i <= 24; i++) { const t = i / 24, x = a.x + (l.x - a.x) * t, y = a.y + (l.y - a.y) * t; c.lineTo(x, y - hgt - Math.sin(t * 8 + ph) * 40); }
+    c.lineTo(l.x - 200, l.y + 30); c.lineTo(l.x, l.y); c.lineTo(a.x, a.y); c.lineTo(b.x, b.y); c.closePath(); c.fill(); c.stroke(); });
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) tile(x, y, 1, 1, y >= RIVER_Y ? "#5aa9d6" : ZONE_FILL[zoneOf(x + .5, y + .5)], false);
+  [[.3, .3, 19.7, 13], [26.2, .3, 21.4, 13], [.3, 15.9, 19.7, 5.1], [26.2, 15.9, 21.4, 5.1], [20, 7.5, 6.2, 5.8], [20, 15.9, 6.2, 5.1], [.3, 21.5, 19.3, RIVER_Y - 21.5]]
+    .forEach(([x, y, w, d]) => tile(x, y, w, d, null, true, 3));
+  tile(0, 13.3, W, 2.6, null, true, 3);
+  for (let x = 1; x < W; x += 2.2) tile(x, 14.5, 1.1, .18, "#fff8dc", false);
+  for (let r = 0; r < HOUSE_ROWS; r++) tile(.3, 22.3 + r * 3.5 + 2.3, 19.3, .55, "#e8d9a6", true, 1.5);
+  tile(0, RIVER_Y, W, H - RIVER_Y, "#5aa9d6", true, 3);
+  FIELDS.forEach(f => { tile(f[3] - .3, f[4] - .3, f[5] + .6, f[6] + .6, "#8a5a32", true, 3); for (let i = 0; i < f[6] * 2; i++) tile(f[3], f[4] + i * .5, f[5], .32, i % 2 ? "#a86e3c" : "#9a6334", false); });
+  ctxRef.c = ctx; groundCanvas = g;
+}
+
+function label(text, x, y, o = {}) {
+  const k = K(), fs = (o.size || 15) * k;
+  ctx.font = `700 ${fs}px "Atkinson Hyperlegible", Verdana, sans-serif`;
+  const tw = ctx.measureText(text).width, pw = tw + fs * 1.0 + (o.stripe ? 6 * k : 0), ph = fs * 1.7;
+  ctx.fillStyle = "#000"; ctx.beginPath(); ctx.roundRect(x - pw / 2 + 3 * k, y - ph + 3 * k, pw, ph, 5 * k); ctx.fill();
+  ctx.fillStyle = o.bg || "#fff"; ctx.strokeStyle = INK; ctx.lineWidth = 2.5 * k; ctx.beginPath(); ctx.roundRect(x - pw / 2, y - ph, pw, ph, 5 * k); ctx.fill(); ctx.stroke();
+  if (o.stripe) { ctx.fillStyle = o.stripe; ctx.fillRect(x - pw / 2 + 2 * k, y - ph + 2 * k, 6 * k, ph - 4 * k); }
+  ctx.fillStyle = o.fg || "#111"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(text, x + (o.stripe ? 3 * k : 0), y - ph / 2 + 1);
+}
+function badge(n, x, y, col) { const r = 13 * K(); ctx.fillStyle = col; ctx.strokeStyle = INK; ctx.lineWidth = 3 * K(); ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = "#111"; ctx.font = `${r * 1.3}px "Luckiest Guy", "Arial Black", sans-serif`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(String(n), x, y + r * .1); }
+function star(x, y, r) { ctx.beginPath(); for (let i = 0; i < 10; i++) { const a = i * Math.PI / 5 - Math.PI / 2, rr = i % 2 ? r * .45 : r; ctx.lineTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr); } ctx.closePath(); ctx.fill(); ctx.stroke(); }
+
+/* ================================================================ buildings (cut-out style) */
+function walls(x, y, w, d, lift, wall) {
+  poly([iso(x, y + d), iso(x + w, y + d), iso(x + w, y + d, lift), iso(x, y + d, lift)], shade(wall, .86));
+  poly([iso(x + w, y), iso(x + w, y + d), iso(x + w, y + d, lift), iso(x + w, y, lift)], wall);
+}
+function windows(x, y, w, d, lift, floors, glow) {
+  const rows = Math.max(1, Math.round(floors)); ctx.strokeStyle = INK; ctx.lineWidth = 1.5; ctx.fillStyle = glow;
+  for (let f = 0; f < rows; f++) { const up = lift * (f + .55) / rows, n1 = Math.max(1, Math.round(w * 1.2)), n2 = Math.max(1, Math.round(d * 1.2));
+    for (let i = 1; i <= n1; i++) { const q = iso(x + w * i / (n1 + 1), y + d, up); ctx.fillRect(q.x - 4, q.y - 6, 8, 9); ctx.strokeRect(q.x - 4, q.y - 6, 8, 9); }
+    for (let i = 1; i <= n2; i++) { const q = iso(x + w, y + d * i / (n2 + 1), up); ctx.fillRect(q.x - 4, q.y - 6, 8, 9); ctx.strokeRect(q.x - 4, q.y - 6, 8, 9); } }
+}
+function door(x, y, w, d, col = "#7a4a26") { const q = iso(x + w / 2, y + d); ctx.fillStyle = col; ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(q.x - 6, q.y - 15, 12, 15, [6, 6, 0, 0]); ctx.fill(); ctx.stroke(); }
+function shadow(x, y, w, d) { poly([iso(x + .15, y + d), iso(x + w, y + d), iso(x + w + .55, y + d + .1), iso(x + .7, y + d + .12)], "rgba(0,0,0,.18)", false); poly([iso(x + w, y + .15), iso(x + w + .55, y + .25), iso(x + w + .55, y + d + .1), iso(x + w, y + d)], "rgba(0,0,0,.18)", false); }
+
+function office(b) {
+  const lift = b.floors * TH * .9, col = COL[b.team];
+  shadow(b.x, b.y, b.w, b.d);
+  walls(b.x, b.y, b.w, b.d, lift, b.role === "dept" ? "#f4f1e8" : "#fffdf6");
+  windows(b.x, b.y, b.w, b.d, lift, b.floors, "#bfe3ff"); door(b.x, b.y, b.w, b.d);
+  const a1 = iso(b.x + b.w * .25, b.y + b.d, lift * .42), a2 = iso(b.x + b.w * .75, b.y + b.d, lift * .42);
+  ctx.fillStyle = col; ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(a1.x, a1.y); ctx.lineTo(a2.x, a2.y); ctx.lineTo(a2.x + 5, a2.y + 8); ctx.lineTo(a1.x + 5, a1.y + 8); ctx.closePath(); ctx.fill(); ctx.stroke();
+  poly([iso(b.x, b.y, lift), iso(b.x + b.w, b.y, lift), iso(b.x + b.w, b.y + b.d, lift), iso(b.x, b.y + b.d, lift)], col);
+  poly([iso(b.x + .25, b.y + .25, lift + 2), iso(b.x + b.w - .25, b.y + .25, lift + 2), iso(b.x + b.w - .25, b.y + b.d - .25, lift + 2), iso(b.x + .25, b.y + b.d - .25, lift + 2)], shade(col, .78), false);
+  if (WADE_CLIENTS.includes(b.id)) { // the dish that receives Wade's thinking
+    const t = iso(b.x + b.w * .65, b.y + b.d * .35, lift); ctx.strokeStyle = INK; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(t.x, t.y); ctx.lineTo(t.x, t.y - 14); ctx.stroke();
+    ctx.fillStyle = wadeTarget === b.id ? "#e6d4ff" : "#fff"; ctx.beginPath(); ctx.ellipse(t.x, t.y - 18, 10, 6, -.4, 0, 7); ctx.fill(); ctx.stroke(); }
+  return iso(b.x + b.w / 2, b.y + b.d / 2, lift);
+}
+function houseDraw(h) {
+  const lift = h.floors * TH * .85;
+  if (h.garden) { tile(h.x - .5, h.y - .5, h.w + 1, h.d + 1, "#c6ef8c", true, 2);
+    for (let i = 0; i < 5; i++) { const q = iso(h.x - .3 + i * (h.w + .6) / 4, h.y + h.d + .38); ctx.fillStyle = ["#ff6fa5","#ffd23d","#fff","#ff8f4f","#b98cff"][i]; ctx.strokeStyle = INK; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(q.x, q.y - 3, 3.4, 0, 7); ctx.fill(); ctx.stroke(); } }
+  shadow(h.x, h.y, h.w, h.d);
+  const site = h.section === "Site page", wall = site ? "#fff6e0" : ["#ffe9c7","#ffd9d0","#e3f1ff","#e9ffd8","#fff3b8"][h.slug.length % 5];
+  const roof = site ? "#2f4f9e" : ["#2f8f8a", "#6a55c2", "#3a9a50", "#2f6fd0", "#5f6b7a"][h.slug.length % 5];
+  walls(h.x, h.y, h.w, h.d, lift, wall); windows(h.x, h.y, h.w, h.d, lift, Math.max(1, Math.round(h.floors)), "#fff4b0"); door(h.x, h.y, h.w, h.d, "#5f8bd6");
+  const rh = Math.min(h.w, h.d) * TH * .75, x = h.x, y = h.y, w = h.w, d = h.d;
+  poly([iso(x - .05, y, lift), iso(x + w + .05, y, lift), iso(x + w + .05, y + d / 2, lift + rh), iso(x - .05, y + d / 2, lift + rh)], shade(roof, 1.12));
+  poly([iso(x - .05, y + d + .08, lift - 2), iso(x + w + .05, y + d + .08, lift - 2), iso(x + w + .05, y + d / 2, lift + rh), iso(x - .05, y + d / 2, lift + rh)], roof);
+  poly([iso(x + w, y, lift), iso(x + w, y + d, lift), iso(x + w, y + d / 2, lift + rh)], shade(wall, .95));
+  const ch = iso(x + w * .25, y + d * .3, lift + rh * .55); ctx.fillStyle = "#b5523a"; ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.fillRect(ch.x - 4, ch.y - 14, 8, 14); ctx.strokeRect(ch.x - 4, ch.y - 14, 8, 14);
+  if (h.work > 0) { // scaffolding while the builders are on site
+    ctx.strokeStyle = "#8a5a2b"; ctx.lineWidth = 3; const s1 = iso(x - .15, y + d + .15), s2 = iso(x + w + .15, y + d + .15);
+    [s1, s2].forEach(s => { ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(s.x, s.y - lift - 10); ctx.stroke(); });
+    for (let k = 1; k <= 2; k++) { ctx.beginPath(); ctx.moveTo(s1.x, s1.y - lift * k / 2.3); ctx.lineTo(s2.x, s2.y - lift * k / 2.3); ctx.stroke(); }
+    if (Math.sin(clock * 18) > .5) { const sp = iso(x + w / 2, y + d, lift * .6); ctx.fillStyle = "#ffe14d"; ctx.strokeStyle = INK; ctx.lineWidth = 1.5; star(sp.x + 10, sp.y - 6, 7); } }
+  const top = iso(x + w / 2, y + d / 2, lift + rh);
+  if (h.trophy) { ctx.fillStyle = "#ffc23d"; ctx.strokeStyle = INK; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(top.x, top.y - 18, 11, 0, Math.PI); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.fillRect(top.x - 2.5, top.y - 18, 5, 10); ctx.strokeRect(top.x - 2.5, top.y - 18, 5, 10); ctx.fillRect(top.x - 8, top.y - 8, 16, 5); ctx.strokeRect(top.x - 8, top.y - 8, 16, 5); }
+  if (h.pop > 0) { ctx.globalAlpha = Math.min(1, h.pop); ctx.fillStyle = "#ffe14d"; ctx.strokeStyle = INK; ctx.lineWidth = 2; star(top.x + 18, top.y - 20, 10); star(top.x - 20, top.y - 8, 7); ctx.globalAlpha = 1; }
+  return top;
+}
+function siteDraw(b) {
+  // a house going up: foundations, a timber frame that rises, scaffold, and a sign with the page's name
+  tile(b.x - .3, b.y - .3, b.w + .6, b.d + .6, "#d7c08a", true, 2);
+  const prog = .35 + .65 * ((Math.sin(clock * .25) + 1) / 2), lift = b.floors * TH * .85 * prog, x = b.x, y = b.y, w = b.w, d = b.d;
+  ctx.strokeStyle = "#8a5a2b"; ctx.lineWidth = 4;
+  [[x, y + d], [x + w, y + d], [x + w, y], [x, y]].forEach(([px, py]) => { const a = iso(px, py), t = iso(px, py, lift); ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(t.x, t.y); ctx.stroke(); });
+  poly([iso(x, y + d, lift), iso(x + w, y + d, lift), iso(x + w, y, lift)], null, true, 3);
+  ctx.strokeStyle = "#c48a4a"; ctx.lineWidth = 2.5; for (let k = 1; k <= 3; k++) { const a = iso(x, y + d, lift * k / 4), c = iso(x + w, y + d, lift * k / 4); ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(c.x, c.y); ctx.stroke(); }
+  // crane
+  const base = iso(x + w + .6, y - .2), top = {x: base.x, y: base.y - 120};
+  ctx.strokeStyle = "#e0a21b"; ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(base.x, base.y); ctx.lineTo(top.x, top.y); ctx.lineTo(top.x - 70, top.y + 6); ctx.stroke();
+  ctx.strokeStyle = INK; ctx.lineWidth = 1.5; const hook = {x: top.x - 50, y: top.y + 30 + Math.sin(clock * 1.5) * 12}; ctx.beginPath(); ctx.moveTo(top.x - 50, top.y + 4); ctx.lineTo(hook.x, hook.y); ctx.stroke();
+  ctx.fillStyle = "#c9e6ff"; ctx.fillRect(hook.x - 8, hook.y, 16, 10); ctx.strokeRect(hook.x - 8, hook.y, 16, 10);
+  if (Math.sin(clock * 18) > .5) { const sp = iso(x + w / 2, y + d, lift * .5); ctx.fillStyle = "#ffe14d"; ctx.strokeStyle = INK; ctx.lineWidth = 1.5; star(sp.x + 12, sp.y - 4, 7); }
+  return {x: iso(x + w / 2, y + d / 2).x, y: top.y + 10};
+}
+function townHall(b) {
+  const lift = b.floors * TH * .9; shadow(b.x, b.y, b.w, b.d);
+  walls(b.x, b.y, b.w, b.d, lift, "#fff3d1");
+  for (let i = 0; i <= 6; i++) { const q = iso(b.x + b.w * i / 6, b.y + b.d); ctx.fillStyle = "#fff"; ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.fillRect(q.x - 3.5, q.y - lift, 7, lift); ctx.strokeRect(q.x - 3.5, q.y - lift, 7, lift); }
+  door(b.x, b.y, b.w, b.d, "#b4401a");
+  poly([iso(b.x - .1, b.y - .1, lift), iso(b.x + b.w + .1, b.y - .1, lift), iso(b.x + b.w + .1, b.y + b.d + .1, lift), iso(b.x - .1, b.y + b.d + .1, lift)], "#f3d27a");
+  const c = iso(b.x + b.w / 2, b.y + b.d / 2, lift);
+  ctx.fillStyle = "#ffc23d"; ctx.strokeStyle = INK; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(c.x, c.y - 2, 30, Math.PI, 0); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(c.x, c.y - 14, 9, 0, 7); ctx.fill(); ctx.stroke();
+  ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(c.x, c.y - 14); ctx.lineTo(c.x + 6 * Math.cos(clock), c.y - 14 + 6 * Math.sin(clock)); ctx.moveTo(c.x, c.y - 14); ctx.lineTo(c.x, c.y - 20); ctx.stroke();
+  ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(c.x, c.y - 32); ctx.lineTo(c.x, c.y - 66); ctx.stroke();
+  ctx.fillStyle = "#ffc23d"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(c.x, c.y - 66); ctx.lineTo(c.x + 24, c.y - 60 + Math.sin(clock * 3) * 3); ctx.lineTo(c.x, c.y - 52); ctx.closePath(); ctx.fill(); ctx.stroke();
+  return {x: c.x, y: c.y - 70};
+}
+let wadeTop = {x: 0, y: 0};
+function towerDraw(b) {
+  const lift = b.floors * TH * .9; shadow(b.x, b.y, b.w, b.d);
+  walls(b.x, b.y, b.w, b.d, lift, "#7d5cc4"); windows(b.x, b.y, b.w, b.d, lift, 5, "#e8dcff"); door(b.x, b.y, b.w, b.d, "#3e2a74");
+  poly([iso(b.x - .15, b.y - .15, lift), iso(b.x + b.w + .15, b.y - .15, lift), iso(b.x + b.w + .15, b.y + b.d + .15, lift), iso(b.x - .15, b.y + b.d + .15, lift)], "#9a7be0");
+  const c = iso(b.x + b.w / 2, b.y + b.d / 2, lift); wadeTop = {x: c.x, y: c.y - 30};
+  const pulse = 1 + Math.sin(clock * 3) * .12;
+  ctx.fillStyle = "rgba(200,170,255,.4)"; ctx.beginPath(); ctx.arc(c.x, c.y - 26, 40 * pulse, 0, 7); ctx.fill();
+  const q = drawPerson({team: "wade", path: [], walk: 0, face: 1}, c.x, c.y - 2, 2.3, Math.sin(clock * 5) * 2);
+  hits.push({p: {wade: true}, r: {x: q.x - 22, y: q.y - 90, w: 44, h: 92}});
+  return {x: c.x, y: c.y - 110};
+}
+const smoke = [];
+function workshopDraw(b) {
+  const lift = b.floors * TH * .9; shadow(b.x, b.y, b.w, b.d);
+  walls(b.x, b.y, b.w, b.d, lift, "#f7efe0");
+  const q = iso(b.x + b.w / 2, b.y + b.d); ctx.fillStyle = "#3d3d3d"; ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.fillRect(q.x - 20, q.y - 30, 40, 30); ctx.strokeRect(q.x - 20, q.y - 30, 40, 30);
+  ctx.fillStyle = Math.sin(clock * 9) > 0 ? "#ffb347" : "#ff8a3d"; ctx.fillRect(q.x - 16, q.y - 26, 32, 12);
+  for (let i = 0; i < 4; i++) { const y0 = b.y + i * b.d / 4, y1 = y0 + b.d / 4;
+    poly([iso(b.x, y1, lift), iso(b.x + b.w, y1, lift), iso(b.x + b.w, y0 + b.d / 8, lift + 18), iso(b.x, y0 + b.d / 8, lift + 18)], "#43c271");
+    poly([iso(b.x + b.w, y0, lift), iso(b.x + b.w, y1, lift), iso(b.x + b.w, y0 + b.d / 8, lift + 18)], "#2f9a57"); }
+  const ch = iso(b.x + b.w * .85, b.y + b.d * .2, lift); ctx.fillStyle = "#7d7d7d"; ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.fillRect(ch.x - 6, ch.y - 36, 12, 36); ctx.strokeRect(ch.x - 6, ch.y - 36, 12, 36);
+  if (Math.random() < .07) smoke.push({x: ch.x, y: ch.y - 38, r: 5, a: .9});
+  return iso(b.x + b.w / 2, b.y + b.d / 2, lift + 26);
+}
+
+/* ================================================================ characters: big round heads, paper bodies, hop when walking (all original) */
+const HAT = {web: "#2f6fd0", trade: "#c94a24", hall: "#ffc23d", build: "#ffcf2e", wade: "#5b3aa8"};
+function drawPerson(p, sx, sy, sc, bobIn) {
+  const q = sx !== undefined ? {x: sx, y: sy} : iso(p.x, p.y);
+  const s = sc || (p.hero ? 1.9 : 1.6), moving = p.path && p.path.length;
+  const hop = bobIn !== undefined ? bobIn : moving ? -Math.abs(Math.sin(p.walk * 9)) * 4 : 0, tilt = moving ? Math.sin(p.walk * 9) * .08 : 0, face = p.face || 1;
+  ctx.save(); ctx.translate(q.x, q.y);
+  ctx.fillStyle = "rgba(0,0,0,.22)"; ctx.beginPath(); ctx.ellipse(0, 0, 7 * s, 2.6 * s, 0, 0, 7); ctx.fill();
+  ctx.translate(0, hop * s / 1.6); ctx.rotate(tilt); ctx.scale(s, s); ctx.lineWidth = 1.3; ctx.strokeStyle = INK;
+  const shirt = p.team === "wade" ? "#7b57c9" : p.team === "build" ? "#43c271" : COL[p.team] || "#888";
+  ctx.fillStyle = shirt; ctx.beginPath(); ctx.moveTo(-6, 0); ctx.lineTo(6, 0); ctx.lineTo(5, -11); ctx.lineTo(-5, -11); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = "#333"; ctx.fillRect(-6, -1.5, 12, 1.5);
+  ctx.fillStyle = p.team === "build" ? "#ffcf2e" : shade(shirt, .8); ctx.beginPath(); ctx.arc(-6.5, -5, 2.1, 0, 7); ctx.arc(6.5, -5, 2.1, 0, 7); ctx.fill();
+  ctx.fillStyle = "#ffd9b8"; ctx.beginPath(); ctx.arc(0, -17, 7.6, 0, 7); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.ellipse(-2.4, -18, 2.6, 3.1, 0, 0, 7); ctx.ellipse(2.4, -18, 2.6, 3.1, 0, 0, 7); ctx.fill(); ctx.lineWidth = .9; ctx.stroke();
+  ctx.fillStyle = "#111"; ctx.beginPath(); ctx.arc(-2.4 + face * .9, -18, .9, 0, 7); ctx.arc(2.4 + face * .9, -18, .9, 0, 7); ctx.fill();
+  ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(-1.6, -13.2); ctx.lineTo(1.6, -13.2); ctx.stroke();
+  ctx.lineWidth = 1.3; ctx.fillStyle = HAT[p.team] || "#555";
+  if (p.team === "wade") { ctx.beginPath(); ctx.moveTo(-8, -21.5); ctx.lineTo(8, -21.5); ctx.lineTo(2, -36); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.fillStyle = "#ffe14d"; ctx.beginPath(); ctx.arc(1, -29, 1.6, 0, 7); ctx.fill(); }
+  else if (p.team === "build") { ctx.beginPath(); ctx.arc(0, -21.5, 7.4, Math.PI, 0); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.fillRect(-9, -22, 18, 2); ctx.strokeRect(-9, -22, 18, 2); }
+  else if (p.team === "trade") { ctx.beginPath(); ctx.arc(0, -21.5, 7.2, Math.PI, 0); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.moveTo(4 * face, -22); ctx.lineTo(11 * face, -21); ctx.lineTo(4 * face, -20); ctx.closePath(); ctx.fill(); ctx.stroke(); }
+  else { ctx.beginPath(); ctx.ellipse(0, -23, 7.8, 3, 0, 0, 7); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.arc(0, -23.5, 4.8, Math.PI, 0); ctx.fill(); ctx.stroke(); }
+  if (p.carry) { ctx.fillStyle = "#fff"; ctx.fillRect(5, -10, 7, 9); ctx.strokeRect(5, -10, 7, 9); ctx.beginPath(); ctx.moveTo(6.5, -7.5); ctx.lineTo(10.5, -7.5); ctx.moveTo(6.5, -5); ctx.lineTo(10.5, -5); ctx.stroke(); }
+  if (p.tool === "hammer") { const a = Math.sin(clock * 16) * .9; ctx.save(); ctx.translate(6.5, -6); ctx.rotate(-1 + a); ctx.fillStyle = "#8a5a2b"; ctx.fillRect(0, -1, 9, 2); ctx.fillStyle = "#666"; ctx.fillRect(8, -3, 3, 6); ctx.restore(); }
+  if (p.tool === "hoe") { const a = Math.sin(clock * 5 + (p.x || 0)) * .5; ctx.save(); ctx.translate(6.5 * face, -6); ctx.scale(face, 1); ctx.rotate(-.6 + a); ctx.strokeStyle = "#8a5a2b"; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(12, 6); ctx.stroke(); ctx.fillStyle = "#777"; ctx.fillRect(10, 5, 4, 3); ctx.restore(); }
+  ctx.restore();
+  return q;
+}
+function drawWorker(p) {
+  const q = drawPerson(p);
+  if (p.owner) { const k = K() * 1.2, cy = q.y - 50 - 8 * k, bb = (1 + Math.sin(clock * 4) * .1) * k;
+    ctx.fillStyle = "#ffc23d"; ctx.strokeStyle = INK; ctx.lineWidth = 3 * k; ctx.beginPath(); ctx.arc(q.x, cy, 13 * bb, 0, 7); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#111"; ctx.font = `${20 * k}px "Luckiest Guy", "Arial Black", sans-serif`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("!", q.x, cy + 2 * k);
+    hits.push({p, r: {x: q.x - 18 * k, y: cy - 18 * k, w: 36 * k, h: q.y - cy + 22 * k}}); }
+  if (p.hero && p.name) { label(p.name, q.x, q.y - 48, {size: 14, bg: "#b9f0cc"}); hits.push({p, r: {x: q.x - 16, y: q.y - 58, w: 32, h: 60}}); }
+  if (p.msgT > 0 && !p.owner) { const col = p.mood === "warn" || p.mood === "you" ? "#ffc23d" : p.mood === "build" ? "#43c271" : "#5fd17f";
+    label(p.msg.length > 50 ? p.msg.slice(0, 48) + "…" : p.msg, q.x, q.y - (p.hero ? 70 : 48), {size: 14, stripe: col}); }
+}
+
+/* ================================================================ frame */
+let hits = [];
+function drawBuilding(b) {
+  if (selected === b) tile(b.x - .3, b.y - .3, b.w + .6, b.d + .6, "rgba(255,194,61,.55)", true, 3);
+  let top;
+  if (b.kind === "h") top = houseDraw(b);
+  else if (b.kind === "s") top = siteDraw(b);
+  else if (b.role === "hall") top = townHall(b);
+  else if (b.role === "wade") top = towerDraw(b);
+  else if (b.role === "cc") top = workshopDraw(b);
+  else top = office(b);
+  const base = iso(b.x + b.w / 2, b.y + b.d);
+  hits.push({b, r: {x: base.x - b.w * TW / 2 - 4, y: top.y - 14, w: b.w * TW + 8, h: base.y - top.y + 30}});
+  const close = cam.z >= .82 || showAll;
+  if (b.kind === "b" && b.role !== "wade" && (close || b.role !== "dept" || selected === b)) {
+    const bg = b.team === "hall" ? "#ffc23d" : b.team === "build" ? "#b9f0cc" : "#fff";
+    label(b.isNew ? b.name + " · NEW" : b.name, top.x, top.y - 8, {size: b.role === "hall" ? 19 : b.role === "dept" ? 14 : 16, bg, stripe: (b.team === "web" || b.team === "trade") ? COL[b.team] : null});
+  } else if (b.role === "wade") {
+    label("Wade's Tower · Wade", top.x, top.y + 6, {size: 16, bg: "#d9c6ff"});
+  } else if (b.kind === "s") {
+    label("Building next: " + (NEXT.title.length > 34 ? NEXT.title.slice(0, 32) + "…" : NEXT.title), top.x, top.y - 4, {size: 14, bg: "#fff3b8", stripe: COL.web});
+  } else if (b.kind === "h" && (showAll || selected === b || b.trophy || (close && b.section === "Site page"))) {
+    label(b.title.length > 30 ? b.title.slice(0, 28) + "…" : b.title, top.x, top.y - (b.trophy ? 34 : 8), {size: 13, bg: b.trophy ? "#ffc23d" : "#fff"});
+  }
+}
+function drawFlows() {
+  if (!showFlow) return;
+  ctx.save(); ctx.lineCap = "round";
+  FLOWS.forEach(([a, b, col, n]) => {
+    const A0 = front(a), B0 = front(b), A = iso(A0.x, A0.y), Bp = iso(B0.x, B0.y);
+    ctx.strokeStyle = INK; ctx.lineWidth = n ? 9 : 6; ctx.setLineDash(n ? [16, 10] : [8, 9]); ctx.lineDashOffset = -clock * 34;
+    ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(Bp.x, Bp.y); ctx.stroke();
+    ctx.strokeStyle = col; ctx.lineWidth = n ? 5 : 3; ctx.stroke(); ctx.setLineDash([]);
+    const t = .62, mx = A.x + (Bp.x - A.x) * t, my = A.y + (Bp.y - A.y) * t, ang = Math.atan2(Bp.y - A.y, Bp.x - A.x), s = n ? 11 : 8;
+    ctx.fillStyle = col; ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(mx + s * Math.cos(ang), my + s * Math.sin(ang)); ctx.lineTo(mx + s * Math.cos(ang + 2.5), my + s * Math.sin(ang + 2.5)); ctx.lineTo(mx + s * Math.cos(ang - 2.5), my + s * Math.sin(ang - 2.5)); ctx.closePath(); ctx.fill(); ctx.stroke();
+    if (n) badge(n, (A.x + Bp.x) / 2, (A.y + Bp.y) / 2 - 14, col);
+  });
+  const w1 = iso(7.9, 6.4), t1 = iso(38.4, 6.4); badge(1, w1.x, w1.y, COL.web); badge(1, t1.x, t1.y, COL.trade);
+  const h4 = iso(25.4, 14.2); badge(4, h4.x, h4.y - 20, COL.hall);
+  ctx.restore();
+}
+function drawWadeBeam() {
+  const tb = byId[wadeTarget]; if (!tb) return;
+  if (!WADE_ON) { const z = wadeTop; ctx.fillStyle = "#fff"; ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.font = `${22 * K()}px "Luckiest Guy", sans-serif`; ctx.textAlign = "center";
+    ["z", "Z", "Z"].forEach((t, i) => { const o = (clock * 20 + i * 18) % 54; ctx.globalAlpha = 1 - o / 54; ctx.strokeText(t, z.x + 20 + o * .6, z.y - 20 - o); ctx.fillText(t, z.x + 20 + o * .6, z.y - 20 - o); }); ctx.globalAlpha = 1;
+    label("Wade is asleep: LM Studio is closed", z.x, z.y - 70, {size: 14, bg: "#e6d4ff", stripe: "#7b57c9"}); return; }
+  const lift = tb.floors * TH * .9, T = iso(tb.x + tb.w * .65, tb.y + tb.d * .35, lift + 18), S = wadeTop;
+  const mx = (S.x + T.x) / 2, my = Math.min(S.y, T.y) - 120;
+  ctx.save(); ctx.lineCap = "round";
+  ctx.strokeStyle = INK; ctx.lineWidth = 8; ctx.setLineDash([14, 10]); ctx.lineDashOffset = -clock * 60; ctx.beginPath(); ctx.moveTo(S.x, S.y); ctx.quadraticCurveTo(mx, my, T.x, T.y); ctx.stroke();
+  ctx.strokeStyle = "#c9a8ff"; ctx.lineWidth = 4.5; ctx.stroke(); ctx.setLineDash([]);
+  for (let i = 0; i < 3; i++) { const t = (clock * .5 + i / 3) % 1, x = (1 - t) * (1 - t) * S.x + 2 * (1 - t) * t * mx + t * t * T.x, y = (1 - t) * (1 - t) * S.y + 2 * (1 - t) * t * my + t * t * T.y;
+    ctx.fillStyle = "#fff"; ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, 5, 0, 7); ctx.fill(); ctx.stroke(); }
+  ctx.restore();
+  label("Wade is " + wadeMsg + " for the " + byId[wadeTarget].name, mx, (S.y + 2 * my + T.y) / 4 - 6, {size: 14, bg: "#e6d4ff", stripe: "#7b57c9"});
+}
+function drawTree(t) {
+  const p = iso(t.x, t.y), s = t.s; ctx.strokeStyle = INK; ctx.lineWidth = 2;
+  ctx.fillStyle = "rgba(0,0,0,.16)"; ctx.beginPath(); ctx.ellipse(p.x + 5, p.y, 11 * s, 4 * s, 0, 0, 7); ctx.fill();
+  ctx.fillStyle = "#7a4f2b"; ctx.fillRect(p.x - 3, p.y - 13 * s, 6, 13 * s); ctx.strokeRect(p.x - 3, p.y - 13 * s, 6, 13 * s);
+  if (t.k > .5) { ctx.fillStyle = "#3f8c3a"; ctx.beginPath(); ctx.moveTo(p.x, p.y - 46 * s); ctx.lineTo(p.x - 14 * s, p.y - 11 * s); ctx.lineTo(p.x + 14 * s, p.y - 11 * s); ctx.closePath(); ctx.fill(); ctx.stroke(); }
+  else { ctx.fillStyle = "#5aa84a"; ctx.beginPath(); ctx.arc(p.x, p.y - 22 * s, 13 * s, 0, 7); ctx.fill(); ctx.stroke(); }
+}
+function farmerPos(f) { const fx = f.f[3] + .4 + ((Math.sin(f.t * .35) + 1) / 2) * (f.f[5] - .8); return {x: fx, y: f.f[4] + f.row * .9 + .4}; }
+function drawFarmer(f) { const p = farmerPos(f); drawPerson({x: p.x, y: p.y, team: "trade", path: [1], walk: f.t, face: Math.cos(f.t * .35) > 0 ? 1 : -1, tool: "hoe"}); }
+function drawCrops() {
+  FIELDS.forEach((f, k) => { const up = (f[7].net || 0) > 0, flat = !(f[7].net), kk = f[8];
+    for (let i = 0; i < Math.floor(f[5] * 2); i++) for (let j = 0; j < Math.floor(f[6]); j++) {
+    const p = iso(f[3] + .25 + i * .5, f[4] + .3 + j), sway = Math.sin(clock * 2 + i * .7 + j) * 1.5, h = (up ? 11 : 7) * Math.min(1.3, kk) + ((i * 7 + j * 3 + k) % 4) * 2;
+    ctx.strokeStyle = INK; ctx.lineWidth = 1.5;
+    if (up || flat) { ctx.fillStyle = "#5fb83f"; ctx.beginPath(); ctx.moveTo(p.x - 3, p.y); ctx.lineTo(p.x + sway, p.y - h); ctx.lineTo(p.x + 3, p.y); ctx.closePath(); ctx.fill(); ctx.stroke();
+      if (up) { ctx.fillStyle = ["#ff6fa5", "#ffd23d", "#fff", "#b98cff"][(i + j + k) % 4]; ctx.beginPath(); ctx.arc(p.x + sway, p.y - h, 3.6 * Math.min(1.4, kk), 0, 7); ctx.fill(); ctx.stroke(); } }
+    else { // wilting: brown, bent over, no flowers
+      ctx.strokeStyle = "#7a5a2a"; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.quadraticCurveTo(p.x, p.y - h, p.x + 6, p.y - h * .55); ctx.stroke(); ctx.fillStyle = "#a07a3a"; ctx.strokeStyle = INK; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(p.x + 6, p.y - h * .55, 2.4, 0, 7); ctx.fill(); ctx.stroke(); }
+  } });
+}
+function frame(now) {
+  const dt = Math.min(.05, (now - last) / 1000 || 0); last = now; clock += dt;
+  simulate(dt);
+  const rect = cv.getBoundingClientRect(); dpr = window.devicePixelRatio || 1;
+  if (cv.width !== Math.round(rect.width * dpr) || cv.height !== Math.round(rect.height * dpr)) { cv.width = Math.round(rect.width * dpr); cv.height = Math.round(rect.height * dpr); }
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = "#8fd0ee"; ctx.fillRect(0, 0, cv.width, cv.height);
+  ctx.setTransform(dpr * cam.z, 0, 0, dpr * cam.z, (rect.width / 2 + cam.x) * dpr, (rect.height / 2 + cam.y) * dpr);
+  for (let i = 0; i < 4; i++) { const cx = ((clock * 8 + i * 700) % 3200) - 1400, cy = iso(0, 0).y - 330 + i * 40; ctx.fillStyle = "#fff"; ctx.strokeStyle = INK; ctx.lineWidth = 3; ctx.beginPath(); ctx.ellipse(cx, cy, 70, 26, 0, 0, 7); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.ellipse(cx + 50, cy - 14, 44, 24, 0, 0, 7); ctx.fill(); ctx.stroke(); }
+  ctx.drawImage(groundCanvas, groundOrigin.x, groundOrigin.y);
+  for (let x = 0; x < W; x += 1.6) { const p = iso(x + ((clock * .5 + x) % 1.6), RIVER_Y + .7); ctx.fillStyle = "#fff"; ctx.fillRect(p.x - 7, p.y, 14, 2.5); }
+  ctx.strokeStyle = "#4f8a2f"; ctx.lineWidth = 2; tufts.forEach(t => { const p = iso(t.x, t.y); ctx.beginPath(); ctx.moveTo(p.x - 4, p.y); ctx.lineTo(p.x - 2, p.y - 6); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x, p.y - 8); ctx.moveTo(p.x + 4, p.y); ctx.lineTo(p.x + 2, p.y - 6); ctx.stroke(); });
+  drawCrops();
+  drawFlows();
+  hits = [];
+  const things = [...buildings, ...houses, site].map(o => ({k: "b", o, z: o.x + o.w + o.y + o.d}))
+    .concat(trees.map(o => ({k: "t", o, z: o.x + o.y + .3})), people.map(o => ({k: "p", o, z: o.x + o.y + .5})), farmers.map(o => { const p = farmerPos(o); return {k: "f", o, z: p.x + p.y + .5}; }));
+  things.sort((a, b) => a.z - b.z);
+  things.forEach(t => t.k === "b" ? drawBuilding(t.o) : t.k === "t" ? drawTree(t.o) : t.k === "f" ? drawFarmer(t.o) : drawWorker(t.o));
+  smoke.forEach(s => { s.y -= 16 * dt; s.x += 6 * dt; s.r += 6 * dt; s.a -= .3 * dt; }); for (let i = smoke.length - 1; i >= 0; i--) if (smoke[i].a <= 0) smoke.splice(i, 1);
+  smoke.forEach(s => { ctx.globalAlpha = s.a; ctx.fillStyle = "#fff"; ctx.strokeStyle = INK; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 7); ctx.fill(); ctx.stroke(); ctx.globalAlpha = 1; });
+  drawWadeBeam();
+  FIELDS.forEach(f => { const p = iso(f[3] + f[5] / 2, f[4] - .2), net = f[7].net || 0;
+    const tag = PRIVATE ? (net >= 0 ? " · +£" : " · −£") + Math.abs(net).toFixed(0) : net > 0 ? " · growing" : net < 0 ? " · wilting" : "";
+    label(f[1] + " · demo" + tag, p.x, p.y - 6, {size: 15, bg: net > 0 ? "#d9f7c4" : net < 0 ? "#ffd6cc" : "#ffe2b8", stripe: COL.trade}); });
+  [["WEBSITE TEAMS", 10, .2, COL.web], ["TRADING TEAMS", 37, .2, COL.trade], ["MAIN STREET", 6, 15.8, "#a8894a"], ["HOUSES · the web pages", 10, RIVER_Y + .1, "#4f9a2a"], ["STRATEGY FIELDS", 37, 34.5, "#a86e3c"]]
+    .forEach(([t, x, y, c]) => { const p = iso(x, y); label(t, p.x, p.y, {size: 17, bg: c, fg: "#fff"}); });
+  requestAnimationFrame(frame);
+}
+
+/* ================================================================ simulation */
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function simulate(dt) {
+  const speed = reduce ? 1.2 : 2.3;
+  farmers.forEach(f => f.t += dt);
+  houses.forEach(h => { if (h.work > 0) h.work -= dt; if (h.pop > 0) h.pop -= dt * .6; });
+  wadeT += dt; if (wadeT > 6) { wadeT = 0; wadeTarget = WADE_CLIENTS[(WADE_CLIENTS.indexOf(wadeTarget) + 1) % WADE_CLIENTS.length];
+    wadeMsg = {wsup: "root-causing a finding", wman: "wording the report for Gary", writer: "drafting an article", tsup: "checking a trading finding", tman: "writing the trading status"}[wadeTarget]; }
+  people.forEach(p => {
+    if (p.msgT > 0) p.msgT -= dt;
+    if (p.wait > 0) { p.wait -= dt; return; }
+    if (!p.path.length) {
+      if (p.done) { p.gone = true; return; }
+      if (p.loop) { p.step = (p.step + 1) % p.loop.length; p.carry = p.step !== 0; goTo(p, p.loop[p.step]); p.wait = 1 + rnd() * 3.5; }
+      return;
+    }
+    const t = p.path[0], dx = t.x - p.x, dy = t.y - p.y, dist = Math.hypot(dx, dy);
+    if (dist < .04) { p.path.shift(); if (!p.path.length && p.onArrive) { const f = p.onArrive; p.onArrive = null; f(); } return; }
+    const s = Math.min(dist, speed * dt); p.x += dx / dist * s; p.y += dy / dist * s; p.walk += dt; p.face = (dx - dy) >= 0 ? 1 : -1;
+  });
+  for (let i = people.length - 1; i >= 0; i--) if (people[i].gone) people.splice(i, 1);
+}
+function sendBuilders(targetId) {
+  const h = byId[targetId]; if (!h) return;
+  crew.forEach((c, i) => { c.tool = null; c.carry = true; goTo(c, targetId); c.path[c.path.length - 1].x += i ? .5 : -.5;
+    c.onArrive = () => { c.carry = false; c.tool = "hammer"; h.work = 4.5;
+      setTimeout(() => { h.pop = 1.5; const home = c.home, y0 = Math.max(c.y, home.y) + .1; c.path = [{x: c.x, y: y0}, {x: home.x, y: y0}, home]; c.onArrive = () => { c.tool = "hammer"; }; }, 4500); }; });
+}
+
+/* ================================================================ events + panels */
+const logEl = document.getElementById("log"), tWhen = document.getElementById("tWhen"), tWhat = document.getElementById("tWhat");
+const latest = {};
+function playEvent(e) {
+  let [when, from, to, text, mood] = e;
+  if (!byId[from]) from = "wman";
+  if (!byId[to] && !String(to).startsWith("field:")) to = byId[from].team === "trade" ? "tsup" : "wsup";
+  latest[from] = e; if (byId[to]) latest[to] = e;
+  if (from === "wade") { wadeTarget = to; wadeMsg = text.replace(/^Wade (is )?/, ""); wadeT = -4; }
+  else if (mood === "build" && to.startsWith("page:")) { const m = person({team: byId[from].team, msg: text, msgT: 7, mood, carry: true}); place(m, from); goTo(m, "cc");
+    m.onArrive = () => { m.carry = false; m.done = true; m.wait = 1; sendBuilders(to); crew[0].msg = text; crew[0].msgT = 9; crew[0].mood = "build"; }; }
+  else { const p = person({team: byId[from] ? byId[from].team : "web", msg: text, msgT: 9, mood, carry: true}); place(p, from); goTo(p, to); p.onArrive = () => { p.carry = false; p.done = true; p.wait = 2; }; }
+  tWhen.textContent = when; tWhat.textContent = text;
+  const row = document.createElement("div"); row.style.borderLeftColor = mood === "warn" ? "var(--warn)" : mood === "you" ? "var(--gold)" : mood === "wade" ? "var(--wade)" : mood === "build" ? "var(--build)" : "var(--ok)";
+  const t = document.createElement("span"); t.className = "t"; t.textContent = when; row.append(t, document.createTextNode(text)); logEl.prepend(row);
+  if (selected) renderSelected();
+}
+let ei = 0; function nextEvent() { if (!DATA.events || !DATA.events.length) return; ei = ei % DATA.events.length; playEvent(DATA.events[ei]); ei = (ei + 1) % DATA.events.length; if (!ei) logEl.textContent = ""; }
+
+const selName = document.getElementById("selName"), selBody = document.getElementById("selBody");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+function renderSelected() {
+  const s = selected; if (!s) return;
+  if (s.request) { renderRequest(s.request); return; }
+  if (s.wade) { selected = byId.wade; renderSelected(); return; }
+  if (s.crew) { selName.textContent = "Claude Code"; selBody.innerHTML = `<p style="margin:0">Claude Code writes the real code. When an Executor brings a job to the workshop, the builders walk out to the house (the web page), put up scaffolding and build it. It all happens on its own branch: nothing reaches the live site until the layout guard and the SEO checklist pass.</p>`; return; }
+  if (s.kind === "h") {
+    selName.textContent = s.title;
+    selBody.innerHTML = `<div class="kv"><b>Section</b><span>${esc(s.section)}</span><b>Visits, 28 days</b><span>${s.views}</span><b>Google impressions</b><span>${s.imps}</span>
+      <b>House</b><span>${["", "Cottage", "House", "Two storeys", "Manor", "Grand hall"][s.tier]}${s.trophy ? " · trophy: most-visited article" : ""}${s.garden ? " · flower garden: 20+ impressions" : ""}</span></div>
+      <a href="https://garystow.co.uk${s.path}" target="_blank" rel="noopener">Open the page ↗</a>`; return; }
+  selName.textContent = s.name; const e = latest[s.id];
+  const wadeNote = s.role === "wade" ? `<p style="margin:0"><b>Right now:</b> the ${esc(byId[wadeTarget].name)} is waiting on Wade, who is ${esc(wadeMsg)}. Follow the purple beam.</p>` : "";
+  selBody.innerHTML = `<div class="row">${s.isNew ? '<span class="pill new">NEW TODAY</span>' : ""}<span class="pill ok">Working</span></div><p style="margin:0">${esc(s.job)}</p>${wadeNote}
+    <p style="margin:0" class="muted">${e ? `<b style="color:var(--gold)">${e[0]}</b> ${esc(e[3])}` : "Nothing logged for this building today."}</p>`;
+}
+function renderRequest(r) {
+  selName.textContent = r.title;
+  const from = byId[r.from] ? byId[r.from].name : "team";
+  if (!PRIVATE) { selBody.innerHTML = `<p style="margin:0">The ${esc(from)} is waiting for Gary's decision. He answers from the private version of this village, and the owner then walks the answer back to the team.</p>`; return; }
+  const meta = `<div class="row"><span class="pill ok">From the ${esc(from)}</span>${r.count > 1 ? `<span class="pill warn">${r.count} the same</span>` : ""}</div>`;
+  if (r.link) { selBody.innerHTML = `${meta}<p style="margin:0">${esc(r.why)}</p><p style="margin:0"><a class="btn" href="${esc(r.link)}" target="_blank" rel="noopener">Decide on the trading dashboard ↗</a></p>`; return; }
+  selBody.innerHTML = `${meta}<p style="margin:0">${esc(r.why)}</p>
+    <label for="vnotes" class="muted">Notes or feedback (optional)</label><textarea id="vnotes" rows="3" style="width:100%;font:inherit;border:3px solid #000;border-radius:8px;padding:8px"></textarea>
+    <div class="row"><button class="btn yes" data-a="yes">${esc(r.yesLabel || "YES")}</button><button class="btn no" data-a="no">${esc(r.noLabel || "NO")}</button><button class="btn" data-a="later">${esc(r.laterLabel || "NOT YET")}</button></div>
+    <p class="muted" style="margin:0">${esc(r.note || "Same action as the dashboard button.")}</p>`;
+  selBody.querySelectorAll("button").forEach(b => b.onclick = () => decide(r, b.dataset.a, (document.getElementById("vnotes") || {}).value || ""));
+}
+const queueEl = document.getElementById("queue");
+function renderQueue() {
+  queueEl.innerHTML = "";
+  const total = DATA.waiting_total != null ? DATA.waiting_total : queue.reduce((n, r) => n + (r.count || 1), 0);
+  if (!queue.length) { queueEl.innerHTML = `<p style="margin:0"><span class="pill ok">Nobody waiting</span> The teams handled everything themselves.</p>`; return; }
+  if (!PRIVATE) { queueEl.innerHTML = `<p style="margin:0"><span class="pill warn">Owners waiting</span> Each one stands outside the Town Hall until Gary answers YES, NO or NOT YET from his private version.</p>`; return; }
+  const shown = queue.slice(0, 10), more = queue.slice(10).reduce((n, r) => n + (r.count || 1), 0);
+  shown.forEach(r => { const b = document.createElement("button"); b.className = "owner";
+    b.innerHTML = `<span class="bang">!</span><span>${esc(r.title)}${r.count > 1 ? ` <span class="pill warn">×${r.count}</span>` : ""}<br><span style="font-weight:400">${esc(byId[r.from] ? byId[r.from].name : "")}</span></span>`;
+    b.onclick = () => { selected = people.find(p => p.request === r) || null; renderRequest(r); }; queueEl.appendChild(b); });
+  if (more) { const p = document.createElement("p"); p.style.margin = "0"; p.innerHTML = `…and ${more} more. <a href="http://localhost:5006/" target="_blank" rel="noopener">Trading dashboard ↗</a>`; queueEl.appendChild(p); }
+}
+async function decide(r, a, notes) {
+  const owner = people.find(p => p.request === r);
+  selName.textContent = "Sending your decision…"; selBody.innerHTML = "";
+  let msg = "Saved.";
+  try {
+    const fd = new FormData(); Object.entries(r.form || {}).forEach(([k, v]) => fd.append(k, v));
+    fd.append("status_" + r.item, a === "later" ? "not_yet" : a); fd.append("notes_" + r.item, notes || "");
+    const res = await fetch("/save_decisions", {method: "POST", body: fd});
+    msg = new URL(res.url).searchParams.get("msg") || (res.ok ? "Saved." : "The dashboard said no (HTTP " + res.status + ").");
+  } catch (e) { msg = "Could not reach the dashboard: " + e.message; }
+  if (a !== "later") { queue = queue.filter(q => q !== r); renderQueue();
+    if (owner) { owner.owner = false; owner.request = null; owner.carry = true; owner.msg = a === "yes" ? "YES! On my way" : "Understood, dropping it"; owner.msgT = 6; owner.mood = "you";
+      goTo(owner, a === "yes" ? (r.yesTo || r.from) : r.from); owner.onArrive = () => { owner.carry = false; owner.done = true; owner.wait = 2; }; } }
+  else if (owner) { owner.msg = "OK, I'll wait here"; owner.msgT = 4; }
+  if (a === "yes" && r.yesTo === "writer") { wadeTarget = "writer"; wadeMsg = "drafting it"; wadeT = -6; }
+  playEvent([new Date().toTimeString().slice(0, 5), "hall", a === "yes" ? (r.yesTo || r.from) : r.from, (a === "yes" ? "You said YES: " : a === "no" ? "You said NO: " : "NOT YET: ") + r.title, "you"]);
+  selected = null; selName.textContent = "Decision saved"; selBody.innerHTML = `<p style="margin:0">${esc(msg)}</p>`;
+  setTimeout(refreshData, 5000);
+}
+async function refreshData() {
+  let d = null; try { const r = await fetch("village_data.json?ts=" + Date.now(), {cache: "no-store"}); if (r.ok) d = await r.json(); } catch (e) {}
+  if (!d) return;
+  if (d.pages.length !== DATA.pages.length || (d.fields_sig && d.fields_sig !== DATA.fields_sig)) { location.reload(); return; }
+  const fresh = d.events.filter(e => !SEEN.has(e[0] + e[3])); fresh.forEach(e => { SEEN.add(e[0] + e[3]); playEvent(e); });
+  DATA.events = d.events; DATA.waiting_total = d.waiting_total;
+  const ids = q => (q || []).map(r => r.id).join("|");
+  if (ids(d.requests) !== ids(queue)) { queue = (d.requests || []).slice(); spawnOwners(); renderQueue(); }
+  setSnap(d);
+}
+const SEEN = new Set((DATA.events || []).map(e => e[0] + e[3]));
+function setSnap(d) { document.getElementById("snap").textContent = (PRIVATE ? "Private · live from your PC" : "Live from Gary's PC") + " · updated " + (d.generated || "").replace("T", " ").slice(0, 16); }
+
+/* ================================================================ input */
+function toWorld(cx, cy) { const r = cv.getBoundingClientRect(); return {x: (cx - r.left - r.width / 2 - cam.x) / cam.z, y: (cy - r.top - r.height / 2 - cam.y) / cam.z}; }
+let drag = null, moved = 0; const pointers = new Map(); let pinch = null;
+cv.addEventListener("pointerdown", e => { pointers.set(e.pointerId, e); cv.setPointerCapture(e.pointerId);
+  if (pointers.size === 2) { const [a, b] = [...pointers.values()]; pinch = {d: Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY), z: cam.z}; drag = null; }
+  else { drag = {x: e.clientX, y: e.clientY, cx: cam.x, cy: cam.y}; moved = 0; } });
+cv.addEventListener("pointermove", e => { if (pointers.has(e.pointerId)) pointers.set(e.pointerId, e);
+  if (pinch && pointers.size === 2) { const [a, b] = [...pointers.values()]; cam.z = Math.max(.4, Math.min(2.4, pinch.z * Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) / pinch.d)); return; }
+  if (!drag) return; const dx = e.clientX - drag.x, dy = e.clientY - drag.y; moved = Math.max(moved, Math.abs(dx) + Math.abs(dy)); cam.x = drag.cx + dx; cam.y = drag.cy + dy; });
+function release(e) {
+  pointers.delete(e.pointerId); if (pointers.size < 2) pinch = null;
+  if (drag && moved < 6) { const w = toWorld(e.clientX, e.clientY);
+    const hit = [...hits].reverse().find(h => w.x >= h.r.x && w.x <= h.r.x + h.r.w && w.y >= h.r.y && w.y <= h.r.y + h.r.h);
+    selected = hit ? (hit.p || hit.b) : null;
+    if (selected) renderSelected(); else { selName.textContent = "Click a building or a person"; selBody.textContent = "The teams work along Main Street and walk their work to your Town Hall."; } }
+  drag = null;
+}
+cv.addEventListener("pointerup", release); cv.addEventListener("pointercancel", release);
+function zoom(f) { cam.z = Math.max(.4, Math.min(2.4, cam.z * f)); }
+cv.addEventListener("wheel", e => { e.preventDefault(); zoom(e.deltaY < 0 ? 1.1 : 1 / 1.1); }, {passive: false});
+document.getElementById("zin").onclick = () => zoom(1.2);
+document.getElementById("zout").onclick = () => zoom(1 / 1.2);
+document.getElementById("labels").onclick = e => { showAll = !showAll; e.currentTarget.setAttribute("aria-pressed", showAll); };
+document.getElementById("flowBtn").onclick = e => { showFlow = !showFlow; e.currentTarget.setAttribute("aria-pressed", showFlow); };
+document.getElementById("home").onclick = () => fit();
+function fit() { const r = cv.getBoundingClientRect(); const c = iso(22.5, 13); cam.z = Math.max(.55, Math.min(1, r.width / 1300)); cam.x = -c.x * cam.z; cam.y = -c.y * cam.z + 70; }
+
+buildGround(); fit(); spawnOwners(); renderQueue(); setSnap(DATA);
+const back = document.getElementById("backLink");
+if (PRIVATE) { back.textContent = "← Website dashboard"; back.href = "/"; document.getElementById("footNote").textContent = "Private version. Town Hall buttons do exactly what the dashboard buttons do. Characters are original."; }
+else { back.textContent = "← garystow.co.uk"; back.href = "/"; document.getElementById("aboutCard").hidden = false; }
+(DATA.events || []).slice(-3).forEach(playEvent); ei = 0;
+setInterval(nextEvent, 5600);
+setInterval(refreshData, PRIVATE ? 60000 : 300000);
+requestAnimationFrame(t => { last = t; frame(t); });
+})();
+</script>
+
+</body>
+</html>
