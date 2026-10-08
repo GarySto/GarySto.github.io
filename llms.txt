@@ -30,6 +30,10 @@ the IAB UK.
 
 ## Recent articles
 
+- [How to Build a Live Village Dashboard for Your AI Agents](https://garystow.co.uk/articles/how-to-build-a-live-village-dashboard-for-your-ai-agents/):
+  every job my AI automations do now shows up as a cartoon village.
+  This is the exact recipe, with the code, so you can build your own
+  version.
 - [The Independent Audit: Why I Make AI Check Its Own Work](https://garystow.co.uk/articles/the-independent-audit-why-i-make-ai-check-its-own-work/):
   AI outputs can be confidently wrong. Asking for an independent audit
   at the end of every task has improved the quality of mine more than
