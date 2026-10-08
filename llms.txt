@@ -30,6 +30,10 @@ the IAB UK.
 
 ## Recent articles
 
+- [How to Run an AI Workshop for a Marketing Team](https://garystow.co.uk/articles/how-to-run-an-ai-workshop-for-a-marketing-team/):
+  the biggest barrier to AI in most marketing teams is not the tech,
+  it is getting people to use it. Here is the two-hour workshop I
+  would run tomorrow.
 - [Explaining AI to Non-Technical People: The Graduate Test](https://garystow.co.uk/articles/explaining-ai-to-non-technical-people-the-graduate-test/):
   when I explain AI to people who are not technical, I compare it to a
   bright graduate on day one. It works because it is honest about both
