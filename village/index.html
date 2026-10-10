@@ -191,7 +191,11 @@ const BUILDINGS = [
   ["perf","Performance Watch","trade","dept",39.4,4.3,2,2.2,1.4,"Tracks each strategy in pounds after fees against the go-live scorecard."],
   ["fresh","Game Freshness Watchdog","trade","dept",41.8,4.3,2,2.2,1.2,"Makes sure the Game never trades on yesterday's premarket data."],
   ["act","Trading Activity Monitor","trade","dept",44.2,4.3,2,2.2,1.4,"Health light, brakes, resting orders and the daily email after the US close."],
-  ["health","Task Health Watchdog","trade","dept",41.8,7.6,2,2.2,1.4,"Checks every scheduled job on your PC, and names the cause when one fails.",1],
+  ["health","Task Health Watchdog","trade","dept",41.8,7.6,2,2.2,1.4,"Checks every scheduled job on your PC, and names the cause when one fails."],
+  ["growth","Growth Review","trade","dept",39.4,7.6,2,2.2,1.4,"Compares this month with last month for both teams, every day. Every flat or falling number needs a reason and an action, or it is flagged as a gap in the team.",1],
+  ["branch","Branch Watch","trade","dept",44.2,7.6,2,2.2,1.2,"Makes sure every finished fix is merged and live, so the Executor's work never sits waiting on a branch.",1],
+  ["bear","Bear Squad Dojo","bear","dept",36,16.6,3,2.4,1.5,"The ninjas test making money when the market falls, using inverse funds, on paper only. They never place an order: a model only goes live with Gary's YES.",1],
+  ["obs","The Observatory","obs","dept",15.2,1.2,2.6,2.6,2.4,"Scans the horizon every evening for new opportunities, scores each one against a rubric, and only brings the best to the Town Hall. Nothing happens without Gary's YES.",1],
 ];
 // Every strategy field starts the same size, then grows or shrinks with its real result after fees (demo account for now).
 const FIELD_BASE = [["game","The Game","Premarket runners, scalp 10%",29.5,22.5],["m1","Model 1","Same-day continuation",38.5,22.5],["m2","Model 2","Range-bound bouncy ball",29.5,29]];
@@ -210,7 +214,7 @@ const cv = document.getElementById("map"), ctx = cv.getContext("2d");
 const ctxRef = {c: ctx}; // ground is pre-rendered to its own canvas through the same helpers
 let cam = {x: 0, y: 0, z: 1}, showAll = false, showFlow = true, selected = null, dpr = 1, clock = 0, last = 0;
 const iso = (x, y, up = 0) => ({x: (x - y) * TW / 2, y: (x + y) * TH / 2 - up});
-const COL = {web: "#3f8fe6", trade: "#ee6a3c", hall: "#ffc23d", build: "#43c271", wade: "#a97cf4"};
+const COL = {web: "#3f8fe6", trade: "#ee6a3c", hall: "#ffc23d", build: "#43c271", wade: "#a97cf4", bear: "#3a3a46", obs: "#138a8a"};
 const INK = "#1b1b1b";
 let seed = 21; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
 const K = () => 1 / Math.max(.6, Math.min(1.6, cam.z)); // keeps text the same size on screen
@@ -235,7 +239,7 @@ const front = id => { if (id.startsWith("field:")) { const f = FIELDS.find(f => 
 
 // work flows: [from, to, colour, step]
 const FLOWS = [];
-buildings.filter(b => b.role === "dept").forEach(b => FLOWS.push([b.id, b.team === "web" ? "wsup" : "tsup", COL[b.team], 0]));
+buildings.filter(b => b.role === "dept").forEach(b => FLOWS.push([b.id, b.team === "web" ? "wsup" : b.team === "obs" ? "hall" : "tsup", COL[b.team], 0]));
 FLOWS.push(["wsup","wman",COL.web,2],["tsup","tman",COL.trade,2],["wman","hall",COL.hall,3],["tman","hall",COL.hall,3],
   ["hall","wexe",COL.web,5],["hall","texe",COL.trade,5],["wexe","cc",COL.web,6],["texe","cc",COL.trade,6],["cc","site",COL.web,7],["cc","field:game",COL.trade,7]);
 
@@ -294,6 +298,15 @@ const FUN = (() => {
 
   // ---- hats (drawn in the person's own scaled coordinates)
   function hat(p) {
+    if (p.team === "bear") { // ninja: dark hood, a skin-coloured eye slit, red headband tails
+      ctx.lineWidth = 1.2; ctx.strokeStyle = INK; ctx.fillStyle = "#1b1b1b";
+      ctx.beginPath(); ctx.arc(0, -17, 8.1, 0, 7); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = "#ffd9b8"; ctx.fillRect(-6, -20.5, 12, 4.5);
+      ctx.fillStyle = "#111"; ctx.beginPath(); ctx.arc(-2.4, -18.2, 1, 0, 7); ctx.arc(2.4, -18.2, 1, 0, 7); ctx.fill();
+      ctx.strokeStyle = "#e0262e"; ctx.lineWidth = 1.8; const fl = Math.sin(clock * 9 + (p.x || 0)) * 2;
+      ctx.beginPath(); ctx.moveTo(-7, -22); ctx.lineTo(7, -22); ctx.moveTo(-7, -22); ctx.lineTo(-13, -24 + fl); ctx.moveTo(-7, -22); ctx.lineTo(-12, -19 + fl); ctx.stroke();
+      return;
+    }
     if (p.team === "wade" || p.gary) return;
     ctx.lineWidth = 1.3; ctx.strokeStyle = INK;
     if (theme === "birthday") {
@@ -491,6 +504,10 @@ const FUN = (() => {
     things() {
       const out = [{k: "g", o: {draw: drawWall}, z: WALL.x + WALL.w + WALL.y + WALL.d}];
       if (gary) out.push({k: "g", o: {draw: drawGary}, z: gary.x + gary.y + .5});
+      if (byId.bear) [[36.6, 19.6], [37.8, 19.9], [39, 19.6]].forEach(([x, y], i) => out.push({k: "g", z: x + y + .5, o: {draw: () => {
+        const q = iso(x, y), kick = Math.max(0, Math.sin(clock * 3 + i * 2));
+        drawPerson({team: "bear", x, y, path: [], walk: 0, face: i % 2 ? -1 : 1}, q.x, q.y, 1.5, -kick * 10);
+        if (kick > .9) { ctx.fillStyle = "#fff"; ctx.strokeStyle = INK; ctx.lineWidth = 1.5; star(q.x + (i % 2 ? -16 : 16), q.y - 34, 5); } }}}));
       props.forEach(p => out.push({k: "g", o: {draw: () => p.kind === "pumpkin" ? drawPumpkin(p) : p.kind === "fire" ? drawFire(p) : drawXmasTree(p)}, z: p.x + p.y + .4}));
       return out;
     },
@@ -511,7 +528,7 @@ function person(o) { const p = Object.assign({x: 0, y: 0, path: [], wait: 0, msg
 function goTo(p, id) { const t = front(id); const y0 = Math.max(p.y, t.y) + .05;
   p.path = (Math.abs(p.y - 14.6) < 6 && Math.abs(t.y - 14.6) < 6) ? [{x: p.x, y: 14.6}, {x: t.x, y: 14.6}, t] : [{x: p.x, y: y0}, {x: t.x, y: y0}, t]; p.target = id; }
 function place(p, id) { const t = front(id); p.x = t.x; p.y = t.y; }
-buildings.filter(b => b.role === "dept").forEach(b => { const p = person({team: b.team, loop: [b.id, b.team === "web" ? "wsup" : "tsup"], step: 0}); place(p, b.id); p.wait = 1 + rnd() * 9; });
+buildings.filter(b => b.role === "dept").forEach(b => { const p = person({team: b.team, loop: [b.id, b.team === "web" ? "wsup" : b.team === "obs" ? "hall" : "tsup"], step: 0}); place(p, b.id); p.wait = 1 + rnd() * 9; });
 [["wsup","wman"],["tsup","tman"],["wman","hall"],["tman","hall"]].forEach(([a, b]) => { const p = person({team: byId[a].team, loop: [a, b], step: 0}); place(p, a); p.wait = rnd() * 6; });
 const farmers = [];
 FIELDS.forEach(f => { for (let i = 0; i < 2; i++) farmers.push({f, row: i * 2 + 1, t: rnd() * 10}); });
@@ -673,7 +690,7 @@ function workshopDraw(b) {
 }
 
 /* ================================================================ characters: big round heads, paper bodies, hop when walking (all original) */
-const HAT = {web: "#2f6fd0", trade: "#c94a24", hall: "#ffc23d", build: "#ffcf2e", wade: "#5b3aa8"};
+const HAT = {web: "#2f6fd0", trade: "#c94a24", hall: "#ffc23d", build: "#ffcf2e", wade: "#5b3aa8", bear: "#1b1b1b", obs: "#0d5f63"};
 function drawPerson(p, sx, sy, sc, bobIn) {
   const q = sx !== undefined ? {x: sx, y: sy} : iso(p.x, p.y);
   const s = sc || (p.hero ? 1.9 : 1.6), moving = p.path && p.path.length;
