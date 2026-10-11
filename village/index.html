@@ -104,8 +104,8 @@ a{color:#9fd0ff}
     <div class="tools">
       <button id="zin" aria-label="Zoom in">+</button>
       <button id="zout" aria-label="Zoom out">&minus;</button>
-      <button id="labels" aria-label="Show every name" aria-pressed="false">Aa</button>
-      <button id="flowBtn" aria-label="Show the flow of work" aria-pressed="true">&#10142;</button>
+      <button id="labels" aria-label="Names: key buildings (click to change)" title="Names: key buildings" aria-pressed="true">Aa</button>
+      <button id="flowBtn" aria-label="Show the flow of work" aria-pressed="false">&#10142;</button>
       <button id="home" aria-label="Back to the Town Hall">&#8962;</button>
       <button id="findGary" aria-label="Where is Gary? He hides somewhere new every day" title="Where's Gary?" style="font-family:var(--display);font-size:1.6rem">?</button>
     </div>
@@ -195,7 +195,11 @@ const BUILDINGS = [
   ["growth","Growth Review","trade","dept",39.4,7.6,2,2.2,1.4,"Compares this month with last month for both teams, every day. Every flat or falling number needs a reason and an action, or it is flagged as a gap in the team.",1],
   ["branch","Branch Watch","trade","dept",44.2,7.6,2,2.2,1.2,"Makes sure every finished fix is merged and live, so the Executor's work never sits waiting on a branch.",1],
   ["bear","Bear Squad Dojo","bear","dept",36,16.6,3,2.4,1.5,"The ninjas test making money when the market falls, using inverse funds, on paper only. They never place an order: a model only goes live with Gary's YES.",1],
+  ["store","Harvest Store","store","store",38.8,29.6,3,2.4,1.5,"Everything the three strategy fields have harvested, added together. Crates of flowers when the combined result is up; the bin fills with wilted stems when it is down. Demo money after fees.",1],
   ["obs","The Observatory","obs","dept",15.2,1.2,2.6,2.6,2.4,"Scans the horizon every evening for new opportunities, scores each one against a rubric, and only brings the best to the Town Hall. Nothing happens without Gary's YES.",1],
+  ["obsl","Lookout","obs","dept",14.9,4.5,1.5,1.4,1.0,"Scans the horizon every evening and keeps only what fits."],
+  ["obss","Star Chart Room","obs","dept",16.6,4.5,1.5,1.4,1.0,"Scores each find against a rubric; only the best go to the Town Hall."],
+  ["obse","Instrument Workshop","obs","dept",18.3,4.5,1.5,1.4,1.0,"Turns a YES into finished work, ready for Gary to use. Never acts on its own."],
 ];
 // Every strategy field starts the same size, then grows or shrinks with its real result after fees (demo account for now).
 const FIELD_BASE = [["game","The Game","Premarket runners, scalp 10%",29.5,22.5],["m1","Model 1","Same-day continuation",38.5,22.5],["m2","Model 2","Range-bound bouncy ball",29.5,29]];
@@ -212,14 +216,18 @@ const HOUSE_ROWS = Math.ceil((DATA.pages.length + 1) / 8), RIVER_Y = Math.max(35
 const TW = 64, TH = 32, W = 48, H = Math.ceil(RIVER_Y + 1.7);
 const cv = document.getElementById("map"), ctx = cv.getContext("2d");
 const ctxRef = {c: ctx}; // ground is pre-rendered to its own canvas through the same helpers
-let cam = {x: 0, y: 0, z: 1}, showAll = false, showFlow = true, selected = null, dpr = 1, clock = 0, last = 0;
+let cam = {x: 0, y: 0, z: 1}, showAll = false, labelMode = 1, showFlow = false, selected = null, dpr = 1, clock = 0, last = 0;
 const iso = (x, y, up = 0) => ({x: (x - y) * TW / 2, y: (x + y) * TH / 2 - up});
-const COL = {web: "#3f8fe6", trade: "#ee6a3c", hall: "#ffc23d", build: "#43c271", wade: "#a97cf4", bear: "#3a3a46", obs: "#138a8a"};
+const COL = {web: "#3f8fe6", trade: "#ee6a3c", hall: "#ffc23d", build: "#43c271", wade: "#a97cf4", bear: "#3a3a46", obs: "#138a8a", store: "#b5482e"};
 const INK = "#1b1b1b";
 let seed = 21; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
 const K = () => 1 / Math.max(.6, Math.min(1.6, cam.z)); // keeps text the same size on screen
 
 const buildings = BUILDINGS.map(b => ({kind: "b", id: b[0], name: b[1], team: b[2], role: b[3], x: b[4], y: b[5], w: b[6], d: b[7], floors: b[8], job: b[9], isNew: !!b[10]}));
+// 10 Oct 2026: the Harvest Store holds the three models' results added together
+{ const st = buildings.find(b => b.id === "store"), F = DATA.fields || {};
+  if (st) { st.net = ["game", "m1", "m2"].reduce((t, k) => t + ((F[k] || {}).net || 0), 0);
+    st.name = "Harvest Store · all 3 models" + (PRIVATE ? (st.net >= 0 ? " · +£" : " · −£") + Math.abs(st.net).toFixed(0) : st.net > 0 ? " · stocked" : st.net < 0 ? " · bin day" : ""); } }
 const houses = [];
 const maxArticle = Math.max(0, ...DATA.pages.filter(p => p[3] !== "Site page").map(p => p[4]));
 DATA.pages.forEach((p, i) => {
@@ -263,6 +271,11 @@ for (let i = 0; i < 160; i++) { const x = rnd() * W, y = rnd() * (RIVER_Y - .3);
    Seasons, special days, a hidden Gary to find, and a graffiti wall. Pure decoration: nothing here
    reads or changes the decisions. Preview any look with ?theme=birthday|halloween|bonfire|xmas|none
    and ?season=autumn|winter|spring|summer on the address. */
+// 10 Oct 2026: outfits from Gary's own wardrobe. Observatory team = his snowboard kit;
+// hidden Gary rotates daily: office (white tee, jeans, cap), snowboard (white puffer, olive trousers, beanie),
+// renovation (bright blue top, black work shorts, cap).
+const OUTFITS = {office: {top: "#ffffff", bottom: "#3b5f9e", hat: "cap"}, snow: {top: "#f4f4f0", bottom: "#6b7a3a", puffer: true, hat: "beanie"},
+                 reno: {top: "#1e7bff", bottom: "#1b1b1b", shorts: true, hat: "cap"}};
 const FUN = (() => {
   const qs = new URLSearchParams(location.search), now = new Date();
   const md = (now.getMonth() + 1) * 100 + now.getDate();
@@ -328,7 +341,8 @@ const FUN = (() => {
   // ---- the hidden Gary: a new hiding place every day, behind a tree
   const spots = trees.filter(t => t.x > 1 && t.x < 46 && t.y > 1 && t.y < RIVER_Y - 1);
   const hideTree = spots.length ? spots[hash(dayKey) % spots.length] : null;
-  const gary = hideTree ? {x: hideTree.x - .45, y: hideTree.y - .35, gary: true, team: "gary", path: [], walk: 0, face: 1} : null;
+  const gary = hideTree ? {x: hideTree.x - .45, y: hideTree.y - .35, gary: true, team: "gary", path: [], walk: 0, face: 1,
+                            outfit: OUTFITS[["office", "snow", "reno"][hash(dayKey + "fit") % 3]]} : null;
   let garyHit = null, foundAt = 0;
   const t0 = performance.now();
   function store(get, val) { try { if (get) return JSON.parse(localStorage.getItem("village_gary") || "{}"); localStorage.setItem("village_gary", JSON.stringify(val)); } catch (e) { return {}; } }
@@ -343,7 +357,8 @@ const FUN = (() => {
     // his own cap: gold, with a G on it
     ctx.translate(q.x, q.y + bob * s / 1.6); ctx.scale(s, s); ctx.lineWidth = 1.3; ctx.strokeStyle = INK;
     ctx.fillStyle = "#ffc23d"; ctx.beginPath(); ctx.arc(0, -22, 7.6, Math.PI, 0); ctx.closePath(); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(-1, -22.5); ctx.lineTo(-11, -21.5); ctx.lineTo(-1, -20.5); ctx.closePath(); ctx.fill(); ctx.stroke();
+    if (gary.outfit.hat === "beanie") { ctx.fillStyle = "#e0a91a"; ctx.fillRect(-7.8, -23, 15.6, 2.6); ctx.strokeRect(-7.8, -23, 15.6, 2.6); ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(0, -30, 2.3, 0, 7); ctx.fill(); ctx.stroke(); ctx.fillStyle = "#ffc23d"; }
+    else { ctx.beginPath(); ctx.moveTo(-1, -22.5); ctx.lineTo(-11, -21.5); ctx.lineTo(-1, -20.5); ctx.closePath(); ctx.fill(); ctx.stroke(); }
     ctx.fillStyle = "#111"; ctx.font = '8px "Luckiest Guy", "Arial Black", sans-serif'; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("G", 1, -24.5);
     if (theme === "birthday") { ctx.fillStyle = "#ff6fa5"; ctx.beginPath(); ctx.moveTo(-4, -28); ctx.lineTo(4, -28); ctx.lineTo(0, -40); ctx.closePath(); ctx.fill(); ctx.stroke(); }
     ctx.restore();
@@ -653,8 +668,17 @@ function townHall(b) {
   const lift = b.floors * TH * .9; shadow(b.x, b.y, b.w, b.d);
   walls(b.x, b.y, b.w, b.d, lift, "#fff3d1");
   for (let i = 0; i <= 6; i++) { const q = iso(b.x + b.w * i / 6, b.y + b.d); ctx.fillStyle = "#fff"; ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.fillRect(q.x - 3.5, q.y - lift, 7, lift); ctx.strokeRect(q.x - 3.5, q.y - lift, 7, lift); }
+  { const yf = b.y + b.d;   // 10 Oct 2026: column tops, a pediment and front steps
+    for (let i = 0; i <= 6; i++) { const q = iso(b.x + b.w * i / 6, yf); ctx.fillStyle = "#fff"; ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.fillRect(q.x - 6, q.y - lift - 2, 12, 5); ctx.strokeRect(q.x - 6, q.y - lift - 2, 12, 5); }
+    [[.0, .55, 0, 4], [.25, .3, 4, 8]].forEach(([inset, depth, h0, h1]) => {
+      const x0 = b.x + .3 + inset, x1 = b.x + b.w - .3 - inset, y0 = yf + .02, y1 = yf + depth;
+      poly([iso(x0, y0, h1), iso(x1, y0, h1), iso(x1, y1, h1), iso(x0, y1, h1)], "#efe6cf");
+      poly([iso(x0, y1, h0), iso(x1, y1, h0), iso(x1, y1, h1), iso(x0, y1, h1)], "#d8ccae"); }); }
   door(b.x, b.y, b.w, b.d, "#b4401a");
   poly([iso(b.x - .1, b.y - .1, lift), iso(b.x + b.w + .1, b.y - .1, lift), iso(b.x + b.w + .1, b.y + b.d + .1, lift), iso(b.x - .1, b.y + b.d + .1, lift)], "#f3d27a");
+  { const yf = b.y + b.d;   // pediment drawn after the roof so it stands in front of it
+    poly([iso(b.x - .1, yf + .05, lift), iso(b.x + b.w + .1, yf + .05, lift), iso(b.x + b.w / 2, yf + .05, lift + 30)], "#fff8e6");
+    const pc = iso(b.x + b.w / 2, yf + .05, lift + 11); ctx.fillStyle = "#ffc23d"; ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(pc.x, pc.y, 5, 0, 7); ctx.fill(); ctx.stroke(); }
   const c = iso(b.x + b.w / 2, b.y + b.d / 2, lift);
   ctx.fillStyle = "#ffc23d"; ctx.strokeStyle = INK; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(c.x, c.y - 2, 30, Math.PI, 0); ctx.closePath(); ctx.fill(); ctx.stroke();
   ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(c.x, c.y - 14, 9, 0, 7); ctx.fill(); ctx.stroke();
@@ -675,12 +699,39 @@ function towerDraw(b) {
   hits.push({p: {wade: true}, r: {x: q.x - 22, y: q.y - 90, w: 44, h: 92}});
   return {x: c.x, y: c.y - 110};
 }
+
+function storeDraw(b) {
+  const lift = b.floors * TH * .9; shadow(b.x, b.y, b.w, b.d);
+  walls(b.x, b.y, b.w, b.d, lift, "#c4573a");
+  // barn roof: a ridge running front to back
+  const r0 = iso(b.x - .15, b.y - .1, lift), r1 = iso(b.x - .15, b.y + b.d + .1, lift), r2 = iso(b.x + b.w / 2, b.y + b.d + .1, lift + 26), r3 = iso(b.x + b.w / 2, b.y - .1, lift + 26),
+        r4 = iso(b.x + b.w + .15, b.y + b.d + .1, lift), r5 = iso(b.x + b.w + .15, b.y - .1, lift);
+  poly([r0, r1, r2, r3], "#7a2f1f"); poly([r3, r2, r4, r5], "#93392a");
+  poly([iso(b.x, b.y + b.d, lift), iso(b.x + b.w, b.y + b.d, lift), iso(b.x + b.w / 2, b.y + b.d, lift + 26)], "#d9684a");
+  // big double door with a white cross brace, flat on the front wall
+  const xa = b.x + b.w * .3, xb = b.x + b.w * .7, yf = b.y + b.d;
+  poly([iso(xa, yf, 0), iso(xb, yf, 0), iso(xb, yf, lift * .8), iso(xa, yf, lift * .8)], "#7a2f1f");
+  ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; const d0 = iso(xa, yf, 0), d1 = iso(xb, yf, lift * .8), d2 = iso(xb, yf, 0), d3 = iso(xa, yf, lift * .8);
+  ctx.beginPath(); ctx.moveTo(d0.x, d0.y); ctx.lineTo(d1.x, d1.y); ctx.moveTo(d2.x, d2.y); ctx.lineTo(d3.x, d3.y); ctx.stroke();
+  // crates of harvested flowers out front (up), or a bin of wilted stems (down)
+  const net = b.net || 0, n = Math.max(0, Math.min(6, Math.round(net / 15) + (net > 0 ? 1 : 0)));
+  if (net >= 0) for (let i = 0; i < n; i++) {
+    const cx = b.x + .25 + (i % 3) * .55, cy = b.y + b.d + .35 + Math.floor(i / 3) * .5, c = iso(cx, cy, 0);
+    ctx.fillStyle = "#c99a5b"; ctx.strokeStyle = INK; ctx.lineWidth = 1.5; ctx.fillRect(c.x - 9, c.y - 10, 18, 10); ctx.strokeRect(c.x - 9, c.y - 10, 18, 10);
+    for (let k = 0; k < 4; k++) { ctx.fillStyle = ["#ff6fa5", "#ffd23d", "#fff", "#b98cff"][(i + k) % 4]; ctx.beginPath(); ctx.arc(c.x - 6 + k * 4, c.y - 12 - (k % 2) * 2, 2.6, 0, 7); ctx.fill(); ctx.stroke(); }
+  } else { const c = iso(b.x + b.w + .35, b.y + b.d + .2, 0);
+    ctx.fillStyle = "#59636b"; ctx.strokeStyle = INK; ctx.lineWidth = 1.5; ctx.fillRect(c.x - 8, c.y - 16, 16, 16); ctx.strokeRect(c.x - 8, c.y - 16, 16, 16);
+    ctx.strokeStyle = "#7a5a2a"; ctx.lineWidth = 2; for (let k = 0; k < 3; k++) { ctx.beginPath(); ctx.moveTo(c.x - 4 + k * 4, c.y - 16); ctx.quadraticCurveTo(c.x - 4 + k * 4, c.y - 24, c.x + k * 4, c.y - 21); ctx.stroke(); } }
+  return iso(b.x + b.w / 2, b.y + b.d / 2, lift + 30);
+}
 const smoke = [];
 function workshopDraw(b) {
   const lift = b.floors * TH * .9; shadow(b.x, b.y, b.w, b.d);
   walls(b.x, b.y, b.w, b.d, lift, "#f7efe0");
-  const q = iso(b.x + b.w / 2, b.y + b.d); ctx.fillStyle = "#3d3d3d"; ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.fillRect(q.x - 20, q.y - 30, 40, 30); ctx.strokeRect(q.x - 20, q.y - 30, 40, 30);
-  ctx.fillStyle = Math.sin(clock * 9) > 0 ? "#ffb347" : "#ff8a3d"; ctx.fillRect(q.x - 16, q.y - 26, 32, 12);
+  { const yf = b.y + b.d, xa = b.x + b.w / 2 - .55, xb = b.x + b.w / 2 + .55;   // 10 Oct 2026: door drawn ON the wall
+    poly([iso(xa, yf, 0), iso(xb, yf, 0), iso(xb, yf, 30), iso(xa, yf, 30)], "#3d3d3d");
+    ctx.save(); ctx.globalAlpha = .78 + Math.sin(clock * 1.4) * .22;
+    poly([iso(xa + .1, yf, 15), iso(xb - .1, yf, 15), iso(xb - .1, yf, 26), iso(xa + .1, yf, 26)], "#ff9a3d", false); ctx.restore(); }
   for (let i = 0; i < 4; i++) { const y0 = b.y + i * b.d / 4, y1 = y0 + b.d / 4;
     poly([iso(b.x, y1, lift), iso(b.x + b.w, y1, lift), iso(b.x + b.w, y0 + b.d / 8, lift + 18), iso(b.x, y0 + b.d / 8, lift + 18)], "#43c271");
     poly([iso(b.x + b.w, y0, lift), iso(b.x + b.w, y1, lift), iso(b.x + b.w, y0 + b.d / 8, lift + 18)], "#2f9a57"); }
@@ -701,6 +752,11 @@ function drawPerson(p, sx, sy, sc, bobIn) {
   const shirt = p.team === "wade" ? "#7b57c9" : p.team === "build" ? "#43c271" : COL[p.team] || "#888";
   ctx.fillStyle = shirt; ctx.beginPath(); ctx.moveTo(-6, 0); ctx.lineTo(6, 0); ctx.lineTo(5, -11); ctx.lineTo(-5, -11); ctx.closePath(); ctx.fill(); ctx.stroke();
   ctx.fillStyle = "#333"; ctx.fillRect(-6, -1.5, 12, 1.5);
+  const OUT = p.outfit || (p.team === "obs" ? OUTFITS.snow : null);
+  if (OUT) { ctx.fillStyle = OUT.top; ctx.beginPath(); ctx.moveTo(-6, -4); ctx.lineTo(5.6, -4); ctx.lineTo(5, -11); ctx.lineTo(-5, -11); ctx.closePath(); ctx.fill(); ctx.stroke();
+    if (OUT.puffer) { ctx.lineWidth = .8; ctx.beginPath(); ctx.moveTo(-5.4, -6.5); ctx.lineTo(5.4, -6.5); ctx.moveTo(-5.2, -8.8); ctx.lineTo(5.2, -8.8); ctx.stroke(); ctx.lineWidth = 1.3; }
+    ctx.fillStyle = OUT.bottom; ctx.fillRect(-6, -4, 12, OUT.shorts ? 2.4 : 4); ctx.strokeRect(-6, -4, 12, OUT.shorts ? 2.4 : 4);
+    if (OUT.shorts) { ctx.fillStyle = "#ffd9b8"; ctx.fillRect(-5, -1.6, 10, 1.6); } }
   ctx.fillStyle = p.team === "build" ? "#ffcf2e" : shade(shirt, .8); ctx.beginPath(); ctx.arc(-6.5, -5, 2.1, 0, 7); ctx.arc(6.5, -5, 2.1, 0, 7); ctx.fill();
   ctx.fillStyle = "#ffd9b8"; ctx.beginPath(); ctx.arc(0, -17, 7.6, 0, 7); ctx.fill(); ctx.stroke();
   ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.ellipse(-2.4, -18, 2.6, 3.1, 0, 0, 7); ctx.ellipse(2.4, -18, 2.6, 3.1, 0, 0, 7); ctx.fill(); ctx.lineWidth = .9; ctx.stroke();
@@ -709,6 +765,8 @@ function drawPerson(p, sx, sy, sc, bobIn) {
   ctx.lineWidth = 1.3; ctx.fillStyle = HAT[p.team] || "#555";
   if (p.team === "wade") { ctx.beginPath(); ctx.moveTo(-8, -21.5); ctx.lineTo(8, -21.5); ctx.lineTo(2, -36); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.fillStyle = "#ffe14d"; ctx.beginPath(); ctx.arc(1, -29, 1.6, 0, 7); ctx.fill(); }
   else if (p.team === "build") { ctx.beginPath(); ctx.arc(0, -21.5, 7.4, Math.PI, 0); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.fillRect(-9, -22, 18, 2); ctx.strokeRect(-9, -22, 18, 2); }
+  else if (p.team === "obs") { ctx.fillStyle = "#138a8a"; ctx.beginPath(); ctx.arc(0, -21.5, 7.6, Math.PI, 0); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#0d5f63"; ctx.fillRect(-7.8, -22.5, 15.6, 2.6); ctx.strokeRect(-7.8, -22.5, 15.6, 2.6); ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(0, -29.6, 2.2, 0, 7); ctx.fill(); ctx.stroke(); }
   else if (p.team === "trade") { ctx.beginPath(); ctx.arc(0, -21.5, 7.2, Math.PI, 0); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.moveTo(4 * face, -22); ctx.lineTo(11 * face, -21); ctx.lineTo(4 * face, -20); ctx.closePath(); ctx.fill(); ctx.stroke(); }
   else { ctx.beginPath(); ctx.ellipse(0, -23, 7.8, 3, 0, 0, 7); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.arc(0, -23.5, 4.8, Math.PI, 0); ctx.fill(); ctx.stroke(); }
   FUN.hat(p);
@@ -739,11 +797,13 @@ function drawBuilding(b) {
   else if (b.role === "hall") top = townHall(b);
   else if (b.role === "wade") top = towerDraw(b);
   else if (b.role === "cc") top = workshopDraw(b);
+  else if (b.role === "store") top = storeDraw(b);
   else top = office(b);
   const base = iso(b.x + b.w / 2, b.y + b.d);
   hits.push({b, r: {x: base.x - b.w * TW / 2 - 4, y: top.y - 14, w: b.w * TW + 8, h: base.y - top.y + 30}});
   const close = cam.z >= .82 || showAll;
-  if (b.kind === "b" && b.role !== "wade" && (close || b.role !== "dept" || selected === b)) {
+  if (labelMode === 0 && selected !== b) { /* names: none */ }
+  else if (b.kind === "b" && b.role !== "wade" && (close || b.role !== "dept" || selected === b)) {
     const bg = b.team === "hall" ? "#ffc23d" : b.team === "build" ? "#b9f0cc" : "#fff";
     label(b.isNew ? b.name + " · NEW" : b.name, top.x, top.y - 8, {size: b.role === "hall" ? 19 : b.role === "dept" ? 14 : 16, bg, stripe: (b.team === "web" || b.team === "trade") ? COL[b.team] : null});
   } else if (b.role === "wade") {
@@ -770,7 +830,10 @@ function drawFlows() {
   const h4 = iso(25.4, 14.2); badge(4, h4.x, h4.y - 20, COL.hall);
   ctx.restore();
 }
+const WADE_LIVE = PRIVATE && DATA.wade && typeof DATA.wade.busy === "boolean";   // 10 Oct 2026
+if (WADE_LIVE && DATA.wade.busy && byId[DATA.wade.target]) { wadeTarget = DATA.wade.target; wadeMsg = DATA.wade.msg || "working"; }
 function drawWadeBeam() {
+  if (WADE_LIVE && WADE_ON && !DATA.wade.busy) { const z = wadeTop; label("Wade is idle: nothing needs him right now", z.x, z.y - 70, {size: 14, bg: "#e6d4ff", stripe: "#7b57c9"}); return; }
   const tb = byId[wadeTarget]; if (!tb) return;
   if (!WADE_ON) { const z = wadeTop; ctx.fillStyle = "#fff"; ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.font = `${22 * K()}px "Luckiest Guy", sans-serif`; ctx.textAlign = "center";
     ["z", "Z", "Z"].forEach((t, i) => { const o = (clock * 20 + i * 18) % 54; ctx.globalAlpha = 1 - o / 54; ctx.strokeText(t, z.x + 20 + o * .6, z.y - 20 - o); ctx.fillText(t, z.x + 20 + o * .6, z.y - 20 - o); }); ctx.globalAlpha = 1;
@@ -827,12 +890,13 @@ function frame(now) {
   things.forEach(t => t.k === "g" ? t.o.draw() : t.k === "b" ? drawBuilding(t.o) : t.k === "t" ? drawTree(t.o) : t.k === "f" ? drawFarmer(t.o) : (t.o.owner ? null : drawWorker(t.o)));
   smoke.forEach(s => { s.y -= 16 * dt; s.x += 6 * dt; s.r += 6 * dt; s.a -= .3 * dt; }); for (let i = smoke.length - 1; i >= 0; i--) if (smoke[i].a <= 0) smoke.splice(i, 1);
   smoke.forEach(s => { ctx.globalAlpha = s.a; ctx.fillStyle = "#fff"; ctx.strokeStyle = INK; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 7); ctx.fill(); ctx.stroke(); ctx.globalAlpha = 1; });
+  ctx.save(); ctx.globalAlpha = .32; people.forEach(o => { if (!o.owner && o.path && o.path.length) drawPerson(o); }); ctx.restore();   // 10 Oct 2026: nobody hides behind a wall
   people.filter(o => o.owner).sort((a, b) => (a.x + a.y) - (b.x + b.y)).forEach(drawWorker);
   drawWadeBeam();
-  FIELDS.forEach(f => { const p = iso(f[3] + f[5] / 2, f[4] - .2), net = f[7].net || 0;
+  if (labelMode > 0) FIELDS.forEach(f => { const p = iso(f[3] + f[5] / 2, f[4] - .2), net = f[7].net || 0;
     const tag = PRIVATE ? (net >= 0 ? " · +£" : " · −£") + Math.abs(net).toFixed(0) : net > 0 ? " · growing" : net < 0 ? " · wilting" : "";
     label(f[1] + " · demo" + tag, p.x, p.y - 6, {size: 15, bg: net > 0 ? "#d9f7c4" : net < 0 ? "#ffd6cc" : "#ffe2b8", stripe: COL.trade}); });
-  [["WEBSITE TEAMS", 10, .2, COL.web], ["TRADING TEAMS", 37, .2, COL.trade], ["MAIN STREET", 6, 15.8, "#a8894a"], ["HOUSES · the web pages", 10, RIVER_Y + .1, "#4f9a2a"], ["STRATEGY FIELDS", 37, 34.5, "#a86e3c"]]
+  if (labelMode > 0) [["WEBSITE TEAMS", 10, .2, COL.web], ["TRADING TEAMS", 37, .2, COL.trade], ["MAIN STREET", 6, 15.8, "#a8894a"], ["HOUSES · the web pages", 10, RIVER_Y + .1, "#4f9a2a"], ["STRATEGY FIELDS", 37, 34.5, "#a86e3c"]]
     .forEach(([t, x, y, c]) => { const p = iso(x, y); label(t, p.x, p.y, {size: 17, bg: c, fg: "#fff"}); });
   FUN.over(dt);
   requestAnimationFrame(frame);
@@ -844,7 +908,7 @@ function simulate(dt) {
   const speed = reduce ? 1.2 : 2.3;
   farmers.forEach(f => f.t += dt);
   houses.forEach(h => { if (h.work > 0) h.work -= dt; if (h.pop > 0) h.pop -= dt * .6; });
-  wadeT += dt; if (wadeT > 6) { wadeT = 0; wadeTarget = WADE_CLIENTS[(WADE_CLIENTS.indexOf(wadeTarget) + 1) % WADE_CLIENTS.length];
+  wadeT += dt; if (!WADE_LIVE && wadeT > 6) { wadeT = 0; wadeTarget = WADE_CLIENTS[(WADE_CLIENTS.indexOf(wadeTarget) + 1) % WADE_CLIENTS.length];
     wadeMsg = {wsup: "root-causing a finding", wman: "wording the report for Gary", writer: "drafting an article", tsup: "checking a trading finding", tman: "writing the trading status"}[wadeTarget]; }
   people.forEach(p => {
     if (p.msgT > 0) p.msgT -= dt;
@@ -985,7 +1049,10 @@ function zoom(f) { cam.z = Math.max(.4, Math.min(2.4, cam.z * f)); }
 cv.addEventListener("wheel", e => { e.preventDefault(); zoom(e.deltaY < 0 ? 1.1 : 1 / 1.1); }, {passive: false});
 document.getElementById("zin").onclick = () => zoom(1.2);
 document.getElementById("zout").onclick = () => zoom(1 / 1.2);
-document.getElementById("labels").onclick = e => { showAll = !showAll; e.currentTarget.setAttribute("aria-pressed", showAll); };
+const NAME_MODES = ["Names: none", "Names: key buildings", "Names: all"];
+document.getElementById("labels").onclick = e => { labelMode = (labelMode + 1) % 3; showAll = labelMode === 2;
+  e.currentTarget.setAttribute("aria-label", NAME_MODES[labelMode] + " (click to change)"); e.currentTarget.title = NAME_MODES[labelMode];
+  e.currentTarget.setAttribute("aria-pressed", labelMode > 0); };
 document.getElementById("flowBtn").onclick = e => { showFlow = !showFlow; e.currentTarget.setAttribute("aria-pressed", showFlow); };
 document.getElementById("home").onclick = () => fit();
 function fit() { const r = cv.getBoundingClientRect(); const c = iso(22.5, 13); cam.z = Math.max(.55, Math.min(1, r.width / 1300)); cam.x = -c.x * cam.z; cam.y = -c.y * cam.z + 70; }
