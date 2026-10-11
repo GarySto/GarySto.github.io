@@ -30,6 +30,12 @@ the IAB UK.
 
 ## Recent articles
 
+- [I Tested 7 Trading Ideas Against Simply Owning the Market](https://garystow.co.uk/articles/i-tested-7-trading-ideas-against-simply-owning-the-market/):
+  most trading backtests only ask whether a rule made money. I asked a
+  harder question: did it beat simply owning the market over the same
+  days? Seven ideas, including my own way of reading charts. Here is
+  what held up and what didn't, with every chart and the data behind
+  it.
 - [Backtesting a Premarket Strategy: 6,444 Rules, No Real Winner](https://garystow.co.uk/articles/backtesting-a-premarket-strategy-6-444-rules-no-real-winner/):
   I wanted an automated version of my premarket trading routine.
   Before trusting it, I built a lab that tested 6,444 versions in
