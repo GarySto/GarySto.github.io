@@ -1,0 +1,53 @@
+test,measure,value
+"Entry time test (UK), avg per trade %",10:00,-0.47
+"Entry time test (UK), avg per trade %",11:00,-0.3
+"Entry time test (UK), avg per trade %",12:00,-2.95
+"Entry time test (UK), avg per trade %",12:30,-1.39
+"Entry time test (UK), avg per trade %",13:00,2.2
+"Entry time test (UK), avg per trade %",13:30,-1.1
+"Entry time test (UK), avg per trade %",14:00,0.73
+"Cost per buy test, avg per trade %",0.0%,2.56
+"Cost per buy test, avg per trade %",0.5%,2.2
+"Cost per buy test, avg per trade %",1.0%,0.62
+"Cost per buy test, avg per trade %",2.0%,-1.48
+"Cost per buy test, avg per trade %",3.0%,-2.01
+"Limit order test, avg per trade %",At the price,-1.03
+"Limit order test, avg per trade %",1% below,-0.82
+"Limit order test, avg per trade %",2% below,-0.58
+"Limit order test, avg per trade %",3% below,-0.6
+"Limit order test, avg per trade %",5% below,-0.2
+Premarket gainer behaviour after 13:00 UK,stock_mornings,286
+Premarket gainer behaviour after 13:00 UK,days,59
+Premarket gainer behaviour after 13:00 UK,median_gain_at_1300_pct,17.1
+Premarket gainer behaviour after 13:00 UK,reached_3_pct,59.1
+Premarket gainer behaviour after 13:00 UK,reached_5_pct,44.1
+Premarket gainer behaviour after 13:00 UK,reached_10_pct,22.7
+Premarket gainer behaviour after 13:00 UK,plus5_first_pct,32.5
+Premarket gainer behaviour after 13:00 UK,minus5_first_pct,31.5
+Premarket gainer behaviour after 13:00 UK,neither_pct,36.0
+Premarket gainer behaviour after 13:00 UK,median_biggest_dip_pct,-3.5
+Premarket gainer behaviour after 13:00 UK,fell_10_pct,14.3
+Premarket gainer behaviour after 13:00 UK,fell_25_pct,2.8
+Premarket gainer behaviour after 13:00 UK,higher_at_open_pct,53.5
+Premarket gainer behaviour after 13:00 UK,median_at_open_pct,0.35
+"Stop test, real premarket (Aug-Oct)",rule,Option A score>=5.5 gap>=2% top100
+"Stop test, real premarket (Aug-Oct)",days,42
+"Stop test, real premarket (Aug-Oct)",trades,41
+"Stop test, real premarket (Aug-Oct)",avg_with_5pct_stop,-0.46
+"Stop test, real premarket (Aug-Oct)",avg_with_10pct_stop,-1.05
+"Stop test, real premarket (Aug-Oct)",avg_no_stop,-2.35
+"Stop test, open-price proxy (Feb-Jun)",rule,Option A score>=5.5 gap>=2% top100
+"Stop test, open-price proxy (Feb-Jun)",period,Feb to early Jun 2026 (open price as proxy)
+"Stop test, open-price proxy (Feb-Jun)",trades,111
+"Stop test, open-price proxy (Feb-Jun)",avg_with_5pct_stop,0.58
+"Stop test, open-price proxy (Feb-Jun)",avg_no_stop,1.63
+Lab size,n_versions_market,6444
+Lab size,share_positive_unseen_market_pct,20.8
+Lab size,n_versions_limit,10404
+Lab size,share_positive_unseen_limit_pct,29.5
+Lab size,top25_positive_unseen_pct,20.0
+Lab size,days,59
+Lab size,first_day,2026-07-20
+Lab size,last_day,2026-10-09
+Lab size,split_day,2026-09-14
+Lab size,mornings,51042

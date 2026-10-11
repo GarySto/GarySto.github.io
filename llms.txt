@@ -30,6 +30,11 @@ the IAB UK.
 
 ## Recent articles
 
+- [Backtesting a Premarket Strategy: 6,444 Rules, No Real Winner](https://garystow.co.uk/articles/backtesting-a-premarket-strategy-6-444-rules-no-real-winner/):
+  I wanted an automated version of my premarket trading routine.
+  Before trusting it, I built a lab that tested 6,444 versions in
+  under ten seconds. Here is what it found, with every chart and the
+  data behind it.
 - [How to Build a Live Village Dashboard for Your AI Agents](https://garystow.co.uk/articles/how-to-build-a-live-village-dashboard-for-your-ai-agents/):
   every job my AI automations do now shows up as a cartoon village.
   This is the exact recipe, with the code, so you can build your own

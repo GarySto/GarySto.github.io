@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Backtesting a Premarket Strategy: 6,444 Rules, No Real Winner — Gary Stow</title>
+<meta name="description" content="I wanted an automated version of my premarket trading routine. Before trusting it, I built a lab that tested 6,444 versions in under ten seconds. Here is w">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/articles/backtesting-a-premarket-strategy-6-444-rules-no-real-winner/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Backtesting a Premarket Strategy: 6,444 Rules, No Real Winner">
+<meta property="og:description" content="I wanted an automated version of my premarket trading routine. Before trusting it, I built a lab that tested 6,444 versions in under ten seconds. Here is w">
+<meta property="og:url" content="https://garystow.co.uk/articles/backtesting-a-premarket-strategy-6-444-rules-no-real-winner/">
+<meta property="og:image" content="https://garystow.co.uk/articles/backtesting-a-premarket-strategy-6-444-rules-no-real-winner/backtesting-a-premarket-strategy-6-444-rules-no-real-winner.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Backtesting a Premarket Strategy: 6,444 Rules, No Real Winner",
+  "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
+  "datePublished": "2026-10-11",
+  "url": "https://garystow.co.uk/articles/backtesting-a-premarket-strategy-6-444-rules-no-real-winner/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/assets/site.css?v=45260eab">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Backtesting a Premarket Strategy: 6,444 Rules, No Real Winner",
+  "description": "I wanted an automated version of my premarket trading routine. Before trusting it, I built a lab that tested 6,444 versions in under ten seconds. Here is what it found, with every chart and the data behind it.",
+  "url": "https://garystow.co.uk/articles/backtesting-a-premarket-strategy-6-444-rules-no-real-winner/",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Step 1: Build the data once, then test ideas in seconds",
+      "text": "My first attempt replayed every past day through my real trading code. It worked, but one run took 44 minutes, so testing a handful of ideas cost a whole evening. The fix was to work out every stock's numbers for every morning once, save them in one table, and then test rules against that table."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 2: Look at what a typical premarket gainer actually does",
+      "text": "Before testing any rule, I looked at the stocks themselves. I took every stock that was up 10% or more at 13:00 UK time and still rising over the previous 30 minutes, which gave 286 mornings. The median stock in that group was already up 17.1% on the day."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 3: Keep some days back before you look at the results",
+      "text": "The most important rule in testing is to hold some data back. I used the first two thirds of the days, everything before 14 September, to find the best rules, and the last third to check them without changing anything."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 4: Nudge the winner and see if it holds",
+      "text": "One rule looked brilliant: buy the biggest gainer that is up 10% or more and still rising at 13:00 UK, then sell at +5% or at the open. It averaged +2.20% a trade. Then I changed the buying time and nothing else."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 5: Charge yourself a realistic cost",
+      "text": "Every buy costs something: the gap between the buying and selling price (the spread), plus any slip between the price you see and the price you get. Premarket, on a small company that has already jumped a long way, that cost can be large. I don't know mine yet, so I tested a range."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 6: Don't trust a shortcut in the data",
+      "text": "Before I had real premarket prices, I tested February to early June using the opening price instead. That data said my -5% stop loss was the problem: for one of my score-based rules, removing the stop lifted the average from +0.58% to +1.63% a trade over 111 trades."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 7: Try the tool your broker already gives you",
+      "text": "My broker lets you place a limit order, which only buys if the price drops to a level you choose. Instead of paying whatever the price is, you wait for a small dip. I tested 10,404 limit-order versions."
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can you backtest a premarket strategy with free data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, within limits. Yahoo Finance keeps around 60 days of 5-minute bars including premarket, which is enough for a first look but not enough to trust. Free data has no record of buying and selling prices, so you cannot see the real cost of a trade, and you should test a range of costs as I did above."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do backtests lie?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mostly because people test many ideas and keep the best one. With thousands of versions some will look great by chance. Holding days back for checking, nudging the winner to see if it holds, and charging a realistic cost are the three checks that caught it for me."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many days of data do you need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "More than I have. 59 days and roughly 40 to 60 trades per rule is enough to rule ideas out, but not to prove one works. That is why the forward test matters more than any backtest."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* 8 Oct 2026: code in step-by-step articles - large, high contrast, never wider than the page */
+.article-body pre.code-block { background: #1d1a16; color: #f5f2eb; padding: 1.1rem 1.25rem; margin: 1.25rem 0 1.75rem; overflow-x: auto; max-width: 100%; border-radius: 4px; font-size: 0.95rem; line-height: 1.55; }
+.article-body pre.code-block code { font-family: var(--mono, monospace); background: none; padding: 0; color: inherit; white-space: pre; }
+.article-body code { font-family: var(--mono, monospace); background: #ece6da; padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.92em; }
+</style>
+<style>
+/* 11 Oct 2026: charts and pictures inside articles - full width, never wider than the page */
+.article-body figure.article-figure { margin: 1.5rem 0 2rem; }
+.article-body figure.article-figure img { display: block; width: 100%; height: auto; border-radius: 4px; border: 1px solid #e4e3df; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/work/">Work</a>
+    <a href="/agents/">AI &amp; Agents</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/articles/" class="article-back">← All articles</a>
+  <div class="hero-label">Lessons</div>
+  <h1>Backtesting a Premarket Strategy: 6,444 Rules, No Real Winner</h1>
+  <div class="article-meta">11 October 2026 · Gary Stow, performance marketing and AI</div>
+  <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Written by Gary Stow with help from AI tools. Every fact is checked and every article is approved by Gary before it goes live.</p>
+</div>
+
+<section>
+  <img src="/articles/backtesting-a-premarket-strategy-6-444-rules-no-real-winner/backtesting-a-premarket-strategy-6-444-rules-no-real-winner.webp" width="1200" height="800" fetchpriority="high" decoding="async" alt="Hands flip through a bound notebook of pre‑market snapshots, testing 6,444 strategies at once. A single click unleashes a burst of invisible data like sparks from a hidden engine" class="article-hero-img">
+  <div class="article-body">
+
+    <p>When I had time at my desk in the early afternoon, I had a simple premarket routine. I looked at the biggest gainers before the US market opened, checked whether the chart was still climbing or starting to cool, and if the candles said the momentum was picking up, I jumped in to scalp around 10% and get out before the open. I usually missed the vertical spike, and that was fine, because that was never my play.</p>
+
+    <p>I don't have that time any more, so I want an automated version to do it for me. It runs on a demo account with a £50 pot, so nothing here is real money and none of it is financial advice. Before letting it trade, I wanted one question answered: would a set of written-down rules have made money?</p>
+
+    <h3>Step 1: Build the data once, then test ideas in seconds</h3>
+
+    <p>My first attempt replayed every past day through my real trading code. It worked, but one run took 44 minutes, so testing a handful of ideas cost a whole evening. The fix was to work out every stock's numbers for every morning once, save them in one table, and then test rules against that table.</p>
+
+    <p>The table holds 51,042 mornings: every stock that was up or down 3% or more before the open, on 59 trading days from 20 July to 9 October 2026, using real 5-minute premarket prices. With that in place, 6,444 versions of the strategy ran in under ten seconds.</p>
+
+    <pre class="code-block"><code># The core idea, simplified: build the table once, then test many rules against it
+mornings = load_mornings()          # one row per stock per morning, built once
+results = {}
+for rule in all_rules:              # thousands of variations
+    trades = [rule.trade(m) for m in mornings if rule.picks(m)]
+    results[rule.name] = trades</code></pre>
+
+    <h3>Step 2: Look at what a typical premarket gainer actually does</h3>
+
+    <p>Before testing any rule, I looked at the stocks themselves. I took every stock that was up 10% or more at 13:00 UK time and still rising over the previous 30 minutes, which gave 286 mornings. The median stock in that group was already up 17.1% on the day.</p>
+
+    <figure class="article-figure"><img src="chart4_gainers.png" alt="Bar chart showing what premarket gainers did after 13:00 UK: 59% rose 3% or more, 44% rose 5% or more, 23% rose 10% or more, 14% fell 10% or more and 3% fell 25% or more before the open" loading="lazy" decoding="async"></figure>
+
+    <ul>
+      <li>59.1% went on to rise at least 3% before the open, and 44.1% rose at least 5%.</li>
+      <li>22.7% rose 10% or more, the full target I used to aim for.</li>
+      <li>14.3% fell 10% or more at some point, and 2.8% fell 25% or more.</li>
+      <li>The race between +5% and -5% was a coin toss: +5% came first 32.5% of the time and -5% came first 31.5% of the time. Neither happened in the other 36%.</li>
+    </ul>
+
+    <p>That coin toss matters most. A gainer that is still rising was no more likely to keep going than to turn, so any edge has to come from picking better or paying less.</p>
+
+    <h3>Step 3: Keep some days back before you look at the results</h3>
+
+    <p>The most important rule in testing is to hold some data back. I used the first two thirds of the days, everything before 14 September, to find the best rules, and the last third to check them without changing anything.</p>
+
+    <p>Only 20.8% of the 6,444 versions made money on the days they had not seen. The 25 best versions from the first period did no better, with 20% of them making money on the unseen days. Picking winners from the past told me nothing about the future.</p>
+
+    <h3>Step 4: Nudge the winner and see if it holds</h3>
+
+    <p>One rule looked brilliant: buy the biggest gainer that is up 10% or more and still rising at 13:00 UK, then sell at +5% or at the open. It averaged +2.20% a trade. Then I changed the buying time and nothing else.</p>
+
+    <figure class="article-figure"><img src="chart1_entry_time.png" alt="Bar chart of the same rule at different buying times, UK time: 10:00 -0.47%, 11:00 -0.30%, 12:00 -2.95%, 12:30 -1.39%, 13:00 +2.20%, 13:30 -1.10%, 14:00 +0.73% average per trade" loading="lazy" decoding="async"></figure>
+
+    <p>Half an hour earlier it lost 1.39% a trade, and half an hour later it lost 1.10%. A real edge looks like a plateau that still works, a little worse, when you nudge it. This looks like a spike, and when you test thousands of versions a few spikes appear by pure luck. I also thought I used to buy around 12:00, and in this data that was the worst time of all.</p>
+
+    <h3>Step 5: Charge yourself a realistic cost</h3>
+
+    <p>Every buy costs something: the gap between the buying and selling price (the spread), plus any slip between the price you see and the price you get. Premarket, on a small company that has already jumped a long way, that cost can be large. I don't know mine yet, so I tested a range.</p>
+
+    <figure class="article-figure"><img src="chart2_cost.png" alt="Bar chart of the same rule with different costs per buy: 0% gives +2.56%, 0.5% gives +2.20%, 1% gives +0.62%, 2% gives -1.48%, 3% gives -2.01% average per trade" loading="lazy" decoding="async"></figure>
+
+    <p>At 1% per buy most of the profit is gone, and at 2% it loses money. The whole strategy depends on a number I had never measured.</p>
+
+    <h3>Step 6: Don't trust a shortcut in the data</h3>
+
+    <p>Before I had real premarket prices, I tested February to early June using the opening price instead. That data said my -5% stop loss was the problem: for one of my score-based rules, removing the stop lifted the average from +0.58% to +1.63% a trade over 111 trades.</p>
+
+    <p>When I re-ran that same rule with real premarket prices for August to October, it said the opposite. Part of the gap is a different set of months, but either way the shortcut pointed me the wrong way. With the -5% stop the rule averaged -0.46% a trade over 41 trades, and with no stop it averaged -2.35%. If I had trusted the shortcut, I would have removed the one thing protecting the pot.</p>
+
+    <h3>Step 7: Try the tool your broker already gives you</h3>
+
+    <p>My broker lets you place a limit order, which only buys if the price drops to a level you choose. Instead of paying whatever the price is, you wait for a small dip. I tested 10,404 limit-order versions.</p>
+
+    <figure class="article-figure"><img src="chart3_limits.png" alt="Bar chart of limit orders averaged over 10 buying times: at the price -1.03%, 1% below -0.82%, 2% below -0.58%, 3% below -0.60%, 5% below -0.20% average per trade" loading="lazy" decoding="async"></figure>
+
+    <p>Limit orders helped at every level, and the deepest limit helped most. 29.5% of limit versions made money on unseen days, against 20.8% without. Averaged across buying times, though, even the best level still lost 0.20% a trade. Better, but not good enough.</p>
+
+    <h3>What I'm doing instead of picking a winner</h3>
+
+    <p>I have written down five rules and frozen them. Every weeknight my automation scores what each one would have done that day, on mornings it has never seen, so nothing can be tweaked to fit the past. After 20 trading days I will know far more than another week of backtesting could tell me.</p>
+
+    <p>A second new check records the price each order was meant to fill at and the price it actually got. That is the number the whole thing hangs on, and I will share both results when they are in.</p>
+
+    <p>You can download the numbers behind every chart in this article: <a href="https://garystow.co.uk/articles/backtesting-a-premarket-strategy-6-444-rules-no-real-winner/premarket-lab-summary.csv">premarket lab results (CSV)</a>.</p>
+
+    <h3>Can you backtest a premarket strategy with free data?</h3>
+
+    <p>Yes, within limits. Yahoo Finance keeps around 60 days of 5-minute bars including premarket, which is enough for a first look but not enough to trust. Free data has no record of buying and selling prices, so you cannot see the real cost of a trade, and you should test a range of costs as I did above.</p>
+
+    <h3>Why do backtests lie?</h3>
+
+    <p>Mostly because people test many ideas and keep the best one. With thousands of versions some will look great by chance. Holding days back for checking, nudging the winner to see if it holds, and charging a realistic cost are the three checks that caught it for me.</p>
+
+    <h3>How many days of data do you need?</h3>
+
+    <p>More than I have. 59 days and roughly 40 to 60 trades per rule is enough to rule ideas out, but not to prove one works. That is why the forward test matters more than any backtest.</p>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Want to talk about Backtesting a Premarket Strategy: 6,444 Rules, No Real Winner?</h2>
+  <p>Get in touch if this is relevant to what you're working on.</p>
+  <div class="cta-row">
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
+    <a href="/articles/" class="btn">More articles</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="mailto:garystow.hq@gmail.com">Email ↗</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>
