@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Gary HQ Village: watch my AI teams at work — Gary Stow</title>
-<meta name="description" content="My real AI automation teams, drawn as a cartoon village. Watch the website and trading teams find problems, Wade think, Claude Code build, and work wait at the Town Hall for my decision.">
+<meta name="description" content="My real AI automation teams, drawn as a cartoon village. Website, trading, outreach, learning and research lab teams find problems, Wade thinks, Claude Code builds, and work waits at the Town Hall for my decision.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://garystow.co.uk/village/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Gary HQ Village: my AI teams at work">
 <meta property="og:description" content="Real AI automation teams on my own PC, drawn as a village you can watch and click around.">
 <meta property="og:url" content="https://garystow.co.uk/village/">
+<meta property="og:image" content="https://garystow.co.uk/assets/village-preview.webp">
 <link rel="icon" href="/favicon.ico">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebPage","name":"Gary HQ Village","url":"https://garystow.co.uk/village/","author":{"@type":"Person","name":"Gary Stow","url":"https://garystow.co.uk/"},"description":"Gary Stow's AI automation teams shown as a live cartoon village."}
@@ -39,6 +40,7 @@ body{background:var(--chrome);color:var(--text);font-family:var(--body);font-siz
 header{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:12px 18px;border-bottom:3px solid #000}
 h1{font-family:var(--display);font-weight:400;font-size:2rem;margin:0;letter-spacing:.03em;color:var(--gold);text-shadow:3px 3px 0 #000}
 .snap{color:var(--muted);font-size:.95rem}
+[hidden]{display:none!important}
 .legend{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
 .chip{display:inline-flex;align-items:center;gap:7px;padding:5px 10px;border-radius:6px;background:var(--chrome-2);border:2px solid #000;font-weight:700;font-size:.95rem}
 .dot{width:13px;height:13px;border-radius:3px;display:inline-block;border:2px solid #000}
@@ -93,6 +95,9 @@ a{color:#9fd0ff}
     <span class="snap" id="snap">Loading…</span><a class="snap" id="backLink" href="/" style="color:#9fd0ff"></a>
     <div class="legend" aria-label="Map key">
       <span class="chip"><span class="dot" style="background:var(--web)"></span>Website teams</span>
+      <span class="chip"><span class="dot" style="background:#d9468f"></span>Outreach</span>
+      <span class="chip"><span class="dot" style="background:#6f8f1f"></span>Learning</span>
+      <span class="chip"><span class="dot" style="background:#00b8c4"></span>Labs</span>
       <span class="chip"><span class="dot" style="background:var(--trade)"></span>Trading teams</span>
       <span class="chip"><span class="dot" style="background:#a8d86e"></span>Houses: the web pages</span>
       <span class="chip"><span class="dot" style="background:#d9a94f"></span>Fields: the 3 strategies (bigger = more profit)</span>
@@ -113,6 +118,10 @@ a{color:#9fd0ff}
   </div>
 
   <aside>
+    <section class="card" id="noticeCard" hidden>
+      <h2>For Gary: reports to read</h2>
+      <div id="notices"></div>
+    </section>
     <section class="card hall">
       <h2>Waiting at the Town Hall</h2>
       <div id="queue"></div>
@@ -139,7 +148,8 @@ a{color:#9fd0ff}
     </section>
     <section class="card" id="aboutCard" hidden>
       <h2>What is this?</h2>
-      <p style="margin:0">These are the real AI teams that run my website and my demo trading system, drawn as a village. Every department is a small automation running on my own PC. They find problems, a Supervisor works out the cause, and anything that needs a human waits outside the Town Hall for me.</p>
+      <p style="margin:0">These are the real AI teams that run my website, my demo trading system and everything around them, drawn as a village. Every department is a small automation running on my own PC. They find problems, a Supervisor works out the cause, and anything that needs a human waits outside the Town Hall for me.</p>
+      <p style="margin:0">Website teams (blue) keep the site healthy and write articles. Trading teams (orange) watch the demo strategies. The Outreach Office (pink) finds people my articles could genuinely help, but I send every note myself. The Listening Post (green) reads the industry news each week. The Labs team (cyan, in lab coats) tests trading ideas against simply owning the market before any of them go near the system.</p>
       <p style="margin:0">Wade is my local AI (LM Studio, no token bill). Claude Code writes the code. The houses are this website's pages: more visits, bigger house. The fields are my three trading strategies on a demo account: profit makes them bloom, losses make them wilt.</p>
       <p style="margin:0"><a href="/articles/how-to-build-a-live-village-dashboard-for-your-ai-agents/"><b>How to build your own village, step by step</b></a></p>
       <p style="margin:0"><a href="/agents/">How the AI teams work</a> · <a href="/articles/the-independent-audit-why-i-make-ai-check-its-own-work/">Why I make AI check its own work</a> · <a href="/">garystow.co.uk</a></p>
@@ -194,12 +204,21 @@ const BUILDINGS = [
   ["health","Task Health Watchdog","trade","dept",41.8,7.6,2,2.2,1.4,"Checks every scheduled job on your PC, and names the cause when one fails."],
   ["growth","Growth Review","trade","dept",39.4,7.6,2,2.2,1.4,"Compares this month with last month for both teams, every day. Every flat or falling number needs a reason and an action, or it is flagged as a gap in the team.",1],
   ["branch","Branch Watch","trade","dept",44.2,7.6,2,2.2,1.2,"Makes sure every finished fix is merged and live, so the Executor's work never sits waiting on a branch.",1],
+  ["lab","Research Lab","labs","dept",41.3,16.0,2.6,2.2,2.0,"The Labs team, in lab coats. Tests every trading idea against simply owning the market, costs included, before any money goes near it. Nothing reaches the trading system without Gary's YES.",1],
+  ["bench","Backtest Bench","labs","dept",44.9,15.6,1.6,1.4,1.0,"Runs each idea over years of real prices and splits the years, so a rule that only worked once is caught."],
+  ["shadowb","Shadow Books","labs","dept",44.9,18.4,1.6,1.4,1.0,"Forward tests with no money: frozen premarket rules and box bounces, scored on real prices every weeknight."],
+  ["datadesk","Data Desk","labs","dept",41.5,19.6,1.6,1.4,1.0,"Checks every price folder is still updating each morning and fills in missing history."],
   ["bear","Bear Squad Dojo","bear","dept",36,16.6,3,2.4,1.5,"The ninjas test making money when the market falls, using inverse funds, on paper only. They never place an order: a model only goes live with Gary's YES.",1],
   ["store","Harvest Store","store","store",38.8,29.6,3,2.4,1.5,"Everything the three strategy fields have harvested, added together. Crates of flowers when the combined result is up; the bin fills with wilted stems when it is down. Demo money after fees.",1],
   ["obs","The Observatory","obs","dept",15.2,1.2,2.6,2.6,2.4,"Scans the horizon every evening for new opportunities, scores each one against a rubric, and only brings the best to the Town Hall. Nothing happens without Gary's YES.",1],
   ["obsl","Lookout","obs","dept",14.9,4.5,1.5,1.4,1.0,"Scans the horizon every evening and keeps only what fits."],
   ["obss","Star Chart Room","obs","dept",16.6,4.5,1.5,1.4,1.0,"Scores each find against a rubric; only the best go to the Town Hall."],
   ["obse","Instrument Workshop","obs","dept",18.3,4.5,1.5,1.4,1.0,"Turns a YES into finished work, ready for Gary to use. Never acts on its own."],
+  ["outr","Outreach Office","out","dept",8.6,1.2,2.6,2.4,2.0,"Finds newsletters, podcasts, events and communities where Gary's articles genuinely help, and puts up to three personal notes on his desk each week. Every note is fact-checked and Gary sends it himself: nothing is ever sent automatically.",1],
+  ["outs","Scout","out","dept",8.3,4.4,1.5,1.4,1.0,"Opens each target's website and finds the right way in: an email, a submission form or a community's posting rules."],
+  ["outw","Pitch Writer","out","dept",10.0,4.4,1.5,1.4,1.0,"Wade drafts each note from the real article text and Gary's facts file. A second check rejects anything invented, and failed drafts try again next week."],
+  ["outl","Link Watcher","out","dept",11.7,4.4,1.5,1.4,1.0,"Counts the websites that link to garystow.co.uk, so the Outreach Office knows which notes actually worked."],
+  ["listen","Listening Post (Learning & Industry)","learn","dept",10.4,16.6,2.2,1.8,2.2,"Reads search, PPC and AI news, learning pieces and what's trending every week. Wade picks what matters and suggests article ideas to the Content Writer. Headlines and links come straight from the sources.",1],
 ];
 // Every strategy field starts the same size, then grows or shrinks with its real result after fees (demo account for now).
 const FIELD_BASE = [["game","The Game","Premarket runners, scalp 10%",29.5,22.5],["m1","Model 1","Same-day continuation",38.5,22.5],["m2","Model 2","Range-bound bouncy ball",29.5,29]];
@@ -218,7 +237,7 @@ const cv = document.getElementById("map"), ctx = cv.getContext("2d");
 const ctxRef = {c: ctx}; // ground is pre-rendered to its own canvas through the same helpers
 let cam = {x: 0, y: 0, z: 1}, showAll = false, labelMode = 1, showFlow = false, selected = null, dpr = 1, clock = 0, last = 0;
 const iso = (x, y, up = 0) => ({x: (x - y) * TW / 2, y: (x + y) * TH / 2 - up});
-const COL = {web: "#3f8fe6", trade: "#ee6a3c", hall: "#ffc23d", build: "#43c271", wade: "#a97cf4", bear: "#3a3a46", obs: "#138a8a", store: "#b5482e"};
+const COL = {labs: "#00b8c4", out: "#d9468f", learn: "#6f8f1f", web: "#3f8fe6", trade: "#ee6a3c", hall: "#ffc23d", build: "#43c271", wade: "#a97cf4", bear: "#3a3a46", obs: "#138a8a", store: "#b5482e"};
 const INK = "#1b1b1b";
 let seed = 21; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
 const K = () => 1 / Math.max(.6, Math.min(1.6, cam.z)); // keeps text the same size on screen
@@ -247,7 +266,9 @@ const front = id => { if (id.startsWith("field:")) { const f = FIELDS.find(f => 
 
 // work flows: [from, to, colour, step]
 const FLOWS = [];
-buildings.filter(b => b.role === "dept").forEach(b => FLOWS.push([b.id, b.team === "web" ? "wsup" : b.team === "obs" ? "hall" : "tsup", COL[b.team], 0]));
+// where each department walks its work (11 Oct 2026: Outreach -> its office -> Town Hall; Listening Post -> Content Writer)
+const destOf = b => b.team === "web" ? "wsup" : b.team === "obs" ? "hall" : b.team === "out" ? (b.id === "outr" ? "hall" : "outr") : b.team === "learn" ? "writer" : b.team === "labs" ? (b.id === "lab" ? "tsup" : "lab") : "tsup";
+buildings.filter(b => b.role === "dept").forEach(b => FLOWS.push([b.id, destOf(b), COL[b.team], 0]));
 FLOWS.push(["wsup","wman",COL.web,2],["tsup","tman",COL.trade,2],["wman","hall",COL.hall,3],["tman","hall",COL.hall,3],
   ["hall","wexe",COL.web,5],["hall","texe",COL.trade,5],["wexe","cc",COL.web,6],["texe","cc",COL.trade,6],["cc","site",COL.web,7],["cc","field:game",COL.trade,7]);
 
@@ -275,7 +296,7 @@ for (let i = 0; i < 160; i++) { const x = rnd() * W, y = rnd() * (RIVER_Y - .3);
 // hidden Gary rotates daily: office (white tee, jeans, cap), snowboard (white puffer, olive trousers, beanie),
 // renovation (bright blue top, black work shorts, cap).
 const OUTFITS = {office: {top: "#ffffff", bottom: "#3b5f9e", hat: "cap"}, snow: {top: "#f4f4f0", bottom: "#6b7a3a", puffer: true, hat: "beanie"},
-                 reno: {top: "#1e7bff", bottom: "#1b1b1b", shorts: true, hat: "cap"}};
+                 reno: {top: "#1e7bff", bottom: "#1b1b1b", shorts: true, hat: "cap"}, lab: {top: "#ffffff", bottom: "#ffffff", coat: true}};
 const FUN = (() => {
   const qs = new URLSearchParams(location.search), now = new Date();
   const md = (now.getMonth() + 1) * 100 + now.getDate();
@@ -543,7 +564,7 @@ function person(o) { const p = Object.assign({x: 0, y: 0, path: [], wait: 0, msg
 function goTo(p, id) { const t = front(id); const y0 = Math.max(p.y, t.y) + .05;
   p.path = (Math.abs(p.y - 14.6) < 6 && Math.abs(t.y - 14.6) < 6) ? [{x: p.x, y: 14.6}, {x: t.x, y: 14.6}, t] : [{x: p.x, y: y0}, {x: t.x, y: y0}, t]; p.target = id; }
 function place(p, id) { const t = front(id); p.x = t.x; p.y = t.y; }
-buildings.filter(b => b.role === "dept").forEach(b => { const p = person({team: b.team, loop: [b.id, b.team === "web" ? "wsup" : b.team === "obs" ? "hall" : "tsup"], step: 0}); place(p, b.id); p.wait = 1 + rnd() * 9; });
+buildings.filter(b => b.role === "dept").forEach(b => { const p = person({team: b.team, loop: [b.id, destOf(b)], step: 0}); place(p, b.id); p.wait = 1 + rnd() * 9; });
 [["wsup","wman"],["tsup","tman"],["wman","hall"],["tman","hall"]].forEach(([a, b]) => { const p = person({team: byId[a].team, loop: [a, b], step: 0}); place(p, a); p.wait = rnd() * 6; });
 const farmers = [];
 FIELDS.forEach(f => { for (let i = 0; i < 2; i++) farmers.push({f, row: i * 2 + 1, t: rnd() * 10}); });
@@ -741,7 +762,7 @@ function workshopDraw(b) {
 }
 
 /* ================================================================ characters: big round heads, paper bodies, hop when walking (all original) */
-const HAT = {web: "#2f6fd0", trade: "#c94a24", hall: "#ffc23d", build: "#ffcf2e", wade: "#5b3aa8", bear: "#1b1b1b", obs: "#0d5f63"};
+const HAT = {labs: "#00838c", out: "#b02d70", learn: "#4f6a12", web: "#2f6fd0", trade: "#c94a24", hall: "#ffc23d", build: "#ffcf2e", wade: "#5b3aa8", bear: "#1b1b1b", obs: "#0d5f63"};
 function drawPerson(p, sx, sy, sc, bobIn) {
   const q = sx !== undefined ? {x: sx, y: sy} : iso(p.x, p.y);
   const s = sc || (p.hero ? 1.9 : 1.6), moving = p.path && p.path.length;
@@ -752,11 +773,12 @@ function drawPerson(p, sx, sy, sc, bobIn) {
   const shirt = p.team === "wade" ? "#7b57c9" : p.team === "build" ? "#43c271" : COL[p.team] || "#888";
   ctx.fillStyle = shirt; ctx.beginPath(); ctx.moveTo(-6, 0); ctx.lineTo(6, 0); ctx.lineTo(5, -11); ctx.lineTo(-5, -11); ctx.closePath(); ctx.fill(); ctx.stroke();
   ctx.fillStyle = "#333"; ctx.fillRect(-6, -1.5, 12, 1.5);
-  const OUT = p.outfit || (p.team === "obs" ? OUTFITS.snow : null);
+  const OUT = p.outfit || (p.team === "obs" ? OUTFITS.snow : p.team === "labs" ? OUTFITS.lab : null);
   if (OUT) { ctx.fillStyle = OUT.top; ctx.beginPath(); ctx.moveTo(-6, -4); ctx.lineTo(5.6, -4); ctx.lineTo(5, -11); ctx.lineTo(-5, -11); ctx.closePath(); ctx.fill(); ctx.stroke();
     if (OUT.puffer) { ctx.lineWidth = .8; ctx.beginPath(); ctx.moveTo(-5.4, -6.5); ctx.lineTo(5.4, -6.5); ctx.moveTo(-5.2, -8.8); ctx.lineTo(5.2, -8.8); ctx.stroke(); ctx.lineWidth = 1.3; }
     ctx.fillStyle = OUT.bottom; ctx.fillRect(-6, -4, 12, OUT.shorts ? 2.4 : 4); ctx.strokeRect(-6, -4, 12, OUT.shorts ? 2.4 : 4);
-    if (OUT.shorts) { ctx.fillStyle = "#ffd9b8"; ctx.fillRect(-5, -1.6, 10, 1.6); } }
+    if (OUT.shorts) { ctx.fillStyle = "#ffd9b8"; ctx.fillRect(-5, -1.6, 10, 1.6); }
+    if (OUT.coat) { ctx.lineWidth = .9; ctx.beginPath(); ctx.moveTo(0, -11); ctx.lineTo(0, 0); ctx.stroke(); ctx.fillStyle = "#00b8c4"; ctx.fillRect(1.4, -9.5, 2.6, 1.6); ctx.lineWidth = 1.3; } }
   ctx.fillStyle = p.team === "build" ? "#ffcf2e" : shade(shirt, .8); ctx.beginPath(); ctx.arc(-6.5, -5, 2.1, 0, 7); ctx.arc(6.5, -5, 2.1, 0, 7); ctx.fill();
   ctx.fillStyle = "#ffd9b8"; ctx.beginPath(); ctx.arc(0, -17, 7.6, 0, 7); ctx.fill(); ctx.stroke();
   ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.ellipse(-2.4, -18, 2.6, 3.1, 0, 0, 7); ctx.ellipse(2.4, -18, 2.6, 3.1, 0, 0, 7); ctx.fill(); ctx.lineWidth = .9; ctx.stroke();
@@ -767,6 +789,8 @@ function drawPerson(p, sx, sy, sc, bobIn) {
   else if (p.team === "build") { ctx.beginPath(); ctx.arc(0, -21.5, 7.4, Math.PI, 0); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.fillRect(-9, -22, 18, 2); ctx.strokeRect(-9, -22, 18, 2); }
   else if (p.team === "obs") { ctx.fillStyle = "#138a8a"; ctx.beginPath(); ctx.arc(0, -21.5, 7.6, Math.PI, 0); ctx.closePath(); ctx.fill(); ctx.stroke();
     ctx.fillStyle = "#0d5f63"; ctx.fillRect(-7.8, -22.5, 15.6, 2.6); ctx.strokeRect(-7.8, -22.5, 15.6, 2.6); ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(0, -29.6, 2.2, 0, 7); ctx.fill(); ctx.stroke(); }
+  else if (p.team === "labs") { ctx.fillStyle = "#5a3a1a"; ctx.beginPath(); ctx.arc(0, -21.5, 7.4, Math.PI * 1.05, Math.PI * 1.95); ctx.fill();
+    ctx.fillStyle = "#1b1b1b"; ctx.fillRect(-7.8, -19.4, 15.6, 2.2); ctx.fillStyle = "#bff4ff"; ctx.beginPath(); ctx.ellipse(-2.6, -18.3, 2.9, 2.5, 0, 0, 7); ctx.ellipse(2.6, -18.3, 2.9, 2.5, 0, 0, 7); ctx.fill(); ctx.stroke(); }
   else if (p.team === "trade") { ctx.beginPath(); ctx.arc(0, -21.5, 7.2, Math.PI, 0); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.moveTo(4 * face, -22); ctx.lineTo(11 * face, -21); ctx.lineTo(4 * face, -20); ctx.closePath(); ctx.fill(); ctx.stroke(); }
   else { ctx.beginPath(); ctx.ellipse(0, -23, 7.8, 3, 0, 0, 7); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.arc(0, -23.5, 4.8, Math.PI, 0); ctx.fill(); ctx.stroke(); }
   FUN.hat(p);
@@ -964,15 +988,18 @@ function renderSelected() {
       <a href="https://garystow.co.uk${s.path}" target="_blank" rel="noopener">Open the page ↗</a>`; return; }
   selName.textContent = s.name; const e = latest[s.id];
   const wadeNote = s.role === "wade" ? `<p style="margin:0"><b>Right now:</b> the ${esc(byId[wadeTarget].name)} is waiting on Wade, who is ${esc(wadeMsg)}. Follow the purple beam.</p>` : "";
+  const tm = (DATA.teams || {})[s.id];
+  const teamHtml = tm ? `${(tm.stats || []).map(t => `<p style="margin:0">${esc(t)}</p>`).join("")}${(tm.links || []).length ? `<p style="margin:0">${tm.links.map(l => `<a class="btn" href="${esc(l.url)}"${l.url.startsWith("/") ? "" : ' target="_blank" rel="noopener"'}>${esc(l.title)} ↗</a>`).join(" ")}</p>` : ""}` : "";
+  const reports = PRIVATE ? (DATA.notices || []).filter(n => n.from === s.id).map(n => `<a class="btn" href="${esc(n.link)}">${n.new ? "NEW: " : ""}${esc(n.title)} ↗</a>`).join(" ") : "";
   selBody.innerHTML = `<div class="row">${s.isNew ? '<span class="pill new">NEW TODAY</span>' : ""}<span class="pill ok">Working</span></div><p style="margin:0">${esc(s.job)}</p>${wadeNote}
-    <p style="margin:0" class="muted">${e ? `<b style="color:var(--gold)">${e[0]}</b> ${esc(e[3])}` : "Nothing logged for this building today."}</p>`;
+    <p style="margin:0" class="muted">${e ? `<b style="color:var(--gold)">${e[0]}</b> ${esc(e[3])}` : "Nothing logged for this building today."}</p>${teamHtml}${reports ? `<p style="margin:0">${reports}</p>` : ""}`;
 }
 function renderRequest(r) {
   selName.textContent = r.title;
   const from = byId[r.from] ? byId[r.from].name : "team";
   if (!PRIVATE) { selBody.innerHTML = `<p style="margin:0">The ${esc(from)} is waiting for Gary's decision. He answers from the private version of this village, and the owner then walks the answer back to the team.</p>`; return; }
   const meta = `<div class="row"><span class="pill ok">From the ${esc(from)}</span>${r.count > 1 ? `<span class="pill warn">${r.count} the same</span>` : ""}</div>`;
-  if (r.link) { selBody.innerHTML = `${meta}<p style="margin:0">${esc(r.why)}</p><p style="margin:0"><a class="btn" href="${esc(r.link)}" target="_blank" rel="noopener">Decide on the trading dashboard ↗</a></p>`; return; }
+  if (r.link) { const own = r.kind === "notice"; selBody.innerHTML = `${meta}<p style="margin:0">${esc(r.why)}</p><p style="margin:0"><a class="btn" href="${esc(fixLink(r.link))}"${own ? "" : ' target="_blank" rel="noopener"'}>${esc(r.linkLabel || "Decide on the trading dashboard")} ↗</a></p>`; return; }
   const look = r.preview ? `<p style="margin:0"><a class="btn" href="${esc(r.preview)}" target="_blank" rel="noopener">${esc(r.previewLabel || "Read it first")} ↗</a></p>` : "";
   selBody.innerHTML = `${meta}<p style="margin:0">${esc(r.why)}</p>${look}
     <label for="vnotes" class="muted">Notes or feedback (optional)</label><textarea id="vnotes" rows="3" style="width:100%;font:inherit;border:3px solid #000;border-radius:8px;padding:8px"></textarea>
@@ -981,16 +1008,32 @@ function renderRequest(r) {
   selBody.querySelectorAll("button").forEach(b => b.onclick = () => decide(r, b.dataset.a, (document.getElementById("vnotes") || {}).value || ""));
 }
 const queueEl = document.getElementById("queue");
+// 11 Oct 2026: on the phone (through Tailscale) the trading dashboard is on port 8443 of the same address
+const TRADING = /^(localhost|127\.)/.test(location.hostname) ? "http://localhost:5006/" : "https://" + location.hostname + ":8443/";
+const fixLink = u => String(u || "").replace("http://localhost:5006/", TRADING);
+const noticesEl = document.getElementById("notices");
+function renderNotices() {
+  const list = DATA.notices || []; if (!PRIVATE || !list.length) return;
+  document.getElementById("noticeCard").hidden = false; noticesEl.innerHTML = "";
+  const fresh = list.filter(n => n.new).length;
+  const head = document.createElement("p"); head.style.margin = "0";
+  head.innerHTML = fresh ? `<span class="pill new">${fresh} new</span> The main ones also send a messenger to wait outside the Town Hall.` : `<span class="pill ok">All read</span> Nothing new since you last looked.`;
+  noticesEl.appendChild(head);
+  list.filter(n => n.new).slice(0, 8).forEach(n => { const a = document.createElement("a"); a.className = "owner"; a.href = n.link; a.style.textDecoration = "none";
+    a.innerHTML = `<span class="bang">!</span><span>${esc(n.title)}<br><span style="font-weight:400">${esc(byId[n.from] ? byId[n.from].name : "")} · ${esc(n.updated)}</span></span>`; noticesEl.appendChild(a); });
+  const all = document.createElement("p"); all.style.margin = "0";
+  all.innerHTML = `<a class="btn" href="/notice/indexing">Send pages to Google (5 min) ↗</a> <a class="btn" href="/board">All reports and desks (big text) ↗</a> <a class="btn" href="/outreach">Outreach desk ↗</a>`; noticesEl.appendChild(all);
+}
 function renderQueue() {
-  queueEl.innerHTML = "";
-  const total = DATA.waiting_total != null ? DATA.waiting_total : queue.reduce((n, r) => n + (r.count || 1), 0);
-  if (!queue.length) { queueEl.innerHTML = `<p style="margin:0"><span class="pill ok">Nobody waiting</span> The teams handled everything themselves.</p>`; return; }
+  queueEl.innerHTML = ""; renderNotices();
+  const decisions = queue.filter(r => r.kind !== "notice");
+  if (!decisions.length) { queueEl.innerHTML = `<p style="margin:0"><span class="pill ok">Nobody waiting</span> The teams handled everything themselves.</p>`; return; }
   if (!PRIVATE) { queueEl.innerHTML = `<p style="margin:0"><span class="pill warn">Owners waiting</span> Each one stands outside the Town Hall until Gary answers YES, NO or NOT YET from his private version.</p>`; return; }
-  const shown = queue.slice(0, 10), more = queue.slice(10).reduce((n, r) => n + (r.count || 1), 0);
+  const shown = decisions.slice(0, 10), more = decisions.slice(10).reduce((n, r) => n + (r.count || 1), 0);
   shown.forEach(r => { const b = document.createElement("button"); b.className = "owner";
     b.innerHTML = `<span class="bang">!</span><span>${esc(r.title)}${r.count > 1 ? ` <span class="pill warn">×${r.count}</span>` : ""}<br><span style="font-weight:400">${esc(byId[r.from] ? byId[r.from].name : "")}</span></span>`;
     b.onclick = () => { selected = people.find(p => p.request === r) || null; renderRequest(r); }; queueEl.appendChild(b); });
-  if (more) { const p = document.createElement("p"); p.style.margin = "0"; p.innerHTML = `…and ${more} more. <a href="http://localhost:5006/" target="_blank" rel="noopener">Trading dashboard ↗</a>`; queueEl.appendChild(p); }
+  if (more) { const p = document.createElement("p"); p.style.margin = "0"; p.innerHTML = `…and ${more} more. <a href="${TRADING}" target="_blank" rel="noopener">Trading dashboard ↗</a>`; queueEl.appendChild(p); }
 }
 async function decide(r, a, notes) {
   const owner = people.find(p => p.request === r);
@@ -1016,7 +1059,7 @@ async function refreshData() {
   if (!d) return;
   if (d.pages.length !== DATA.pages.length || (d.fields_sig && d.fields_sig !== DATA.fields_sig)) { location.reload(); return; }
   const fresh = d.events.filter(e => !SEEN.has(e[0] + e[3])); fresh.forEach(e => { SEEN.add(e[0] + e[3]); playEvent(e); });
-  DATA.events = d.events; DATA.waiting_total = d.waiting_total;
+  DATA.events = d.events; DATA.waiting_total = d.waiting_total; DATA.notices = d.notices || [];
   const ids = q => (q || []).map(r => r.id).join("|");
   if (ids(d.requests) !== ids(queue)) { queue = (d.requests || []).slice(); spawnOwners(); renderQueue(); }
   setSnap(d);
@@ -1058,6 +1101,8 @@ document.getElementById("home").onclick = () => fit();
 function fit() { const r = cv.getBoundingClientRect(); const c = iso(22.5, 13); cam.z = Math.max(.55, Math.min(1, r.width / 1300)); cam.x = -c.x * cam.z; cam.y = -c.y * cam.z + 70; }
 
 buildGround(); fit(); spawnOwners(); renderQueue(); setSnap(DATA);
+// deep link: /village#select=outr opens that building's panel (used by links and tests)
+{ const h = (location.hash || "").match(/select=([\w:-]+)/); if (h && byId[h[1]]) { selected = byId[h[1]]; renderSelected(); } }
 const back = document.getElementById("backLink");
 if (PRIVATE) { back.textContent = "← Website dashboard"; back.href = "/"; document.getElementById("footNote").textContent = "Private version. Town Hall buttons do exactly what the dashboard buttons do. Characters are original."; }
 else { back.textContent = "← garystow.co.uk"; back.href = "/"; document.getElementById("aboutCard").hidden = false; }
