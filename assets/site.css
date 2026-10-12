@@ -58,6 +58,9 @@ nav a {
 }
 nav a:hover { color: var(--accent); }
 nav a.active { color: var(--accent); }
+/* nav-fit (12 Oct 2026): 9 menu links fit on one line on mid-size screens */
+.logo { white-space: nowrap; }
+@media (min-width: 901px) and (max-width: 1320px) { nav a { margin-left: 1.3rem; font-size: 0.75rem; } }
 
 /* ── HERO (used on Home, and as a slim page-header elsewhere) ── */
 .hero {

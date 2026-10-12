@@ -19,6 +19,7 @@
   "headline": "How I Cut a PPC Audit From 9 Hours to 30 Minutes With AI",
   "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
   "datePublished": "2026-10-07",
+  "dateModified": "2026-10-12",
   "url": "https://garystow.co.uk/articles/how-i-cut-a-ppc-audit-from-9-hours-to-30-minutes-with-ai/"
 }
 </script>
@@ -51,6 +52,8 @@
     <a href="/#about">About</a>
     <a href="/work/">Work</a>
     <a href="/agents/">AI &amp; Agents</a>
+    <a href="/village/">Village</a>
+    <a href="/lab/">Lab</a>
     <a href="/articles/" class="active">Articles</a>
     <a href="/speaking/">Speaking</a>
     <a href="/contact/">Contact</a>
@@ -62,7 +65,7 @@
   <a href="/articles/" class="article-back">← All articles</a>
   <div class="hero-label">Industry</div>
   <h1>How I Cut a PPC Audit From 9 Hours to 30 Minutes With AI</h1>
-  <div class="article-meta">7 October 2026 · Gary Stow, performance marketing and AI</div>
+  <div class="article-meta">7 October 2026 · Updated 12 October 2026 · Gary Stow, performance marketing and AI</div>
   <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Written by Gary Stow with help from AI tools. Every fact is checked and every article is approved by Gary before it goes live.</p>
 </div>
 
@@ -70,45 +73,108 @@
   <img src="/articles/how-i-cut-a-ppc-audit-from-9-hours-to-30-minutes-with-ai/how-i-cut-a-ppc-audit-from-9-hours-to-30-minutes-with-ai.webp" width="1200" height="800" fetchpriority="high" decoding="async" alt="Sketch of a messy pile of printed spreadsheets next to a short ticked checklist, a pen and an hourglass" class="article-hero-img">
   <div class="article-body">
 
-    <p>Auditing every element of a PPC account used to take me nine hours or more. With an AI-assisted process it now takes under thirty minutes from start to finish, and it is even quicker if the data comes in through an API or an MCP connection instead of downloads. The point was never just speed, though, it was better recommendations, and this is how the process works in plain words.</p>
+    <p>Every so often a new account lands in my book of business, and the fastest way I know to get under its skin is a full audit: where the money's going, where the mistakes are, and where the opportunities are hiding. On top of that I was regularly being asked to help colleagues with their accounts, and an audit was always the quickest route to an answer for them too. The problem was simple. A proper audit took me around nine hours, and I didn't have nine spare hours every time someone needed one.</p>
 
-    <h3>Step One: Export the Right Data</h3>
+    <h3>Why it took nine hours</h3>
 
-    <p>The system can only be as good as what you give it, so the first job is pulling the key reports out of the platform. I export:</p>
+    <p>The nine hours weren't padding. A full audit for me meant a document of around 10,000 words, going into real detail on every part of the account: keywords sitting in the wrong ad groups, search queries that didn't belong, negative keywords quietly blocking things they shouldn't, and every other performance challenge I could find. A lot of it was checking the basics were in place, and on multi-£m accounts the basics matter, because small leaks at that spend add up fast.</p>
+
+    <p>My manual method was always the same. I'd go into each section of the account, landing pages, ad copy, keywords and so on, and look at the numbers. On a big account most things sit in the middle and stay there. What you're looking for is the extremes, the big over-performers and the big under-performers, because they show you what to do more of and what to stop doing. Before any of that, I'd set the account's own goal as the yardstick: its targets, its CPA, what the advertiser actually hoped would happen. An audit without that is just a list of observations.</p>
+
+    <h3>Where a human starts to struggle</h3>
+
+    <p>The hard part is volume, and remembering everything at once. On a multi-£m account the ad copy alone can run to a couple of thousand variations, especially once responsive search ads are in the mix, and checking what's working means going through Excel line by line.</p>
+
+    <p>Negative keywords are tricky simply because they live in so many places: ad group level, campaign level and account level, and some of the lists I worked through were absolutely massive. You have to check whether each negative is stopping a keyword or an ad you actually want to serve, and that means holding the keywords, the search queries and every negative list in your head at the same time.</p>
+
+    <p>For me personally, though, the hardest part was always tracking. When an account has lots of tracking codes and custom parameters added to its URLs, you're reading line after line of symbols, brackets and strings that all look almost the same, and spotting the one that's broken is genuinely straining on the eyes. That's exactly where tired eyes miss things, and where your own biases about an account creep in.</p>
+
+    <p>That monotonous cross-checking, the work that eats the hours and the mental energy, was the job I wanted AI to take on. The thinking about the client stays with me.</p>
+
+    <h3>A real example of what it catches</h3>
+
+    <p>One audit was for a financial services account. Two things came out of it. First, some of their negative terms were blocking their own campaigns, and nobody had noticed. Second, their brand and generic keywords were bleeding into each other, so the split they thought was clean wasn't.</p>
+
+    <p>The brand and generic mix was really hurting their numbers. Whenever they talked about brand performance versus generic performance, they were comparing two buckets that each had the other mixed in. Their view of what was working was skewed, and decisions about where to put budget were being made on it. Neither problem would have jumped out from the headline numbers. You only find them by cross-checking keywords, search terms and every negative list against each other, which is exactly the slog the AI took off my plate.</p>
+
+    <h3>Version one: an agent with twenty exports</h3>
+
+    <p>I first built it as an agent with M365 Agent Builder. From the user's side it was one prompt, pre-written behind a button:</p>
+
+    <blockquote><p>Run an audit on [client]. They are looking to achieve [goal]. Their constraints are [time, money, personnel, knowledge, legal...].</p></blockquote>
+
+    <p>You change the square brackets and that's it. All the logic sat in the back end, built on PPC audit knowledge I'd written up myself, and it guided you through everything.</p>
+
+    <p>It needed around twenty exports from the ad platform, and they went in by section rather than all at once. The keyword section, for example, took the keywords, negative keywords and search query reports together. Ad copy and extensions were another section, and so on through the account. I split it that way because, at the time, AI tools struggled with lots of large files arriving together. Working section by section meant it could go through every row properly and pull out the insights before moving on.</p>
+
+    <p>Once every section was done, it reviewed its own findings, summarised them, and produced an action plan and an executive summary, the same shape as the document I used to write by hand.</p>
+
+    <h3>What the 30 minutes actually covers</h3>
+
+    <p>The 30 minutes is start to finish, up to a complete first draft. It goes like this:</p>
+
+    <ol>
+      <li>The agent asks the questions I'd always ask first: what's the goal, what's the target CPA.</li>
+      <li>It tells you which export it needs next.</li>
+      <li>You drag and drop the file in.</li>
+      <li>It processes that section and moves on to the next.</li>
+      <li>At the end it produces a Word document with the full audit.</li>
+    </ol>
+
+    <p>Reading the audit, questioning it and pushing back on anything you disagree with is a separate conversation, and it should be. The 30 minutes gets you a first draft that would have taken me most of a working day.</p>
+
+    <h3>What it got wrong</h3>
+
+    <p>It's not perfect, and I'd be suspicious of anyone who says theirs is. Two real examples:</p>
 
     <ul>
-      <li>search queries</li>
-      <li>campaign and keyword performance</li>
-      <li>landing pages</li>
-      <li>ad copy</li>
-      <li>account settings</li>
-      <li>tags</li>
-      <li>publisher URLs</li>
+      <li><strong>It ignored the template.</strong> Early on the output didn't stick to the document structure I'd asked for. That was a quick fix in the instructions.</li>
+      <li><strong>It mixed up two verticals.</strong> On a business banking deep dive it blurred business and retail banking together and needed correcting. The data itself was valid. Looking back, my first prompt probably didn't make clear enough which vertical I was looking at, and that's a good reminder that vague questions get vague answers.</li>
     </ul>
 
-    <p>That covers every element of the account, in a form the AI can work through in one go.</p>
+    <p>Neither was a disaster, and both were caught because I read the output before acting on any of it. That's non-negotiable for me.</p>
 
-    <h3>Step Two: Set the Goal and the Rules</h3>
+    <h3>From my desk to a launch video</h3>
 
-    <p>An audit without a goal is just a list of observations, so before the AI looks at anything I tell it what the account is trying to achieve and what rules apply. Real examples are things like generic not brand, a CPA of less than £20, growing share, or working within a limited budget. Change the goal and the recommendations change with it, which is exactly what should happen.</p>
+    <p>Around Cannes Lions, Microsoft announced the launch of its MCP with a blog post and a video. I wasn't at Cannes myself, so I can't speak to what happened there. But the video used a version of my audit agent. I say "a version" because mine never had an interface. They built a much prettier one on top, running on the same back-end logic and prompt I'd written. I got a message beforehand saying my work was going to be demonstrated, and I'll admit I was very happy about that.</p>
 
-    <h3>Step Three: Let It Find What a Tired Human Misses</h3>
+    <p>Since then I've rebuilt it as a skill in Claude. The knowledge files and prompts that used to sit behind the agent now live in the skill, so it follows the same logic, section by section, against the account's own goal.</p>
 
-    <p>With the data and the rules in place, the system works through everything and comes back with recommendations: poor performing keywords, wasted spend, places where budget should move, and performance challenges or opportunities. Every recommendation is tied back to facts and evidence in the data rather than gut feel.</p>
+    <h3>Build your own</h3>
 
-    <p>This is where AI earns its place. After hours inside one account, a human gets tired and starts to miss things, and it gets hard to see the wood for the trees. The system does not get fatigued, and it does not bring the same bias you might bring to a campaign you built yourself.</p>
+    <p>There's nothing secret here. At the end of the day it's a prompt, and anyone could write one. Every section follows the same pattern:</p>
 
-    <h3>Step Four: Check Everything Before You Act</h3>
+    <ol>
+      <li><strong>The role.</strong> "You are a PPC manager reviewing this account."</li>
+      <li><strong>The goal.</strong> Whatever the client is aiming for, such as a CPA of £X, a ROAS target or growth in a particular area.</li>
+      <li><strong>The constraints.</strong> Whatever they're working within: terms they don't want to go after, an impression share target, a limited budget, limited time.</li>
+      <li><strong>The data.</strong> For the first section that's the keywords, search term queries, negative keywords and the change history.</li>
+      <li><strong>The question.</strong> "What's sticking out here that might be causing problems? What else could be holding performance back?"</li>
+    </ol>
 
-    <p>None of this should be done blindly. Search queries, landing pages and ad copy still need a human review, and just because the AI says something is a great idea does not mean it is. I have seen AI outputs make things up with total confidence or quietly ignore the rules they were given.</p>
+    <p>The system does its analysis and comes back, then you move on to the next section with the same goal and constraints. A full audit works through every focus area of a paid search account, with the related reports grouped together. To give you a feel for it, not the full list:</p>
 
-    <p>So I finish every audit with an independent check. I ask the AI, in the same chat or a brand new one, to audit its own output against the facts, the data and what I originally asked for. That single habit has improved the quality of what I get back more than anything else.</p>
+    <ul>
+      <li>keywords, search terms, negatives and change history</li>
+      <li>tracking: UET tags or whatever tracking code is set up, plus tracking templates and custom parameters</li>
+      <li>conversions</li>
+      <li>share of voice and impression share</li>
+      <li>ad copy and creative</li>
+      <li>landing pages</li>
+      <li>campaign structure and naming</li>
+    </ul>
 
-    <h3>What This Changes for PPC Teams</h3>
+    <p>The pattern never changes. The human uploads the files. The system remembers the goal and the constraints and measures everything against them. At the end, you read it all, question anything surprising and correct it before you touch the account.</p>
 
-    <p>When I started in PPC, a team of ten people could spend their days on manual work like this. Today a team of two can do it, as long as they have the experience to judge the recommendations. The AI does the heavy lifting, and the human decides what is right for the client and why.</p>
+    <h3>What changes for the person doing the audit</h3>
 
-    <p>If you want a feel for how I build and test this kind of system on my own projects, <a href="/articles/ai-made-me-money-claims-tested/">I tried to prove the "AI made me money" posts wrong</a> is a good place to start, and the free analytics tools I lean on are compared in <a href="/articles/clarity-vs-ga4-vs-bing-webmaster-tools/">Clarity vs GA4 vs Bing Webmaster Tools</a>.</p>
+    <p>I still audit every account. The time I get back goes on the bits only a person can do: deciding which findings matter for this particular advertiser, spotting when a recommendation is technically right but wrong for the business, and having the conversation with the people who own the account.</p>
+
+    <p>If you run audits on big accounts and want to compare approaches, or you think I've missed something, get in touch. I'd genuinely like to hear how other people are doing it.</p>
+
+    <p>For the bigger picture on where this leaves the people doing the job, I wrote <a href="/articles/will-ai-replace-ppc-managers-not-the-good-ones/">will AI replace PPC managers?</a>, and the checking habit behind all of it is in <a href="/articles/the-independent-audit-why-i-make-ai-check-its-own-work/">the independent audit</a>.</p>
+
+    <p>Disclosure: I work at Microsoft Advertising. The views in this piece are my own, not Microsoft's.</p>
 
   </div>
 </section>
@@ -127,6 +193,7 @@
   <div class="footer-links">
     <a href="mailto:garystow.hq@gmail.com">Email ↗</a>
     <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+    <a href="/privacy/">Privacy</a>
   </div>
 </footer>
 
