@@ -19,6 +19,7 @@
   "headline": "Start Small: The Mistakes I Made Building AI Tools",
   "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
   "datePublished": "2026-10-08",
+  "dateModified": "2026-10-12",
   "url": "https://garystow.co.uk/articles/start-small-the-mistakes-i-made-building-ai-tools/"
 }
 </script>
@@ -64,7 +65,7 @@
   <a href="/articles/" class="article-back">← All articles</a>
   <div class="hero-label">Lessons</div>
   <h1>Start Small: The Mistakes I Made Building AI Tools</h1>
-  <div class="article-meta">8 October 2026 · Gary Stow, performance marketing and AI</div>
+  <div class="article-meta">8 October 2026 · Updated 12 October 2026 · Gary Stow, performance marketing and AI</div>
   <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Written by Gary Stow with help from AI tools. Every fact is checked and every article is approved by Gary before it goes live.</p>
 </div>
 
@@ -72,48 +73,68 @@
   <img src="/articles/start-small-the-mistakes-i-made-building-ai-tools/start-small-the-mistakes-i-made-building-ai-tools.webp" width="1200" height="800" fetchpriority="high" decoding="async" alt="Sketch of an oversized tangle of machinery collapsing while a single paper plane flies away cleanly" class="article-hero-img">
   <div class="article-body">
 
-    <p>I have made plenty of mistakes building AI tools, at work and at home. I have spent hours, even weeks, building automated systems that turned out to be over complex, or that were made redundant in an instant when new tech came out. I would not call any of it wasted, because every one taught me something, but I would approach things differently if I were starting today.</p>
+    <p>I've made plenty of mistakes building AI tools, at work and at home. Some cost me an evening, and one cost me weeks. I wouldn't call any of it wasted, because every one of them taught me something, but if I were starting today I'd do a lot of things differently. These are the real ones.</p>
 
-    <h3>Mistake One: Building Too Big, Too Early</h3>
+    <h3>Mistake one: letting the tool decide what I was building</h3>
 
-    <p>The systems that cost me the most time were the ones I tried to make clever from day one. The more moving parts something has, the more there is to break, and the more painful it is when a new tool arrives that does the whole thing better.</p>
+    <p>At work, I set out to build twelve automations to help me manage my day job, all simple ones. Somewhere along the way, the agent I was building with went off on a tangent and started building a whole technical infrastructure behind the scenes, far beyond the simple idea I started with.</p>
 
-    <p>My advice now is to look at the problem you actually want to solve first, then start small and build up. Do not try to get it perfect out of the gate. Get it working, with guardrails in place, and add to it once the simple version proves it is worth the effort.</p>
+    <p>I followed it, and spent weeks of evenings, outside work hours, trying to get that build working before I realised I was chasing the wrong goals and the wrong features. I'd followed the system's lead instead of my original intent.</p>
 
-    <h3>Mistake Two: Trusting the AI Too Much</h3>
+    <p>I did learn a lot from it, about the back-end structure, about the limits of what the system could and couldn't do, and about spotting the moment an AI starts wandering. But the lesson is simple: write down what you're actually trying to build before you start, and keep checking the work against it.</p>
 
-    <p>At home I have chased problems that did not exist, simply because the AI hallucinated or forgot the rules and instructions I had given it. Some conversations have been genuinely frustrating to troubleshoot in. When that happens, it helps to:</p>
+    <h3>Mistake two: assuming the prompt was clear</h3>
 
-    <ul>
-      <li>take a breath and go for a walk</li>
-      <li>come back with a different approach</li>
-      <li>ask the question slightly differently</li>
-      <li>start a brand new chat with just the key facts</li>
-    </ul>
+    <p>Most of my "AI got it wrong" moments come back to the same thing. Did I write the prompt clearly enough? Did I give it enough context, knowledge and data, or did it have to guess? When it guesses, it sidetracks itself.</p>
 
-    <p>I also now finish important work with an independent audit, asking the AI to check its own output against the facts and the original request.</p>
+    <p>On one PPC deep dive into business banking, my audit agent mixed up the business and retail verticals. The data was fine, but my first prompt hadn't made clear which vertical I meant. The fix was on my side, not the AI's.</p>
 
-    <h3>Mistake Three: Not Protecting the Work</h3>
+    <h3>Mistake three: losing work that was working</h3>
 
-    <p>The most painful lesson is losing work that was working. These days I:</p>
+    <p>The most painful lesson was a bug of my own in my trading project. My code was writing 21 columns of data into a file that only had an 18-column header. For months it quietly discarded most of that file's trading history, and nothing flagged it.</p>
+
+    <p>That's why I'm now strict about protecting the work:</p>
 
     <ul>
-      <li>document every checkpoint</li>
-      <li>protect against crashes and mistakes</li>
+      <li>document every checkpoint, so I know what "working" looked like</li>
       <li>keep older files I can fall back on or use as a reference</li>
+      <li>check the data, not just whether the code ran</li>
     </ul>
 
-    <p>It sounds boring, but it is the difference between a bad evening and a lost week.</p>
+    <p>It sounds boring, but it's the difference between a bad evening and losing months of history.</p>
 
-    <h3>Mistake Four: Making It Expensive</h3>
+    <h3>Mistake four: building things I wouldn't actually use</h3>
 
-    <p>Early on it is tempting to throw paid tools at every problem. These days I work to strict rules: I keep things as low cost as possible, ideally free, and I spread my work across different AI tools so I am splitting the tokens and the costs rather than leaning on one. That keeps the projects sustainable, and it proves that anyone can do this, not just people with a big budget.</p>
+    <p>I built a tool at home to turn my ideas into skeleton social media posts. To use it, I had to drop ideas into a specific folder in a specific style, and I wasn't always at the PC when ideas came to me. It collapsed after its first week because I never used it. I wrote about why in <a href="/articles/adhd-and-ai-tools-how-i-stop-things-slipping/">ADHD and AI tools</a>, but the short version is: if it doesn't fit how you actually work, it won't last.</p>
 
-    <h3>What I Would Tell a Marketer Starting Today</h3>
+    <h3>Mistake five: forgetting the ground moves</h3>
 
-    <p>Start with one real problem, keep the first version small, put guardrails around it, and write down what you did as you go. Expect things to break and treat each break as something to learn from. The tools are changing so fast that the skill worth building is not any single system, it is knowing how to build, check and rebuild quickly.</p>
+    <p>I've been through a lot of model and system changes over the last few years, and some of them meant moving automations to a new tool or rebuilding them entirely. Now I keep what I build simple enough to move or rebuild quickly when that happens.</p>
 
-    <p>If you want an example of a small project that grew step by step, I wrote about how <a href="/articles/colleague-dared-me-to-build-something/">a colleague joked and dared me to build something</a>. And for a real bug of my own that a simple check would have caught, see <a href="/articles/ai-made-me-money-claims-tested/">I tried to prove the "AI made me money" posts wrong</a>.</p>
+    <h3>Mistake six: making it expensive</h3>
+
+    <p>It's tempting to throw paid tools at every problem. These days I keep things as low cost as possible, ideally free, and I spread my work across three AIs so I'm not burning one budget:</p>
+
+    <ul>
+      <li><strong>Wade</strong>, my own local AI running on my PC, which helps run my trading and website projects with no token cost</li>
+      <li><strong>Claude</strong>, for coding, troubleshooting and building</li>
+      <li><strong>The AI assistant in my Office subscription</strong>, for ideas and image creation</li>
+    </ul>
+
+    <p>That keeps the projects sustainable, and it proves you don't need a big budget to do this.</p>
+
+    <h3>What I'd tell a marketer starting today</h3>
+
+    <ol>
+      <li>Write down what you're building before you start, and check against it.</li>
+      <li>Keep the first version small. Add to it only once it proves itself.</li>
+      <li>Give the AI the context it needs, so it isn't guessing.</li>
+      <li>Protect the work: checkpoints, old files, and checks on the data itself.</li>
+      <li>Build around how you actually work, or you won't use it.</li>
+      <li>Expect to rebuild. The tools will change.</li>
+    </ol>
+
+    <p>When a chat with an AI goes round in circles, I have a routine for getting unstuck, which I wrote up in <a href="/articles/the-independent-audit-why-i-make-ai-check-its-own-work/">the independent audit</a>. And for the bug that taught me to check the data, see <a href="/articles/ai-made-me-money-claims-tested/">I tried to prove the "AI made me money" posts wrong</a>.</p>
 
   </div>
 </section>
