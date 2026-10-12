@@ -19,6 +19,7 @@
   "headline": "Why I Run AI at Home, and LM Studio Tips for Beginners",
   "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
   "datePublished": "2026-10-06",
+  "dateModified": "2026-10-12",
   "url": "https://garystow.co.uk/articles/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners/"
 }
 </script>
@@ -64,7 +65,7 @@
   <a href="/articles/" class="article-back">← All articles</a>
   <div class="hero-label">Building in public</div>
   <h1>Why I Run AI at Home, and LM Studio Tips for Beginners</h1>
-  <div class="article-meta">6 October 2026 · Gary Stow, performance marketing and AI</div>
+  <div class="article-meta">6 October 2026 · Updated 12 October 2026 · Gary Stow, performance marketing and AI</div>
   <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Written by Gary Stow with help from AI tools. Every fact is checked and every article is approved by Gary before it goes live.</p>
 </div>
 
@@ -72,29 +73,54 @@
   <img src="/articles/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners.webp" width="1200" height="800" fetchpriority="high" decoding="async" alt="Illustration of a woman at a home desk chatting with an AI on her monitor while a dog sleeps beside her" class="article-hero-img">
   <div class="article-body">
 
-    <p>I grew up poor, homeless poor. What might be £20 to one person can be a week's worth of food for another. I know my hardware is pretty good, but I really wanted to stay true to my principles, and running AI at home with no token cost is a big part of that. I want to show that anyone can do what I do, and that it is a fair, level playing field.</p>
+    <p>I grew up poor, homeless poor, and that still shapes how I think about money. What might be £20 to one person can be a week's worth of food for another, so when I started building with AI, I wanted to prove it could be done without a monthly bill that climbs every time you use it. Running AI on my own PC, with no token cost, is a big part of that.</p>
 
-    <h3>Control, Not Just Cost</h3>
+    <h3>Control, and finding out if I could</h3>
 
-    <p>Cost was only part of it. I also wanted control over my AI system. I wanted to build my own things and get a deeper understanding of what it takes to have a really good working AI system, rather than just renting one.</p>
+    <p>Cost was only part of it, because I also wanted control. I wanted to build my own things and understand what it actually takes to run a good AI system, rather than just renting one.</p>
 
-    <p>If I am honest, I also wanted to know whether I could do it at all. I often feel like the idiot in the room when people use big words, and I prefer the direct, simple approach. Building my own local AI, Wade, was a way of pushing myself to find out whether I was smart enough for this kind of thing.</p>
+    <p>If I'm honest, I also wanted to know whether I could do it at all. I often feel like the idiot in the room when people start using big words, and I prefer the direct, simple approach. Building my own local AI, which I called Wade, was a way of finding out whether I was smart enough for this kind of thing.</p>
 
-    <h3>What Wade Does</h3>
+    <h3>What I'm running it on</h3>
 
-    <p>Wade runs on my own PC, and its job is to help manage my automated trading and my website. I built it using only free tools, and wrote up exactly how in <a href="/articles/build-your-own-local-ai-assistant/">how to actually build your own local AI assistant</a>.</p>
+    <p>My PC has a 16GB graphics card and 32GB of memory, which is enough to run mid-sized models comfortably. I'd love to run bigger ones, but my hardware sets the limit, and that's worth knowing before you start.</p>
 
-    <h3>My Advice for Trying LM Studio for the First Time</h3>
+    <p>These are the models I have in LM Studio right now:</p>
 
-    <p>LM Studio is how I run my local models, and if you are trying it for the first time, my advice is simple.</p>
+    <ul>
+      <li><strong>GPT-OSS 20B</strong> from OpenAI, the biggest one I run, about 11GB, usually loaded with a 32,768-token context window</li>
+      <li><strong>Qwen2.5 Coder 7B Instruct</strong>, a smaller coding model at about 4.4GB</li>
+      <li><strong>Qwen2.5 Coder 14B</strong>, a bigger coding model at about 8.4GB</li>
+      <li><strong>Qwen2.5 14B Instruct 1M</strong>, a general model built for very long inputs</li>
+      <li><strong>Gemma 4 E4B</strong> from Google, a small, quick model at about 5.9GB</li>
+      <li><strong>Nomic Embed Text v1.5</strong>, a tiny model used for searching and matching text rather than chatting</li>
+    </ul>
 
-    <p>First, understand its limitations. A local model is not going to behave exactly like the big paid ones, and knowing that up front saves a lot of frustration. Second, ask your other AI for help. There is so much in LM Studio, but in reality you only need to use a few things, and the tools already out there can help you find what you want quickly. Third, start small and get one thing working before you try to build anything clever.</p>
+    <p>LM Studio runs as a local server on my PC, so my scripts talk to it the same way they'd talk to a paid AI service, except nothing leaves the machine and nothing gets billed. My website's automation team uses GPT-OSS 20B for its writing and checking jobs.</p>
 
-    <h3>The Honest Bit</h3>
+    <h3>What Wade does every day</h3>
 
-    <p>I love the fact there is no token cost, and I should probably use Wade more than I do. But I like Claude too much, so in practice I use both: Wade for the jobs it does well and cheaply at home, and Claude for the heavier coding and problem solving. Knowing which tool to use for which job is a skill in itself.</p>
+    <p>Wade helps manage my automated trading project and my website. Day to day, it keeps me on track with my personal project tasks, things like submitting pages to Google for indexing, writing articles and staying on top of where the website is against its goals. I wrote up exactly how I built it in <a href="/articles/build-your-own-local-ai-assistant/">how to actually build your own local AI assistant</a>.</p>
 
-    <p>If cost is what is holding you back from AI, I wrote about exactly that in <a href="/articles/local-ai-without-the-token-bill/">no, you do not need to spend thousands a month to actually use AI</a>.</p>
+    <h3>My first mistake with LM Studio</h3>
+
+    <p>I came into LM Studio feeling confident, because I'd already built agents with Copilot, Copilot Studio and Agent Builder at work. That confidence lasted about a minute, because I didn't have a clue where to click or what I was looking at. I loaded models that weren't right for my PC before I'd even started, and in the end I had to ask Claude which ones I should actually be downloading.</p>
+
+    <h3>My advice for trying it for the first time</h3>
+
+    <ol>
+      <li><strong>Understand its limits.</strong> A local model won't behave exactly like the big paid ones, and knowing that up front saves a lot of frustration.</li>
+      <li><strong>Check your hardware first.</strong> Your graphics card's memory decides which models will run well, so match the model size to it.</li>
+      <li><strong>Ask your other AI for help.</strong> There's a lot in LM Studio, but in reality you only need a few things, and the AI tools you already use can point you to them quickly.</li>
+      <li><strong>Start with one job.</strong> Get one job working properly first, then build on it.</li>
+      <li><strong>Watch the context window.</strong> When my local model kept failing on bigger jobs, the fix was widening its context and trimming each request down to only what that job required.</li>
+    </ol>
+
+    <h3>The honest bit</h3>
+
+    <p>I love that there's no token cost, and I should probably use Wade more than I do, but I like Claude too much. In practice I use both: Wade for the jobs it does well and cheaply at home, and Claude for heavier coding and problem solving. Knowing which tool fits which job is a skill in itself.</p>
+
+    <p>If cost is what's holding you back from AI, I wrote about exactly that in <a href="/articles/local-ai-without-the-token-bill/">no, you don't need to spend thousands a month to actually use AI</a>.</p>
 
   </div>
 </section>

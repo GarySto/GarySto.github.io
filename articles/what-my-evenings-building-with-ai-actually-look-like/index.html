@@ -19,6 +19,7 @@
   "headline": "What My Evenings Building With AI Actually Look Like",
   "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
   "datePublished": "2026-10-07",
+  "dateModified": "2026-10-12",
   "url": "https://garystow.co.uk/articles/what-my-evenings-building-with-ai-actually-look-like/"
 }
 </script>
@@ -64,7 +65,7 @@
   <a href="/articles/" class="article-back">← All articles</a>
   <div class="hero-label">Building in public</div>
   <h1>What My Evenings Building With AI Actually Look Like</h1>
-  <div class="article-meta">7 October 2026 · Gary Stow, performance marketing and AI</div>
+  <div class="article-meta">7 October 2026 · Updated 12 October 2026 · Gary Stow, performance marketing and AI</div>
   <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Written by Gary Stow with help from AI tools. Every fact is checked and every article is approved by Gary before it goes live.</p>
 </div>
 
@@ -72,27 +73,47 @@
   <img src="/articles/what-my-evenings-building-with-ai-actually-look-like/what-my-evenings-building-with-ai-actually-look-like.webp" width="1200" height="800" fetchpriority="high" decoding="async" alt="Night-time drawing of a quiet suburban street with one upstairs window lit" class="article-hero-img">
   <div class="article-body">
 
-    <p>Most of my personal project work happens in the evenings and at weekends once my daughters have gone to bed, often until one or two in the morning. People sometimes picture that as hours of writing code, but a typical evening looks quite different.</p>
+    <p>Most of my personal project work happens in the evenings, and people sometimes picture that as hours of typing code in a dark room. The reality is quite different, so this is what a typical evening actually looks like, including the bits that go wrong.</p>
 
-    <h3>Carrying On Where I Left Off</h3>
+    <h3>Quarter to nine</h3>
 
-    <p>Depending on the project, I am usually carrying on a previous chain of work, building the next section of something, or, more and more often lately, troubleshooting, tweaking and looking for ways to improve what is already running. A real example from this week: command prompt windows kept opening on my PC when everything was meant to be running silently in the background. Another time, something was clearly off with my automated trading team because it had stopped making trades altogether, and the evening went on finding out why.</p>
+    <p>My two daughters are in bed at 8:30, my wife settles in with her TV programmes, and by about 8:45 or 9 o'clock I'm at the PC. From there I work on whichever project needs me: the website, my trading project, my personal brand, or one of the side projects like the village dashboard that shows my AI teams at work.</p>
 
-    <h3>The Three AIs I Use</h3>
+    <p>I keep going until one of three things happens: I run out of Claude tokens, my eyes start dropping and I'm too tired, or the job's done. That's why I'm often still up at 1 or 2 in the morning.</p>
 
-    <p>I use three LLMs, each for a different job. Wade is my local AI, built and running on my own PC, and its job is to help manage my automated trading and my website. Claude is what I use for most things, coding, troubleshooting and building out my projects and ideas. The third is the AI assistant that comes with my Office subscription, which I use a lot for ideas, for working out what is and is not possible with AI on my personal computer, and for image creation, so I am spreading my usage and costs rather than leaning on one tool for everything.</p>
+    <h3>Most evenings are fixing, not building</h3>
 
-    <h3>My Rules</h3>
+    <p>I'm usually carrying on from where I left off, building the next section of something, or more and more often troubleshooting and improving what's already running. Things break all the time, and two real examples show what that looks like.</p>
 
-    <p>I like to work to strict rules. I do not use my job to get ahead on these projects, and I keep everything as low cost as possible, ideally free. I want to show that anyone can do what I do, and that it is a fair, level playing field.</p>
+    <p>The first was command prompt windows: my automations are meant to run silently in the background, but windows kept flashing up on the screen, one after another, like a machine gun of little black boxes. It turned out that background jobs which run without a window were starting other tools, and Windows was giving every one of those its own visible window. The fix was a small piece of code that tells every background job to keep its child processes hidden, plus a regular check that puts it back if anything ever removes it.</p>
 
-    <h3>What Usually Goes Wrong</h3>
+    <p>The second was my automated trading team, which suddenly stopped making trades altogether. Not every quiet day is a bug, though, because on one of those days the system correctly showed that not a single stock out of 906 scanned had scored high enough to buy, which was a genuine market condition. Telling a quiet day apart from a broken system is now built into a permanent check, a watchdog that flags when a model has gone too many market days without a trade.</p>
 
-    <p>Plenty goes wrong, and that is part of it. I have chased problems that did not exist, because the AI hallucinated or forgot the rules and instructions I had given it. Sometimes the conversation goes round in circles. When that happens I have learned to take a breath, go for a walk, take a different approach, ask the question slightly differently, or just start a brand new chat.</p>
+    <h3>Tonight</h3>
 
-    <p>The other thing I have learned is to protect the work. I document every checkpoint, I keep older files I can fall back on, and I check what the AI tells me rather than trusting it blindly. Small steps with guardrails beat big leaps that break everything at once.</p>
+    <p>As I write this, the evening has been spent on my articles. Some recent feedback on Reddit told me some of my shorter posts read like AI, and I've taken that on board, so I've been rebuilding them with far more real detail. Alongside that, I'm working out how to get the site's 30-odd pages ranking on Bing and Google, because I want better performance than I'm getting.</p>
 
-    <p>If you want to see what these evenings have produced, I wrote about <a href="/articles/build-your-own-local-ai-assistant/">building my own local AI assistant</a> and about the automation team behind my demo trading account in <a href="/articles/ai-made-me-money-claims-tested/">I tried to prove the "AI made me money" posts wrong</a>.</p>
+    <h3>The three AIs I use</h3>
+
+    <p>I spread the work across three AIs, each for a different job:</p>
+
+    <ul>
+      <li><strong>Wade</strong>, my own AI running on my PC, which helps manage my trading and website projects with no token cost</li>
+      <li><strong>Claude</strong>, for most of the coding, troubleshooting and building</li>
+      <li><strong>Copilot</strong>, for ideas, working out what's possible on my PC, and making images</li>
+    </ul>
+
+    <p>Splitting the work like that keeps the costs down, because no single tool takes all the strain.</p>
+
+    <h3>My rules</h3>
+
+    <p>I work to strict rules: I don't use my job to get ahead on these projects, and I keep everything as low cost as possible, ideally free. I want to show that anyone can do what I do, and that it's a fair, level playing field.</p>
+
+    <h3>Protecting the work</h3>
+
+    <p>Small steps with guardrails beat big leaps that break everything at once. I document every checkpoint, keep older files I can fall back on, and check what the AI tells me rather than trusting it blindly. When an evening goes badly, that's what lets me pick it up again the next night instead of starting over.</p>
+
+    <p>If you want to see what these evenings have produced, I wrote about <a href="/articles/build-your-own-local-ai-assistant/">building my own local AI assistant</a>, <a href="/articles/how-to-build-a-live-village-dashboard-for-your-ai-agents/">the live village dashboard for my AI agents</a>, and the mistakes along the way in <a href="/articles/start-small-the-mistakes-i-made-building-ai-tools/">start small</a>.</p>
 
   </div>
 </section>
