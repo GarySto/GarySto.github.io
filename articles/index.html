@@ -21,30 +21,40 @@
 <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="/assets/site.css?v=45260eab">
 <style>
-  /* 14 Oct 2026: articles page - latest 10 + explore by subject (right-hand side) */
-  .articles-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 4rem; align-items: start; }
-  .articles-list-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; border-bottom: 1px solid var(--ink); padding-bottom: 1rem; }
+  /* 14 Oct 2026: articles page - latest 10 + explore by subject (right-hand side). v2: calmer layout */
+  .articles-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 5rem; align-items: start; }
+  .articles-list-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-bottom: 0.5rem; }
   .articles-list-head h2, .articles-side h2 { font-family: var(--serif); font-weight: 400; font-size: 1.8rem; }
-  .articles-more, .articles-clear { font-family: var(--mono); font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; background: none; border: 1px solid var(--ink); color: var(--ink); padding: 0.9rem 1.4rem; cursor: pointer; }
-  .articles-more { margin-top: 2rem; width: 100%; background: var(--ink); color: var(--paper); }
-  .articles-more:hover, .articles-clear:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+  /* one clean row: title on top, date and type quietly underneath */
+  .articles-main .article-row { grid-template-columns: 1fr; gap: 0.35rem; padding: 1.4rem 0; }
+  .articles-main .article-title { order: 1; font-size: 1.35rem; line-height: 1.35; }
+  .articles-main .article-date { order: 2; display: inline; font-family: var(--sans); font-size: 0.95rem; color: var(--muted); }
+  .articles-main .article-pillar { display: none; }
+  .articles-main .article-row:hover .article-title { color: var(--accent); }
+  .articles-more, .articles-clear { font-family: var(--sans); font-size: 1rem; background: none; border: 1px solid var(--ink); color: var(--ink); padding: 0.8rem 1.4rem; cursor: pointer; }
+  .articles-more { margin-top: 1.5rem; }
+  .articles-clear { border: none; text-decoration: underline; padding: 0; color: var(--muted); }
+  .articles-more:hover { background: var(--ink); color: var(--paper); }
+  .articles-clear:hover { color: var(--accent); }
   .articles-more[hidden], .articles-clear[hidden] { display: none; }
-  .articles-side { position: sticky; top: 2rem; border: 1px solid var(--ink); padding: 2rem; background: #fbf9f4; }
-  .articles-side h2 { font-size: 1.4rem; margin: 2rem 0 0.8rem; }
-  .articles-side h2:first-child { margin-top: 0; }
+  /* right-hand panel: no box, just a quiet column */
+  .articles-side { position: sticky; top: 2rem; padding-left: 2rem; border-left: 1px solid var(--rule); }
+  .articles-side h2 { font-size: 1.35rem; margin: 2.5rem 0 0.6rem; }
+  .articles-side h2:first-child { margin-top: 0.6rem; }
   .topic-list, .start-list { list-style: none; }
-  .topic-list a { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.7rem 0.2rem; border-bottom: 1px solid var(--rule); color: var(--ink); text-decoration: none; font-size: 1.05rem; font-weight: 400; }
+  .topic-list a { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.5rem 0; color: var(--ink); text-decoration: none; font-size: 1.05rem; font-weight: 400; }
   .topic-list a:hover, .topic-list a:focus-visible { color: var(--accent); }
   .topic-list a.active { color: var(--accent); font-weight: 500; }
-  .topic-count { font-family: var(--mono); font-size: 0.85rem; min-width: 2.2rem; text-align: center; padding: 0.15rem 0.4rem; border: 1px solid currentColor; }
-  .start-list a { display: block; padding: 0.6rem 0; border-bottom: 1px solid var(--rule); color: var(--ink); font-family: var(--serif); font-size: 1.1rem; text-decoration: none; }
+  .topic-count { font-size: 0.95rem; color: var(--muted); }
+  .topic-list a.active .topic-count, .topic-list a:hover .topic-count { color: inherit; }
+  .start-list a { display: block; padding: 0.45rem 0; color: var(--ink); font-size: 1.05rem; font-weight: 400; text-decoration: none; line-height: 1.4; }
   .start-list a:hover { color: var(--accent); }
-  .side-note { margin-top: 1.5rem; font-size: 0.95rem; color: #3a3632; }
+  .side-note { margin-top: 2.5rem; font-size: 0.95rem; color: var(--muted); }
   .side-note a { color: var(--accent); }
   @media (max-width: 900px) {
-    .articles-layout { grid-template-columns: 1fr; gap: 2rem; }
-    .articles-side { position: static; order: -1; padding: 1.5rem; }
-    .articles-side .start-list, .articles-side .side-note, .articles-side h2:nth-of-type(3) { display: none; }
+    .articles-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+    .articles-side { position: static; order: -1; padding: 0 0 1rem; border-left: none; border-bottom: 1px solid var(--rule); }
+    .articles-side .start-list, .articles-side .side-note, .articles-side .start-head { display: none; }
     .articles-list-head h2 { font-size: 1.5rem; }
   }
 </style>
@@ -262,14 +272,7 @@
       <li><a href="#topic=trading" data-topic="trading">Trading experiments</a></li>
       <li><a href="#topic=personal" data-topic="personal">ADHD, health and careers</a></li>
     </ul>
-    <h2>Browse by type</h2>
-    <ul class="topic-list">
-      <li><a href="#topic=pillar-Building in public" data-topic="pillar-Building in public">Building in public</a></li>
-      <li><a href="#topic=pillar-Teaching" data-topic="pillar-Teaching">Teaching</a></li>
-      <li><a href="#topic=pillar-Lessons" data-topic="pillar-Lessons">Lessons</a></li>
-      <li><a href="#topic=pillar-Industry" data-topic="pillar-Industry">Industry</a></li>
-    </ul>
-    <h2>Start here</h2>
+    <h2 class="start-head">Start here</h2>
     <ul class="start-list">
       <li><a href="/articles/thriving-in-tech-neurodiverse-brain/">Thriving in Tech with a Neurodiverse Brain</a></li>
       <li><a href="/articles/type-1-diabetes-shaped-my-ppc-career/">How Type 1 Diabetes Shaped My PPC Career</a></li>
