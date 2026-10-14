@@ -20,6 +20,34 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="/assets/site.css?v=45260eab">
+<style>
+  /* 14 Oct 2026: articles page - latest 10 + explore by subject (right-hand side) */
+  .articles-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 4rem; align-items: start; }
+  .articles-list-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; border-bottom: 1px solid var(--ink); padding-bottom: 1rem; }
+  .articles-list-head h2, .articles-side h2 { font-family: var(--serif); font-weight: 400; font-size: 1.8rem; }
+  .articles-more, .articles-clear { font-family: var(--mono); font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; background: none; border: 1px solid var(--ink); color: var(--ink); padding: 0.9rem 1.4rem; cursor: pointer; }
+  .articles-more { margin-top: 2rem; width: 100%; background: var(--ink); color: var(--paper); }
+  .articles-more:hover, .articles-clear:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+  .articles-more[hidden], .articles-clear[hidden] { display: none; }
+  .articles-side { position: sticky; top: 2rem; border: 1px solid var(--ink); padding: 2rem; background: #fbf9f4; }
+  .articles-side h2 { font-size: 1.4rem; margin: 2rem 0 0.8rem; }
+  .articles-side h2:first-child { margin-top: 0; }
+  .topic-list, .start-list { list-style: none; }
+  .topic-list a { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.7rem 0.2rem; border-bottom: 1px solid var(--rule); color: var(--ink); text-decoration: none; font-size: 1.05rem; font-weight: 400; }
+  .topic-list a:hover, .topic-list a:focus-visible { color: var(--accent); }
+  .topic-list a.active { color: var(--accent); font-weight: 500; }
+  .topic-count { font-family: var(--mono); font-size: 0.85rem; min-width: 2.2rem; text-align: center; padding: 0.15rem 0.4rem; border: 1px solid currentColor; }
+  .start-list a { display: block; padding: 0.6rem 0; border-bottom: 1px solid var(--rule); color: var(--ink); font-family: var(--serif); font-size: 1.1rem; text-decoration: none; }
+  .start-list a:hover { color: var(--accent); }
+  .side-note { margin-top: 1.5rem; font-size: 0.95rem; color: #3a3632; }
+  .side-note a { color: var(--accent); }
+  @media (max-width: 900px) {
+    .articles-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .articles-side { position: static; order: -1; padding: 1.5rem; }
+    .articles-side .start-list, .articles-side .side-note, .articles-side h2:nth-of-type(3) { display: none; }
+    .articles-list-head h2 { font-size: 1.5rem; }
+  }
+</style>
 </head>
 <body>
 
@@ -56,12 +84,11 @@
     </div>
   </a>
 
-  <div class="articles-filter">
-    <button class="filter-pill active" data-filter="all">All</button>
-    <button class="filter-pill" data-filter="Building in public">Building in public</button>
-    <button class="filter-pill" data-filter="Industry">Industry</button>
-    <button class="filter-pill" data-filter="Lessons">Lessons</button>
-    <button class="filter-pill" data-filter="Teaching">Teaching</button>
+  <div class="articles-layout">
+  <div class="articles-main">
+  <div class="articles-list-head">
+    <h2 id="articles-heading">Latest articles</h2>
+    <button type="button" class="articles-clear" id="articles-clear" hidden>Show latest instead</button>
   </div>
 
   <div class="articles-list" id="articles-list">
@@ -222,23 +249,115 @@
     </a>
   </div>
 
+  <button type="button" class="articles-more" id="articles-more">Show all articles</button>
+  </div>
+
+  <aside class="articles-side" aria-label="Explore articles by subject">
+    <h2>Explore by subject</h2>
+    <ul class="topic-list" id="topic-list">
+      <li><a href="#topic=ppc" data-topic="ppc">AI in PPC and paid search</a></li>
+      <li><a href="#topic=learning" data-topic="learning">Learning and teaching AI</a></li>
+      <li><a href="#topic=agents" data-topic="agents">Building AI agents and tools</a></li>
+      <li><a href="#topic=search" data-topic="search">AI search, SEO and analytics</a></li>
+      <li><a href="#topic=trading" data-topic="trading">Trading experiments</a></li>
+      <li><a href="#topic=personal" data-topic="personal">ADHD, health and careers</a></li>
+    </ul>
+    <h2>Browse by type</h2>
+    <ul class="topic-list">
+      <li><a href="#topic=pillar-Building in public" data-topic="pillar-Building in public">Building in public</a></li>
+      <li><a href="#topic=pillar-Teaching" data-topic="pillar-Teaching">Teaching</a></li>
+      <li><a href="#topic=pillar-Lessons" data-topic="pillar-Lessons">Lessons</a></li>
+      <li><a href="#topic=pillar-Industry" data-topic="pillar-Industry">Industry</a></li>
+    </ul>
+    <h2>Start here</h2>
+    <ul class="start-list">
+      <li><a href="/articles/thriving-in-tech-neurodiverse-brain/">Thriving in Tech with a Neurodiverse Brain</a></li>
+      <li><a href="/articles/type-1-diabetes-shaped-my-ppc-career/">How Type 1 Diabetes Shaped My PPC Career</a></li>
+      <li><a href="/articles/colleague-dared-me-to-build-something/">My Colleague Dared Me to Build Something</a></li>
+    </ul>
+    <p class="side-note">Want to see the AI teams that help run this site? <a href="/village/">Visit the village</a>.</p>
+  </aside>
+  </div>
+
   <script>
-    var pills = document.querySelectorAll('.filter-pill');
-    var rows = document.querySelectorAll('#articles-list .article-row');
-    pills.forEach(function(pill) {
-      pill.addEventListener('click', function() {
-        pills.forEach(function(p) { p.classList.remove('active'); });
-        pill.classList.add('active');
-        var filter = pill.getAttribute('data-filter');
-        rows.forEach(function(row) {
-          if (filter === 'all' || row.getAttribute('data-pillar') === filter) {
-            row.classList.remove('is-hidden');
-          } else {
-            row.classList.add('is-hidden');
-          }
-        });
+  (function () {
+    // 14 Oct 2026: show the latest 10, let readers explore by subject on the right.
+    // Subjects are matched from each article's address, so new articles sort themselves.
+    var LATEST = 10;
+    var TOPICS = {
+      ppc: { name: 'AI in PPC and paid search', words: ['ppc', 'paid-search', 'performance-max', 'google-ads', 'bidding', 'ad-copy', 'audit-from'] },
+      learning: { name: 'Learning and teaching AI', words: ['learn', 'training', 'workshop', 'teach', 'graduate-test', 'sceptical', 'start-small', 'non-technical', 'collaboration'] },
+      agents: { name: 'Building AI agents and tools', words: ['agent', 'village', 'independent-audit', 'local-ai', 'assistant', 'evenings', 'build-day', 'dared', 'lm-studio', 'phone', 'automation'] },
+      search: { name: 'AI search, SEO and analytics', words: ['search', 'seo', 'clarity', 'ga4', 'llm', 'website'] },
+      trading: { name: 'Trading experiments', words: ['trading', 'backtest', 'premarket', 'money-claims', 'stock'] },
+      personal: { name: 'ADHD, health and careers', words: ['adhd', 'neurodiverse', 'diabetes', 'change-feels', 'fell-into', 'career'] }
+    };
+    var rows = Array.prototype.slice.call(document.querySelectorAll('#articles-list .article-row'));
+    var heading = document.getElementById('articles-heading');
+    var more = document.getElementById('articles-more');
+    var clear = document.getElementById('articles-clear');
+    var links = Array.prototype.slice.call(document.querySelectorAll('.articles-side [data-topic]'));
+    function slugOf(row) { return (row.getAttribute('href') || '').toLowerCase(); }
+    function matches(row, key) {
+      if (key.indexOf('pillar-') === 0) return row.getAttribute('data-pillar') === key.slice(7);
+      var t = TOPICS[key]; if (!t) return false;
+      var s = slugOf(row);
+      return t.words.some(function (w) { return s.indexOf(w) !== -1; });
+    }
+    links.forEach(function (a) {
+      var key = a.getAttribute('data-topic');
+      var n = rows.filter(function (r) { return matches(r, key); }).length;
+      var c = document.createElement('span'); c.className = 'topic-count'; c.textContent = n;
+      a.appendChild(c);
+      if (!n) a.parentNode.hidden = true;
+    });
+    // the newest article is already the big "Latest" card above, so the latest list starts after it
+    var feat = document.querySelector('.featured-article');
+    var featHref = feat ? feat.getAttribute('href') : null;
+    function showLatest(all) {
+      var shown = 0;
+      rows.forEach(function (r) {
+        var dup = !all && r.getAttribute('href') === featHref;
+        var on = all || (!dup && shown < LATEST);
+        if (on && !all) shown++;
+        r.classList.toggle('is-hidden', !on);
+      });
+      heading.textContent = all ? 'All articles (' + rows.length + ')' : 'Latest articles';
+      more.hidden = all || rows.length <= LATEST;
+      more.textContent = 'Show all ' + rows.length + ' articles';
+      clear.hidden = !all;
+      links.forEach(function (a) { a.classList.remove('active'); a.removeAttribute('aria-current'); });
+    }
+    function showTopic(key) {
+      var name = key.indexOf('pillar-') === 0 ? key.slice(7) : (TOPICS[key] || {}).name;
+      if (!name) { showLatest(false); return; }
+      var n = 0;
+      rows.forEach(function (r) { var ok = matches(r, key); r.classList.toggle('is-hidden', !ok); if (ok) n++; });
+      heading.textContent = name + ' (' + n + ')';
+      more.hidden = true; clear.hidden = false;
+      links.forEach(function (a) {
+        var on = a.getAttribute('data-topic') === key;
+        a.classList.toggle('active', on);
+        if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+      });
+    }
+    function fromHash() {
+      var m = decodeURIComponent(location.hash || '').match(/^#topic=(.+)$/);
+      if (m) showTopic(m[1]); else showLatest(false);
+    }
+    links.forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var key = a.getAttribute('data-topic');
+        history.replaceState(null, '', '#topic=' + encodeURIComponent(key));
+        showTopic(key);
+        if (window.innerWidth <= 900) heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+    more.addEventListener('click', function () { showLatest(true); });
+    clear.addEventListener('click', function () { history.replaceState(null, '', location.pathname); showLatest(false); });
+    fromHash();
+  })();
   </script>
 
 </section>
