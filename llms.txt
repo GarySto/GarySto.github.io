@@ -30,6 +30,11 @@ the IAB UK.
 
 ## Recent articles
 
+- [How I Put My Home AI Dashboards on My Phone, Privately](https://garystow.co.uk/articles/how-i-put-my-home-ai-dashboards-on-my-phone-privately/):
+  my AI teams run on my home PC, so every decision waited until I was
+  sitting at it. Here is how I got the village, my reports and my
+  trading dashboard onto my phone in under an hour, without opening
+  any of it to the internet, including every error I hit on the way.
 - [I Tested 7 Trading Ideas Against Simply Owning the Market](https://garystow.co.uk/articles/i-tested-7-trading-ideas-against-simply-owning-the-market/):
   most trading backtests only ask whether a rule made money. I asked a
   harder question: did it beat simply owning the market over the same

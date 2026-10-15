@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How I Put My Home AI Dashboards on My Phone, Privately — Gary Stow</title>
+<meta name="description" content="My AI teams run on my home PC, so every decision waited until I was sitting at it. Here is how I got the village, my reports and my trading dashboard onto ">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/articles/how-i-put-my-home-ai-dashboards-on-my-phone-privately/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How I Put My Home AI Dashboards on My Phone, Privately">
+<meta property="og:description" content="My AI teams run on my home PC, so every decision waited until I was sitting at it. Here is how I got the village, my reports and my trading dashboard onto ">
+<meta property="og:url" content="https://garystow.co.uk/articles/how-i-put-my-home-ai-dashboards-on-my-phone-privately/">
+<meta property="og:image" content="https://garystow.co.uk/articles/how-i-put-my-home-ai-dashboards-on-my-phone-privately/how-i-put-my-home-ai-dashboards-on-my-phone-privately.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How I Put My Home AI Dashboards on My Phone, Privately",
+  "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
+  "datePublished": "2026-10-15",
+  "url": "https://garystow.co.uk/articles/how-i-put-my-home-ai-dashboards-on-my-phone-privately/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/assets/site.css?v=45260eab">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How I Put My Home AI Dashboards on My Phone, Privately",
+  "description": "My AI teams run on my home PC, so every decision waited until I was sitting at it. Here is how I got the village, my reports and my trading dashboard onto my phone in under an hour, without opening any of it to the internet, including every error I hit on the way.",
+  "url": "https://garystow.co.uk/articles/how-i-put-my-home-ai-dashboards-on-my-phone-privately/",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Step 1: Pick a private network, not a public website",
+      "text": "The answer was Tailscale, which builds a private network between your own devices. Anything you share through it can only be opened by devices signed in to your account. Nobody else can find it, even if they guess the address, and the free plan was all I needed."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 2: Install it on the PC and the phone",
+      "text": "I installed the Windows app on the PC and the app on my iPhone, and signed in to the same account on both. In the Tailscale admin console both machines then appear in one list."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 3: Share each dashboard with one command",
+      "text": "On the PC, one command shares a local page with your private network (Tailscale's own guide to serve covers every option). My website dashboard and village run on port 5007 and my trading dashboard on port 5006, so I ran these two in PowerShell:"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 4: Fix the errors I hit",
+      "text": "It did not work first time, and these are the five problems I hit, in order."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 5: Make it feel like an app",
+      "text": "Two last settings make it stick: on the PC, tick Run unattended in the Tailscale preferences so it keeps working after a restart. On the iPhone, open the village in Safari, tap Share, then Add to Home Screen, and it opens like an app."
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is it safe to open home dashboards on your phone like this?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shared this way, the pages are only reachable by devices signed in to your own Tailscale account. Nothing is published to the open internet, unlike forwarding a port on your router."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you need to change your web app to make this work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mostly no, because Tailscale passes requests straight to the page already running on your PC. The only change I made was to links that pointed at localhost."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the PC need to stay on?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, because the pages are served by the PC, it has to be switched on and connected."
+      }
+    }
+  ]
+}
+</script>
+<style>
+/* 8 Oct 2026: code in step-by-step articles - large, high contrast, never wider than the page */
+.article-body pre.code-block { background: #1d1a16; color: #f5f2eb; padding: 1.1rem 1.25rem; margin: 1.25rem 0 1.75rem; overflow-x: auto; max-width: 100%; border-radius: 4px; font-size: 0.95rem; line-height: 1.55; }
+.article-body pre.code-block code { font-family: var(--mono, monospace); background: none; padding: 0; color: inherit; white-space: pre; }
+.article-body code { font-family: var(--mono, monospace); background: #ece6da; padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.92em; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/work/">Work</a>
+    <a href="/agents/">AI &amp; Agents</a>
+    <a href="/village/">Village</a>
+    <a href="/lab/">Lab</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/articles/" class="article-back">← All articles</a>
+  <div class="hero-label">Building in public</div>
+  <h1>How I Put My Home AI Dashboards on My Phone, Privately</h1>
+  <div class="article-meta">15 October 2026 · Gary Stow, performance marketing and AI</div>
+  <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Written by Gary Stow with help from AI tools. Every fact is checked and every article is approved by Gary before it goes live.</p>
+</div>
+
+<section>
+  <img src="/articles/how-i-put-my-home-ai-dashboards-on-my-phone-privately/how-i-put-my-home-ai-dashboards-on-my-phone-privately.webp" width="1200" height="800" fetchpriority="high" decoding="async" alt="A bustling street of commuters, each clutching a glowing orb that streams unseen data across the air" class="article-hero-img">
+  <div class="article-body">
+
+    <p>My automation teams live on one PC at home. The website team, the trading team and the cartoon village that shows them all at work run as small web pages on that machine. If you have read <a href="/articles/how-to-build-a-live-village-dashboard-for-your-ai-agents/">how I built the village</a>, you will know the private version is where I say YES or NO to what the teams want to do.</p>
+
+    <p>The catch was that those pages only opened on the PC itself. I am away from my desk a lot, so decisions piled up until I got home. I wanted the village on my phone, but I did not want to put my private dashboards on the public internet to get it.</p>
+
+    <h3>Step 1: Pick a private network, not a public website</h3>
+
+    <p>The answer was Tailscale, which builds a private network between your own devices. Anything you share through it can only be opened by devices signed in to your account. Nobody else can find it, even if they guess the address, and the free plan was all I needed.</p>
+
+    <h3>Step 2: Install it on the PC and the phone</h3>
+
+    <p>I installed the Windows app on the PC and the app on my iPhone, and signed in to the same account on both. In the Tailscale admin console both machines then appear in one list.</p>
+
+    <h3>Step 3: Share each dashboard with one command</h3>
+
+    <p>On the PC, one command shares a local page with your private network (Tailscale's own <a href="https://tailscale.com/kb/1312/serve">guide to serve</a> covers every option). My website dashboard and village run on port 5007 and my trading dashboard on port 5006, so I ran these two in PowerShell:</p>
+
+    <pre class="code-block"><code>tailscale serve --bg 5007
+tailscale serve --bg --https=8443 5006</code></pre>
+
+    <p>Tailscale gave me back a private https address. The village is at that address plus /village, and the trading dashboard is on port 8443 of the same address. Running <code>tailscale serve status</code> lists both as tailnet only, which is exactly what I wanted.</p>
+
+    <h3>Step 4: Fix the errors I hit</h3>
+
+    <p>It did not work first time, and these are the five problems I hit, in order.</p>
+
+    <ol>
+      <li><strong>'tailscale' is not recognized.</strong> PowerShell had not picked up the new program. Opening a fresh window fixes it, or use the full path: <code>&amp; "C:\Program Files\Tailscale\tailscale.exe" serve --bg 5007</code>.</li>
+      <li><strong>unexpected state: NoState.</strong> The PC was not actually signed in, and the admin console showed the phone as Connected and the PC in grey. Clicking the Tailscale icon in the taskbar and choosing Log in fixed it.</li>
+      <li><strong>Serve is not enabled on your tailnet.</strong> It printed a link to switch the feature on, and although the serve still started, it is worth clicking that link once.</li>
+      <li><strong>A blank white page in Safari.</strong> Another browser on the same phone opened the village fine. Opening the simpler noticeboard page first, then the village, cleared it.</li>
+      <li><strong>Links that pointed nowhere.</strong> Some buttons in the village pointed at localhost, which means the phone itself, not the PC. I changed the village to swap those links for the private address when it is opened on another device.</li>
+    </ol>
+
+    <h3>Step 5: Make it feel like an app</h3>
+
+    <p>Two last settings make it stick: on the PC, tick Run unattended in the Tailscale preferences so it keeps working after a restart. On the iPhone, open the village in Safari, tap Share, then Add to Home Screen, and it opens like an app.</p>
+
+    <p>The one thing it cannot do is wake the PC up, so if the PC is off the pages do not load, which for me is a fair trade for keeping everything private.</p>
+
+    <h3>What changed for me</h3>
+
+    <p>The village is now the first thing I check on my phone. Reports arrive at the Town Hall, I read them in big text, and I can say YES or NO from wherever I am. You can see the public version of the <a href="/village/">village</a> to get a feel for it. If you want the AI side running at home first, I wrote up <a href="/articles/build-your-own-local-ai-assistant/">how I built my own local AI assistant</a>, and the rest of what I've built is on my <a href="/work/">work page</a>.</p>
+
+    <h3>Is it safe to open home dashboards on your phone like this?</h3>
+
+    <p>Shared this way, the pages are only reachable by devices signed in to your own Tailscale account. Nothing is published to the open internet, unlike forwarding a port on your router.</p>
+
+    <h3>Do you need to change your web app to make this work?</h3>
+
+    <p>Mostly no, because Tailscale passes requests straight to the page already running on your PC. The only change I made was to links that pointed at localhost.</p>
+
+    <h3>Does the PC need to stay on?</h3>
+
+    <p>Yes, because the pages are served by the PC, it has to be switched on and connected.</p>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Want to talk about How I Put My Home AI Dashboards on My Phone, Privately?</h2>
+  <p>Get in touch if this is relevant to what you're working on.</p>
+  <div class="cta-row">
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
+    <a href="/articles/" class="btn">More articles</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="mailto:garystow.hq@gmail.com">Email ↗</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+    <a href="/privacy/">Privacy</a>
+  </div>
+</footer>
+
+</body>
+</html>
