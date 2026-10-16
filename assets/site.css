@@ -5,10 +5,25 @@
   --accent-light: #e8c4b0;
   --muted: #6b6560;
   --rule: #d4cfc7;
-  --mono: 'DM Mono', monospace;
-  --serif: 'DM Serif Display', serif;
-  --sans: 'DM Sans', sans-serif;
+  --mono: 'DM Mono', 'DM Mono Fallback', monospace;
+  --serif: 'DM Serif Display', 'DM Serif Display Fallback', 'DM Serif Display Fallback Times', 'DM Serif Display Fallback Noto', serif;
+  --sans: 'DM Sans', 'DM Sans Fallback', sans-serif;
 }
+
+/* Font fallbacks (16 Oct 2026, LCP/CLS fix). The Google Fonts load without blocking,
+   so text first paints in a system font and swaps when DM fonts arrive. These local
+   faces are resized (size-adjust measured against the real DM fonts) so that swap
+   no longer reflows the page: no layout shift, and no late repaint that delays LCP.
+   Weights mirror the ones requested from Google so bold synthesis behaves the same. */
+@font-face { font-family: 'DM Sans Fallback'; src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('Helvetica'), local('Roboto'); font-weight: 300; size-adjust: 100.94%; ascent-override: 98.28%; descent-override: 30.71%; line-gap-override: 0%; }
+@font-face { font-family: 'DM Sans Fallback'; src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('Helvetica'), local('Roboto'); font-weight: 400; size-adjust: 102.13%; ascent-override: 97.13%; descent-override: 30.35%; line-gap-override: 0%; }
+@font-face { font-family: 'DM Sans Fallback'; src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('Helvetica'), local('Roboto'); font-weight: 500; size-adjust: 103.81%; ascent-override: 95.56%; descent-override: 29.86%; line-gap-override: 0%; }
+@font-face { font-family: 'DM Serif Display Fallback'; src: local('Georgia'); font-weight: 400; size-adjust: 97.97%; ascent-override: 105.75%; descent-override: 34.19%; line-gap-override: 0%; }
+@font-face { font-family: 'DM Serif Display Fallback'; src: local('Georgia Italic'), local('Georgia-Italic'); font-weight: 400; font-style: italic; size-adjust: 93.63%; ascent-override: 110.65%; descent-override: 35.78%; line-gap-override: 0%; }
+@font-face { font-family: 'DM Serif Display Fallback Times'; src: local('Times New Roman'), local('TimesNewRomanPSMT'), local('Liberation Serif'), local('Times'); font-weight: 400; size-adjust: 105.92%; ascent-override: 97.81%; descent-override: 31.63%; line-gap-override: 0%; }
+@font-face { font-family: 'DM Serif Display Fallback Times'; src: local('Times New Roman Italic'), local('TimesNewRomanPS-ItalicMT'), local('Liberation Serif Italic'), local('Times Italic'); font-weight: 400; font-style: italic; size-adjust: 103.81%; ascent-override: 99.8%; descent-override: 32.27%; line-gap-override: 0%; }
+@font-face { font-family: 'DM Serif Display Fallback Noto'; src: local('Noto Serif'), local('NotoSerif'); font-weight: 400; size-adjust: 90.9%; ascent-override: 113.97%; descent-override: 36.85%; line-gap-override: 0%; }
+@font-face { font-family: 'DM Mono Fallback'; src: local('Courier New'), local('CourierNewPSMT'), local('Liberation Mono'), local('Courier'); size-adjust: 100.19%; ascent-override: 99.01%; descent-override: 30.94%; line-gap-override: 0%; }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
