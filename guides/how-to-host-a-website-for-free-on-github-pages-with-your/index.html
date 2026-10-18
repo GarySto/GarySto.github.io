@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Host a Website for Free on GitHub Pages with Your Own Domain and Cloudflare — Gary Stow</title>
+<meta name="description" content="A step-by-step guide, with annotated screenshots, to buying a domain, building your first page with AI, putting it live for free on GitHub Pages, adding Cl">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/guides/how-to-host-a-website-for-free-on-github-pages-with-your/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Host a Website for Free on GitHub Pages with Your Own Domain and Cloudflare">
+<meta property="og:description" content="A step-by-step guide, with annotated screenshots, to buying a domain, building your first page with AI, putting it live for free on GitHub Pages, adding Cl">
+<meta property="og:url" content="https://garystow.co.uk/guides/how-to-host-a-website-for-free-on-github-pages-with-your/">
+<meta property="og:image" content="https://garystow.co.uk/guides/how-to-host-a-website-for-free-on-github-pages-with-your/how-to-host-a-website-for-free-on-github-pages-with-your.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Host a Website for Free on GitHub Pages with Your Own Domain and Cloudflare",
+  "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
+  "datePublished": "2026-10-18",
+  "url": "https://garystow.co.uk/guides/how-to-host-a-website-for-free-on-github-pages-with-your/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/assets/site.css?v=45260eab">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Host a Website for Free on GitHub Pages with Your Own Domain and Cloudflare",
+  "description": "A step-by-step guide, with annotated screenshots, to buying a domain, building your first page with AI, putting it live for free on GitHub Pages, adding Cloudflare in front of it, and fixing the settings that quietly hurt my SEO.",
+  "url": "https://garystow.co.uk/guides/how-to-host-a-website-for-free-on-github-pages-with-your/",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Step 1: Buy your domain name",
+      "text": "1. Choose a domain seller, called a registrar. Well known options include Cloudflare Registrar, which sells domains at cost, and any of the big high street names. Any registrar works for this guide. 2. Search for the name you want, add it to your basket and buy it. You don't need any of the extras the seller offers, such as hosting, a website builder or email packages, because GitHub and Cloudflare cover what you need for free. 3. Keep the login for your registrar handy, because in Step 6 you wi"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 2: Create your first page with AI",
+      "text": "Every website needs a file called index.html. It is the home page: when someone types your address, their browser looks for this file and opens it first. The .html part means it is written in HTML, the language web pages are built from. You don't need to learn HTML to get started, because an AI assistant can write the file for you."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 3: Create your GitHub repository",
+      "text": "A repository is GitHub's name for a project folder. Yours will hold your website files."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 4: Upload your index.html file",
+      "text": "1. In your new repository, click the Add file button, marked 1 below, then click Upload files, marked 2. 2. Drag your index.html file from your PC onto the upload page. It must sit at the top level of the repository, not inside a folder. 3. Scroll down and click the green Commit changes button. Commit is GitHub's word for save."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 5: Switch on GitHub Pages",
+      "text": "Follow the numbers on the screenshot below."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 6: Add your domain to Cloudflare",
+      "text": "1. Sign in to Cloudflare's dashboard and click Domains in the left-hand menu, marked 1 below. Box 2 shows where your domains are listed once they are added. 2. Click Onboard a domain, type your domain without the www, such as yourname.co.uk, and click Continue. 3. Choose the Free plan. 4. Cloudflare scans for any existing records for your domain and shows them in a list. Delete any old records that point your main domain at another website or a parking page, because they will clash with GitHub's"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 7: Point your domain at GitHub",
+      "text": "These records are the signposts that send your visitors to GitHub. GitHub publishes the addresses below in its own documentation, and they are the same for everyone, which is why I have left them visible in my screenshot."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 8: Tell GitHub about your domain",
+      "text": "1. Back in GitHub, go to your repository's Settings, then Pages, as in Step 5. 2. In the Custom domain box, marked 5 on the Step 5 screenshot, type your domain, such as yourname.co.uk, and click Save. GitHub adds a file called CNAME to your repository, which is how it remembers your domain, so never delete that file. 3. You will see DNS Check in Progress under the box. Wait for it to pass. 4. Tick Enforce HTTPS, marked 6. GitHub says this option can take up to 24 hours to become available after "
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 9: Set Cloudflare's encryption mode to Full",
+      "text": "Encryption keeps the connection between your visitors and your site private. Cloudflare has to know how to talk securely to GitHub too."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 10: Switch on Always Use HTTPS",
+      "text": "This setting cost me search visibility for weeks before a free Ahrefs site audit showed me what was going on. Without it, my whole site existed twice, once on plain http and once on secure https. The audit crawled 39 http pages alongside 43 https ones, and search engines had to work out which copy was the real one."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 11: Stop Cloudflare hiding your email links",
+      "text": "Cloudflare switches on a feature called Email Address Obfuscation automatically when you sign up. It hides email addresses on your pages from spam bots by swapping each one for a special link. The catch is that SEO tools see that special link as a broken page. In my audit, 36 of the 37 \"broken links\" were this one feature, repeated on every page that had my email address on it."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 12: Make your updates show up straight away",
+      "text": "Cloudflare keeps copies of your files so the site loads faster. That is great until you change something. When I updated my site's design, visitors kept getting the old stylesheet, and the pages looked broken."
+    }
+  ]
+}
+</script>
+<style>
+/* 8 Oct 2026: code in step-by-step articles - large, high contrast, never wider than the page */
+.article-body pre.code-block { background: #1d1a16; color: #f5f2eb; padding: 1.1rem 1.25rem; margin: 1.25rem 0 1.75rem; overflow-x: auto; max-width: 100%; border-radius: 4px; font-size: 0.95rem; line-height: 1.55; }
+.article-body pre.code-block code { font-family: var(--mono, monospace); background: none; padding: 0; color: inherit; white-space: pre; }
+.article-body code { font-family: var(--mono, monospace); background: #ece6da; padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.92em; }
+</style>
+<style>
+/* 11 Oct 2026: charts and pictures inside articles - full width, never wider than the page */
+.article-body figure.article-figure { margin: 1.5rem 0 2rem; }
+.article-body figure.article-figure img { display: block; width: 100%; height: auto; border-radius: 4px; border: 1px solid #e4e3df; }
+/* 18 Oct 2026: tap to enlarge, and wider than the text column on big screens so menu labels stay readable */
+.article-body figure.article-figure a.figure-zoom { display: block; cursor: zoom-in; }
+.article-body figure.article-figure figcaption { font-size: 0.9rem; color: #5f5a52; margin-top: 0.45rem; }
+@media (min-width: 1100px) { .article-body figure.article-figure { width: min(1150px, 88vw); position: relative; left: 50%; transform: translateX(-50%); } }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/work/">Work</a>
+    <a href="/agents/">AI &amp; Agents</a>
+    <a href="/village/">Village</a>
+    <a href="/lab/">Lab</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/news/">News</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/guides/" class="article-back">← All guides</a>
+  <div class="hero-label">Guide</div>
+  <h1>How to Host a Website for Free on GitHub Pages with Your Own Domain and Cloudflare</h1>
+  <div class="article-meta">Guide · Last reviewed October 2026 · Gary Stow, performance marketing and AI</div>
+  <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Written by Gary Stow with help from AI tools. Every fact is checked and every article is approved by Gary before it goes live.</p>
+</div>
+
+<section>
+  <img src="/guides/how-to-host-a-website-for-free-on-github-pages-with-your/how-to-host-a-website-for-free-on-github-pages-with-your.webp" width="1200" height="674" fetchpriority="high" decoding="async" alt="Screenshot of the GitHub Pages settings page, showing Build and deployment set to deploy from the main branch and the Custom domain box" class="article-hero-img">
+  <div class="article-body">
+
+    <p>My own website runs on GitHub Pages with my domain pointed at it through Cloudflare, and the hosting costs me nothing. I have shown a lot of people that you can do this, including small business owners who now save on hosting fees, and even some experienced GitHub users didn't know it was possible. This guide walks through the whole setup in the order I would do it today. Every screenshot is from my own accounts, with my personal details blurred out, and the red boxes show you exactly where to click.</p>
+
+    <h3>Who this guide is for</h3>
+
+    <p>This is for anyone who wants a simple website, such as a portfolio, a personal brand site or a small business page, live on their own web address without paying for hosting. You don't need to be a developer, and you don't need to know any code, because I will show you how to get AI to write your first page. By the end you will have a website at your own address, served securely over HTTPS, with Cloudflare in front of it for speed and protection.</p>
+
+    <h3>What you'll need</h3>
+
+    <p>Get these four things ready before you start, because the steps assume you have them.</p>
+
+    <ul>
+      <li><strong>A domain name</strong>, which is your web address, such as <code>yourname.co.uk</code>. Step 1 covers buying one if you haven't yet.</li>
+      <li><strong>A free GitHub account.</strong> Sign up at <a href="https://github.com/signup">GitHub</a>. GitHub is where your website files will live.</li>
+      <li><strong>A free Cloudflare account.</strong> Sign up at <a href="https://dash.cloudflare.com/sign-up">Cloudflare</a>. Cloudflare will sit between your visitors and GitHub.</li>
+      <li><strong>About an hour</strong>, plus some waiting time. Address changes on the internet can take up to 24 hours to spread, although mine took far less.</li>
+    </ul>
+
+    <p><strong>Cost:</strong> nothing beyond the domain itself, which is usually a small yearly fee.</p>
+
+    <p><strong>Why Cloudflare?</strong> You don't have to use it. GitHub Pages works on its own, and you can point your domain at GitHub from your domain seller's settings instead. I use Cloudflare because its free plan is easy to set up, it keeps copies of your pages close to your visitors so the site loads faster, it adds a layer of protection, and it gives you one clear place to manage your domain's settings. It has worked well for me, so it is the route this guide follows.</p>
+
+    <h3>Step 1: Buy your domain name</h3>
+
+    <ol>
+      <li>Choose a domain seller, called a registrar. Well known options include <a href="https://www.cloudflare.com/products/registrar/">Cloudflare Registrar</a>, which sells domains at cost, and any of the big high street names. Any registrar works for this guide.</li>
+      <li>Search for the name you want, add it to your basket and buy it. You don't need any of the extras the seller offers, such as hosting, a website builder or email packages, because GitHub and Cloudflare cover what you need for free.</li>
+      <li>Keep the login for your registrar handy, because in Step 6 you will change one setting there.</li>
+    </ol>
+
+    <p>If you buy your domain from Cloudflare Registrar, it is already set up in Cloudflare, so you can skip the nameserver part of Step 6.</p>
+
+    <h3>Step 2: Create your first page with AI</h3>
+
+    <p>Every website needs a file called <code>index.html</code>. It is the home page: when someone types your address, their browser looks for this file and opens it first. The <code>.html</code> part means it is written in HTML, the language web pages are built from. You don't need to learn HTML to get started, because an AI assistant can write the file for you.</p>
+
+    <ol>
+      <li>Open an AI assistant such as Claude, Copilot or ChatGPT, and paste in the prompt below, changing the details in the square brackets to your own.</li>
+      <li>Open Notepad on your PC, paste in everything the AI gives you between <code>&lt;!DOCTYPE html&gt;</code> and <code>&lt;/html&gt;</code>, and click <strong>File</strong>, then <strong>Save as</strong>.</li>
+      <li>In the <strong>Save as type</strong> box, choose <strong>All files</strong>, type <code>index.html</code> as the file name, and click <strong>Save</strong>. If you leave the type as Text documents, Windows saves it as <code>index.html.txt</code>, and GitHub won't treat it as a web page.</li>
+    </ol>
+
+    <pre class="code-block"><code>Create a single, self-contained index.html file for a simple one-page website.
+It is for [your name or business], who [what you do, in one sentence].
+Include: a heading with the name, a short introduction, a section on [services, projects or experience], and a contact section with [email address or a link].
+Put all the styling inside the file in a &lt;style&gt; block, so there are no other files to upload.
+Use large, readable text, strong contrast between text and background, and make it work well on mobile phones.
+Give me only the finished code, from &lt;!DOCTYPE html&gt; to &lt;/html&gt;.</code></pre>
+
+    <p><strong>What you should see:</strong> double click your saved <code>index.html</code> file and it opens in your web browser, looking like a finished page. If it does, you have a website. It just isn't on the internet yet.</p>
+
+    <h3>Step 3: Create your GitHub repository</h3>
+
+    <p>A repository is GitHub's name for a project folder. Yours will hold your website files.</p>
+
+    <ol>
+      <li>Sign in to GitHub and go to <a href="https://github.com/new">create a new repository</a>. You can also get there from the <strong>+</strong> button in the top right corner of any GitHub page, then <strong>New repository</strong>.</li>
+      <li>In the box marked 1 below, <strong>Repository name</strong>, type <code>yourusername.github.io</code>, replacing <code>yourusername</code> with your own GitHub username in lower case. This exact name tells GitHub it is your main website.</li>
+      <li>In box 2, make sure <strong>Choose visibility</strong> is set to <strong>Public</strong>.</li>
+      <li>In box 3, click the <strong>Add README</strong> switch so it shows On.</li>
+      <li>Click <strong>Create repository</strong>, shown in box 4.</li>
+    </ol>
+
+    <figure class="article-figure"><a class="figure-zoom" href="github-new-repository.webp" target="_blank" rel="noopener"><img src="github-new-repository.webp" alt="GitHub&#x27;s Create a new repository page with the repository name box, the Public visibility setting, the Add README switch and the Create repository button marked 1 to 4" loading="lazy" decoding="async"></a><figcaption>Tap or click the picture to see it full size.</figcaption></figure>
+
+    <p>The repository has to be public on GitHub's free plan. I learned this when I tried to switch on Pages for one of my private repositories, and GitHub showed the message in the red box below instead of the Pages settings. A public repository means anyone can see your website's files, which is fine, because they can see your website anyway. Just never put passwords or private documents in it.</p>
+
+    <figure class="article-figure"><a class="figure-zoom" href="github-pages-private-repo.webp" target="_blank" rel="noopener"><img src="github-pages-private-repo.webp" alt="GitHub Pages settings on a private repository showing the message Upgrade or make this repository public to enable Pages" loading="lazy" decoding="async"></a><figcaption>Tap or click the picture to see it full size.</figcaption></figure>
+
+    <h3>Step 4: Upload your index.html file</h3>
+
+    <ol>
+      <li>In your new repository, click the <strong>Add file</strong> button, marked 1 below, then click <strong>Upload files</strong>, marked 2.</li>
+      <li>Drag your <code>index.html</code> file from your PC onto the upload page. It must sit at the top level of the repository, not inside a folder.</li>
+      <li>Scroll down and click the green <strong>Commit changes</strong> button. Commit is GitHub's word for save.</li>
+    </ol>
+
+    <figure class="article-figure"><a class="figure-zoom" href="github-add-file-upload.webp" target="_blank" rel="noopener"><img src="github-add-file-upload.webp" alt="GitHub&#x27;s Add file menu open, with the Add file button marked 1 and Upload files marked 2" loading="lazy" decoding="async"></a><figcaption>Tap or click the picture to see it full size.</figcaption></figure>
+
+    <p><strong>What you should see:</strong> your repository's main page now lists <code>index.html</code> alongside <code>README.md</code>.</p>
+
+    <h3>Step 5: Switch on GitHub Pages</h3>
+
+    <p>Follow the numbers on the screenshot below.</p>
+
+    <ol>
+      <li>Click <strong>Settings</strong> along the top of your repository, marked 1.</li>
+      <li>Click <strong>Pages</strong> in the left-hand menu, marked 2.</li>
+      <li>Under <strong>Build and deployment</strong>, open the <strong>Source</strong> dropdown, marked 3, and choose <strong>Deploy from a branch</strong>.</li>
+      <li>In the branch dropdowns, marked 4, choose <code>main</code> and leave the folder as <strong>/ (root)</strong>, then click <strong>Save</strong>.</li>
+    </ol>
+
+    <figure class="article-figure"><a class="figure-zoom" href="github-pages-settings.webp" target="_blank" rel="noopener"><img src="github-pages-settings.webp" alt="GitHub Pages settings with Settings, Pages, the Source dropdown, the branch and folder dropdowns, the Custom domain box and Enforce HTTPS marked 1 to 6" loading="lazy" decoding="async"></a><figcaption>Tap or click the picture to see it full size.</figcaption></figure>
+
+    <p><strong>What you should see:</strong> within about 10 minutes, a box appears at the top of this page saying your site is live, with a <strong>Visit site</strong> button. Click it, and your page opens at <code>yourusername.github.io</code>. If you see a "page not found" message instead, give it a few more minutes before changing anything. Boxes 5 and 6 are for Step 8, so leave them for now.</p>
+
+    <h3>Step 6: Add your domain to Cloudflare</h3>
+
+    <ol>
+      <li>Sign in to <a href="https://dash.cloudflare.com/">Cloudflare's dashboard</a> and click <strong>Domains</strong> in the left-hand menu, marked 1 below. Box 2 shows where your domains are listed once they are added.</li>
+      <li>Click <strong>Onboard a domain</strong>, type your domain without the www, such as <code>yourname.co.uk</code>, and click <strong>Continue</strong>.</li>
+      <li>Choose the <strong>Free</strong> plan.</li>
+      <li>Cloudflare scans for any existing records for your domain and shows them in a list. Delete any old records that point your main domain at another website or a parking page, because they will clash with GitHub's, then click <strong>Continue</strong>.</li>
+      <li>Cloudflare gives you two <strong>nameservers</strong>, which look like two web addresses ending in <code>ns.cloudflare.com</code>. Sign in to your registrar, find the nameserver settings for your domain, replace the existing ones with Cloudflare's two, and save.</li>
+    </ol>
+
+    <figure class="article-figure"><a class="figure-zoom" href="cloudflare-account-home.webp" target="_blank" rel="noopener"><img src="cloudflare-account-home.webp" alt="Cloudflare account home with Domains in the left-hand menu marked 1 and the Domains list marked 2" loading="lazy" decoding="async"></a><figcaption>Tap or click the picture to see it full size.</figcaption></figure>
+
+    <p><strong>What you should see:</strong> Cloudflare emails you when your domain is active. Until then, the domain shows as pending in your Cloudflare dashboard.</p>
+
+    <p>Once your domain is active, click it to open its own menu. You will use four parts of this menu in the rest of the guide, so here they are in one place.</p>
+
+    <figure class="article-figure"><a class="figure-zoom" href="cloudflare-domain-menu.webp" target="_blank" rel="noopener"><img src="cloudflare-domain-menu.webp" alt="Cloudflare&#x27;s menu for a single domain with DNS Records, SSL/TLS, Security and Caching marked 1 to 4" loading="lazy" decoding="async"></a><figcaption>Tap or click the picture to see it full size.</figcaption></figure>
+
+    <h3>Step 7: Point your domain at GitHub</h3>
+
+    <p>These records are the signposts that send your visitors to GitHub. GitHub publishes the addresses below in its own documentation, and they are the same for everyone, which is why I have left them visible in my screenshot.</p>
+
+    <ol>
+      <li>In your domain's menu in Cloudflare, click <strong>DNS</strong>, then <strong>Records</strong>.</li>
+      <li>Click <strong>Add record</strong>, marked 1 below.</li>
+      <li>Set <strong>Type</strong> to <strong>A</strong>, <strong>Name</strong> to <code>@</code> (which means your main domain), and <strong>IPv4 address</strong> to <code>185.199.108.153</code>. Leave the orange cloud switched on, and click <strong>Save</strong>.</li>
+      <li>Repeat for the other three addresses, one record each: <code>185.199.109.153</code>, <code>185.199.110.153</code> and <code>185.199.111.153</code>. Box 2 shows my four A records.</li>
+      <li>Click <strong>Add record</strong> again. Set <strong>Type</strong> to <strong>CNAME</strong>, <strong>Name</strong> to <code>www</code>, and <strong>Target</strong> to <code>yourusername.github.io</code>, with nothing after it. Click <strong>Save</strong>. Box 3 shows mine.</li>
+      <li>Check the <strong>Proxy status</strong> column, box 4. Each of these records should show an orange cloud and the word <strong>Proxied</strong>, which means visitors go through Cloudflare first.</li>
+    </ol>
+
+    <figure class="article-figure"><a class="figure-zoom" href="cloudflare-dns-records.webp" target="_blank" rel="noopener"><img src="cloudflare-dns-records.webp" alt="Cloudflare DNS records with the Add record button, the four GitHub A records, the www CNAME record and the Proxied status marked 1 to 4" loading="lazy" decoding="async"></a><figcaption>Tap or click the picture to see it full size.</figcaption></figure>
+
+    <p>Don't add a wildcard record, such as <code>*.yourname.co.uk</code>. GitHub warns that wildcard records can let someone else take over parts of your domain.</p>
+
+    <p><strong>Do you need the IPv6 records?</strong> GitHub's documentation also lists four AAAA records. These are for IPv6, which is the newer style of internet address. You can skip them when you use Cloudflare, because Cloudflare's IPv6 compatibility is switched on by default and answers IPv6 visitors for you. If you are not using Cloudflare, add them at your registrar as GitHub's page shows.</p>
+
+    <h3>Step 8: Tell GitHub about your domain</h3>
+
+    <ol>
+      <li>Back in GitHub, go to your repository's <strong>Settings</strong>, then <strong>Pages</strong>, as in Step 5.</li>
+      <li>In the <strong>Custom domain</strong> box, marked 5 on the Step 5 screenshot, type your domain, such as <code>yourname.co.uk</code>, and click <strong>Save</strong>. GitHub adds a file called <code>CNAME</code> to your repository, which is how it remembers your domain, so never delete that file.</li>
+      <li>You will see <strong>DNS Check in Progress</strong> under the box. Wait for it to pass.</li>
+      <li>Tick <strong>Enforce HTTPS</strong>, marked 6. GitHub says this option can take up to 24 hours to become available after your records are in place.</li>
+    </ol>
+
+    <p><strong>What you should see:</strong> typing your domain into a browser loads your website. If you want to check the records yourself on Windows, follow these steps:</p>
+
+    <ol>
+      <li>Press the Windows key, type <code>PowerShell</code>, and press Enter to open it.</li>
+      <li>Type the command below, replacing <code>yourname.co.uk</code> with your own domain, and press Enter.</li>
+    </ol>
+
+    <pre class="code-block"><code>Resolve-DnsName yourname.co.uk</code></pre>
+
+    <p>You will see a short table of results. With the orange cloud on, the addresses listed belong to Cloudflare, not GitHub, which is exactly right, because your visitors now reach Cloudflare first.</p>
+
+    <h3>Step 9: Set Cloudflare's encryption mode to Full</h3>
+
+    <p>Encryption keeps the connection between your visitors and your site private. Cloudflare has to know how to talk securely to GitHub too.</p>
+
+    <ol>
+      <li>In your domain's menu in Cloudflare, click <strong>SSL/TLS</strong>, then <strong>Overview</strong>, marked 1 below.</li>
+      <li>Look at <strong>Current encryption mode</strong>, marked 2. If it already says <strong>Full</strong>, as mine does, you are done.</li>
+      <li>If it says anything else, click <strong>Configure</strong>, marked 3, choose the custom option, select <strong>Full</strong>, and save. GitHub Pages serves your site over HTTPS, so Cloudflare can talk to it securely, and Cloudflare recommends Full or Full (strict) over Flexible wherever possible.</li>
+    </ol>
+
+    <figure class="article-figure"><a class="figure-zoom" href="cloudflare-ssl-overview.webp" target="_blank" rel="noopener"><img src="cloudflare-ssl-overview.webp" alt="Cloudflare SSL/TLS Overview with SSL/TLS Overview in the menu, Current encryption mode Full and the Configure button marked 1 to 3" loading="lazy" decoding="async"></a><figcaption>Tap or click the picture to see it full size.</figcaption></figure>
+
+    <h3>Step 10: Switch on Always Use HTTPS</h3>
+
+    <p>This setting cost me search visibility for weeks before a free Ahrefs site audit showed me what was going on. Without it, my whole site existed twice, once on plain http and once on secure https. The audit crawled 39 http pages alongside 43 https ones, and search engines had to work out which copy was the real one.</p>
+
+    <ol>
+      <li>In your domain's menu, click <strong>SSL/TLS</strong>, then <strong>Edge Certificates</strong>, marked 1 below.</li>
+      <li>Find <strong>Always Use HTTPS</strong> and click its switch, marked 2, so it turns blue.</li>
+    </ol>
+
+    <figure class="article-figure"><a class="figure-zoom" href="cloudflare-always-use-https.webp" target="_blank" rel="noopener"><img src="cloudflare-always-use-https.webp" alt="Cloudflare Edge Certificates page with Edge Certificates in the menu marked 1 and the Always Use HTTPS switch marked 2" loading="lazy" decoding="async"></a><figcaption>Tap or click the picture to see it full size.</figcaption></figure>
+
+    <p><strong>What you should see:</strong> type your domain into your phone's browser with plain http in front of it, and it jumps straight to the secure https version, with the padlock showing.</p>
+
+    <h3>Step 11: Stop Cloudflare hiding your email links</h3>
+
+    <p>Cloudflare switches on a feature called Email Address Obfuscation automatically when you sign up. It hides email addresses on your pages from spam bots by swapping each one for a special link. The catch is that SEO tools see that special link as a broken page. In my audit, 36 of the 37 "broken links" were this one feature, repeated on every page that had my email address on it.</p>
+
+    <p>You only need this step if your site shows an email address. The fix I use doesn't involve hunting through Cloudflare's settings at all. Cloudflare leaves alone anything you wrap in two special markers, <code>&lt;!--email_off--&gt;</code> before and <code>&lt;!--/email_off--&gt;</code> after, so I put those around every email link on my site. My audit's broken links dropped to zero, and the email links still work normally.</p>
+
+    <ol>
+      <li>Open your <code>index.html</code> file in Notepad.</li>
+      <li>Press <strong>Ctrl</strong> and <strong>F</strong> together, type <code>mailto:</code> and press Enter to find your email link.</li>
+      <li>Type <code>&lt;!--email_off--&gt;</code> directly before the <code>&lt;a</code> at the start of that link, and <code>&lt;!--/email_off--&gt;</code> directly after the <code>&lt;/a&gt;</code> at the end of it. It should look like the second line below, with your own address.</li>
+      <li>Repeat for every email link, save the file, and upload it to GitHub again as in Step 4.</li>
+    </ol>
+
+    <pre class="code-block"><code>&lt;a href="mailto:YOUR-EMAIL-ADDRESS"&gt;Email me&lt;/a&gt;
+&lt;!--email_off--&gt;&lt;a href="mailto:YOUR-EMAIL-ADDRESS"&gt;Email me&lt;/a&gt;&lt;!--/email_off--&gt;</code></pre>
+
+    <p>If you have several pages, paste this prompt into your AI assistant with the files attached:</p>
+
+    <pre class="code-block"><code>I have attached the HTML files for my website. Cloudflare's Email Address Obfuscation is turning my email links into links that SEO tools report as broken.
+In every file, find each link that starts with &lt;a href="mailto: and wrap the whole link, from &lt;a to &lt;/a&gt;, in Cloudflare's markers: put &lt;!--email_off--&gt; directly before it and &lt;!--/email_off--&gt; directly after it.
+Don't add the markers twice if a link already has them, and change nothing else. Give me back each full file.</code></pre>
+
+    <p><strong>What you should see:</strong> open your live page, right click and choose <strong>View page source</strong>, then press <strong>Ctrl</strong> and <strong>F</strong> and search for <code>email-protection</code>, and it should find nothing.</p>
+
+    <p>Cloudflare's documentation also describes a switch to turn the feature off for the whole site, under <strong>Security</strong>, then <strong>Settings</strong>. When I typed its name into the dashboard's search bar it found nothing, which is exactly why I use the markers instead: they work whatever the dashboard looks like.</p>
+
+    <h3>Step 12: Make your updates show up straight away</h3>
+
+    <p>Cloudflare keeps copies of your files so the site loads faster. That is great until you change something. When I updated my site's design, visitors kept getting the old stylesheet, and the pages looked broken.</p>
+
+    <ol>
+      <li><strong>The quick fix:</strong> after any big change, go to your domain's menu, click <strong>Caching</strong>, then <strong>Configuration</strong>, marked 1 below, and click <strong>Purge Everything</strong>, marked 2. Cloudflare throws away its copies and fetches your new files.</li>
+      <li><strong>The lasting fix:</strong> if your site uses a separate stylesheet file, add a version number to the link that loads it, and change the number whenever the stylesheet changes. A new address makes Cloudflare fetch the new file.</li>
+    </ol>
+
+    <figure class="article-figure"><a class="figure-zoom" href="cloudflare-purge-cache.webp" target="_blank" rel="noopener"><img src="cloudflare-purge-cache.webp" alt="Cloudflare Caching Configuration with Configuration in the menu marked 1 and the Purge Everything button marked 2" loading="lazy" decoding="async"></a><figcaption>Tap or click the picture to see it full size.</figcaption></figure>
+
+    <p>If you built your page with the prompt in Step 2, the styling lives inside <code>index.html</code>, so a purge is all you need. Once your site grows to several pages sharing one stylesheet, each page has a line like the first one below in its <code>&lt;head&gt;</code> section. Change it to the second, and next time change <code>v=2</code> to <code>v=3</code>:</p>
+
+    <pre class="code-block"><code>&lt;link rel="stylesheet" href="/css/style.css"&gt;
+&lt;link rel="stylesheet" href="/css/style.css?v=2"&gt;</code></pre>
+
+    <p>With lots of pages, let AI make the change for you. Paste this prompt into your assistant along with your files:</p>
+
+    <pre class="code-block"><code>I have attached the HTML files for my website. Each one loads the same stylesheet.
+Add a version number to every stylesheet link, so href="/css/style.css" becomes href="/css/style.css?v=2".
+If a link already has a version number, increase it by one.
+Change nothing else in the files, and give me back each full file.</code></pre>
+
+    <p>My site's publishing script now does this automatically every time the stylesheet changes.</p>
+
+    <h3>If it goes wrong</h3>
+
+    <ul>
+      <li><strong>GitHub shows a "page not found" message on your own domain.</strong> Check that <code>index.html</code> is at the top level of your repository, not inside a folder, and that it isn't called <code>index.html.txt</code>. Check the <code>CNAME</code> file still exists. Re-saving your domain under <strong>Settings</strong>, then <strong>Pages</strong> recreates it.</li>
+      <li><strong>"Enforce HTTPS" is greyed out.</strong> GitHub needs to see your domain pointing at its addresses before it can issue a certificate, so give it time first. If it stays greyed out, a common workaround is to temporarily switch the records in Cloudflare to <strong>DNS only</strong> (the grey cloud), wait for GitHub to issue the certificate and tick the box, then switch the orange cloud back on.</li>
+      <li><strong>The browser says "too many redirects".</strong> This usually means Cloudflare is set to <strong>Flexible</strong> while HTTPS is enforced at GitHub, so the two keep redirecting each other. Set the mode to <strong>Full</strong> as in Step 9.</li>
+      <li><strong>Your changes don't appear.</strong> Wait up to 10 minutes for GitHub to publish, then purge Cloudflare's cache as in Step 12.</li>
+      <li><strong>Your domain still shows an old website or a parking page.</strong> An old record is still pointing somewhere else. Delete any A or CNAME records for <code>@</code> or <code>www</code> that aren't the ones from Step 7, and check your registrar is using Cloudflare's two nameservers.</li>
+    </ul>
+
+    <h3>Stuck? Copy this prompt into an AI assistant</h3>
+
+    <p>If something isn't working and the list above doesn't fix it, paste this prompt into Claude, Copilot or ChatGPT. Fill in the square brackets, and attach a screenshot of the page you are stuck on, with any personal details covered.</p>
+
+    <pre class="code-block"><code>I am following a step-by-step guide to host a free website on GitHub Pages with my own domain, using Cloudflare for DNS.
+I am a beginner, so please explain each fix in simple numbered steps and tell me exactly where to click.
+Where I am stuck: [which step, for example "Step 8, Enforce HTTPS is greyed out"].
+What I expected to see: [for example "my website at my domain"].
+What I actually see: [the exact error message or what the page shows].
+My setup: repository named [yourusername.github.io], domain [yourname.co.uk], DNS records in Cloudflare: [list the Type, Name and Content of each record, or attach a screenshot].
+What I have already tried: [anything you have changed].
+Ask me questions if you need more information before suggesting a fix.</code></pre>
+
+    <h3>Where to go next</h3>
+
+    <p>Once the site is live, tell search engines it exists. My free tools guide, <a href="/articles/getting-a-small-website-ready-for-ai-search-with-free-tools/">getting a small website ready for AI search</a>, covers Search Console, Bing Webmaster Tools and the basics that help a new site get found. If you want to compare the free analytics options, read <a href="/articles/clarity-vs-ga4-vs-bing-webmaster-tools/">Clarity vs GA4 vs Bing Webmaster Tools</a>.</p>
+
+    <h3>Sources</h3>
+
+    <ul>
+      <li>GitHub Docs: <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site">Creating a GitHub Pages site</a></li>
+      <li>GitHub Docs: <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">Configuring a publishing source</a></li>
+      <li>GitHub Docs: <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">Managing a custom domain for your GitHub Pages site</a></li>
+      <li>Cloudflare Docs: <a href="https://developers.cloudflare.com/fundamentals/manage-domains/add-site/">Add a site</a></li>
+      <li>Cloudflare Docs: <a href="https://developers.cloudflare.com/network/ipv6-compatibility/">IPv6 compatibility</a></li>
+      <li>Cloudflare Docs: <a href="https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/">Encryption modes</a></li>
+      <li>Cloudflare Docs: <a href="https://developers.cloudflare.com/ssl/edge-certificates/additional-options/always-use-https/">Always Use HTTPS</a></li>
+      <li>Cloudflare Docs: <a href="https://developers.cloudflare.com/waf/tools/scrape-shield/email-address-obfuscation/">Email Address Obfuscation</a></li>
+    </ul>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Want to talk about How to Host a Website for Free on GitHub Pages with Your Own Domain and Cloudflare?</h2>
+  <p>Get in touch if this is relevant to what you're working on.</p>
+  <div class="cta-row">
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
+    <a href="/guides/" class="btn">More guides</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="mailto:garystow.hq@gmail.com">Email ↗</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+    <a href="/privacy/">Privacy</a>
+  </div>
+</footer>
+
+</body>
+</html>
