@@ -19,8 +19,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css?v=45260eab">
 <style>
-.guides-wrap { max-width: 920px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-.guides-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.guides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; max-width: 1150px; }
 .guide-card { display: flex; flex-direction: column; gap: 0.5rem; background: #fffdf8; border: 1px solid var(--rule);
   border-left: 6px solid var(--accent); border-radius: 12px; padding: 1.3rem 1.4rem; color: var(--ink); text-decoration: none; }
 .guide-card:hover { background: #fff; }
@@ -41,7 +40,7 @@
     <a href="/village/">Village</a>
     <a href="/lab/">Lab</a>
     <a href="/articles/">Articles</a>
-    <a href="/guides/" class="active">Guides</a>
+    <a href="/guides/">Guides</a>
     <a href="/news/">News</a>
     <a href="/speaking/">Speaking</a>
     <a href="/contact/">Contact</a>
@@ -51,16 +50,25 @@
 
 <div class="page-hero">
   <div class="hero-label">Guides</div>
-  <h1>Practical AI guides</h1>
-  <div class="article-meta">Step-by-step guides from real experience · Gary Stow, performance marketing and AI</div>
+  <h1>Practical AI guides.</h1>
+  <p class="hero-intro">Step-by-step guides to the AI tools, PPC tasks and systems I have built and use myself, with real screenshots, the errors I hit, and links to the official documentation.</p>
 </div>
 
-<div class="guides-wrap">
+<section>
   <div class="guides-grid">
     <a href="/guides/how-to-host-a-website-for-free-on-github-pages-with-your/" class="guide-card"><span class="t">How to Host a Website for Free on GitHub Pages with Your Own Domain and Cloudflare</span><span class="d">A step-by-step guide, with annotated screenshots, to buying a domain, building your first page with AI, putting it live for free on GitHub Pages, adding Cl</span></a>
   </div>
-  <p style="margin-top:2rem">Looking for my latest thinking instead? <a href="/articles/">Read the articles</a> or <a href="/news/">this week's news</a>.</p>
-</div>
+  <p style="margin-top:2.5rem">Looking for my latest thinking instead? <a href="/articles/">Read the articles</a> or <a href="/news/">this week's news</a>.</p>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Got a question about something you read?</h2>
+  <p>Message me on LinkedIn or get in touch. I read everything myself.</p>
+  <div class="cta-row">
+    <a href="https://linkedin.com/in/garystow" target="_blank" class="btn btn-accent">Message on LinkedIn ↗</a>
+    <a href="/contact/" class="btn">Contact ↗</a>
+  </div>
+</section>
 
 <footer>
   <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
