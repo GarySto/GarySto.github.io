@@ -138,3 +138,7 @@ the IAB UK.
 - [Gary HQ Village](https://garystow.co.uk/village/): Gary's real AI automation teams shown as a live cartoon village.
 - [Trading Research Lab](https://garystow.co.uk/lab/): Gary's home trading lab - every idea tested against simply owning the market, with interactive charts. Practice money only.
 - [Weekly news roundup](https://garystow.co.uk/news/): every Sunday, a short summary of what changed in search, PPC and AI this week, and what's worth learning, with links to every source.
+
+## Guides
+
+- [How to Host a Website for Free on GitHub Pages with Your Own Domain and Cloudflare](https://garystow.co.uk/guides/how-to-host-a-website-for-free-on-github-pages-with-your/): A step-by-step guide, with annotated screenshots, to buying a domain, building your first page with AI, putting it live for free on GitHub Pages, adding Cloudflare in front of it, and fixing the settings that quietly hurt my SEO.
