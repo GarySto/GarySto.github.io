@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An AI Prompt Framework for a PPC Audit — Gary Stow</title>
+<meta name="description" content="A reusable prompt pattern for an AI-assisted PPC audit: role, goal, constraints, data and question, run one section at a time, with the checks that keep it honest.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/articles/ai-prompt-framework-for-a-ppc-audit/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="An AI Prompt Framework for a PPC Audit">
+<meta property="og:description" content="A reusable prompt pattern for an AI-assisted PPC audit: role, goal, constraints, data and question, run one section at a time, with the checks that keep it honest.">
+<meta property="og:url" content="https://garystow.co.uk/articles/ai-prompt-framework-for-a-ppc-audit/">
+<meta property="og:image" content="https://garystow.co.uk/articles/ai-prompt-framework-for-a-ppc-audit/ai-prompt-framework-for-a-ppc-audit.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "An AI Prompt Framework for a PPC Audit",
+  "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
+  "datePublished": "2026-10-19",
+  "dateModified": "2026-10-19",
+  "url": "https://garystow.co.uk/articles/ai-prompt-framework-for-a-ppc-audit/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/assets/site.css?v=45260eab">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/work/">Work</a>
+    <a href="/agents/">AI &amp; Agents</a>
+    <a href="/village/">Village</a>
+    <a href="/lab/">Lab</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/guides/">Guides</a>
+    <a href="/news/">News</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/articles/" class="article-back">← All articles</a>
+  <div class="hero-label">Industry</div>
+  <h1>An AI Prompt Framework for a PPC Audit</h1>
+  <div class="article-meta">19 October 2026 · Gary Stow, performance marketing and AI</div>
+  <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Written by Gary Stow with help from AI tools. Every fact is checked and every article is approved by Gary before it goes live.</p>
+</div>
+
+<section>
+  <img src="/articles/ai-prompt-framework-for-a-ppc-audit/ai-prompt-framework-for-a-ppc-audit.webp" width="1200" height="800" fetchpriority="high" decoding="async" alt="Sketch of a messy pile of printed spreadsheets next to a short ticked checklist, a pen and an hourglass" class="article-hero-img">
+  <div class="article-body">
+    <p>A full PPC audit is one of the most useful things you can do for an account, and one of the most draining. You're looking for where the money goes, where the mistakes are and where the opportunities are hiding, and on a large account that means a lot of cross-checking. It's also exactly the kind of work an AI can take a first pass at, as long as you give it a clear structure. This is the prompt pattern I'd use, and anyone can copy it into whichever AI assistant they prefer.</p>
+
+    <h3>Why audits are heavy work</h3>
+
+    <p>Most of an account sits in the middle and stays there. What you're really hunting for are the extremes, the big over-performers and the big under-performers, because they show you what to do more of and what to stop doing. Before any of that, the account's own goal has to be the yardstick: its targets, its cost per acquisition and what the advertiser actually hopes will happen. An audit without that is just a list of observations.</p>
+
+    <p>The hard part is volume, and holding everything in your head at once. Ad copy can run to thousands of variations once responsive search ads are in the mix. Negative keywords live at ad group, campaign and account level, and every one needs checking against the keywords and search terms you actually want to serve. Tracking templates and custom parameters are long strings of symbols that all look almost the same, which is exactly where tired eyes miss the one that's broken.</p>
+
+    <p>That monotonous cross-checking is the job to hand to AI, while the thinking about the business stays with the person.</p>
+
+    <h3>The five-part prompt</h3>
+
+    <p>Every section of the audit uses the same five parts:</p>
+
+    <ol>
+      <li><strong>The role.</strong> "You are a PPC manager reviewing this account."</li>
+      <li><strong>The goal.</strong> Whatever the advertiser is aiming for, such as a target cost per acquisition, a return on ad spend target or growth in one area.</li>
+      <li><strong>The constraints.</strong> Whatever they're working within, such as terms they don't want to appear for, an impression share target, a limited budget or limited time.</li>
+      <li><strong>The data.</strong> The exported reports for this section only.</li>
+      <li><strong>The question.</strong> "What's sticking out here that might be causing problems? What else could be holding performance back?"</li>
+    </ol>
+
+    <p>Here's a starting prompt you can copy, with the square brackets changed to your own details:</p>
+
+    <pre class="code-block"><code>You are a PPC manager auditing a paid search account, one section at a time.
+The advertiser's goal is [goal, for example a cost per acquisition of £40].
+Their constraints are [budget, terms to avoid, time, team, legal].
+This section is [keywords, search terms and negative keywords]. The attached files are the exports for this section only.
+Measure everything against the goal and the constraints. List what is sticking out, what might be causing problems, and what else could be holding performance back.
+Show the rows behind every finding, and tell me when you are unsure.</code></pre>
+
+    <h3>Go one section at a time</h3>
+
+    <p>Upload the reports in groups rather than all at once, because a smaller set of files gets read properly, row by row. Keep the same goal and constraints for every section, so each answer is measured against the same yardstick. A full audit works through every part of a search account, for example:</p>
+
+    <ul>
+      <li>keywords, search terms, negative keywords and change history</li>
+      <li>tracking: conversion tags, tracking templates and custom parameters</li>
+      <li>conversions</li>
+      <li>share of voice and impression share</li>
+      <li>ad copy and assets</li>
+      <li>landing pages</li>
+      <li>campaign structure and naming</li>
+    </ul>
+
+    <p>When every section is done, ask for a summary of the findings, an action plan and a short executive summary, in the structure you want the final document to follow.</p>
+
+    <h3>What the prompt tends to catch</h3>
+
+    <p>The findings that matter most are usually the ones that don't show up in the headline numbers. Negative keywords quietly blocking terms the advertiser wants, and brand and generic keywords bleeding into each other so that every comparison between the two is skewed, are classic examples. You only find them by cross-checking keywords, search terms and negative lists against each other, which is the slog this pattern is built for.</p>
+
+    <h3>Check everything before you act</h3>
+
+    <p>Treat the output as a first draft, never a final answer. Two things to watch for:</p>
+
+    <ul>
+      <li><strong>Drifting from your structure.</strong> If the output stops following the template you asked for, tighten the instructions and say exactly which headings you want.</li>
+      <li><strong>Blending segments together.</strong> If the account covers more than one audience or product line, say clearly which one you mean, or the AI may merge them. Vague questions get vague answers.</li>
+    </ul>
+
+    <p>Read every finding, question anything surprising and check it against the account before you change a thing. I wrote more about that habit in <a href="/articles/the-independent-audit-why-i-make-ai-check-its-own-work/">the independent audit</a>.</p>
+
+    <h3>What stays with the person</h3>
+
+    <p>The prompt does the cross-checking. Deciding which findings matter for this particular advertiser, spotting when a recommendation is technically right but wrong for the business, and having the conversation with the people who own the account are still the human part of the job. For the bigger picture on that, see <a href="/articles/will-ai-replace-ppc-managers-not-the-good-ones/">will AI replace PPC managers?</a></p>
+
+
+
+    <p>Disclosure: I work at Microsoft Advertising. The views in this piece are my own, not Microsoft's.</p>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Want to talk about An AI Prompt Framework for a PPC Audit?</h2>
+  <p>Get in touch if this is relevant to what you're working on.</p>
+  <div class="cta-row">
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
+    <a href="/articles/" class="btn">More articles</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="mailto:garystow.hq@gmail.com">Email ↗</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+    <a href="/privacy/">Privacy</a>
+  </div>
+</footer>
+
+</body>
+</html>
