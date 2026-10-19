@@ -1,8 +1,7 @@
 # Gary Stow
 
 > Performance marketing specialist and AI practitioner. Builds AI agents
-> and automated systems, teaches AI skills to colleagues and industry
-> audiences, and writes about practical AI adoption in performance
+> and automated systems, teaches practical AI skills, and writes about practical AI adoption in performance
 > marketing.
 
 Gary Stow is a Senior Client Solutions Manager in performance marketing,
@@ -10,9 +9,8 @@ self-taught in Python and GitHub, building AI agents and automation as
 personal projects alongside his day job. This site documents that work:
 a live, fully automated momentum trading scanner, an automation team of
 department, supervisor and manager roles that watches and improves that
-system, a local LLM assistant, AI agents built for practical workflows,
-and training delivered to colleagues and industry audiences including
-the IAB UK.
+system, a local LLM assistant, a research lab for testing trading ideas, and
+practical guides and articles on AI tools.
 
 ## Primary pages
 
@@ -21,9 +19,9 @@ the IAB UK.
 - [Work](https://garystow.co.uk/work/): the Momentum Scanner, a fully
   automated momentum trading system built from scratch, including how
   it works and the skills demonstrated.
-- [AI & Agents](https://garystow.co.uk/agents/): AI agents built at work,
-  plus AI training, workshops and coaching delivered to colleagues and
-  industry audiences.
+- [AI & Agents](https://garystow.co.uk/agents/): personal AI projects,
+  including Wade, the website automation team, the Research Lab and the
+  Momentum Scanner, all built in Gary's own time.
 - [Articles](https://garystow.co.uk/articles/): republished, longer
   versions of LinkedIn posts on building in public, AI and search, and
   performance marketing.
@@ -70,14 +68,12 @@ the IAB UK.
   when I explain AI to people who are not technical, I compare it to a
   bright graduate on day one. It works because it is honest about both
   sides of AI.
-- [A Friday Build Day That Showed How Fast AI Is Moving](https://garystow.co.uk/articles/a-friday-build-day-that-showed-how-fast-ai-is-moving/):
-  I was invited to a hands-on AI build day and billed as the AI expert
-  in the room. What I saw people build in an afternoon stopped me in
-  my tracks.
-- [How I Cut a PPC Audit From 9 Hours to 30 Minutes With AI](https://garystow.co.uk/articles/how-i-cut-a-ppc-audit-from-9-hours-to-30-minutes-with-ai/):
-  A full PPC account audit used to take me a working day. With the
-  right exports, rules and checks, an AI-assisted audit now takes
-  under thirty minutes.
+- [How to Run an AI Build Day That Actually Sticks](https://garystow.co.uk/articles/a-friday-build-day-that-showed-how-fast-ai-is-moving/):
+  How Gary would run a hands-on AI build day, from real demos and a
+  short burst of theory to a protected build and a check-in afterwards.
+- [An AI Prompt Framework for a PPC Audit](https://garystow.co.uk/articles/ai-prompt-framework-for-a-ppc-audit/):
+  A reusable prompt pattern for an AI-assisted PPC audit, run one
+  section at a time, with the checks that keep it honest.
 - [How to Get a Sceptical Colleague to Actually Try AI](https://garystow.co.uk/articles/how-to-get-a-sceptical-colleague-to-actually-try-ai/):
   you cannot force someone to use AI, and trying usually backfires.
   What works is understanding their doubts and finding one small, real
