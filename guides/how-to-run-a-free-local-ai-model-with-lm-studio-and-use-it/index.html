@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Run a Free Local AI Model with LM Studio and Use It from Python — Gary Stow</title>
+<meta name="description" content="A beginner&#x27;s step-by-step guide, with annotated screenshots, to choosing a model that fits your PC, running it in LM Studio, switching on the local server,">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/guides/how-to-run-a-free-local-ai-model-with-lm-studio-and-use-it/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Run a Free Local AI Model with LM Studio and Use It from Python">
+<meta property="og:description" content="A beginner&#x27;s step-by-step guide, with annotated screenshots, to choosing a model that fits your PC, running it in LM Studio, switching on the local server,">
+<meta property="og:url" content="https://garystow.co.uk/guides/how-to-run-a-free-local-ai-model-with-lm-studio-and-use-it/">
+<meta property="og:image" content="https://garystow.co.uk/guides/how-to-run-a-free-local-ai-model-with-lm-studio-and-use-it/how-to-run-a-free-local-ai-model-with-lm-studio-and-use-it.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Run a Free Local AI Model with LM Studio and Use It from Python",
+  "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
+  "datePublished": "2026-10-20",
+  "url": "https://garystow.co.uk/guides/how-to-run-a-free-local-ai-model-with-lm-studio-and-use-it/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/assets/site.css?v=45260eab">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Run a Free Local AI Model with LM Studio and Use It from Python",
+  "description": "A beginner's step-by-step guide, with annotated screenshots, to choosing a model that fits your PC, running it in LM Studio, switching on the local server, and talking to it from a short Python script.",
+  "url": "https://garystow.co.uk/guides/how-to-run-a-free-local-ai-model-with-lm-studio-and-use-it/",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Step 1: Check how much memory your graphics card has",
+      "text": "The model has to fit into memory to run, and it runs far faster when it fits into your graphics card's own memory, called VRAM, rather than your PC's normal memory."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 2: Install Python",
+      "text": "Python is the programming language your script will use."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 3: Install LM Studio, not Bionic",
+      "text": "LM Studio now makes two different apps, and the download page offers both. LM Studio is the classic app this guide uses, with the model library and the local server. Bionic is a newer, separate app from the same team, built as an AI agent. LM Studio's own announcement describes Bionic as a separate app and says you can keep using LM Studio alongside it for advanced configuration, so download the classic app for this guide."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 4: Find a model that fits your PC",
+      "text": "1. Click the Model Search icon on the left, which looks like a robot with a magnifying glass, icon 4 in the picture above. 2. Type a model name into the search box, marked 1 below, or browse the staff picks list. 3. Click a model to see its details. Check its size in parameters, marked 2, and its download size, marked 3. 4. Look at the badge under the download options, marked 4. LM Studio checks your hardware and tells you how well the model will fit. 5. If it fits, click Download, marked 5, and"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 5: Load the model and chat with it",
+      "text": "1. Click the Chat icon on the left, icon 1 in the Step 3 picture. 2. Click the model picker at the top of the window, marked 1 below, and choose the model you downloaded. The first load can take a minute. 3. Once it has loaded, type a message such as \"say hello\" in the box at the bottom and press Enter."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 6: Switch on Developer mode",
+      "text": "The local server lives in LM Studio's developer tools, which are hidden until you switch them on."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 7: Start the local server",
+      "text": "1. Click the Developer icon on the left, which looks like a square box with a small arrow, like a triangle, inside it, marked 1 below. 2. Click Local Server at the top of the menu, marked 2. 3. Click the switch next to Status, marked 3, so it shows Status: Running. 4. Check the address next to Reachable at, marked 4. Mine is http://127.0.0.1:1234. The 127.0.0.1 part is your own PC, which programs also call localhost, and 1234 is the port number."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 8: Check the server from PowerShell",
+      "text": "Before writing any code, prove the server answers."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 9: Install the one library you need",
+      "text": "1. In the same PowerShell window, paste this command and press Enter:"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 10: Write and run your first script",
+      "text": "1. Open Notepad and paste in the script below. 2. Change the MODEL line to the identifier you wrote down in Step 8. 3. Click File, then Save as. Set Save as type to All files, name it ask_local_ai.py, and save it in a folder you can find, such as C:\\Projects\\local-ai."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Step 11: Make it useful",
+      "text": "Once the basic script works, change the question line to something you do every week, such as summarising a pasted report or tidying up a list of keywords. My website team reads its own data files, puts them into the question, and asks the local model to spot what changed, and that whole review runs every Friday evening without costing anything."
+    }
+  ]
+}
+</script>
+<style>
+/* 8 Oct 2026: code in step-by-step articles - large, high contrast, never wider than the page */
+.article-body pre.code-block { background: #1d1a16; color: #f5f2eb; padding: 1.1rem 1.25rem; margin: 1.25rem 0 1.75rem; overflow-x: auto; max-width: 100%; border-radius: 4px; font-size: 0.95rem; line-height: 1.55; }
+.article-body pre.code-block code { font-family: var(--mono, monospace); background: none; padding: 0; color: inherit; white-space: pre; }
+.article-body code { font-family: var(--mono, monospace); background: #ece6da; padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.92em; }
+</style>
+<style>
+/* 11 Oct 2026: charts and pictures inside articles - full width, never wider than the page */
+.article-body figure.article-figure { margin: 1.5rem 0 2rem; }
+.article-body figure.article-figure img { display: block; width: 100%; height: auto; border-radius: 4px; border: 1px solid #e4e3df; }
+/* 18 Oct 2026: tap to enlarge, and wider than the text column on big screens so menu labels stay readable */
+.article-body figure.article-figure a.figure-zoom { display: block; cursor: zoom-in; }
+/* 18 Oct 2026: a tall screenshot (e.g. a menu) must never fill several screens - cap its height, centre it */
+.article-body figure.article-figure img { width: auto; max-width: 100%; max-height: 80vh; margin: 0 auto; }
+.article-body figure.article-figure figcaption { font-size: 0.9rem; color: #5f5a52; margin-top: 0.45rem; }
+@media (min-width: 1100px) { .article-body figure.article-figure { width: min(1150px, 88vw); position: relative; left: 50%; transform: translateX(-50%); } }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/work/">Work</a>
+    <a href="/agents/">AI &amp; Agents</a>
+    <a href="/village/">Village</a>
+    <a href="/lab/">Lab</a>
+    <a href="/articles/">Articles</a>
+    <a href="/guides/" class="active">Guides</a>
+    <a href="/news/">News</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/guides/" class="article-back">← All guides</a>
+  <div class="hero-label">Guide</div>
+  <h1>How to Run a Free Local AI Model with LM Studio and Use It from Python</h1>
+  <div class="article-meta">Guide · Last reviewed October 2026 · Gary Stow, performance marketing and AI</div>
+  <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Written by Gary Stow with help from AI tools. Every fact is checked and every article is approved by Gary before it goes live.</p>
+</div>
+
+<section>
+  <img src="/guides/how-to-run-a-free-local-ai-model-with-lm-studio-and-use-it/how-to-run-a-free-local-ai-model-with-lm-studio-and-use-it.webp" width="1200" height="674" fetchpriority="high" decoding="async" alt="Screenshot of LM Studio&#x27;s Model Search, showing a list of downloadable AI models and the download options for one of them" class="article-hero-img">
+  <div class="article-body">
+
+    <p>Most of the AI work my home automation teams do runs on a model on my own PC, not in the cloud. My website team's weekly review, my news digest and my assistant, which I named Wade, all talk to a local model through LM Studio, so none of that work costs me a penny in tokens. This guide shows you how to set up the same thing from scratch and get your first answer back in Python. The screenshots are from my own copy of LM Studio, and the red boxes show you exactly where to click.</p>
+
+    <h3>Who this guide is for</h3>
+
+    <p>This is for marketers and other non-developers who want to try AI on their own computer, keep their data at home, or automate small jobs without paying per request. You don't need to know how to code, because you will copy one short script and run it. By the end you will have a model running on your PC, a local server that other programs can talk to, and a Python script that sends it a question and prints the answer.</p>
+
+    <h3>What you'll need</h3>
+
+    <ul>
+      <li><strong>A Windows PC with a graphics card</strong>, ideally. Step 1 shows you how to check how much memory your graphics card has, because that decides which models will run well.</li>
+      <li><strong>LM Studio</strong>, which is free. Step 3 gives you the right download link.</li>
+      <li><strong>Python</strong>, which is also free. Step 2 covers installing it.</li>
+      <li><strong>About 45 minutes</strong>, plus download time, because models are several gigabytes each.</li>
+    </ul>
+
+    <p><strong>Cost:</strong> nothing, because LM Studio and Python are both free.</p>
+
+    <h3>A quick word on model sizes</h3>
+
+    <p>You will see model names like <code>GPT-OSS 20B</code> or <code>Qwen2.5 Coder 7B</code>. The number with a B is the model's size in billions of parameters. Parameters are the numbers a model learned during training, and they are what it uses to work out its answers. As a rough rule, more parameters means a more capable model, but also a bigger download and more memory needed to run it. A 20B model has 20 billion parameters.</p>
+
+    <p>Models are usually shrunk for home use with a process called quantization. You will see labels like <code>Q4_K_M</code> next to a model, which means each parameter has been squeezed into about four bits. In practice, the download size LM Studio shows you is the best guide to how much memory the model needs.</p>
+
+    <h3>Step 1: Check how much memory your graphics card has</h3>
+
+    <p>The model has to fit into memory to run, and it runs far faster when it fits into your graphics card's own memory, called VRAM, rather than your PC's normal memory.</p>
+
+    <ol>
+      <li>Press <strong>Ctrl</strong>, <strong>Shift</strong> and <strong>Esc</strong> together to open Task Manager.</li>
+      <li>Click the <strong>Performance</strong> tab. If you only see a small window, click <strong>More details</strong> at the bottom first.</li>
+      <li>Click <strong>GPU</strong> in the left-hand list. If you have more than one, choose the one that isn't your processor's built-in graphics.</li>
+      <li>Find <strong>Dedicated GPU memory</strong> in the details below the graphs. That number is your VRAM.</li>
+    </ol>
+
+    <p><strong>What you should see:</strong> a figure such as 8GB, 12GB or 16GB. Mine is an AMD Radeon RX 7800 XT with 16GB, alongside 32GB of normal system memory. Write your number down, because you will use it in Step 4.</p>
+
+    <h3>Step 2: Install Python</h3>
+
+    <p>Python is the programming language your script will use.</p>
+
+    <ol>
+      <li>Go to the official <a href="https://www.python.org/downloads/">Python downloads page</a> and click the yellow download button for Windows.</li>
+      <li>Open the file you downloaded and follow the prompts. Python's Windows download has changed over the last year, so your screens may differ slightly from older guides. If you see a box labelled <strong>Add python.exe to PATH</strong>, tick it, because without it Windows can't find Python later.</li>
+      <li>When it has finished, press the Windows key, type <code>PowerShell</code>, and press Enter to open it.</li>
+      <li>Type <code>py --version</code> and press Enter.</li>
+    </ol>
+
+    <p><strong>What you should see:</strong> a line starting with the word Python followed by a version number. If you see that, Python is ready.</p>
+
+    <p>On Windows I always type <code>py</code> rather than <code>python</code> to run Python, because the Microsoft Store can grab the word <code>python</code> and open the Store instead of running your script. Every command in this guide uses <code>py</code>.</p>
+
+    <h3>Step 3: Install LM Studio, not Bionic</h3>
+
+    <p>LM Studio now makes two different apps, and the download page offers both. <strong>LM Studio</strong> is the classic app this guide uses, with the model library and the local server. <strong>Bionic</strong> is a newer, separate app from the same team, built as an AI agent. LM Studio's own announcement describes Bionic as a separate app and says you can keep using LM Studio alongside it for advanced configuration, so download the classic app for this guide.</p>
+
+    <ol>
+      <li>Go to the <a href="https://lmstudio.ai/download">LM Studio download page</a>.</li>
+      <li>Click the button labelled <strong>Download LM Studio for Windows</strong>, which shows a version number, rather than the button for Bionic. The direct link is <a href="https://lmstudio.ai/download/latest/win32/x64">LM Studio for Windows</a>.</li>
+      <li>Open the file and install it like any other program, then open LM Studio.</li>
+    </ol>
+
+    <p><strong>What you should see:</strong> the LM Studio window, with a column of icons down the left-hand side. Here is what each one does, because you will use them in the next steps.</p>
+
+    <figure class="article-figure"><a class="figure-zoom" href="lm-studio-sidebar-icons.webp" target="_blank" rel="noopener"><img src="lm-studio-sidebar-icons.webp" alt="LM Studio&#x27;s left-hand icons with Chat, Developer, My Models and Model Search marked 1 to 4" loading="lazy" decoding="async"></a><figcaption>Tap or click the picture to see it full size.</figcaption></figure>
+
+    <h3>Step 4: Find a model that fits your PC</h3>
+
+    <ol>
+      <li>Click the <strong>Model Search</strong> icon on the left, which looks like a robot with a magnifying glass, icon 4 in the picture above.</li>
+      <li>Type a model name into the search box, marked 1 below, or browse the staff picks list.</li>
+      <li>Click a model to see its details. Check its size in parameters, marked 2, and its download size, marked 3.</li>
+      <li>Look at the badge under the download options, marked 4. LM Studio checks your hardware and tells you how well the model will fit.</li>
+      <li>If it fits, click <strong>Download</strong>, marked 5, and wait for it to finish.</li>
+    </ol>
+
+    <figure class="article-figure"><a class="figure-zoom" href="lm-studio-model-search.webp" target="_blank" rel="noopener"><img src="lm-studio-model-search.webp" alt="LM Studio Model Search showing the search box, the 27B parameter count, the 17.74 GB download size, the Partial GPU Offload Possible badge and the Download button marked 1 to 5" loading="lazy" decoding="async"></a><figcaption>Tap or click the picture to see it full size.</figcaption></figure>
+
+    <p>In my screenshot the model is 17.74GB and the badge says <strong>Partial GPU Offload Possible</strong>. That means it is too big for my 16GB graphics card on its own, so LM Studio would run part of it on the card and the rest in normal memory. It works, but it runs noticeably slower.</p>
+
+    <p>My simple rule is to pick a model whose download size is a few gigabytes smaller than your VRAM from Step 1, because the model needs some room to work as well. That is why my main model is <code>openai/gpt-oss-20b</code>, an 11.28GB download that fits comfortably on my 16GB card. For help with code I use <code>qwen2.5-coder-7b-instruct</code>, which is only 4.36GB. If you have 8GB of VRAM, start with a 7B or 8B model. Look for the word <strong>instruct</strong> in the name, because those models are built to follow instructions.</p>
+
+    <h3>Step 5: Load the model and chat with it</h3>
+
+    <ol>
+      <li>Click the <strong>Chat</strong> icon on the left, icon 1 in the Step 3 picture.</li>
+      <li>Click the model picker at the top of the window, marked 1 below, and choose the model you downloaded. The first load can take a minute.</li>
+      <li>Once it has loaded, type a message such as "say hello" in the box at the bottom and press Enter.</li>
+    </ol>
+
+    <figure class="article-figure"><a class="figure-zoom" href="lm-studio-model-picker.webp" target="_blank" rel="noopener"><img src="lm-studio-model-picker.webp" alt="LM Studio model picker with the picker bar, the Memory Consumption figure and the model sizes column marked 1 to 3" loading="lazy" decoding="async"></a><figcaption>Tap or click the picture to see it full size.</figcaption></figure>
+
+    <p><strong>What you should see:</strong> a reply appears in the chat. The picker also shows <strong>Memory Consumption</strong>, marked 2, so you can see how much memory the loaded model is using, and box 3 lists the size of every model you have downloaded. If you get a reply, the model works on your machine, and everything from here is about letting other programs use it.</p>
+
+    <h3>Step 6: Switch on Developer mode</h3>
+
+    <p>The local server lives in LM Studio's developer tools, which are hidden until you switch them on.</p>
+
+    <ol>
+      <li>Click the <strong>Settings</strong> cog at the very bottom of the left-hand icons, marked 1 below.</li>
+      <li>In the Settings window, click <strong>Developer</strong> in the left-hand list, marked 2.</li>
+      <li>Next to <strong>Developer mode</strong>, click <strong>ON</strong>, marked 3, so it turns blue.</li>
+      <li>Close the Settings window with the <strong>X</strong> in its top right corner.</li>
+    </ol>
+
+    <figure class="article-figure"><a class="figure-zoom" href="lm-studio-settings-developer-mode.webp" target="_blank" rel="noopener"><img src="lm-studio-settings-developer-mode.webp" alt="LM Studio Settings with the Settings cog, the Developer section and the Developer mode switch marked 1 to 3" loading="lazy" decoding="async"></a><figcaption>Tap or click the picture to see it full size.</figcaption></figure>
+
+    <h3>Step 7: Start the local server</h3>
+
+    <ol>
+      <li>Click the <strong>Developer</strong> icon on the left, which looks like a square box with a small arrow, like a triangle, inside it, marked 1 below.</li>
+      <li>Click <strong>Local Server</strong> at the top of the menu, marked 2.</li>
+      <li>Click the switch next to <strong>Status</strong>, marked 3, so it shows <strong>Status: Running</strong>.</li>
+      <li>Check the address next to <strong>Reachable at</strong>, marked 4. Mine is <code>http://127.0.0.1:1234</code>. The <code>127.0.0.1</code> part is your own PC, which programs also call <code>localhost</code>, and <code>1234</code> is the port number.</li>
+    </ol>
+
+    <figure class="article-figure"><a class="figure-zoom" href="lm-studio-local-server.webp" target="_blank" rel="noopener"><img src="lm-studio-local-server.webp" alt="LM Studio Developer Local Server with the Developer icon, Local Server, the Status Running switch, the Reachable at address and the endpoint tabs marked 1 to 5" loading="lazy" decoding="async"></a><figcaption>Tap or click the picture to see it full size.</figcaption></figure>
+
+    <p>Box 5 shows the types of connection LM Studio supports: its own <strong>LM Studio API</strong>, <strong>OpenAI-compatible</strong> and <strong>Anthropic-compatible</strong>. The OpenAI-compatible option is the one this guide uses. It means LM Studio understands the same requests as OpenAI's service, which is why so many tools can use it.</p>
+
+    <h3>Step 8: Check the server from PowerShell</h3>
+
+    <p>Before writing any code, prove the server answers.</p>
+
+    <ol>
+      <li>Press the Windows key, type <code>PowerShell</code>, and press Enter.</li>
+      <li>Copy this command, paste it into PowerShell, and press Enter:</li>
+    </ol>
+
+    <pre class="code-block"><code>(Invoke-RestMethod -Uri "http://localhost:1234/v1/models").data.id</code></pre>
+
+    <p><strong>What you should see:</strong> a list of your models' identifiers, one per line, such as <code>openai/gpt-oss-20b</code>. Write down the one you want to use exactly as shown, because your script must match it letter for letter.</p>
+
+    <h3>Step 9: Install the one library you need</h3>
+
+    <ol>
+      <li>In the same PowerShell window, paste this command and press Enter:</li>
+    </ol>
+
+    <pre class="code-block"><code>py -m pip install requests</code></pre>
+
+    <p><code>requests</code> is a small, popular library for talking to web addresses, and it is all you need here. When it finishes, you will see a line starting with <strong>Successfully installed</strong>, or a message saying it is already installed.</p>
+
+    <h3>Step 10: Write and run your first script</h3>
+
+    <ol>
+      <li>Open Notepad and paste in the script below.</li>
+      <li>Change the <code>MODEL</code> line to the identifier you wrote down in Step 8.</li>
+      <li>Click <strong>File</strong>, then <strong>Save as</strong>. Set <strong>Save as type</strong> to <strong>All files</strong>, name it <code>ask_local_ai.py</code>, and save it in a folder you can find, such as <code>C:\Projects\local-ai</code>.</li>
+    </ol>
+
+    <pre class="code-block"><code>import sys
+import requests
+
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+URL = "http://localhost:1234/v1/chat/completions"
+MODEL = "openai/gpt-oss-20b"
+
+question = "Give me three ideas for a blog post about PPC reporting."
+
+response = requests.post(URL, json={
+    "model": MODEL,
+    "messages": [
+        {"role": "system", "content": "You are a helpful marketing assistant. Answer in British English."},
+        {"role": "user", "content": question},
+    ],
+    "temperature": 0.3,
+}, timeout=400)
+
+if response.status_code &gt;= 400:
+    print("LM Studio said:", response.text[:1000])
+    response.raise_for_status()
+
+print(response.json()["choices"][0]["message"]["content"])</code></pre>
+
+    <ol>
+      <li>In PowerShell, move into that folder by typing <code>cd C:\Projects\local-ai</code> and pressing Enter.</li>
+      <li>Run the script by typing <code>py ask_local_ai.py</code> and pressing Enter.</li>
+    </ol>
+
+    <p><strong>What you should see:</strong> after a short wait, three blog post ideas print in the window. That is your PC answering, with nothing sent to the cloud.</p>
+
+    <p>A few lines in that script are there because of problems I hit, and they are worth keeping. The <code>sys.stdout.reconfigure</code> line stops a crash on Windows when the answer contains characters such as curly quotes or emoji. The <code>timeout=400</code> setting gives the model time to finish, because local models are slower than cloud ones. Printing <code>response.text</code> when something fails shows you LM Studio's own explanation, which is far more useful than a bare error code.</p>
+
+    <h3>Step 11: Make it useful</h3>
+
+    <p>Once the basic script works, change the <code>question</code> line to something you do every week, such as summarising a pasted report or tidying up a list of keywords. My website team reads its own data files, puts them into the question, and asks the local model to spot what changed, and that whole review runs every Friday evening without costing anything.</p>
+
+    <p>My biggest disappointment with local AI is that the really strong models need much better hardware than most of us have at home. The models that do fit are still more than good enough for everyday jobs like these.</p>
+
+    <h3>If it goes wrong</h3>
+
+    <ul>
+      <li><strong>"400 Client Error: Bad Request".</strong> This was my most stubborn error. The script above prints what LM Studio actually says. In my case the cause was a model identifier that didn't match exactly, so compare the <code>MODEL</code> line with the list from Step 8.</li>
+      <li><strong>"Connection refused", or the script waits forever.</strong> The server isn't running or no model is loaded. Check <strong>Status: Running</strong> on the <strong>Local Server</strong> page from Step 7, then run the check in Step 8 again.</li>
+      <li><strong>There is no Developer icon.</strong> Developer mode is off. Switch it on as in Step 6.</li>
+      <li><strong>A crash mentioning "UnicodeEncodeError" or "charmap".</strong> Windows is trying to print characters it doesn't expect. Keep the <code>sys.stdout.reconfigure</code> line in your script. If one script runs another, also set the environment variable <code>PYTHONIOENCODING</code> to <code>utf-8</code> for the one being run, which fixed crashes across my whole website team.</li>
+      <li><strong>Answers are painfully slow.</strong> The model is probably too big for your graphics card, so LM Studio is running part of it in normal memory. Go back to Step 4 and choose a smaller model.</li>
+      <li><strong><code>py</code> isn't recognised.</strong> Python isn't installed properly. Close PowerShell, run the download from Step 2 again, tick <strong>Add python.exe to PATH</strong> if you see it, then open a new PowerShell window and try <code>py --version</code> again.</li>
+    </ul>
+
+    <h3>Stuck? Copy this prompt into an AI assistant</h3>
+
+    <p>If something isn't working and the list above doesn't fix it, paste this prompt into Claude, Copilot or ChatGPT. Fill in the square brackets, and attach a screenshot of LM Studio or the PowerShell window.</p>
+
+    <pre class="code-block"><code>I am following a beginner's guide to run a local AI model in LM Studio on Windows and call it from a Python script.
+I am not a developer, so please explain each fix in simple numbered steps and tell me exactly where to click or what to type.
+Where I am stuck: [which step, for example "Step 10, running py ask_local_ai.py"].
+The exact error or what I see: [paste the full error message from PowerShell].
+My setup: Windows [10 or 11], graphics card [name] with [number]GB of VRAM, LM Studio version [shown at the top of the window], model [identifier from Step 8].
+The Local Server page says: [Status: Running or not, and the Reachable at address].
+What I have already tried: [anything you have changed].
+Ask me questions if you need more information before suggesting a fix.</code></pre>
+
+    <h3>Where to go next</h3>
+
+    <p>If you want the bigger picture of why I run AI at home, read <a href="/articles/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners/">why I run AI at home, and LM Studio tips for beginners</a>. For the cost side, <a href="/articles/local-ai-without-the-token-bill/">local AI without the token bill</a> explains what running locally saves, and <a href="/articles/build-your-own-local-ai-assistant/">build your own local AI assistant</a> shows how I turned this into Wade.</p>
+
+    <h3>Sources</h3>
+
+    <ul>
+      <li>LM Studio: <a href="https://lmstudio.ai/download">Download page</a></li>
+      <li>LM Studio Blog: <a href="https://lmstudio.ai/blog/introducing-lm-studio-bionic">Introducing LM Studio Bionic</a></li>
+      <li>LM Studio Docs: <a href="https://lmstudio.ai/docs/app/api/endpoints/openai">OpenAI compatibility endpoints</a></li>
+      <li>LM Studio Docs: <a href="https://lmstudio.ai/docs/developer/core/server">Local server</a></li>
+      <li>Python: <a href="https://www.python.org/downloads/">Downloads</a></li>
+      <li>NVIDIA Blog: <a href="https://blogs.nvidia.com/blog/ai-decoded-lm-studio">How to accelerate larger LLMs locally with LM Studio</a></li>
+      <li>Python Requests: <a href="https://requests.readthedocs.io/en/latest/user/quickstart/">Quickstart</a></li>
+    </ul>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Want to talk about How to Run a Free Local AI Model with LM Studio and Use It from Python?</h2>
+  <p>Get in touch if this is relevant to what you're working on.</p>
+  <div class="cta-row">
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
+    <a href="/guides/" class="btn">More guides</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="mailto:garystow.hq@gmail.com">Email ↗</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+    <a href="/privacy/">Privacy</a>
+  </div>
+</footer>
+
+</body>
+</html>
