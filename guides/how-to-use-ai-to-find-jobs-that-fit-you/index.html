@@ -96,7 +96,7 @@
   <h1>How to Use AI to Find Jobs That Actually Fit You: Free Prompts for Every Level</h1>
   <div class="article-meta">Guide · Last reviewed October 2026 · Gary Stow, performance marketing and AI</div>
   <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Written by Gary Stow with help from AI tools. Every fact is checked and every article is approved by Gary before it goes live.</p>
-  <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Tested on Claude in October 2026, with Microsoft Copilot and Google Gemini tests under way. The prompts are written to work in any assistant with web search, but AI apps change often, so let me know if one stops working.</p>
+  <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Tested on Claude, Microsoft Copilot and Google Gemini in October 2026. ChatGPT not yet tested. AI apps change often, so let me know if one stops working for you.</p>
 </div>
 
 <section>
@@ -147,6 +147,8 @@
 
 You are my job search coach. Help me find roles that genuinely fit me, using a scoring rubric we build together. Work through these four stages in order and don't skip ahead.
 
+Before anything else, check whether you can search the web in this chat. If you can't, tell me straight away, before the interview, so I can switch search on or use a different app.
+
 STAGE 1: INTERVIEW ME
 Ask me these questions a few at a time, not all at once. Keep it conversational. If I'm unsure, suggest options based on my CV.
 1. What job titles or types of work am I interested in? What would I love to spend my days doing?
@@ -168,12 +170,16 @@ STAGE 3: READ MY CV
 Read my CV and summarise in 5 bullet points my strongest selling points for the roles I want. Then list any gaps a hiring manager might worry about, and how I could address each one.
 
 STAGE 4: SEARCH AND SCORE
-Search the web for roles that are currently open and match my rubric. Search job boards, company career pages and LinkedIn job listings. Aim for 10 to 15 roles.
+Use web search now to find roles that are currently open and match my rubric. Search job boards, company career pages and LinkedIn job listings. Aim for 10 to 15 roles. Do the full search and scoring in one go, rather than stopping to show me a partial list.
 Rules:
 - Put the current month and year in your searches. Old adverts stay online for months, so this matters.
 - Only include roles you actually found in your search, with a working link to the advert. Never invent or guess a role.
 - Open each advert and check when it was posted or when it closes. Leave out anything posted more than 30 days ago or already closed. If you can't see a date, you can include it, but write "Date not shown, check" next to it.
 - If you can't find enough good matches, say so honestly rather than padding the list.
+- If the salary isn't shown, give half marks for the salary section and write "Salary not shown".
+- If a recruitment agency posted the advert and doesn't name the employer, write "Agency: [name], employer not named" in the Company column, and don't give marks for the employer's brand.
+- Link to the original advert where you can (the company's careers page or LinkedIn), rather than a site that copies adverts.
+- Be strict. 75+ should mean a role I'd genuinely be excited to apply for, so usually only a handful will score that high.
 Show the results as a table sorted by score, highest first, with these columns: Score | Verdict (Apply / Stretch / Skip) | Job title | Company | Location and working pattern | Salary (if shown) | Date posted | Link | One-line reason for the score.
 Under the table, for my top 3 roles, tell me which parts of my CV to bring to the front when I apply.
 
@@ -203,7 +209,7 @@ Finally, give me my rubric again in one block of text so I can save it and reuse
 Every time I ask you to search:
 1. Search the web for roles that are currently open and match my rubric. Search job boards, company career pages and LinkedIn job listings.
 2. Only include roles you actually found, with a working link. Never invent a role. Put the current month and year in your searches, open each advert and check its date. Leave out anything posted more than 14 days ago or already closed, unless I say otherwise. If you can't see a date, write "Date not shown, check".
-3. Score every role against my rubric, out of 100. Any role that hits a deal-breaker scores 0.
+3. Score every role against my rubric, out of 100. Any role that hits a deal-breaker scores 0. Be strict: only roles I'd genuinely be excited about should reach 75+. If the salary isn't shown, give half marks for salary and say so. If an agency posted it without naming the employer, write "Agency: [name], employer not named" and give no marks for the employer's brand.
 4. Show a table sorted by score: Score | Verdict (Apply 75+ / Stretch 60-74 / Skip below 60) | Job title | Company | Location and working pattern | Salary | Date posted | Link | One-line reason.
 5. Skip any role I have told you I've already seen or applied for.
 6. For any role scoring 75+, tell me which 2 or 3 parts of my CV to bring to the front.
@@ -239,7 +245,7 @@ Anything different this week: [for example "also look at contract roles", or "no
 1. Read my tracker spreadsheet (if you can access it) to see every role I've already seen. If you can't access it, use the list at the bottom of this message.
 2. Search the web for roles posted in the last 7 days that match my rubric. Search job boards, company career pages and LinkedIn job listings, and put the current month and year in your searches.
 3. Only include roles you actually found, with a working link. Never invent a role. Open each advert and check its date: leave out anything older than 7 days or already closed. Leave out any role already in my tracker.
-4. Score each new role out of 100 against my rubric. Any role that hits a deal-breaker scores 0.
+4. Score each new role out of 100 against my rubric. Any role that hits a deal-breaker scores 0. Be strict. If the salary isn't shown, give half marks for salary and say so. If an agency posted it without naming the employer, say so and give no marks for the employer's brand.
 5. If you can edit my tracker, add each new role as a new row: Date found | Score | Verdict | Job title | Company | Location | Salary | Link | Reason | Status (leave as "New"). Never delete or change existing rows.
 6. Send me a short summary: how many new roles you found, then a table of only the roles scoring 60 or more, highest first. If nothing scored 60 or more, say so in one line. That's useful to know too.
 
@@ -275,6 +281,8 @@ Roles I've already seen (only needed if you can't read my tracker): [list]</code
     <h3>Troubleshooting</h3>
 
     <ul>
+      <li><strong>It does the interview, then says it can't search.</strong> This happened to me in Gemini: it built a great rubric, then said it couldn't run a live web search. The prompt now asks the AI to check this before the interview starts. If it happens, reply "Please use web search now to find live roles", or copy your finished rubric into another app and carry on there.</li>
+      <li><strong>Almost everything scores 75+.</strong> In my Copilot test, 12 of 13 roles came back as "Apply", including adverts from recruitment agencies that didn't name the employer. The prompts now tell the AI to be strict, give half marks when the salary isn't shown and not to credit an employer brand it can't see. If it still happens, reply "Re-score these more strictly. Only roles I'd be genuinely excited about should be 75+."</li>
       <li><strong>The AI says it can't browse, or the roles look made up.</strong> Web search is off or not available on your plan. Switch it on, or try a different assistant. Never apply to a role you can't open from the link.</li>
       <li><strong>The links go to closed adverts.</strong> Ask it to only include roles where it can see a posted date in the last 14 days, and to search company career pages as well as job boards.</li>
       <li><strong>Everything scores 70-something.</strong> Your rubric is too vague. Ask the AI to make the full-points and low-points descriptions much more specific for each section.</li>
