@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why I Built a Free AI Job Finder, and Why I'm Giving It Away — Gary Stow</title>
+<meta name="description" content="I've been made redundant before and it was horrible. With a young family on one income, I know that fear. So I built a free AI tool to take some of the stress out of finding the next role.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/articles/why-i-built-a-free-ai-job-finder/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why I Built a Free AI Job Finder, and Why I'm Giving It Away">
+<meta property="og:description" content="I've been made redundant before and it was horrible. With a young family on one income, I know that fear. So I built a free AI tool to take some of the stress out of finding the next role.">
+<meta property="og:url" content="https://garystow.co.uk/articles/why-i-built-a-free-ai-job-finder/">
+<meta property="og:image" content="https://garystow.co.uk/articles/why-i-built-a-free-ai-job-finder/why-i-built-a-free-ai-job-finder.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why I Built a Free AI Job Finder, and Why I'm Giving It Away",
+  "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
+  "datePublished": "2026-10-21",
+  "url": "https://garystow.co.uk/articles/why-i-built-a-free-ai-job-finder/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/assets/site.css?v=45260eab">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/work/">Work</a>
+    <a href="/agents/">AI &amp; Agents</a>
+    <a href="/village/">Village</a>
+    <a href="/lab/">Lab</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/guides/">Guides</a>
+    <a href="/news/">News</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/contact/">Contact</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/articles/" class="article-back">← All articles</a>
+  <div class="hero-label">Lessons &amp; the human stuff</div>
+  <h1>Why I Built a Free AI Job Finder, and Why I'm Giving It Away</h1>
+  <div class="article-meta">21 October 2026 · Gary Stow, performance marketing and AI</div>
+  <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Written by Gary Stow with help from AI tools. Every fact is checked and every article is approved by Gary before it goes live.</p>
+</div>
+
+<section>
+  <img src="/articles/why-i-built-a-free-ai-job-finder/why-i-built-a-free-ai-job-finder.webp" width="1200" height="800" fetchpriority="high" decoding="async" alt="Illustration of a man sitting on his front doorstep at dusk, a closed laptop beside him, looking towards a warm lit window where his family is" class="article-hero-img">
+  <div class="article-body">
+
+    <p>I've been made redundant in my career, and I'm going to be honest: it was horrible. Not just the money worry, but the knock to your confidence, the feeling of starting again, and the strange quiet of not knowing what comes next.</p>
+
+    <p>So when I see people I know on LinkedIn posting that their role has gone, it hits close to home. This year a lot of them have come from big tech firms, good people who did good work and still lost their jobs. <a href="https://layoffs.fyi/" target="_blank">Layoffs.fyi</a> counted more than 125,000 tech workers laid off in 2026 by early August, already more than the whole of 2025. Behind every one of those numbers is a person working out how to tell their family.</p>
+
+    <h3>The fear I carry</h3>
+
+    <p>Our home runs on a single income. I look at my small, young family and there's a real fear in the back of my mind of losing that, and of what it would mean for them. I don't think I'm alone in that. A lot of people are quietly carrying the same worry, even while things are fine.</p>
+
+    <p>That fear is a big part of why I built this. If I can take even a little bit of that stress away from someone who's living it right now, it's worth doing.</p>
+
+    <h3>What I kept seeing</h3>
+
+    <p>Alongside the posts on LinkedIn, I kept seeing the same question on Reddit from people who'd just been made redundant: where do I even start? Job boards show you hundreds of roles, most of them wrong for you, and the few that fit get lost in the pile. When you're already stressed, hours of scrolling adverts makes it worse.</p>
+
+    <p>And it isn't a handful of posts. Every week I see more of them on LinkedIn: people announcing their role has gone, asking for leads, asking their network to share their post in case someone, somewhere, knows of something. On Reddit it's the same call for help, often from people who sound exhausted and lost. Many of them are sending out application after application and hearing nothing back.</p>
+
+    <p>I can't change what companies do once an application lands. What I can do is help people point that effort in a better direction, towards the roles that genuinely fit what they want and what they're good at, so each application has a better chance of landing somewhere it belongs.</p>
+
+    <h3>Why it's free, and why it starts with just a prompt</h3>
+
+    <p>I wanted this to help everyone, not just people who are comfortable with technology. So the starting point is a single prompt you copy and paste into a free AI assistant. No sign-ups, no code, no cost. It interviews you about what you want, builds your scorecard, reads your CV and goes looking for roles.</p>
+
+    <p>For people who want to go further, there's a version you can save and rerun every week, and a free template on GitHub that searches for you every Monday and emails you a shortlist. Everyone can start wherever they're comfortable.</p>
+
+    <p>All of it is in my step-by-step guide: <a href="/guides/how-to-use-ai-to-find-jobs-that-fit-you/">how to use AI to find jobs that actually fit you</a>.</p>
+
+    <h3>What it won't do</h3>
+
+    <p>I want to be honest about this too. It isn't perfect, and it isn't a guaranteed win. AI makes mistakes. When I tested it, it turned up adverts that had closed more than a year earlier, which is why the prompts now make it check dates, and why you should still open every advert before you apply.</p>
+
+    <p>It can't do everything for you either. You'll still need to write the applications, prepare for interviews and put yourself out there. What it can do is take some of the stress out of the searching and point your energy at the roles worth it. If it does that for even a few people, it's got to count for something.</p>
+
+    <h3>If you know someone who needs this</h3>
+
+    <p>If someone you know has just lost their job, or is worried they might, please share this with them. A message saying "I saw this and thought of you" can mean a lot when you're in that place. It might just help them find what's next.</p>
+
+    <h3>If you're struggling right now</h3>
+
+    <p>Losing a job can take you somewhere dark, and you don't have to deal with that on your own. If you're in the UK, you can call <a href="https://www.samaritans.org/" target="_blank">Samaritans</a> free, any time, on 116 123, or talk to your GP. Talking to someone you trust helps more than it seems like it will. The job search can wait while you look after yourself.</p>
+
+    <p>I built this because I want to help where I can, and I really hope it helps.</p>
+
+    <p>If you want to read more about how I work with AI, start with <a href="/articles/the-independent-audit-why-i-make-ai-check-its-own-work/">why I make AI check its own work</a>, or <a href="/articles/thriving-in-tech-neurodiverse-brain/">thriving in tech with a neurodiverse brain</a> for more of my story.</p>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Know someone who could use this?</h2>
+  <p>Please share the guide with them. And if it helps you, I'd love to hear about it.</p>
+  <div class="cta-row">
+    <a href="/guides/how-to-use-ai-to-find-jobs-that-fit-you/" class="btn btn-accent">Get the free prompts</a>
+    <a href="/contact/" class="btn">Contact ↗</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="mailto:garystow.hq@gmail.com">Email ↗</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+    <a href="/privacy/">Privacy</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -28,6 +28,7 @@ practical guides and articles on AI tools.
 
 ## Recent articles
 
+- [Why I Built a Free AI Job Finder, and Why I'm Giving It Away](https://garystow.co.uk/articles/why-i-built-a-free-ai-job-finder/): I've been made redundant before and it was horrible. With a young family on one income, I know that fear. So I built a free AI tool to take some of the stress out of finding the next role.
 - [How I Put My Home AI Dashboards on My Phone, Privately](https://garystow.co.uk/articles/how-i-put-my-home-ai-dashboards-on-my-phone-privately/):
   my AI teams run on my home PC, so every decision waited until I was
   sitting at it. Here is how I got the village, my reports and my
