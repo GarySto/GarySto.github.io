@@ -137,5 +137,6 @@ practical guides and articles on AI tools.
 
 ## Guides
 
+- [How to Use AI to Find Jobs That Actually Fit You: Free Prompts for Every Level](https://garystow.co.uk/guides/how-to-use-ai-to-find-jobs-that-fit-you/): Three free, copy-and-paste AI prompts that help you build your own job scoring rubric, check your CV against it and search the web for roles that fit. Starter, intermediate and advanced.
 - [How to Run a Free Local AI Model with LM Studio and Use It from Python](https://garystow.co.uk/guides/how-to-run-a-free-local-ai-model-with-lm-studio-and-use-it/): A beginner's step-by-step guide, with annotated screenshots, to choosing a model that fits your PC, running it in LM Studio, switching on the local server, and talking to it from a short Python script.
 - [How to Host a Website for Free on GitHub Pages with Your Own Domain and Cloudflare](https://garystow.co.uk/guides/how-to-host-a-website-for-free-on-github-pages-with-your/): A step-by-step guide, with annotated screenshots, to buying a domain, building your first page with AI, putting it live for free on GitHub Pages, adding Cloudflare in front of it, and fixing the settings that quietly hurt my SEO.
