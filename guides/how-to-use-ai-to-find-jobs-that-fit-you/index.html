@@ -70,6 +70,18 @@
 .article-body h4 { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; margin: 1.75rem 0 0.75rem; }
 .tip { border-left: 3px solid #e8b04a; padding: 0.6rem 1rem; background: #fbf6ea; margin: 1.25rem 0; }
 </style>
+<style>
+/* 21 Oct 2026: share links - plain links, no third-party scripts, large high-contrast buttons */
+.share-box { margin: 1.75rem 0 2.25rem; padding: 1.25rem 1.25rem 1.1rem; border: 1px solid var(--rule, #e4e3df); background: #fffdf8; }
+.share-box h4 { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; margin: 0 0 0.35rem; }
+.share-box p { margin: 0 0 0.9rem; font-size: 0.95rem; color: var(--muted, #5f5a52); }
+.share-row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.share-row a, .share-row button { display: inline-flex; align-items: center; min-height: 44px; padding: 0.55rem 1rem; font: 500 0.9rem var(--mono, monospace); letter-spacing: 0.04em; text-decoration: none; color: #1d1a16; background: #fff; border: 1.5px solid #1d1a16; border-radius: 3px; cursor: pointer; }
+.share-row a:hover, .share-row button:hover { background: #1d1a16; color: #f5f2eb; }
+.share-row a:focus-visible, .share-row button:focus-visible { outline: 3px solid #e8b04a; outline-offset: 2px; }
+.share-row .share-native { background: #c2410c; border-color: #c2410c; color: #fff; }
+.share-row .share-native[hidden] { display: none; }
+</style>
 </head>
 <body>
 
@@ -298,6 +310,20 @@ Roles I've already seen (only needed if you can't read my tracker): [list]</code
 
     <p>For UK readers, the government's <a href="https://www.gov.uk/redundancy-your-rights">redundancy rights guide</a> and the <a href="https://nationalcareers.service.gov.uk/">National Careers Service</a> are both free and worth a look alongside this.</p>
 
+
+    <div class="share-box" data-share-type="guide" data-share-id="how-to-use-ai-to-find-jobs-that-fit-you">
+      <h4>Know someone job hunting?</h4>
+      <p>Pass these free prompts on. It might save them hours of scrolling.</p>
+      <div class="share-row">
+        <button type="button" class="share-native" data-method="native" hidden>Share</button>
+        <a href="https://wa.me/?text=Free%20AI%20prompts%20that%20help%20you%20find%20jobs%20that%20actually%20fit%20you%3A%20https%3A//garystow.co.uk/guides/how-to-use-ai-to-find-jobs-that-fit-you/" target="_blank" rel="noopener" data-method="whatsapp">WhatsApp</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgarystow.co.uk%2Fguides%2Fhow-to-use-ai-to-find-jobs-that-fit-you%2F" target="_blank" rel="noopener" data-method="linkedin">LinkedIn</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgarystow.co.uk%2Fguides%2Fhow-to-use-ai-to-find-jobs-that-fit-you%2F" target="_blank" rel="noopener" data-method="facebook">Facebook</a>
+        <a href="mailto:?subject=Free%20AI%20prompts%20to%20find%20jobs%20that%20actually%20fit%20you&amp;body=Free%20AI%20prompts%20that%20help%20you%20find%20jobs%20that%20actually%20fit%20you%3A%0A%0Ahttps%3A//garystow.co.uk/guides/how-to-use-ai-to-find-jobs-that-fit-you/" data-method="email">Email</a>
+        <button type="button" data-method="copy" data-url="https://garystow.co.uk/guides/how-to-use-ai-to-find-jobs-that-fit-you/">Copy link</button>
+      </div>
+    </div>
+
     <h3>Where to go next</h3>
 
     <p>If you're new to AI tools, start with <a href="/articles/how-to-learn-ai-as-a-marketer-with-no-coding-background/">how to learn AI with no coding background</a>. If you want to understand why I ask AI to show its working and check itself, read <a href="/articles/the-independent-audit-why-i-make-ai-check-its-own-work/">the independent audit: why I make AI check its own work</a>.</p>
@@ -345,6 +371,32 @@ function fallback(text) {
   try { document.execCommand('copy'); } catch (e) {}
   document.body.removeChild(ta);
 }
+</script>
+
+<script>
+/* 21 Oct 2026: share links. Each click sends a GA4 "share" event (method, content_type, item_id). */
+document.querySelectorAll('.share-box').forEach(function (box) {
+  var type = box.getAttribute('data-share-type'), id = box.getAttribute('data-share-id');
+  var url = box.querySelector('[data-method="copy"]').getAttribute('data-url');
+  function track(method) { if (typeof gtag === 'function') gtag('event', 'share', { method: method, content_type: type, item_id: id }); }
+  var nat = box.querySelector('.share-native');
+  if (navigator.share) {
+    nat.hidden = false;
+    nat.addEventListener('click', function () {
+      navigator.share({ title: document.title, url: url }).then(function () { track('native'); }).catch(function () {});
+    });
+  }
+  box.querySelectorAll('a[data-method]').forEach(function (a) {
+    a.addEventListener('click', function () { track(a.getAttribute('data-method')); });
+  });
+  var copy = box.querySelector('[data-method="copy"]');
+  copy.addEventListener('click', function () {
+    var done = function () { copy.textContent = 'Link copied ✓'; setTimeout(function () { copy.textContent = 'Copy link'; }, 2500); };
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(done, done); }
+    else { var t = document.createElement('textarea'); t.value = url; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(t); done(); }
+    track('copy_link');
+  });
+});
 </script>
 
 </body>
