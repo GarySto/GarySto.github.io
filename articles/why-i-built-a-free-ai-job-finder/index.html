@@ -42,6 +42,18 @@
     })(window, document, "clarity", "script", "y7l6l2ea33");
 </script>
 <script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+<style>
+/* 21 Oct 2026: share links - plain links, no third-party scripts, large high-contrast buttons */
+.share-box { margin: 1.75rem 0 2.25rem; padding: 1.25rem 1.25rem 1.1rem; border: 1px solid var(--rule, #e4e3df); background: #fffdf8; }
+.share-box h4 { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; margin: 0 0 0.35rem; }
+.share-box p { margin: 0 0 0.9rem; font-size: 0.95rem; color: var(--muted, #5f5a52); }
+.share-row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.share-row a, .share-row button { display: inline-flex; align-items: center; min-height: 44px; padding: 0.55rem 1rem; font: 500 0.9rem var(--mono, monospace); letter-spacing: 0.04em; text-decoration: none; color: #1d1a16; background: #fff; border: 1.5px solid #1d1a16; border-radius: 3px; cursor: pointer; }
+.share-row a:hover, .share-row button:hover { background: #1d1a16; color: #f5f2eb; }
+.share-row a:focus-visible, .share-row button:focus-visible { outline: 3px solid #e8b04a; outline-offset: 2px; }
+.share-row .share-native { background: #c2410c; border-color: #c2410c; color: #fff; }
+.share-row .share-native[hidden] { display: none; }
+</style>
 </head>
 <body>
 
@@ -110,6 +122,20 @@
 
     <p>If someone you know has just lost their job, or is worried they might, please share this with them. A message saying "I saw this and thought of you" can mean a lot when you're in that place. It might just help them find what's next.</p>
 
+
+    <div class="share-box" data-share-type="article" data-share-id="why-i-built-a-free-ai-job-finder">
+      <h4>Share this with someone who needs it</h4>
+      <p>It takes one tap. A quick "I saw this and thought of you" can mean a lot.</p>
+      <div class="share-row">
+        <button type="button" class="share-native" data-method="native" hidden>Share</button>
+        <a href="https://wa.me/?text=I%20saw%20this%20and%20thought%20of%20you.%20It%27s%20a%20free%20way%20to%20use%20AI%20to%20find%20jobs%20that%20actually%20fit%3A%20https%3A//garystow.co.uk/articles/why-i-built-a-free-ai-job-finder/" target="_blank" rel="noopener" data-method="whatsapp">WhatsApp</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgarystow.co.uk%2Farticles%2Fwhy-i-built-a-free-ai-job-finder%2F" target="_blank" rel="noopener" data-method="linkedin">LinkedIn</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgarystow.co.uk%2Farticles%2Fwhy-i-built-a-free-ai-job-finder%2F" target="_blank" rel="noopener" data-method="facebook">Facebook</a>
+        <a href="mailto:?subject=Why%20I%20Built%20a%20Free%20AI%20Job%20Finder%2C%20and%20Why%20I%27m%20Giving%20It%20Away&amp;body=I%20saw%20this%20and%20thought%20of%20you.%20It%27s%20a%20free%20way%20to%20use%20AI%20to%20find%20jobs%20that%20actually%20fit%3A%0A%0Ahttps%3A//garystow.co.uk/articles/why-i-built-a-free-ai-job-finder/" data-method="email">Email</a>
+        <button type="button" data-method="copy" data-url="https://garystow.co.uk/articles/why-i-built-a-free-ai-job-finder/">Copy link</button>
+      </div>
+    </div>
+
     <h3>If you're struggling right now</h3>
 
     <p>Losing a job can take you somewhere dark, and you don't have to deal with that on your own. If you're in the UK, you can call <a href="https://www.samaritans.org/" target="_blank">Samaritans</a> free, any time, on 116 123, or talk to your GP. Talking to someone you trust helps more than it seems like it will. The job search can wait while you look after yourself.</p>
@@ -138,6 +164,32 @@
     <a href="/privacy/">Privacy</a>
   </div>
 </footer>
+
+<script>
+/* 21 Oct 2026: share links. Each click sends a GA4 "share" event (method, content_type, item_id). */
+document.querySelectorAll('.share-box').forEach(function (box) {
+  var type = box.getAttribute('data-share-type'), id = box.getAttribute('data-share-id');
+  var url = box.querySelector('[data-method="copy"]').getAttribute('data-url');
+  function track(method) { if (typeof gtag === 'function') gtag('event', 'share', { method: method, content_type: type, item_id: id }); }
+  var nat = box.querySelector('.share-native');
+  if (navigator.share) {
+    nat.hidden = false;
+    nat.addEventListener('click', function () {
+      navigator.share({ title: document.title, url: url }).then(function () { track('native'); }).catch(function () {});
+    });
+  }
+  box.querySelectorAll('a[data-method]').forEach(function (a) {
+    a.addEventListener('click', function () { track(a.getAttribute('data-method')); });
+  });
+  var copy = box.querySelector('[data-method="copy"]');
+  copy.addEventListener('click', function () {
+    var done = function () { copy.textContent = 'Link copied ✓'; setTimeout(function () { copy.textContent = 'Copy link'; }, 2500); };
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(done, done); }
+    else { var t = document.createElement('textarea'); t.value = url; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(t); done(); }
+    track('copy_link');
+  });
+});
+</script>
 
 </body>
 </html>
