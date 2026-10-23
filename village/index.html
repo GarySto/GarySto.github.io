@@ -11,10 +11,7 @@
 <meta property="og:title" content="Gary HQ Village: my AI teams at work">
 <meta property="og:description" content="Real AI automation teams on my own PC, drawn as a village you can watch and click around.">
 <meta property="og:url" content="https://garystow.co.uk/village/">
-<meta property="og:image" content="https://garystow.co.uk/assets/village-preview.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://garystow.co.uk/assets/village-preview.webp">
 <link rel="icon" href="/favicon.ico">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebPage","name":"Gary HQ Village","url":"https://garystow.co.uk/village/","author":{"@type":"Person","name":"Gary Stow","url":"https://garystow.co.uk/"},"description":"Gary Stow's AI automation teams shown as a live cartoon village."}
@@ -103,7 +100,7 @@ a{color:#9fd0ff}
       <span class="chip"><span class="dot" style="background:#00b8c4"></span>Labs</span>
       <span class="chip"><span class="dot" style="background:var(--trade)"></span>Trading teams</span>
       <span class="chip"><span class="dot" style="background:#a8d86e"></span>Houses: the web pages</span>
-      <span class="chip"><span class="dot" style="background:#d9a94f"></span>Fields: the 3 strategies (bigger = more profit)</span>
+      <span class="chip"><span class="dot" style="background:#d9a94f"></span>Fields: the 3 strategies + the Shadow paper test (bigger = more profit)</span>
     </div>
   </header>
 
@@ -213,7 +210,7 @@ const BUILDINGS = [
   ["shadowb","Shadow Books","labs","dept",44.9,18.4,1.6,1.4,1.0,"Forward tests with no money: frozen premarket rules and box bounces, scored on real prices every weeknight."],
   ["datadesk","Data Desk","labs","dept",41.5,19.6,1.6,1.4,1.0,"Checks every price folder is still updating each morning and fills in missing history."],
   ["bear","Bear Squad Dojo","bear","dept",36,16.6,3,2.4,1.5,"The ninjas test making money when the market falls, using inverse funds, on paper only. They never place an order: a model only goes live with Gary's YES.",1],
-  ["store","Harvest Store","store","store",38.8,29.6,3,2.4,1.5,"Everything the three strategy fields have harvested, added together. Crates of flowers when the combined result is up; the bin fills with wilted stems when it is down. Demo money after fees.",1],
+  ["store","Harvest Store","store","store",44,29.6,3,2.4,1.5,"Everything the three strategy fields have harvested, added together. Crates of flowers when the combined result is up; the bin fills with wilted stems when it is down. Demo money after fees.",1],
   ["obs","The Observatory","obs","dept",15.2,1.2,2.6,2.6,2.4,"Scans the horizon every evening for new opportunities, scores each one against a rubric, and only brings the best to the Town Hall. Nothing happens without Gary's YES.",1],
   ["obsl","Lookout","obs","dept",14.9,4.5,1.5,1.4,1.0,"Scans the horizon every evening and keeps only what fits."],
   ["obss","Star Chart Room","obs","dept",16.6,4.5,1.5,1.4,1.0,"Scores each find against a rubric; only the best go to the Town Hall."],
@@ -225,7 +222,7 @@ const BUILDINGS = [
   ["listen","Listening Post (Learning & Industry)","learn","dept",10.4,16.6,2.2,1.8,2.2,"Reads search, PPC and AI news, learning pieces and what's trending every week. Wade picks what matters and suggests article ideas to the Content Writer. Headlines and links come straight from the sources.",1],
 ];
 // Every strategy field starts the same size, then grows or shrinks with its real result after fees (demo account for now).
-const FIELD_BASE = [["game","The Game","Premarket runners, scalp 10%",29.5,22.5],["m1","Model 1","Same-day continuation",38.5,22.5],["m2","Model 2","Range-bound bouncy ball",29.5,29]];
+const FIELD_BASE = [["game","The Game","Premarket runners, scalp 10%",29.5,22.5],["m1","Model 1","Same-day continuation",38.5,22.5],["m2","Model 2","Range-bound bouncy ball",29.5,29],["shadow","Shadow","Paper test: unfilled Game orders bought at the open",36.8,29]];
 const FIELDS = FIELD_BASE.map(([id, name, desc, x, y]) => {
   const f = (DATA.fields || {})[id] || {net: 0}, k = Math.max(.6, Math.min(1.45, 1 + (f.net || 0) / 400));
   const w = 4.4 * k, d = 3 * k;
@@ -252,13 +249,13 @@ const buildings = BUILDINGS.map(b => ({kind: "b", id: b[0], name: b[1], team: b[
   if (st) { st.net = ["game", "m1", "m2"].reduce((t, k) => t + ((F[k] || {}).net || 0), 0);
     st.name = "Harvest Store · all 3 models" + (PRIVATE ? (st.net >= 0 ? " · +£" : " · −£") + Math.abs(st.net).toFixed(0) : st.net > 0 ? " · stocked" : st.net < 0 ? " · bin day" : ""); } }
 const houses = [];
-const maxArticle = Math.max(0, ...DATA.pages.filter(p => p[3] !== "Site page").map(p => p[4]));
+const maxArticle = Math.max(0, ...DATA.pages.map(p => p[4]));   // 23 Oct 2026: the trophy goes to the most-visited page of any kind
 DATA.pages.forEach((p, i) => {
   const [slug, title, path, section, views, imps] = p, col = i % 8, row = Math.floor(i / 8);
   const tier = views >= 20 ? 5 : views >= 6 ? 4 : views >= 3 ? 3 : views >= 1 ? 2 : 1, size = [0, 1.05, 1.15, 1.35, 1.55, 1.85][tier];
   houses.push({kind: "h", id: "page:" + slug, slug, title, path: path || "/articles/" + slug + "/", section, views, imps, tier,
     x: 1 + col * 2.3 + (1.9 - size) / 2, y: 22.3 + row * 3.5 + (1.9 - size) / 2, w: size, d: size, floors: [0, .8, 1, 1.4, 1.8, 2.4][tier],
-    trophy: section !== "Site page" && views === maxArticle && views > 0, garden: imps >= 20, work: 0, pop: 0});
+    trophy: views === maxArticle && views > 0, garden: imps >= 20, work: 0, pop: 0});
 });
 // the construction site: the next page is always being built
 const NEXT = DATA.next_house || {title: "Next article"};
@@ -923,7 +920,7 @@ function frame(now) {
   drawWadeBeam();
   if (labelMode > 0) FIELDS.forEach(f => { const p = iso(f[3] + f[5] / 2, f[4] - .2), net = f[7].net || 0;
     const tag = PRIVATE ? (net >= 0 ? " · +£" : " · −£") + Math.abs(net).toFixed(0) : net > 0 ? " · growing" : net < 0 ? " · wilting" : "";
-    label(f[1] + " · demo" + tag, p.x, p.y - 6, {size: 15, bg: net > 0 ? "#d9f7c4" : net < 0 ? "#ffd6cc" : "#ffe2b8", stripe: COL.trade}); });
+    label(f[1] + (f[0] === "shadow" ? " · paper test" : " · demo") + tag, p.x, p.y - 6, {size: 15, bg: net > 0 ? "#d9f7c4" : net < 0 ? "#ffd6cc" : "#ffe2b8", stripe: COL.trade}); });
   if (labelMode > 0) [["WEBSITE TEAMS", 10, .2, COL.web], ["TRADING TEAMS", 37, .2, COL.trade], ["MAIN STREET", 6, 15.8, "#a8894a"], ["HOUSES · the web pages", 10, RIVER_Y + .1, "#4f9a2a"], ["STRATEGY FIELDS", 37, 34.5, "#a86e3c"]]
     .forEach(([t, x, y, c]) => { const p = iso(x, y); label(t, p.x, p.y, {size: 17, bg: c, fg: "#fff"}); });
   FUN.over(dt);
@@ -988,7 +985,7 @@ function renderSelected() {
   if (s.kind === "h") {
     selName.textContent = s.title;
     selBody.innerHTML = `<div class="kv"><b>Section</b><span>${esc(s.section)}</span><b>Visits, 28 days</b><span>${s.views}</span><b>Google impressions</b><span>${s.imps}</span>
-      <b>House</b><span>${["", "Cottage", "House", "Two storeys", "Manor", "Grand hall"][s.tier]}${s.trophy ? " · trophy: most-visited article" : ""}${s.garden ? " · flower garden: 20+ impressions" : ""}</span></div>
+      <b>House</b><span>${["", "Cottage", "House", "Two storeys", "Manor", "Grand hall"][s.tier]}${s.trophy ? " · trophy: most-visited page" : ""}${s.garden ? " · flower garden: 20+ impressions" : ""}</span></div>
       <a href="https://garystow.co.uk${s.path}" target="_blank" rel="noopener">Open the page ↗</a>`; return; }
   selName.textContent = s.name; const e = latest[s.id];
   const wadeNote = s.role === "wade" ? `<p style="margin:0"><b>Right now:</b> the ${esc(byId[wadeTarget].name)} is waiting on Wade, who is ${esc(wadeMsg)}. Follow the purple beam.</p>` : "";
