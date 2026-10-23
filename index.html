@@ -48,13 +48,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="/assets/site.css?v=45260eab">
+<link rel="stylesheet" href="/assets/site.css?v=8096f9d0">
 <style>
 /* Homepage revamp (6 Oct 2026). Kept on this page only so the shared site.css is untouched. */
-.home-hero { padding: 6rem 4rem 4.5rem; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 4rem; align-items: center; }
+.home-hero { padding: 5.5rem 4rem 4.5rem; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; align-items: center; }
 .home-hero h1 { font-size: clamp(2.8rem, 5.4vw, 5rem); margin-bottom: 1.75rem; }
 .home-hero .hero-intro { font-size: 1.2rem; color: #2a2a2a; font-weight: 400; max-width: 46ch; }
-.home-hero-photo { width: 100%; max-width: 380px; justify-self: end; aspect-ratio: 4/5; height: auto; object-fit: cover; object-position: top center; border: 1px solid var(--ink); }
+.home-hero-photo { width: 100%; max-width: 260px; justify-self: end; aspect-ratio: 1/1; height: auto; object-fit: cover; object-position: center 18%; border: 2px solid var(--ink); border-radius: 50%; }
 .home-proof { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0 4rem; border-bottom: 2px solid var(--ink); }
 .home-proof div { padding: 2rem 1.75rem 2rem 0; }
 .home-proof div + div { padding-left: 1.75rem; border-left: 1px solid var(--rule); }
@@ -85,12 +85,30 @@
 .home-speaking .btn-accent { border-color: var(--accent); }
 @media (max-width: 900px) {
   .home-hero { grid-template-columns: 1fr; padding: 4rem 2rem 3rem; gap: 2.5rem; }
-  .home-hero-photo { justify-self: start; max-width: 240px; }
+  .home-hero-photo { justify-self: start; max-width: 120px; order: -1; }
   .home-proof { grid-template-columns: 1fr; margin: 0 2rem; }
   .home-proof div, .home-proof div + div { padding: 1.25rem 0; border-left: none; border-top: 1px solid var(--rule); }
   .home-topics, .home-latest { grid-template-columns: 1fr; }
   .home-about { grid-template-columns: 1fr; gap: 2rem; }
   .home-speaking { padding: 3rem 2rem; }
+}
+/* 23 Oct 2026 redesign (Gary approved the mock): text takes 2/3, smaller round photo, Job Finder band */
+.home-hero .cta-row .btn { font-size: 1rem; }
+.home-jf { background: #b23a09; color: #ffffff; padding: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; border-bottom: 2px solid var(--ink); }
+.home-jf .hero-label { color: #ffffff; opacity: 0.95; }
+.home-jf h2 { color: #ffffff; margin-bottom: 1rem; font-size: clamp(2rem, 3.6vw, 3rem); }
+.home-jf p { color: #ffffff; font-size: 1.15rem; font-weight: 400; max-width: 46ch; margin-bottom: 1.6rem; }
+.home-jf .btn { color: #ffffff; border-color: #ffffff; }
+.home-jf .btn:hover { background: #ffffff; color: var(--ink); }
+.home-jf .btn-light { background: var(--paper); border-color: var(--paper); color: var(--ink); }
+.home-jf .btn-light:hover { background: var(--ink); border-color: var(--ink); color: #ffffff; }
+.home-jf ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.9rem; }
+.home-jf li { background: var(--paper); color: var(--ink); padding: 1.2rem 1.5rem; border-radius: 6px; display: flex; gap: 1.1rem; align-items: baseline; font-size: 1.05rem; }
+.home-jf li b { display: block; font-size: 1.15rem; }
+.home-jf li i { font-style: normal; font-family: var(--serif); font-size: 2.1rem; color: #b23a09; line-height: 1; }
+.home-village-ctas { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+@media (max-width: 900px) {
+  .home-jf { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
 }
 </style>
 </head>
@@ -99,18 +117,20 @@
 <!-- HEADER -->
 <header>
   <a href="/" class="logo">Gary Stow</a>
-  <nav>
-    <a href="#about">About</a>
+  <script src="/assets/nav.js"></script>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <nav id="site-nav" aria-label="Main">
     <a href="/work/">Work</a>
-    <a href="/agents/">AI &amp; Agents</a>
-    <a href="/village/">Village</a>
-    <a href="/lab/">Lab</a>
+    <a href="/village/" class="nav-sub">The Village</a>
+    <a href="/agents/" class="nav-sub">AI teams and agents</a>
+    <a href="/lab/" class="nav-sub">Trading Research Lab</a>
     <a href="/articles/">Articles</a>
+    <a href="/news/" class="nav-sub">Weekly news</a>
     <a href="/guides/">Guides</a>
-    <a href="/news/">News</a>
     <a href="/speaking/">Speaking</a>
+    <a href="/#about">About</a>
     <a href="/contact/">Contact</a>
-    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+    <a href="/guides/how-to-use-ai-to-find-jobs-that-fit-you/" class="nav-cta">Free AI Job Finder &#8594;</a>
   </nav>
 </header>
 
@@ -121,19 +141,37 @@
     <h1>I teach practical AI <em>by building it first.</em></h1>
     <p class="hero-intro">Over ten years in performance marketing and PPC. Self-taught in Python with no coding background, I build AI agents and automations in my evenings, then show marketers how to do the same.</p>
     <div class="cta-row">
-      <a href="#about" class="btn btn-accent">Learn more about me</a>
+      <a href="/work/" class="btn btn-accent">See what I've built</a>
+      <a href="/speaking/" class="btn">Book a talk or workshop</a>
       <a href="/articles/" class="btn">Read the articles</a>
-      <a href="/speaking/" class="btn">Speaking and training</a>
     </div>
   </div>
   <img src="/assets/gary-stow-photo.webp" width="900" height="1097" fetchpriority="high" decoding="async" alt="Gary Stow" class="home-hero-photo">
 </div>
 
+<!-- JOB FINDER BAND (23 Oct 2026) -->
+<section class="home-jf" id="jobfinder" aria-labelledby="jf-title">
+  <div>
+    <div class="hero-label">Free tool · New</div>
+    <h2 id="jf-title">Find jobs that actually fit you, using AI</h2>
+    <p>Three free prompts help you build a job-scoring rubric, compare your CV and search for roles that match your skills. I built it because I've been made redundant before, and I know that fear.</p>
+    <div class="cta-row">
+      <a href="/guides/how-to-use-ai-to-find-jobs-that-fit-you/" class="btn btn-light">Use the free guide &#8594;</a>
+      <a href="https://github.com/GarySto/ai-job-finder" class="btn" target="_blank" rel="noopener">Get the template on GitHub ↗</a>
+    </div>
+  </div>
+  <ol>
+    <li><i>1</i><span><b>Starter prompt</b>Build your own scoring rubric from your CV</span></li>
+    <li><i>2</i><span><b>Intermediate prompt</b>Check a role against it before you apply</span></li>
+    <li><i>3</i><span><b>Advanced prompt</b>Search for roles that score well, not just keyword matches</span></li>
+  </ol>
+</section>
+
 <!-- PROOF STRIP -->
 <div class="home-proof">
   <div><b>10+ years</b><span>in performance marketing and PPC</span></div>
-  <div><b>Wade</b><span>my own local AI assistant, built with free tools</span></div>
-  <div><b>Self-taught</b><span>in Python, building AI teams in my own time</span></div>
+  <div><b>40+ automations</b><span>AI teams running my home lab every day</span></div>
+  <div><b>3 free projects</b><span>on GitHub, for anyone to use</span></div>
 </div>
 
 <!-- VILLAGE-HOME:START (added by village_publish.py - the picture refreshes every publish) -->
@@ -153,9 +191,10 @@
     <div class="hero-label">Live from my desk</div>
     <h2>Watch my AI teams at work</h2>
     <p>Every job my automations do, from writing and checking articles to running three demo trading strategies, shows up as a cartoon village. Builders put up a new house for every page, the fields grow or wilt with the demo trading results, and every request flows through the Town Hall. It updates every day.</p>
-    <a href="/village/" class="btn btn-accent">Open the Village &#8594;</a>
-    <p style="margin-top:1.5rem">The Research Lab is where I test trading ideas against simply owning the market, with every result published, including the ones that lost.</p>
-    <a href="/lab/" class="btn">Open the Research Lab &#8594;</a>
+    <div class="home-village-ctas">
+      <a href="/village/" class="btn btn-accent">Open the Village &#8594;</a>
+      <a href="https://github.com/GarySto/village-starter" class="btn" target="_blank" rel="noopener">Build your own (free code) ↗</a>
+    </div>
   </div>
   <a href="/village/" class="home-village-shot"><img src="/assets/village-preview.webp" width="1200" height="750" loading="lazy" decoding="async" alt="Cartoon village of Gary's AI automation teams, with a Town Hall, a housing district of web pages and demo trading fields" class="home-village-img"></a>
 </section>
@@ -251,10 +290,12 @@
 <footer>
   <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
   <div class="footer-links">
-    <a href="/contact/">Contact ↗</a>
-    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
-    <a href="https://github.com/GarySto/market-universe-generator" target="_blank">GitHub ↗</a>
-    <a href="https://market-universe-generator-7jrhjfbttwfzlappdxaaysq.streamlit.app/" target="_blank">Live project ↗</a>
+    <a href="/contact/">Contact</a>
+    <a href="/news/">News</a>
+    <a href="/village/">Village</a>
+    <a href="/lab/">Lab</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="https://github.com/GarySto" target="_blank" rel="noopener">GitHub ↗</a>
     <a href="/privacy/">Privacy</a>
   </div>
 </footer>

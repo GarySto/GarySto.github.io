@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=45260eab">
+<link rel="stylesheet" href="/assets/site.css?v=8096f9d0">
 <style>
 .guides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; max-width: 1150px; }
 .guide-card { display: flex; flex-direction: column; gap: 0.5rem; background: #fffdf8; border: 1px solid var(--rule);
@@ -33,18 +33,20 @@
 
 <header>
   <a href="/" class="logo">Gary Stow</a>
-  <nav>
-    <a href="/#about">About</a>
+  <script src="/assets/nav.js"></script>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <nav id="site-nav" aria-label="Main">
     <a href="/work/">Work</a>
-    <a href="/agents/">AI &amp; Agents</a>
-    <a href="/village/">Village</a>
-    <a href="/lab/">Lab</a>
+    <a href="/village/" class="nav-sub">The Village</a>
+    <a href="/agents/" class="nav-sub">AI teams and agents</a>
+    <a href="/lab/" class="nav-sub">Trading Research Lab</a>
     <a href="/articles/">Articles</a>
-    <a href="/guides/">Guides</a>
-    <a href="/news/">News</a>
+    <a href="/news/" class="nav-sub">Weekly news</a>
+    <a href="/guides/" class="active">Guides</a>
     <a href="/speaking/">Speaking</a>
+    <a href="/#about">About</a>
     <a href="/contact/">Contact</a>
-    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+    <a href="/guides/how-to-use-ai-to-find-jobs-that-fit-you/" class="nav-cta">Free AI Job Finder &#8594;</a>
   </nav>
 </header>
 
@@ -75,10 +77,12 @@
 <footer>
   <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
   <div class="footer-links">
-    <a href="/contact/">Contact ↗</a>
-    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
-    <a href="https://github.com/GarySto/market-universe-generator" target="_blank">GitHub ↗</a>
-    <a href="https://market-universe-generator-7jrhjfbttwfzlappdxaaysq.streamlit.app/" target="_blank">Live project ↗</a>
+    <a href="/contact/">Contact</a>
+    <a href="/news/">News</a>
+    <a href="/village/">Village</a>
+    <a href="/lab/">Lab</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="https://github.com/GarySto" target="_blank" rel="noopener">GitHub ↗</a>
     <a href="/privacy/">Privacy</a>
   </div>
 </footer>

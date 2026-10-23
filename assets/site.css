@@ -323,3 +323,35 @@ footer { padding: 3rem 4rem; display: flex; justify-content: space-between; alig
   .arch-step { border-right: none; border-bottom: 1px solid var(--rule); }
   .arch-step:last-child { border-bottom: none; }
 }
+
+/* ── MENU, BUTTONS AND FOOTER v2 (23 Oct 2026, Gary approved the mock) ──
+   Bigger, high-contrast menu with 6 items + the Job Finder button; a burger menu on phones;
+   buttons and footer links large enough to read. Later rules win over the originals above. */
+header { align-items: center; padding: 1.25rem 4rem; gap: 1rem 2rem; }
+.logo { font-family: var(--serif); font-size: 1.75rem; letter-spacing: 0; text-transform: none; color: var(--ink); }
+header nav { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem 2rem; }
+nav a { font-family: var(--sans); font-size: 1.05rem; font-weight: 500; letter-spacing: 0; text-transform: none;
+        color: var(--ink); margin-left: 0; padding: 0.5rem 0; }
+nav a.active { color: #b23a09; text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 3px; }
+nav a.nav-sub { display: none; }
+nav a.nav-cta { background: #b23a09; color: #ffffff; font-weight: 700; padding: 0.7rem 1.2rem; border-radius: 4px; }
+nav a.nav-cta:hover { background: var(--ink); color: #ffffff; }
+.nav-toggle { display: none; }
+@media (min-width: 901px) and (max-width: 1320px) { nav a { margin-left: 0; font-size: 1rem; } header nav { gap: 0.4rem 1.3rem; } header { padding: 1.25rem 2rem; } }
+.btn { font-size: 0.95rem; }
+.footer-left { font-size: 0.95rem; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 0.6rem 1.6rem; justify-content: flex-end; }
+.footer-links a { font-size: 0.95rem; margin-left: 0; color: #4d4842; }
+@media (max-width: 900px) {
+  header { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 0.9rem 1.25rem; gap: 0; }
+  .js-nav .nav-toggle { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 52px; height: 52px;
+                        border: 2px solid var(--ink); border-radius: 6px; background: var(--paper); cursor: pointer; padding: 0 12px; }
+  .nav-toggle span { display: block; height: 3px; background: var(--ink); border-radius: 2px; }
+  header nav { flex-direction: column; align-items: stretch; width: 100%; gap: 0; padding: 0.5rem 0 1rem; }
+  .js-nav header nav { display: none; }
+  .js-nav header nav.open { display: flex; }
+  header nav a { font-size: 1.3rem; font-weight: 700; padding: 0.85rem 0; border-bottom: 1px solid var(--rule); }
+  header nav a.nav-sub { display: block; font-size: 1.1rem; font-weight: 400; padding: 0.6rem 0 0.6rem 1rem; }
+  header nav a.nav-cta { margin-top: 1rem; text-align: center; border-bottom: none; padding: 1rem; }
+  .footer-links { justify-content: center; }
+}
