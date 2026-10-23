@@ -49,17 +49,71 @@
   <h1>Let's talk.</h1>
 </div>
 
+<style>
+/* 23 Oct 2026: contact page built out - what to get in touch about, a real quote with its citation */
+.contact-figure { max-width: 46rem; margin: 0 auto 3rem; text-align: center; }
+.contact-figure blockquote { border-left: none; padding: 0; background: none; margin: 0; font-family: var(--serif); font-style: italic; font-size: clamp(1.6rem, 2.6vw, 2.1rem); line-height: 1.3; color: var(--ink); }
+.contact-figure blockquote::before { content: "\201C"; color: #b23a09; margin-right: 0.1em; }
+.contact-figure blockquote::after { content: "\201D"; color: #b23a09; margin-left: 0.05em; }
+.contact-figure figcaption { margin-top: 0.9rem; font-size: 1.05rem; color: #4d4842; }
+.contact-page .contact-intro { max-width: 46rem; margin: 0 auto 2rem; text-align: center; font-size: 1.15rem; color: #2a2a2a; line-height: 1.7; }
+.contact-ways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 3rem 0; text-align: left; }
+.contact-way { border: 2px solid var(--ink); background: #ffffff; padding: 1.6rem; display: flex; flex-direction: column; gap: 0.7rem; }
+.contact-way h2 { font-size: 1.5rem; margin: 0; }
+.contact-page .contact-way p { margin: 0; color: #2a2a2a; font-size: 1.05rem; line-height: 1.6; max-width: none; }
+.contact-way .cta-row { margin-top: auto; padding-top: 0.5rem; justify-content: flex-start; margin-bottom: 0; }
+.contact-way a:not(.btn) { color: var(--ink); }
+@media (max-width: 1100px) { .contact-ways { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px) { .contact-ways { grid-template-columns: 1fr; } }
+</style>
+
 <section>
   <div class="contact-page">
-    <p class="contact-quote">Learning to build closed the gap between having ideas and doing something with them.</p>
+    <figure class="contact-figure">
+      <blockquote>You can't guarantee a win, but you can improve your odds.</blockquote>
+      <figcaption>Gary Stow, on the advice he would give his younger self</figcaption>
+    </figure>
 
-    <p>If you're planning a training session, workshop or team day and think this might be a fit — or you just want to talk about AI agents, Performance Max, or the trading scanner — drop me a line. I read everything myself.</p>
+    <p class="contact-intro">I'm a PPC and AI practitioner in the UK. I build AI agents and automations at home and show marketers how to do the same. If any of the below sounds like you, get in touch. I read everything myself.</p>
+
+    <div class="contact-ways">
+      <div class="contact-way">
+        <h2>Talks, workshops and team days</h2>
+        <p>Practical AI sessions for marketing and PPC teams, built around real tools people can use the next morning. See what I talk about on the <a href="/speaking/">speaking page</a>.</p>
+        <div class="cta-row"><!--email_off--><a href="mailto:garystow.hq@gmail.com?subject=Talk%20or%20workshop%20enquiry" class="btn">Ask about a session ↗</a><!--/email_off--></div>
+      </div>
+      <div class="contact-way">
+        <h2>Podcasts, panels and interviews</h2>
+        <p>Happy to chat about learning to build AI with no coding background, AI in PPC and search, running AI at home, or working in tech with ADHD.</p>
+        <div class="cta-row"><!--email_off--><a href="mailto:garystow.hq@gmail.com?subject=Podcast%20or%20interview%20request" class="btn">Invite me on your show ↗</a><!--/email_off--></div>
+      </div>
+      <div class="contact-way">
+        <h2>Using my work</h2>
+        <p>Quote or link to any article with a credit and a link back. The AI Job Finder guide and prompts are free for non-commercial use with credit (CC BY-NC 4.0). To republish a whole article or use my work commercially, ask first.</p>
+        <div class="cta-row"><!--email_off--><a href="mailto:garystow.hq@gmail.com?subject=Using%20your%20work" class="btn">Ask about using my work ↗</a><!--/email_off--></div>
+      </div>
+      <div class="contact-way">
+        <h2>Writing and press</h2>
+        <p>A guest article, a quote for a piece on AI in marketing, or a contribution to your newsletter. Tell me the topic and the deadline.</p>
+        <div class="cta-row"><!--email_off--><a href="mailto:garystow.hq@gmail.com?subject=Writing%20or%20press%20request" class="btn">Ask me to write ↗</a><!--/email_off--></div>
+      </div>
+      <div class="contact-way">
+        <h2>Questions about my free tools</h2>
+        <p>Stuck with the <a href="/guides/how-to-use-ai-to-find-jobs-that-fit-you/">AI Job Finder</a> or <a href="https://github.com/GarySto/village-starter" target="_blank" rel="noopener">Village Starter</a>? Open an issue on <a href="https://github.com/GarySto" target="_blank" rel="noopener">GitHub</a> so others can see the answer, or email me.</p>
+        <div class="cta-row"><!--email_off--><a href="mailto:garystow.hq@gmail.com?subject=Question%20about%20your%20free%20tools" class="btn">Ask a question ↗</a><!--/email_off--></div>
+      </div>
+      <div class="contact-way">
+        <h2>Anything else</h2>
+        <p>Building something similar, want to compare notes, or just want to say hello? Drop me a line or message me on LinkedIn.</p>
+        <div class="cta-row"><a href="https://linkedin.com/in/garystow" target="_blank" rel="noopener" class="btn">Message on LinkedIn ↗</a></div>
+      </div>
+    </div>
 
     <div class="contact-reply-time"><span class="contact-reply-dot"></span>Usually replies within a day or two, evenings and weekends included</div>
 
     <div class="cta-row">
-      <!--email_off--><a href="mailto:garystow.hq@gmail.com?subject=Speaking%20%26%20training%20enquiry" class="btn btn-accent">Email me ↗</a><!--/email_off-->
-      <a href="https://linkedin.com/in/garystow" target="_blank" class="btn">Message on LinkedIn ↗</a>
+      <!--email_off--><a href="mailto:garystow.hq@gmail.com" class="btn btn-accent">Email me ↗</a><!--/email_off-->
+      <a href="https://linkedin.com/in/garystow" target="_blank" rel="noopener" class="btn">Message on LinkedIn ↗</a>
     </div>
     <p class="contact-direct">Or reach me directly at <!--email_off--><a href="mailto:garystow.hq@gmail.com">garystow.hq@gmail.com</a><!--/email_off--></p>
   </div>

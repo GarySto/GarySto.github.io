@@ -110,6 +110,13 @@
 @media (max-width: 900px) {
   .home-jf { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
 }
+/* 23 Oct 2026: This week's news box (rebuilt by news_publish.py) */
+.news-promo { border: 2px solid var(--ink); background: #ffffff; padding: 1.2rem 1.3rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.news-promo-label { font-family: var(--mono); font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: #b23a09; }
+.news-promo-title { font-family: var(--serif); font-size: 1.3rem; line-height: 1.25; color: var(--ink); text-decoration: none; }
+.news-promo-title:hover { color: #b23a09; }
+.news-promo-all { font-size: 1rem; color: var(--ink); }
+.news-promo-home { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1.5rem; margin-top: 2.5rem; }
 </style>
 </head>
 <body>
@@ -240,6 +247,9 @@
       </a>
       <!-- LATEST-ARTICLES:END -->
   </div>
+  <!-- NEWS-PROMO:START (rebuilt by news_publish.py every Sunday - do not edit by hand) -->
+  <div class="news-promo news-promo-home"><div class="news-promo-label">This week's news</div><a href="/news/2026-10-18/" class="news-promo-title">PPC, search and AI news this week: 18 October 2026</a><a href="/news/" class="news-promo-all">Every week&#8217;s roundup &#8594;</a></div>
+  <!-- NEWS-PROMO:END -->
 </section>
 
 <!-- ABOUT -->
