@@ -1,0 +1,206 @@
+<!-- PAGE: KIDS GAMES (garystow.co.uk/kids-games/) -->
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kids Games: free games I made for my daughters — Gary Stow</title>
+<meta name="description" content="Three free browser games I built with AI for my two daughters, aged three and eight. A co-op seek and find, a times tables peg game and a painting game. Quietly educational, no adverts, nobody loses.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/kids-games/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kids Games: free games I made for my daughters">
+<meta property="og:description" content="A co-op seek and find, a times tables peg game and a painting game, built with AI for my girls.">
+<meta property="og:url" content="https://garystow.co.uk/kids-games/">
+<meta property="og:image" content="https://garystow.co.uk/assets/play-preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage","name":"Kids Games","url":"https://garystow.co.uk/kids-games/","description":"Free browser games Gary Stow built with AI for his two daughters.","author":{"@type":"Person","name":"Gary Stow","url":"https://garystow.co.uk/"},
+"hasPart":[
+{"@type":"VideoGame","name":"Seek and Find","url":"https://garystow.co.uk/kids-games/seek/","playMode":["CoOp","SinglePlayer"],"gamePlatform":"Web browser","isAccessibleForFree":true},
+{"@type":"VideoGame","name":"Times Table Pegs","url":"https://garystow.co.uk/kids-games/pegs/","playMode":"SinglePlayer","gamePlatform":"Web browser","isAccessibleForFree":true},
+{"@type":"VideoGame","name":"Paint Splash","url":"https://garystow.co.uk/kids-games/paint/","playMode":["SinglePlayer","CoOp"],"gamePlatform":"Web browser","isAccessibleForFree":true}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap">
+<style>
+:root{--ink:#2d2340;--bell:#7c3aed;--lala:#db2777;--sun:#ffcf33;--cream:#fffaf0;--sky:#bfe8ff;--grass:#8fdc6a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Fredoka","Trebuchet MS",system-ui,sans-serif;color:var(--ink);background:linear-gradient(#8fd3fb 0,#d4f1ff 360px,#a6e08a 360px,#8fdc6a 100%);min-height:100vh}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:16px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.pill{font-weight:600;font-size:.95rem;padding:7px 14px;border-radius:999px;border:2px solid var(--ink);background:rgba(255,255,255,.88);text-decoration:none;cursor:pointer;font-family:inherit;color:var(--ink)}
+header{text-align:center;padding:28px 0 18px}
+h1{font-size:clamp(2.8rem,9vw,5.4rem);line-height:1;color:#fff;-webkit-text-stroke:3px var(--ink);paint-order:stroke fill;text-shadow:0 6px 0 var(--ink)}
+.tag{display:inline-block;margin-top:16px;font-size:clamp(1.05rem,2.6vw,1.35rem);font-weight:600;background:var(--cream);border:3px solid var(--ink);border-radius:18px;padding:8px 18px;box-shadow:0 5px 0 var(--ink)}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:22px}
+.card{display:flex;flex-direction:column;background:#fff;border:3px solid var(--ink);border-radius:24px;overflow:hidden;box-shadow:0 7px 0 var(--ink);text-decoration:none;transition:transform .1s}
+.card:hover,.card:focus-visible{transform:translateY(-4px);outline:none}
+.card canvas{width:100%;height:auto;display:block;border-bottom:3px solid var(--ink);aspect-ratio:36/22}
+.card .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h2{font-size:1.7rem;line-height:1.1}
+.card p{font-size:1.05rem;line-height:1.35}
+.who{display:flex;gap:6px;flex-wrap:wrap}
+.who span{font-size:.85rem;font-weight:700;color:#fff;padding:3px 10px;border-radius:999px}
+.who .b{background:var(--bell)}.who .l{background:var(--lala)}
+.go{margin-top:auto;align-self:flex-start;font-weight:700;font-size:1.2rem;padding:10px 22px;border-radius:999px;border:3px solid var(--ink);background:var(--sun);box-shadow:0 4px 0 var(--ink)}
+.panel{background:var(--cream);border:3px solid var(--ink);border-radius:24px;box-shadow:0 7px 0 var(--ink);padding:20px 22px;margin-top:30px}
+.panel h2{font-size:1.8rem;margin-bottom:6px}
+.outfits{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px}
+.outfit{background:#fff;border:3px solid var(--ink);border-radius:18px;padding:6px 6px 10px;cursor:pointer;font:inherit;font-weight:700;font-size:1.1rem;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:4px}
+.outfit canvas{width:120px;height:150px}
+.outfit[aria-pressed="true"]{background:#ede6ff;box-shadow:0 0 0 4px var(--bell)}
+#outfits-lala .outfit[aria-pressed="true"]{background:#ffe3f0;box-shadow:0 0 0 4px var(--lala)}
+.who-h{font-size:1.35rem;margin-top:14px}
+.grown{font-family:"Trebuchet MS",system-ui,sans-serif}
+.grown h2{font-family:"Fredoka",sans-serif}
+.grown p,.grown li{font-size:1.02rem;line-height:1.55;margin-top:8px}
+.grown ul{padding-left:1.2rem}
+footer{text-align:center;padding:30px 0 40px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="pill" href="/work/#play">← garystow.co.uk</a>
+    <button class="pill" id="mute" type="button">Sound on</button>
+  </div>
+  <header>
+    <h1>Kids Games</h1>
+    <p class="tag">Made by Daddy for Bell and La La</p>
+  </header>
+
+  <section class="games" aria-label="Games">
+    <a class="card" href="/kids-games/seek/" data-game="seek">
+      <canvas id="t-seek" width="720" height="440" aria-hidden="true"></canvas>
+      <div class="body">
+        <div class="who"><span class="b">Bell</span><span class="l">La La</span><span class="b" style="background:#22a06b">Together</span></div>
+        <h2>Seek &amp; Find</h2>
+        <p>Read the clues, find everything on your lists, then find Daddy hiding somewhere. Three places to explore.</p>
+        <span class="go">Play</span>
+      </div>
+    </a>
+    <a class="card" href="/kids-games/pegs/" data-game="pegs">
+      <canvas id="t-pegs" width="720" height="440" aria-hidden="true"></canvas>
+      <div class="body">
+        <div class="who"><span class="b">Bell</span></div>
+        <h2>Times Table Pegs</h2>
+        <p>Answer times tables to earn balls, then bounce them off glowing pegs. Clear the orange ones to beat all five levels.</p>
+        <span class="go">Play</span>
+      </div>
+    </a>
+    <a class="card" href="/kids-games/paint/" data-game="paint">
+      <canvas id="t-paint" width="720" height="440" aria-hidden="true"></canvas>
+      <div class="body">
+        <div class="who"><span class="l">La La</span><span class="b">Bell can join</span></div>
+        <h2>Paint Splash</h2>
+        <p>Run through the paint buckets and paint the floor with your feet. Jump in the bubble bath to wipe it clean.</p>
+        <span class="go">Play</span>
+      </div>
+    </a>
+  </section>
+
+  <section class="panel">
+    <h2>Dress up</h2>
+    <p>Pick your outfit. It works in every game.</p>
+    <h3 class="who-h" style="color:var(--bell)">Bell</h3>
+    <div class="outfits" id="outfits-bell"></div>
+    <h3 class="who-h" style="color:var(--lala)">La La</h3>
+    <div class="outfits" id="outfits-lala"></div>
+  </section>
+
+  <section class="panel grown">
+    <h2>For grown-ups</h2>
+    <p>I built these for my two daughters, who are three and eight. They loved hunting for me in my <a href="/village/">AI village</a>, but finding games they could enjoy at the same time was surprisingly hard when one is learning her colours and the other is racing through her times tables. So I built some with Claude, and slipped a bit of learning into each one.</p>
+    <ul>
+      <li><b>Seek &amp; Find:</b> the older player reads clues, works out division and times table facts, and matches colours from descriptions. The younger one hears every picture read aloud, practises colours and counts to three. Neither can finish without the other.</li>
+      <li><b>Times Table Pegs:</b> every times table from 1 × 1 to 12 × 12 plus the matching division, with the trickier facts turning up more as the levels go on. She can also pick just the tables she wants to practise. Questions she gets wrong come back a little later, the way a good teacher would do it.</li>
+      <li><b>Paint Splash:</b> colour names, shapes and cause and effect, with a gentle voice that asks her to find a colour every so often.</li>
+    </ul>
+    <p>There are no adverts, no accounts and nothing to buy. Nobody loses, and each game has a natural place to stop, which helps at bedtime. They work with a keyboard, a mouse, a tablet or two gamepads.</p>
+  </section>
+  <footer><a href="/work/#play">Read how I built them</a> · <a href="/">garystow.co.uk</a> · <a href="/privacy/">Privacy</a></footer>
+</div>
+
+<script src="shared.js"></script>
+<script>
+"use strict";
+const mb = document.getElementById("mute");
+const label = () => mb.textContent = KG.muted ? "Sound off" : "Sound on"; label();
+mb.onclick = () => { KG.setMuted(!KG.muted); label(); };
+document.querySelectorAll(".card").forEach(a => a.addEventListener("click", () => KG.track("kids_game_open", { game_name: a.dataset.game })));
+
+function thumb(id, fn) { const c = document.getElementById(id), x = c.getContext("2d"); KG.useCtx(x); x.save(); x.scale(2, 2); fn(x); x.restore(); }
+function drawThumbs() {
+  const { circ, ell, rr, poly, line, txt, cluster, star4, star5 } = KG;
+  thumb("t-seek", x => {
+    const g = x.createLinearGradient(0, 0, 0, 90); g.addColorStop(0, "#6ec3f5"); g.addColorStop(1, "#d4f1ff"); x.fillStyle = g; x.fillRect(0, 0, 360, 92);
+    x.fillStyle = "#8fdc6a"; x.fillRect(0, 90, 360, 130); circ(318, 30, 18, "#ffd23f");
+    cluster([[60, 36, 14], [78, 28, 18], [98, 36, 13]], "#fff", 1.5);
+    cluster([[290, 160, 22], [326, 158, 23], [308, 144, 25]], "#43a747");
+    KG.drawAdult(318, 150, .55, "dad");
+    cluster([[290, 172, 22], [326, 170, 23], [308, 154, 25]], "#43a747");
+    ell(175, 186, 15, 13, "#ef4444"); line(175, 173, 178, 166, "#7a4a22", 3);
+    ell(242, 120, 15, 10, "#ffd93b"); circ(251, 107, 8, "#ffd93b"); ell(260, 108, 5, 3, "#ff8a1f", 2);
+    KG.drawKid(KG.mkPlayer("bell"), 90, 205, .95, { wave: true, tag: false });
+    const l = KG.mkPlayer("lala"); l.face = -1; KG.drawKid(l, 150, 210, .95, { tag: false });
+  });
+  thumb("t-pegs", x => {
+    const g = x.createLinearGradient(0, 0, 0, 220); g.addColorStop(0, "#160f3a"); g.addColorStop(1, "#33207a"); x.fillStyle = g; x.fillRect(0, 0, 360, 220);
+    for (let i = 0; i < 40; i++) { x.fillStyle = "rgba(255,255,255,.7)"; x.beginPath(); x.arc((i * 89) % 360, (i * 53) % 220, 1.2, 0, 7); x.fill(); }
+    const cols = ["#4cc9ff", "#4cc9ff", "#ff9f1c", "#4cc9ff", "#3ee07a"];
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 9; c++) circ(120 + c * 26 + (r % 2) * 13, 70 + r * 32, 7, cols[(r * 9 + c * 7) % 5], 2);
+    circ(236, 26, 15, "#7c3aed", 2.5); star5(236, 26, 8, "#ffcf33", 1.5); circ(214, 120, 6, "#e8ecff", 2);
+    rr(14, 140, 92, 54, 12, "#fff", 2.5); txt("7 × 8", 60, 175, 24, KG.INK, "center");
+    KG.drawKid(KG.mkPlayer("bell"), 58, 128, .8, { wave: true, tag: false });
+  });
+  thumb("t-paint", x => {
+    x.fillStyle = "#9be38a"; x.fillRect(0, 0, 360, 220); rr(12, 52, 336, 160, 18, "#fffaf0", 3);
+    [["#ef4444", 40], ["#facc15", 92], ["#3b82f6", 144], ["#22c55e", 196], ["#f472b6", 248]].forEach(([c, bx]) => { poly([[bx - 16, 12], [bx + 16, 12], [bx + 12, 40], [bx - 12, 40]], "#e6ecf5", 2.5); ell(bx, 12, 16, 5, c, 2.5); });
+    x.lineCap = "round"; x.lineWidth = 14;
+    [["#f472b6", [[40, 180], [120, 110], [200, 170]]], ["#3b82f6", [[200, 170], [260, 90], [320, 160]]], ["#facc15", [[60, 90], [110, 150]]]].forEach(([c, pts]) => { x.strokeStyle = c; x.beginPath(); pts.forEach((p, i) => i ? x.lineTo(p[0], p[1]) : x.moveTo(p[0], p[1])); x.stroke(); });
+    star5(290, 190, 18, "#a855f7", 0);
+    KG.drawKid(KG.mkPlayer("lala"), 200, 200, .95, { tag: false });
+  });
+}
+function drawOutfits() {
+  ["bell", "lala"].forEach(who => {
+    const box = document.getElementById("outfits-" + who); box.innerHTML = "";
+    KG.WARDROBE[who].forEach(o => {
+      const b = document.createElement("button"); b.className = "outfit"; b.type = "button"; b.setAttribute("aria-pressed", KG.getOutfit(who) === o);
+      const c = document.createElement("canvas"); c.width = 240; c.height = 300; b.appendChild(c); b.appendChild(document.createTextNode(KG.OUTFITS[o].label));
+      const x = c.getContext("2d"); KG.useCtx(x); x.save(); x.scale(2, 2); const p = KG.mkPlayer(who); p.outfit = o; KG.drawKid(p, 60, who === "bell" ? 142 : 138, who === "bell" ? .95 : 1.1, { tag: false }); x.restore();
+      b.onclick = () => { KG.setOutfit(o, who); KG.unlockAudio(); KG.sfx.pick(); KG.speak(`${KG.OUTFITS[o].label} ${KG.PLAYERS[who].name}!`); drawOutfits(); drawThumbs(); KG.track("outfit_pick", { player: who, outfit: o }); };
+      box.appendChild(b);
+    });
+  });
+}
+(document.fonts && document.fonts.load ? document.fonts.load("700 20px Fredoka") : Promise.resolve()).catch(() => {}).then(() => { drawThumbs(); drawOutfits(); });
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<!-- Microsoft UET -->
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+</body>
+</html>
