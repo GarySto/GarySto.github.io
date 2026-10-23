@@ -7,22 +7,22 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Momentum Scanner — Gary Stow, AI Practitioner &amp; Builder</title>
-<meta name="description" content="A live US-stock momentum scanner that runs every weekday, built from scratch with zero coding experience on free infrastructure.">
+<title>Work: AI Teams, Free Tools and a Momentum Scanner — Gary Stow</title>
+<meta name="description" content="What I have built: a live AI village, a free AI Job Finder, a trading research lab and a momentum scanner, with the code on GitHub.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://garystow.co.uk/work/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="The Momentum Scanner — Gary Stow, AI Practitioner &amp; Builder">
-<meta property="og:description" content="A live US-stock momentum scanner that runs every weekday, built from scratch with zero coding experience on free infrastructure.">
+<meta property="og:description" content="What I have built: a live AI village, a free AI Job Finder, a trading research lab and a momentum scanner, with the code on GitHub.">
 <meta property="og:url" content="https://garystow.co.uk/work/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Momentum Scanner — Gary Stow, AI Practitioner &amp; Builder">
-<meta name="twitter:description" content="A live US-stock momentum scanner that runs every weekday, built from scratch with zero coding experience on free infrastructure.">
+<meta name="twitter:description" content="What I have built: a live AI village, a free AI Job Finder, a trading research lab and a momentum scanner, with the code on GitHub.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="/assets/site.css?v=45260eab">
+<link rel="stylesheet" href="/assets/site.css?v=8096f9d0">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -40,25 +40,100 @@
 <!-- HEADER -->
 <header>
   <a href="/" class="logo">Gary Stow</a>
-  <nav>
-    <a href="/#about">About</a>
+  <script src="/assets/nav.js"></script>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <nav id="site-nav" aria-label="Main">
     <a href="/work/" class="active">Work</a>
-    <a href="/agents/">AI &amp; Agents</a>
-    <a href="/village/">Village</a>
-    <a href="/lab/">Lab</a>
+    <a href="/village/" class="nav-sub">The Village</a>
+    <a href="/agents/" class="nav-sub">AI teams and agents</a>
+    <a href="/lab/" class="nav-sub">Trading Research Lab</a>
     <a href="/articles/">Articles</a>
+    <a href="/news/" class="nav-sub">Weekly news</a>
     <a href="/guides/">Guides</a>
-    <a href="/news/">News</a>
     <a href="/speaking/">Speaking</a>
+    <a href="/#about">About</a>
     <a href="/contact/">Contact</a>
-    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
+    <a href="/guides/how-to-use-ai-to-find-jobs-that-fit-you/" class="nav-cta">Free AI Job Finder &#8594;</a>
   </nav>
 </header>
 
-<!-- PAGE HERO -->
+<!-- WORK HUB (23 Oct 2026) -->
 <div class="page-hero">
-  <div class="hero-label">The work</div>
-  <h1>The Momentum <em>Scanner.</em></h1>
+  <div class="hero-label">Work</div>
+  <h1>What I've built, <em>and what it shows.</em></h1>
+  <p class="hero-intro">Everything here runs for real in my home lab. Each project says what it is, what it shows, and where to see it or take the code.</p>
+</div>
+
+<style>
+.work-hub { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding: 0 4rem 4rem; border-bottom: 1px solid var(--rule); }
+.work-card { border: 2px solid var(--ink); background: #ffffff; display: flex; flex-direction: column; }
+.work-card img, .work-card .work-card-art { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; display: block; border-bottom: 2px solid var(--ink); }
+.work-card .work-card-art { background: #0c1118; color: #ffcf4a; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1.8rem; text-align: center; padding: 1rem; box-sizing: border-box; }
+.work-card-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; flex-grow: 1; }
+.work-card h2 { font-size: 1.8rem; margin: 0; }
+.work-card p { margin: 0; color: #2a2a2a; font-size: 1.05rem; font-weight: 400; }
+.work-card .work-shows { font-size: 1rem; color: #4d4842; }
+.work-card .cta-row { margin-top: auto; padding-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.7rem; }
+.work-more { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; padding: 0 4rem 4rem; }
+.work-more a { border: 2px solid var(--rule); padding: 1.6rem; text-decoration: none; color: var(--ink); display: flex; flex-direction: column; gap: 0.5rem; }
+.work-more a:hover { border-color: var(--ink); }
+.work-more b { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; }
+.work-more span { color: #2a2a2a; font-size: 1.05rem; }
+.work-case-intro { padding: 4rem 4rem 0; }
+@media (max-width: 1100px) { .work-hub { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 900px) {
+  .work-hub, .work-more { grid-template-columns: 1fr; padding: 0 1.5rem 3rem; }
+  .work-case-intro { padding: 3rem 1.5rem 0; }
+}
+</style>
+
+<div class="work-hub">
+  <article class="work-card">
+    <img src="/assets/village-preview.webp" width="1200" height="750" loading="lazy" decoding="async" alt="The Gary HQ Village: a cartoon town where my AI teams work along Main Street">
+    <div class="work-card-body">
+      <h2>The Village</h2>
+      <p>My real AI automation teams drawn as a cartoon village, updated every day.</p>
+      <p class="work-shows"><b>Shows:</b> designing AI teams that run, check and report on themselves.</p>
+      <div class="cta-row">
+        <a href="/village/" class="btn btn-accent">Open the Village</a>
+        <a href="https://github.com/GarySto/village-starter" class="btn" target="_blank" rel="noopener">Free code ↗</a>
+      </div>
+    </div>
+  </article>
+  <article class="work-card">
+    <img src="/guides/how-to-use-ai-to-find-jobs-that-fit-you/how-to-use-ai-to-find-jobs-that-fit-you.webp" loading="lazy" decoding="async" alt="AI Job Finder guide">
+    <div class="work-card-body">
+      <h2>AI Job Finder</h2>
+      <p>Free prompts and a template to score roles against your own rubric.</p>
+      <p class="work-shows"><b>Shows:</b> turning AI into a tool non-technical people can use today.</p>
+      <div class="cta-row">
+        <a href="/guides/how-to-use-ai-to-find-jobs-that-fit-you/" class="btn btn-accent">Use the guide</a>
+        <a href="https://github.com/GarySto/ai-job-finder" class="btn" target="_blank" rel="noopener">Template ↗</a>
+      </div>
+    </div>
+  </article>
+  <article class="work-card">
+    <div class="work-card-art" aria-hidden="true">Every idea vs<br>owning the market</div>
+    <div class="work-card-body">
+      <h2>Trading Research Lab</h2>
+      <p>Every trading idea tested against simply owning the market. The losers are published too.</p>
+      <p class="work-shows"><b>Shows:</b> testing honestly before trusting a result.</p>
+      <div class="cta-row">
+        <a href="/lab/" class="btn btn-accent">Open the Lab</a>
+        <a href="https://github.com/GarySto/market-universe-generator" class="btn" target="_blank" rel="noopener">Scanner code ↗</a>
+      </div>
+    </div>
+  </article>
+</div>
+
+<div class="work-more">
+  <a href="/agents/"><b>How my AI teams work &#8594;</b><span>Departments find problems, a supervisor root-causes them, a manager brings me only the real decisions, and an executor does the work.</span></a>
+  <a href="#project"><b>Case study: the momentum scanner &#8595;</b><span>The live premarket and momentum scanner behind my demo trading: how it works and what building it took.</span></a>
+</div>
+
+<div class="work-case-intro">
+  <div class="hero-label">Case study</div>
+  <h2>The Momentum <em>Scanner.</em></h2>
   <p class="hero-intro">A live trading scanner running every weekday, built from scratch with no prior coding experience, on £0 infrastructure. Here's the problem it solves, how it's built, and what building it actually took.</p>
 </div>
 
@@ -273,10 +348,12 @@
 <footer>
   <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
   <div class="footer-links">
-    <a href="/contact/">Contact ↗</a>
-    <a href="https://linkedin.com/in/garystow" target="_blank">LinkedIn ↗</a>
-    <a href="https://github.com/GarySto/market-universe-generator" target="_blank">GitHub ↗</a>
-    <a href="https://market-universe-generator-7jrhjfbttwfzlappdxaaysq.streamlit.app/" target="_blank">Live project ↗</a>
+    <a href="/contact/">Contact</a>
+    <a href="/news/">News</a>
+    <a href="/village/">Village</a>
+    <a href="/lab/">Lab</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="https://github.com/GarySto" target="_blank" rel="noopener">GitHub ↗</a>
     <a href="/privacy/">Privacy</a>
   </div>
 </footer>
