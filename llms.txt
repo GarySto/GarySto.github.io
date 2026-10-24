@@ -134,6 +134,8 @@ practical guides and articles on AI tools.
   not as financial advice or investment performance claims.
 - [Gary HQ Village](https://garystow.co.uk/village/): Gary's real AI automation teams shown as a live cartoon village.
 - [Kids Games](https://garystow.co.uk/kids-games/): free browser games Gary built with AI for his daughters, aged three and eight: a co-op Seek and Find with maths clues, Times Table Pegs, Paint Splash, and Spell & Build (national curriculum spelling lists Year 1 to 6 with a spelling test mode). Quietly educational, no adverts, nobody loses. Any family can set their own children's names, skin tones, hair and eyes, and install it as an offline app. Code: https://github.com/GarySto/kids-games
+- [Primary spelling lists, Year 1 to Year 6](https://garystow.co.uk/kids-games/spelling-lists/): the national curriculum in England spelling words for Year 1, Year 2, Years 3 and 4, and Years 5 and 6, free to print, each linked to the Spell & Build game. No adverts, analytics or cookies.
+- [Kids Games for teachers](https://garystow.co.uk/kids-games/for-teachers/): a printable summary for schools and clubs of the four free Kids Games, what each one teaches, the age ranges, and the privacy facts (no adverts, accounts, analytics or cookies).
 - [Trading Research Lab](https://garystow.co.uk/lab/): Gary's home trading lab - every idea tested against simply owning the market, with interactive charts. Practice money only.
 - [Weekly news roundup](https://garystow.co.uk/news/): every Sunday, a short summary of what changed in search, PPC and AI this week, and what's worth learning, with links to every source.
 
