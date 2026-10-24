@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="../shared.css">
+<link rel="stylesheet" href="../shared.css?v=20261024b">
 <style>
 html,body{background:#bfe8ff}
 .overlay{justify-content:flex-start;overflow-y:auto;padding-top:28px;padding-bottom:70px;background:linear-gradient(#8fd3fb,#d4f1ff 60%,#fff6dc)}
@@ -49,6 +49,7 @@ textarea{font:inherit;font-size:1.05rem;width:100%;min-height:76px;border:2px so
       <p class="note">Type the words from school, one per line or with commas between them. They stay on this computer.</p>
       <textarea id="week" spellcheck="false" autocomplete="off" placeholder="library, February, separate"></textarea>
     </div>
+    <div class="row" id="levelrow"><b>Clues</b><button class="chip" data-level="easier" type="button">Easier: clue and sentence</button><button class="chip" data-level="harder" type="button">Harder: clue only</button></div>
     <p class="note" id="listnote"></p>
   </div>
   <div class="btns">
@@ -57,7 +58,7 @@ textarea{font:inherit;font-size:1.05rem;width:100%;min-height:76px;border:2px so
     <button class="go2" data-test="20" type="button">Spelling test: 20 words</button>
   </div>
   <div class="keys">
-    <div><b>Guess &amp; spell</b>Read the clue, then type the word one letter at a time. Stuck? Help appears after a few tries.</div>
+    <div><b>Guess &amp; spell</b>Read the clue and the sentence, then type the word one letter at a time. Stuck? Help appears after a couple of tries.</div>
     <div><b>Spelling test</b>Listen to each word, type it, then press <kbd>Enter</kbd>. <kbd>Space</kbd> hears it again. Results at the end.</div>
   </div>
   <p class="made">Word lists from the National Curriculum in England (Crown copyright, Open Government Licence).</p>
@@ -65,9 +66,9 @@ textarea{font:inherit;font-size:1.05rem;width:100%;min-height:76px;border:2px so
 <div class="chrome left"><a href="/kids-games/">← Kids Games</a></div>
 <div class="chrome right"><button id="mute" type="button">Sound on</button><button id="fs" type="button">Full screen</button></div>
 
-<script src="../shared.js"></script>
+<script src="../shared.js?v=20261024b"></script>
 <script>KG.applyNames();</script>
-<script src="words.js"></script>
+<script src="words.js?v=20261024b"></script>
 <script>
 "use strict";
 /* Spell & Build. Two modes:
@@ -81,7 +82,11 @@ KG.chrome();
 const { W, H, INK, rand, pick, shuffle, clamp, circ, ell, rr, poly, line, cluster, txt, wrap, star4, star5, sfx } = KG;
 const ctx = KG.stage(document.getElementById("game"));
 const speakSlow = t => KG.speak(t, 1.05, true, .82);
-const ROUND = 8, HINT_SENTENCE = 3, HINT_VOICE = 5, HINT_LETTER = 7;
+const ROUND = 8;
+// Easier (the default): the sentence with a gap shows from the start, the voice says the word after 2 wrong tries,
+// and the next letter glows after 4. Harder: clue only, then the sentence after 3, the voice after 5, a letter after 7.
+const LEVELS = { easier: { sentence: 0, voice: 2, letter: 4 }, harder: { sentence: 3, voice: 5, letter: 7 } };
+const Hn = () => LEVELS[M.level] || LEVELS.easier;
 
 // ---------- word bank ----------
 const BANK = {}; Object.values(SPELL_LISTS).forEach(l => l.words.forEach(([w, d, s]) => { BANK[w.toLowerCase()] = { word: w, clue: d, sentence: s }; }));
@@ -91,14 +96,15 @@ const key = (who, what) => `kg_spell_${who}_${what}`;
 function parseWeek(text) { return [...new Set(String(text || "").split(/[\s,;]+/).map(w => w.replace(/[^A-Za-z]/g, "")).filter(w => w.length >= 2 && w.length <= 14))].slice(0, 30); }
 
 // ---------- menu ----------
-const M = { who: store.get("kg_spell_who", "bell"), list: "y34" };
+const M = { who: store.get("kg_spell_who", "bell"), list: "y34", level: "easier" };
 const listBox = document.getElementById("lists"), weekEl = document.getElementById("week"), noteEl = document.getElementById("listnote");
 const LIST_CHIPS = [["week", "This week's spellings"], ...Object.entries(SPELL_LISTS).map(([k, l]) => [k, l.label])];
 LIST_CHIPS.forEach(([k, label]) => { const b = document.createElement("button"); b.type = "button"; b.className = "chip"; b.dataset.list = k; b.textContent = label; listBox.appendChild(b); });
-function loadWho() { M.list = store.get(key(M.who, "list"), "y34"); weekEl.value = store.get(key(M.who, "week"), ""); paintMenu(); }
+function loadWho() { M.list = store.get(key(M.who, "list"), "y34"); M.level = store.get(key(M.who, "level"), "easier"); weekEl.value = store.get(key(M.who, "week"), ""); paintMenu(); }
 function paintMenu() {
   document.querySelectorAll("[data-who]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.who === M.who)));
   listBox.querySelectorAll("[data-list]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.list === M.list)));
+  document.querySelectorAll("[data-level]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.level === M.level)));
   document.getElementById("weekbox").hidden = M.list !== "week";
   const n = parseWeek(weekEl.value).length;
   noteEl.textContent = M.list === "week" ? (n ? `${n} word${n === 1 ? "" : "s"} ready. Words that aren't in the built-in lists are read out loud as the clue.` : "No words yet, so we'll pick random Year 3 and 4 words until you add some.")
@@ -106,6 +112,7 @@ function paintMenu() {
 }
 document.querySelectorAll("[data-who]").forEach(b => b.onclick = () => { M.who = b.dataset.who; store.set("kg_spell_who", M.who); loadWho(); });
 listBox.addEventListener("click", e => { const b = e.target.closest("[data-list]"); if (!b) return; M.list = b.dataset.list; store.set(key(M.who, "list"), M.list); paintMenu(); });
+document.querySelectorAll("[data-level]").forEach(b => b.onclick = () => { M.level = b.dataset.level; store.set(key(M.who, "level"), M.level); paintMenu(); });
 weekEl.addEventListener("input", () => { store.set(key(M.who, "week"), weekEl.value); paintMenu(); });
 document.getElementById("play").onclick = () => startRound("play");
 document.querySelectorAll("[data-test]").forEach(b => b.onclick = () => startRound("test", +b.dataset.test));
@@ -288,8 +295,8 @@ function letter(ch) {
       if (S.got >= w.length) finishWord();
     } else {
       S.miss++; S.shake = .35; S.lastWrong = ch.toLowerCase(); sfx.boop();
-      if (S.miss === HINT_SENTENCE && current().sentence) KG.speak(gapSentence(true));
-      if (S.miss === HINT_VOICE) sayWord();
+      if (Hn().sentence > 0 && S.miss === Hn().sentence && current().sentence) KG.speak(gapSentence(true));
+      if (S.miss === Hn().voice) sayWord();
     }
   } else if (S.screen === "test") { if (S.typed.length < 16) S.typed += ch.toLowerCase(); sfx.ping(S.typed.length); }
 }
@@ -300,9 +307,9 @@ function enter() {
   if (S.screen === "end" && S.t - S.endT > 1) toMenu();
 }
 function finishWord() {
-  const e = current(), stars = S.miss === 0 ? 3 : S.miss < HINT_SENTENCE ? 2 : 1;
+  const e = current(), stars = S.miss === 0 ? 3 : S.miss < Hn().voice ? 2 : 1;
   S.wordDone = true; S.doneT = S.t; S.results.push({ word: e.word, stars, miss: S.miss });
-  markTricky(e.word, S.miss >= HINT_SENTENCE);
+  markTricky(e.word, S.miss >= Hn().voice);
   sfx.done(); burst(PIC_X, PIC_Y - 220, 60, ["#ffd23f", "#ff7ab6", "#7cc6ff", "#8be38b", "#b18cff"]);
   KG.speak(`${e.word}! ${pick(["Brilliant", "Amazing", "Super spelling", "Well done", "Fantastic"])}! You built ${S.pics[S.i].name}!`);
 }
@@ -327,7 +334,7 @@ addEventListener("keydown", e => {
   if (/^[a-zA-Z]$/.test(e.key)) { e.preventDefault(); letter(e.key); }
   else if (e.key === "Backspace") { e.preventDefault(); backspace(); }
   else if (e.key === "Enter") { e.preventDefault(); enter(); }
-  else if (e.key === " ") { e.preventDefault(); if (S.screen === "test") sayTestWord(); else if (S.screen === "play" && S.wordDone) enter(); else if (S.screen === "play" && (S.miss >= HINT_VOICE || !current().clue)) sayWord(); else if (S.screen === "end") enter(); }
+  else if (e.key === " ") { e.preventDefault(); if (S.screen === "test") sayTestWord(); else if (S.screen === "play" && S.wordDone) enter(); else if (S.screen === "play" && (S.miss >= Hn().voice || !current().clue)) sayWord(); else if (S.screen === "end") enter(); }
   else if (e.key === "Escape") toMenu();
 });
 const BUTTONS = [];
@@ -344,7 +351,7 @@ function keyboard(y0, extra) {
   const rows = ["qwertyuiop", "asdfghjkl", "zxcvbnm"], kw = 54, gap = 6;
   rows.forEach((r, ri) => {
     const width = r.length * (kw + gap) - gap, x0 = 340 - width / 2 + (ri === 2 && extra ? -30 : 0);
-    [...r].forEach((ch, i) => { const hint = S.screen === "play" && S.miss >= HINT_LETTER && !S.wordDone && current().word[S.got].toLowerCase() === ch;
+    [...r].forEach((ch, i) => { const hint = S.screen === "play" && S.miss >= Hn().letter && !S.wordDone && current().word[S.got].toLowerCase() === ch;
       button(x0 + i * (kw + gap), y0 + ri * (kw + 8), kw, kw, ch, () => letter(ch), hint ? "#fff3a0" : ch === S.lastWrong && S.shake > 0 ? "#ffd1d1" : "#fff", 26); });
     if (ri === 2 && extra) { button(x0 + width + gap, y0 + ri * (kw + 8), 70, kw, "⌫", backspace, "#ffd1dc", 24); }
   });
@@ -368,9 +375,9 @@ function drawPlay() {
   if (e.clue) { const m = e.clue.match(/^\(([^)]+)\)\s*(.*)$/); let y = 126; if (m) { rr(130, 104, ctx.measureText(m[1]).width + 30, 30, 15, "#ede6ff", 0); txt(m[1], 145, 126, 18, "#6d28d9", "left", 600); } wrap(m ? m[2] : e.clue, 570, 28).slice(0, 3).forEach((l, i) => txt(l, 54, 170 + i * 34, 28, INK, "left", 600)); }
   else { txt("Listen to the word, then spell it.", 54, 172, 28, INK, "left", 600); button(54, 194, 220, 46, "Hear it again", sayWord, "#ddd0ff", 22); }
   // help
-  const nextAt = [HINT_SENTENCE, HINT_VOICE, HINT_LETTER].find(n => n > S.miss);
-  if (S.miss >= HINT_SENTENCE && e.sentence) { rr(30, 262, 620, 64, 18, "#ffffff", 2.5); wrap(gapSentence(false), 590, 22).slice(0, 2).forEach((l, i) => txt(l, 46, 288 + i * 26, 22, "#4b4560", "left", 600)); }
-  if (S.miss >= HINT_VOICE && e.clue) button(470, 334, 180, 40, "Hear it", sayWord, "#ddd0ff", 20);
+  const nextAt = [Hn().sentence, Hn().voice, Hn().letter].find(n => n > S.miss);
+  if (S.miss >= Hn().sentence && e.sentence) { rr(30, 262, 620, 64, 18, "#ffffff", 2.5); wrap(gapSentence(false), 590, 22).slice(0, 2).forEach((l, i) => txt(l, 46, 288 + i * 26, 22, "#4b4560", "left", 600)); }
+  if (S.miss >= Hn().voice && e.clue) button(470, 334, 180, 40, "Hear it", sayWord, "#ddd0ff", 20);
   if (!S.wordDone) txt(nextAt ? `Help unlocks after ${nextAt - S.miss} more ${nextAt - S.miss === 1 ? "try" : "tries"}` : "Look for the glowing letter", 34, 362, 19, "#5b5370", "left", 600);
   // the word: one box per letter
   const n = w.length, bw = Math.min(46, Math.floor(600 / n) - 6), gap = 6, total = n * (bw + gap) - gap, x0 = 340 - total / 2, y0 = 390, sh = S.shake > 0 ? Math.sin(S.t * 60) * 6 : 0;
@@ -378,7 +385,7 @@ function drawPlay() {
     const x = x0 + i * (bw + gap) + (i === S.got ? sh : 0), filled = i < S.got;
     if (i === S.got && !S.wordDone) rr(x - 3, y0 - 4, bw + 6, 66, 10, "rgba(255,210,63,.45)", 0);
     if (filled) txt(w[i], x + bw / 2, y0 + 44, Math.min(40, bw), INK, "center", 700);
-    else if (i === S.got && S.miss >= HINT_LETTER) { ctx.save(); ctx.globalAlpha = .35 + .2 * Math.sin(S.t * 5); txt(w[i], x + bw / 2, y0 + 44, Math.min(40, bw), "#7c3aed", "center", 700); ctx.restore(); }
+    else if (i === S.got && S.miss >= Hn().letter) { ctx.save(); ctx.globalAlpha = .35 + .2 * Math.sin(S.t * 5); txt(w[i], x + bw / 2, y0 + 44, Math.min(40, bw), "#7c3aed", "center", 700); ctx.restore(); }
     line(x, y0 + 56, x + bw, y0 + 56, INK, 4);
   }
   keyboard(478, false);

@@ -137,7 +137,7 @@ footer{text-align:center;padding:30px 0 40px;font-weight:600}
     <a class="card" href="/kids-games/spell/" data-game="spell">
       <canvas id="t-spell" width="720" height="440" aria-hidden="true"></canvas>
       <div class="body">
-        <div class="who"><span class="b" data-name="bell">Bell</span><span class="l" data-name="lala" data-suffix=" when she's ready">La La when she's ready</span></div>
+        <div class="who"><span class="b" data-name="bell">Bell</span><span class="l" data-name="lala" data-suffix=" when ready">La La when ready</span></div>
         <h2>Spell &amp; Build</h2>
         <p>Read the clue, work out the word and spell it to build a rocket, a castle or a cake. School word lists from Year 1 to Year 6, this week's spellings, or a spelling test.</p>
         <span class="go">Play</span>
@@ -156,7 +156,7 @@ footer{text-align:center;padding:30px 0 40px;font-weight:600}
 
   <section class="panel" id="family" data-clarity-mask="true">
     <h2>Make it yours</h2>
-    <p>Change the names and looks so your children see themselves in every game. Changes save straight away, and only on this device. Nothing you type here is ever sent anywhere.</p>
+    <p>Change the names, boy or girl, and looks so your children see themselves in every game. Changes save straight away, and only on this device. Nothing you type here is ever sent anywhere.</p>
     <div class="fam-grid" id="fam-grid"></div>
     <div class="fam-actions"><button class="btn" id="fam-reset" type="button">Back to Bell and La La</button><span class="note" id="fam-msg"></span></div>
   </section>
@@ -196,7 +196,7 @@ footer{text-align:center;padding:30px 0 40px;font-weight:600}
   <footer><a href="/work/#play">Read how I built them</a> · <a href="/">garystow.co.uk</a> · <a href="/privacy/">Privacy</a></footer>
 </div>
 
-<script src="shared.js"></script>
+<script src="shared.js?v=20261024b"></script>
 <script>KG.applyNames();</script>
 <script>
 "use strict";
@@ -295,6 +295,14 @@ function buildFamily() {
     const nl = document.createElement("label"); nl.textContent = "Name"; const ni = document.createElement("input"); ni.type = "text"; ni.maxLength = 14; ni.value = v.name; ni.autocomplete = "off"; ni.spellcheck = false;
     ni.oninput = () => { v.name = ni.value.replace(/[<>]/g, "").slice(0, 14) || KG.DEFAULT_FAMILY[c.key].name; famChanged(); };
     nl.appendChild(ni); card.appendChild(nl);
+    const bodies = c.kid ? KG.KID_BODIES : KG.ADULT_BODIES;
+    card.appendChild(optRow(c.kid ? "Boy or girl" : "Man or woman", Object.keys(bodies).map(k => [k, bodies[k]]), v.body, x => {
+      v.body = x;
+      // a sensible starting point when switching; everything can still be changed below
+      if (x === "boy" && ["curly", "straight", "braids"].includes(v.style)) v.style = "short";
+      if (x === "woman") v.beard = "none";
+      setTimeout(buildFamily, 0);
+    }));
     card.appendChild(optRow("Skin", KG.SKINS.map((col, i) => [col, "Skin tone " + (i + 1), col]), v.skin, x => v.skin = x, "sw"));
     card.appendChild(optRow("Hair colour", Object.keys(KG.HAIRS).map(k => [k, KG.HAIR_LABELS[k], KG.HAIRS[k]]), v.hair, x => v.hair = x, "sw"));
     const styles = c.kid ? KG.KID_STYLES : KG.ADULT_STYLES;

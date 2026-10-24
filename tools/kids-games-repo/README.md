@@ -30,7 +30,7 @@ No adverts, no accounts, no timers and nobody loses. Works with a keyboard, a mo
 
 ## Make it yours
 
-- On the Kids Games page, scroll to **Make it yours**. For each child and two grown-ups, pick a name, skin tone, hair colour, hair style, eyes and glasses. Grown-ups can have a beard or a gold cap too.
+- On the Kids Games page, scroll to **Make it yours**. For each child and two grown-ups, pick a name, boy or girl (or man or woman), skin tone, hair colour, hair style, eyes and glasses. Grown-ups can have a beard or a gold cap too.
 - Under **Dress up**, every child can wear every outfit, from Superhero to Princess to Football kit.
 - Everything you choose stays in the browser on that device. Nothing is sent anywhere.
 
