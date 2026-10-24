@@ -6,8 +6,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Paint Splash: a painting game I made for my three-year-old — Gary Stow</title>
-<meta name="description" content="Run through paint buckets and paint the floor with your feet. Colours and shapes are spoken out loud, and a bubble bath wipes it all clean. A free game I built with AI for my youngest.">
+<title>Paint Splash: Free Colours Game for 3 Year Olds — Gary Stow</title>
+<meta name="description" content="A free colours and shapes game for toddlers and three-year-olds. Run through paint buckets to paint the floor while colours are spoken aloud. No adverts.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://garystow.co.uk/kids-games/paint/">
 <meta property="og:type" content="website">
@@ -23,6 +23,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap">
 <link rel="stylesheet" href="../shared.css?v=20261024c">
 <style>html,body{background:#9be38a}</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": ["VideoGame", "LearningResource"], "name": "Paint Splash", "url": "https://garystow.co.uk/kids-games/paint/", "description": "A free colours and shapes game for toddlers and three-year-olds. Run through paint buckets to paint the floor while colours are spoken aloud. No adverts.", "inLanguage": "en-GB", "isAccessibleForFree": true, "typicalAgeRange": "2-5", "learningResourceType": "Educational game", "teaches": ["Colour names", "Shapes", "Cause and effect"], "gamePlatform": "Web browser", "playMode": ["SinglePlayer", "CoOp"], "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"}, "isPartOf": {"@type": "CollectionPage", "name": "Kids Games", "url": "https://garystow.co.uk/kids-games/"}}
+</script>
 </head>
 <body>
 <canvas id="game" aria-label="Paint Splash game"></canvas>
@@ -216,23 +219,5 @@ document.getElementById("save").onclick = e => {
 (document.fonts && document.fonts.load ? document.fonts.load("700 20px Fredoka") : Promise.resolve()).catch(() => {}).then(() => requestAnimationFrame(frame));
 window.PS = { S, start, stamp, startWipe };
 </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-5S939E9N5T');
-</script>
-<!-- Microsoft Clarity -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "y7l6l2ea33");
-</script>
-<!-- Microsoft UET -->
-<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
 </body>
 </html>
