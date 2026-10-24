@@ -2,8 +2,8 @@
    Online, everything comes fresh from the website (so a new version never mixes with an old one, which Safari
    on iPad was doing). Offline, the saved copy is used. Redirected responses are never saved, because Safari
    refuses to show them from a saved copy. Fonts never change, so they are served from the saved copy first. */
-const CACHE = "kids-games-v4";
-const CORE = ["/kids-games/", "/kids-games/shared.js", "/kids-games/shared.css", "/kids-games/seek/", "/kids-games/pegs/", "/kids-games/paint/",
+const CACHE = "kids-games-v5";
+const CORE = ["/kids-games/", "/kids-games/shared.js", "/kids-games/shared.css", "/kids-games/seek/", "/kids-games/pegs/", "/kids-games/paint/", "/kids-games/spell/", "/kids-games/spell/words.js",
   "/kids-games/manifest.webmanifest", "/kids-games/icon-192.png", "/kids-games/icon-512.png"];
 
 self.addEventListener("install", e => {

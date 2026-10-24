@@ -109,10 +109,10 @@ const KG = (() => {
     voice = vs.find(v => /en-GB/i.test(v.lang) && /Libby|Sonia|Hazel|Serena|Kate|Martha|Maisie|female/i.test(v.name)) || vs.find(v => /en-GB/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
   }
   if ("speechSynthesis" in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
-  function speak(text, pitch = 1.15, interrupt = true) {
+  function speak(text, pitch = 1.15, interrupt = true, rate = .95) {
     if (muted || !("speechSynthesis" in window)) return;
     if (interrupt) speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text.replace(/\bLa La\b/g, "Lala")); if (voice) u.voice = voice; u.lang = "en-GB"; u.pitch = pitch; u.rate = .95;
+    const u = new SpeechSynthesisUtterance(text.replace(/\bLa La\b/g, "Lala")); if (voice) u.voice = voice; u.lang = "en-GB"; u.pitch = pitch; u.rate = rate;
     speechSynthesis.speak(u);
   }
   function setMuted(m) { muted = m; try { localStorage.setItem("kg_muted", m ? "1" : "0"); } catch (e) {} if (m && "speechSynthesis" in window) speechSynthesis.cancel(); }
