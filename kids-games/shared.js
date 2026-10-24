@@ -2,6 +2,15 @@
    Made by Gary for Bell and La La. Everything is drawn in code, no image files.
    Every family can set their own names and looks on the Kids Games page; they are kept only in that browser. */
 "use strict";
+// older iPads (Safari before 16) can't draw rounded rectangles, so add a simple version of it
+if (window.CanvasRenderingContext2D && !CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+    let [tl, tr, br, bl] = Array.isArray(r) ? (r.length === 4 ? r : r.length === 2 ? [r[0], r[1], r[0], r[1]] : [r[0], r[0], r[0], r[0]]) : [r || 0, r || 0, r || 0, r || 0];
+    const m = Math.min(Math.abs(w), Math.abs(h)) / 2; [tl, tr, br, bl] = [tl, tr, br, bl].map(v => Math.min(Math.max(+v || 0, 0), m));
+    this.moveTo(x + tl, y); this.lineTo(x + w - tr, y); this.arcTo(x + w, y, x + w, y + tr, tr); this.lineTo(x + w, y + h - br); this.arcTo(x + w, y + h, x + w - br, y + h, br);
+    this.lineTo(x + bl, y + h); this.arcTo(x, y + h, x, y + h - bl, bl); this.lineTo(x, y + tl); this.arcTo(x, y, x + tl, y, tl); this.closePath();
+  };
+}
 const KG = (() => {
   const W = 1280, H = 720, INK = "#2d2340";
   let cv, ctx, scale = 1, offX = 0, offY = 0, dpr = 1;
