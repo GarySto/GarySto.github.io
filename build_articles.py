@@ -55,6 +55,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
 }}
 </script>
 <!-- Google tag (gtag.js) -->
+<script src="/assets/consent.js?v=20261024"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
