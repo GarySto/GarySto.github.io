@@ -16,6 +16,8 @@
 <meta property="og:url" content="https://garystow.co.uk/kids-games/seek/">
 <meta property="og:image" content="https://garystow.co.uk/assets/play-preview.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/kids-games/manifest.webmanifest">
+<meta name="theme-color" content="#7c3aed">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap">
@@ -26,16 +28,16 @@
 <canvas id="game" aria-label="Seek and Find game"></canvas>
 
 <div id="menu" class="overlay">
-  <h1 class="title">Seek &amp; Find <span>Bell and La La's adventure</span></h1>
-  <p class="sub">Read the clues, find everything on your lists, then find Daddy hiding somewhere in the picture. Three places to explore!</p>
+  <h1 class="title">Seek &amp; Find <span><span data-name="bell">Bell</span> and <span data-name="lala" data-suffix="'s adventure">La La's adventure</span></span></h1>
+  <p class="sub">Read the clues, find everything on your lists, then find <span data-name="adult1">Daddy</span> hiding somewhere in the picture. Three places to explore!</p>
   <div class="btns">
     <button class="go" data-mode="together">Play together</button>
-    <button class="b" data-mode="bell">Just Bell</button>
-    <button class="l" data-mode="lala">Just La La</button>
+    <button class="b" data-mode="bell">Just <span data-name="bell">Bell</span></button>
+    <button class="l" data-mode="lala">Just <span data-name="lala">La La</span></button>
   </div>
   <div class="keys">
-    <div class="kb"><b>Bell</b><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to walk, <kbd>Space</kbd> to pick up, <kbd>H</kbd> for a hint</div>
-    <div class="kl"><b>La La</b>Arrow keys to walk, then just walk into your pictures. The mouse or a tablet works too.</div>
+    <div class="kb"><b data-name="bell">Bell</b><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to walk, <kbd>Space</kbd> to pick up, <kbd>H</kbd> for a hint</div>
+    <div class="kl"><b data-name="lala">La La</b>Arrow keys to walk, then just walk into your pictures. The mouse or a tablet works too.</div>
   </div>
 </div>
 
@@ -44,6 +46,7 @@
 <div class="chrome right"><button id="mute" type="button">Sound on</button><button id="fs" type="button">Full screen</button></div>
 
 <script src="../shared.js"></script>
+<script>KG.applyNames();</script>
 <script>
 "use strict";
 /* Seek and Find: co-op find-it game for two on one keyboard.
@@ -52,6 +55,7 @@
    Three places per adventure, then it ends with a trophy. Nobody can lose. */
 const { W, H, INK, rand, randInt, pick, shuffle, clamp, shade, circ, ell, rr, poly, line, cluster, txt, wrap, star4, bubble, sfx, speak } = KG;
 const HORIZON = 250, ROUNDS = 3;
+const FAM = KG.family(), NB = FAM.bell.name, NL = FAM.lala.name, ND = FAM.adult1.name;
 const ctx = KG.stage(document.getElementById("game"));
 KG.chrome();
 
@@ -168,8 +172,8 @@ function nextRound() {
   generateWorld(); generateTasks();
   Object.assign(game, { screen: "play", phase: "hunt", phaseT: 0, gary: null, msgs: [], bellDone: game.mode === "lala", lalaDone: game.mode === "bell", lastBell: game.t, lastLaLa: game.t, lastLaLaSay: game.t, bellHint: null, introT: game.t, parts: [] });
   banner(`${game.theme.name}!`);
-  const l = game.lala[0] ? `La La, can you ${lalaLine(game.lala[0])}?` : "";
-  speak(game.mode === "together" ? `${game.theme.name}! Bell, read your clues. ${l}` : game.mode === "bell" ? `${game.theme.name}! Bell, read your clues and find everything.` : `${game.theme.name}! ${l}`);
+  const l = game.lala[0] ? `${NL}, can you ${lalaLine(game.lala[0])}?` : "";
+  speak(game.mode === "together" ? `${game.theme.name}! ${NB}, read your clues. ${l}` : game.mode === "bell" ? `${game.theme.name}! ${NB}, read your clues and find everything.` : `${game.theme.name}! ${l}`);
 }
 
 // ---------- input ----------
@@ -243,7 +247,7 @@ function collect(it) {
 function bellTry(p) {
   const it = nearestItem(p, 75, i => !i.found);
   if (!it) return;
-  if (it.owner === "lala") { say(p, game.mode === "together" ? "That one's for La La!" : "Not on your list!"); sfx.boop(); return; }
+  if (it.owner === "lala") { say(p, game.mode === "together" ? `That one's for ${NL}!` : "Not on your list!"); sfx.boop(); return; }
   const task = game.tasks.find(t => !t.done && t.kind === it.kind && t.color === it.color);
   if (task) {
     collect(it); task.got++; game.lastBell = game.t; game.bellHint = null;
@@ -270,8 +274,8 @@ function lalaTry(p, r) {
 function checkDone() {
   const bDone = game.mode === "lala" || game.tasks.every(t => t.done);
   const lDone = game.mode === "bell" || game.lala.every(t => t.got >= t.count);
-  if (bDone && !game.bellDone) { game.bellDone = true; if (!lDone) speak("Brilliant, Bell! Your clues are solved. Can you help La La?"); }
-  if (lDone && !game.lalaDone) { game.lalaDone = true; sfx.done(); if (!bDone) speak("Well done La La! You found them all!"); }
+  if (bDone && !game.bellDone) { game.bellDone = true; if (!lDone) speak(`Brilliant, ${NB}! Your clues are solved. Can you help ${NL}?`); }
+  if (lDone && !game.lalaDone) { game.lalaDone = true; sfx.done(); if (!bDone) speak(`Well done ${NL}! You found them all!`); }
   if (bDone && lDone && game.phase === "hunt") { game.phase = "wait"; game.phaseT = 0; }
 }
 function giveBellHint() {
@@ -286,7 +290,7 @@ function startGary() {
   const side = host.x < 200 ? 1 : host.x > W - 200 ? -1 : (Math.random() < .5 ? -1 : 1);
   game.gary = { host, side, t: 0, found: false, lastGiggle: game.t };
   game.phase = "gary"; game.phaseT = 0;
-  banner("Now find Daddy!"); speak("Everything's found! Now find Daddy. He's hiding!");
+  banner(`Now find ${ND}!`); speak(`Everything's found! Now find ${ND}. ${ND} is hiding!`);
 }
 function garyPeek() { const g = game.gary; if (!g) return 0; const c = (g.t % 4.2) / 4.2; return c < .55 ? 1 : c < .7 ? 1 - (c - .55) / .15 : c < .85 ? 0 : (c - .85) / .15; }
 function garyPos() {
@@ -303,7 +307,7 @@ function tryGary(p, r) {
     speak(`You found me! Well done ${names()}!`, 1.0);
   }
 }
-const names = () => game.mode === "together" ? "Bell and La La" : game.mode === "bell" ? "Bell" : "La La";
+const names = () => game.mode === "together" ? `${NB} and ${NL}` : game.mode === "bell" ? NB : NL;
 
 // ---------- update ----------
 function update(dt) {
@@ -335,7 +339,7 @@ function update(dt) {
   });
   if (game.phase === "hunt" && !game.lalaDone) {
     const next = game.lala.find(t => t.got < t.count);
-    if (next && game.t - game.lastLaLaSay > 13 && game.t - game.introT > 6) { speak(`La La, ${lalaLine(next)}!`); game.lastLaLaSay = game.t; }
+    if (next && game.t - game.lastLaLaSay > 13 && game.t - game.introT > 6) { speak(`${NL}, ${lalaLine(next)}!`); game.lastLaLaSay = game.t; }
   }
   if (game.phase === "hunt" && !game.bellDone && !game.bellHint && game.t - game.lastBell > 30) giveBellHint();
   if (game.bellHint && game.t > game.bellHint.until) game.bellHint = null;
@@ -514,12 +518,12 @@ function clueText(t) {
 function drawHUD() {
   if (game.phase === "gary" || game.phase === "found") {
     const b = 1 + Math.sin(game.t * 4) * .03; ctx.save(); ctx.translate(W / 2, 46); ctx.scale(b, b);
-    rr(-190, -32, 380, 64, 32, "#ffd23f", 3); txt("Where's Daddy?", 0, 12, 34, INK, "center"); ctx.restore(); return;
+    rr(-190, -32, 380, 64, 32, "#ffd23f", 3); txt(`Where's ${ND}?`, 0, 12, 34, INK, "center"); ctx.restore(); return;
   }
   if (game.mode !== "lala") {
     const x = 14, y = 14, w = 470, rows = game.tasks.map(t => wrap(clueText(t), w - 120, 20));
     const h = 54 + rows.reduce((a, r) => a + Math.max(48, r.length * 24 + 12), 0);
-    panel(x, y, w, h, "#7c3aed"); txt("Bell's clues", x + 18, y + 38, 25, "#6d28d9");
+    panel(x, y, w, h, "#7c3aed"); txt(`${NB}'s clues`, x + 18, y + 38, 25, "#6d28d9");
     txt(`Place ${game.round} of ${ROUNDS}`, x + w - 18, y + 36, 17, "#8b7fa8", "right", 600);
     let ry = y + 52;
     game.tasks.forEach((t, i) => {
@@ -534,7 +538,7 @@ function drawHUD() {
   }
   if (game.mode !== "bell") {
     const n = game.lala.length, w = 22 + n * 94, x = W - 14 - w, y = 14, h = 158;
-    panel(x, y, w, h, "#db2777"); txt("La La", x + 18, y + 38, 25, "#be185d");
+    panel(x, y, w, h, "#db2777"); txt(NL, x + 18, y + 38, 25, "#be185d");
     const next = game.lala.find(t => t.got < t.count);
     game.lala.forEach((t, i) => {
       const cx = x + 58 + i * 94, done = t.got >= t.count, isNext = t === next, pz = isNext ? 1 + Math.sin(game.t * 5) * .07 : 1;
@@ -548,7 +552,7 @@ function drawHUD() {
   if (game.t - game.introT < 9 && game.mode === "together") {
     ctx.save(); ctx.globalAlpha = clamp(9 - (game.t - game.introT), 0, 1);
     rr(W / 2 - 330, H - 56, 660, 42, 21, "rgba(255,255,255,.92)", 2.5);
-    txt("Bell: W A S D + Space (H for a hint)    La La: arrows, just walk into it!", W / 2, H - 27, 20, INK, "center", 600); ctx.restore();
+    txt(`${NB}: W A S D + Space (H for a hint)    ${NL}: arrows, just walk into it!`, W / 2, H - 27, 20, INK, "center", 600); ctx.restore();
   }
 }
 function drawBanner() {
@@ -568,7 +572,7 @@ function family(y0, ks = 1.5, ky = 90) {
 function drawWin() {
   ctx.save(); ctx.fillStyle = "rgba(255,250,240,.6)"; ctx.fillRect(0, 0, W, H); ctx.restore();
   family(560);
-  txt("You found Daddy!", W / 2, 120, 76, "#ffd23f", "center", 700, 10);
+  txt(`You found ${ND}!`, W / 2, 120, 76, "#ffd23f", "center", 700, 10);
   txt(`Hooray for ${names()}!`, W / 2, 182, 40, "#fff", "center", 700, 7);
   rr(W / 2 - 80, 204, 160, 50, 25, "#fff", 3); star4(W / 2 - 40, 229, 16, "#ffd23f"); txt(String(game.stars), W / 2 + 18, 242, 34, INK, "center");
   if (game.t - game.winT > 1.5) { ctx.save(); ctx.globalAlpha = .75 + .25 * Math.sin(game.t * 4); txt(`Press Space or Enter (or tap) to go to the ${THEMES[game.round % 3].name}`, W / 2, H - 20, 26, INK, "center", 600); ctx.restore(); }

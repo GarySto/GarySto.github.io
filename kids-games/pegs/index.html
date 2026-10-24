@@ -16,6 +16,8 @@
 <meta property="og:url" content="https://garystow.co.uk/kids-games/pegs/">
 <meta property="og:image" content="https://garystow.co.uk/assets/play-preview.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/kids-games/manifest.webmanifest">
+<meta name="theme-color" content="#7c3aed">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap">
@@ -37,7 +39,7 @@ kbd{background:#3a2c8a;color:#fff;border-color:#7f6bff}
 <body>
 <canvas id="game" aria-label="Times Table Pegs game"></canvas>
 <div id="menu" class="overlay">
-  <h1 class="title">Times Table Pegs <span>Bell's challenge</span></h1>
+  <h1 class="title">Times Table Pegs <span data-name="bell" data-suffix="'s challenge">Bell's challenge</span></h1>
   <p class="sub">Answer times tables and division to earn balls, from 1 × 1 all the way to 12 × 12. Fire them at the pegs and clear every orange one to win the level. Five levels to beat!</p>
   <div class="tables" id="tables" aria-label="Which times tables?"><b>Which tables?</b><button type="button" data-t="all">All 1 to 12</button></div>
   <div class="btns"><button class="go" id="start">Start</button></div>
@@ -51,6 +53,7 @@ kbd{background:#3a2c8a;color:#fff;border-color:#7f6bff}
 <div class="chrome right"><button id="mute" type="button">Sound on</button><button id="fs" type="button">Full screen</button></div>
 
 <script src="../shared.js"></script>
+<script>KG.applyNames();</script>
 <script>
 "use strict";
 /* Times Table Pegs: Bell answers times tables (and later division) to earn balls,
@@ -83,7 +86,7 @@ const S = { screen: "title", level: 0, pegs: [], balls: 3, ball: null, aim: Math
   bucket: { x: 800, dir: 1 }, msg: null, shotHits: [], stuckT: 0, qStart: 0, cheer: 0, lastQ: "", stars: [] };
 S.stars = Array.from({ length: 90 }, () => ({ x: rand(0, W), y: rand(0, H), r: rand(.6, 2), p: rand(0, 6) }));
 let best = 0; try { best = +localStorage.getItem("kg_pegs_best") || 0; } catch (e) {}
-document.getElementById("best").textContent = best ? `Best score on this computer: ${best}` : "Made by Gary for Bell.";
+document.getElementById("best").textContent = best ? `Best score on this computer: ${best}` : "Made by Gary for his girls.";
 
 // ---------- peg layouts ----------
 function layout(kind) {
@@ -169,8 +172,8 @@ function endShot() {
   setTimeout(() => {
     if (S.pegs.every(p => p.type !== "orange" || p.gone)) {
       sfx.win(); S.score += S.balls * 100;
-      if (S.level >= LEVELS.length - 1) { S.screen = "end"; S.endT = S.t; saveBest(); speak("You did it, Bell! You are the Times Table Pegs champion!"); KG.track("game_complete", { game_name: "pegs" }); }
-      else { S.screen = "levelup"; S.endT = S.t; speak(`Level ${S.level + 1} complete! Brilliant, Bell!`); }
+      if (S.level >= LEVELS.length - 1) { S.screen = "end"; S.endT = S.t; saveBest(); speak(`You did it, ${KG.name("bell")}! You are the Times Table Pegs champion!`); KG.track("game_complete", { game_name: "pegs" }); }
+      else { S.screen = "levelup"; S.endT = S.t; speak(`Level ${S.level + 1} complete! Brilliant, ${KG.name("bell")}!`); }
     }
   }, hits.length * 45 + 300);
 }
