@@ -28,6 +28,7 @@ practical guides and articles on AI tools.
 
 ## Recent articles
 
+- [Why I Built Free Learning Games My Daughters Can Play Together](https://garystow.co.uk/articles/why-i-built-free-learning-games-for-my-daughters/): why Gary built four free, ad-free learning games for his daughters, aged three and eight, so they can play together at their own levels. Times tables, spelling, colours and counting, built with AI in the evenings.
 - [Why I Built a Free AI Job Finder, and Why I'm Giving It Away](https://garystow.co.uk/articles/why-i-built-a-free-ai-job-finder/): I've been made redundant before and it was horrible. With a young family on one income, I know that fear. So I built a free AI tool to take some of the stress out of finding the next role.
 - [How I Put My Home AI Dashboards on My Phone, Privately](https://garystow.co.uk/articles/how-i-put-my-home-ai-dashboards-on-my-phone-privately/):
   my AI teams run on my home PC, so every decision waited until I was
@@ -133,7 +134,7 @@ practical guides and articles on AI tools.
   from a demo account and are presented as evidence of a working system,
   not as financial advice or investment performance claims.
 - [Gary HQ Village](https://garystow.co.uk/village/): Gary's real AI automation teams shown as a live cartoon village.
-- [Kids Games](https://garystow.co.uk/kids-games/): free browser games Gary built with AI for his daughters, aged three and eight: a co-op Seek and Find with maths clues, Times Table Pegs, Paint Splash, and Spell & Build (national curriculum spelling lists Year 1 to 6 with a spelling test mode). Quietly educational, no adverts, nobody loses. Any family can set their own children's names, skin tones, hair and eyes, and install it as an offline app. Code: https://github.com/GarySto/kids-games
+- [Kids Games](https://garystow.co.uk/kids-games/): free browser games Gary built with AI for his daughters, aged three and eight: a co-op Seek and Find with maths clues, Times Table Pegs, Paint Splash, and Spell & Build (national curriculum spelling lists Year 1 to 6 with a spelling test mode). Quietly educational, no adverts, nobody loses. Any family can set their own children's names, skin tones, hair and eyes, and install it as an offline app. Code: https://github.com/GarySto/kids-games Setup guide: https://garystow.co.uk/guides/how-to-set-up-free-learning-games-for-your-kids/
 - [Primary spelling lists, Year 1 to Year 6](https://garystow.co.uk/kids-games/spelling-lists/): the national curriculum in England spelling words for Year 1, Year 2, Years 3 and 4, and Years 5 and 6, free to print, each linked to the Spell & Build game. No adverts, analytics or cookies.
 - [Kids Games for teachers](https://garystow.co.uk/kids-games/for-teachers/): a printable summary for schools and clubs of the four free Kids Games, what each one teaches, the age ranges, and the privacy facts (no adverts, accounts, analytics or cookies).
 - [Trading Research Lab](https://garystow.co.uk/lab/): Gary's home trading lab - every idea tested against simply owning the market, with interactive charts. Practice money only.
@@ -141,6 +142,7 @@ practical guides and articles on AI tools.
 
 ## Guides
 
+- [How to Set Up Free Learning Games for Your Kids, and Make Them Look Like Your Family](https://garystow.co.uk/guides/how-to-set-up-free-learning-games-for-your-kids/): step-by-step setup of the free Kids Games on an iPad, iPhone, Windows or Mac computer or Android tablet, making the characters look like your family, adding this week's spellings and choosing times tables. Free to reuse under CC BY-NC 4.0.
 - [How to Use AI to Find Jobs That Actually Fit You: Free Prompts for Every Level](https://garystow.co.uk/guides/how-to-use-ai-to-find-jobs-that-fit-you/): Three free, copy-and-paste AI prompts that help you build your own job scoring rubric, check your CV against it and search the web for roles that fit. Starter, intermediate and advanced.
 - [How to Run a Free Local AI Model with LM Studio and Use It from Python](https://garystow.co.uk/guides/how-to-run-a-free-local-ai-model-with-lm-studio-and-use-it/): A beginner's step-by-step guide, with annotated screenshots, to choosing a model that fits your PC, running it in LM Studio, switching on the local server, and talking to it from a short Python script.
 - [How to Host a Website for Free on GitHub Pages with Your Own Domain and Cloudflare](https://garystow.co.uk/guides/how-to-host-a-website-for-free-on-github-pages-with-your/): A step-by-step guide, with annotated screenshots, to buying a domain, building your first page with AI, putting it live for free on GitHub Pages, adding Cloudflare in front of it, and fixing the settings that quietly hurt my SEO.
