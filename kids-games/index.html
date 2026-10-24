@@ -129,7 +129,7 @@ footer{text-align:center;padding:30px 0 40px;font-weight:600}
       <div class="body">
         <div class="who"><span class="l" data-name="lala">La La</span><span class="b" data-name="bell" data-suffix=" can join">Bell can join</span></div>
         <h2>Paint Splash</h2>
-        <p>Run through the paint buckets and paint the floor with your feet. Jump in the bubble bath to wipe it clean.</p>
+        <p>Run through the paint buckets and paint the floor with your feet. Stand in the bubble bath for a moment to wipe it clean.</p>
         <span class="go">Play</span>
       </div>
     </a>
@@ -232,7 +232,7 @@ function drawOutfits() {
     KG.WARDROBE[who].forEach(o => {
       const b = document.createElement("button"); b.className = "outfit"; b.type = "button"; b.setAttribute("aria-pressed", KG.getOutfit(who) === o);
       const c = document.createElement("canvas"); c.width = 240; c.height = 300; b.appendChild(c); b.appendChild(document.createTextNode(KG.OUTFITS[o].label));
-      const x = c.getContext("2d"); KG.useCtx(x); x.save(); x.scale(2, 2); const p = KG.mkPlayer(who); p.outfit = o; KG.drawKid(p, 60, who === "bell" ? 142 : 138, who === "bell" ? .95 : 1.1, { tag: false }); x.restore();
+      const x = c.getContext("2d"); KG.useCtx(x); x.save(); x.scale(2, 2); const p = KG.mkPlayer(who); p.outfit = o; KG.drawKid(p, 60, 144, .9, { tag: false }); x.restore();
       b.onclick = () => { KG.setOutfit(o, who); KG.unlockAudio(); KG.sfx.pick(); KG.speak(`${KG.OUTFITS[o].label} ${KG.PLAYERS[who].name}!`); drawOutfits(); drawThumbs(); KG.track("outfit_pick", { player: who, outfit: o }); };
       box.appendChild(b);
     });
@@ -295,7 +295,7 @@ function drawFamPreviews() {
   FAM_CARDS.forEach(c => {
     const cv = document.getElementById("prev-" + c.key); if (!cv) return;
     const x = cv.getContext("2d"); x.clearRect(0, 0, cv.width, cv.height); KG.useCtx(x); x.save(); x.scale(2, 2);
-    if (c.kid) { const p = KG.mkPlayer(c.key); KG.drawKid(p, 65, 150, c.key === "bell" ? .95 : 1.1, { tag: false }); }
+    if (c.kid) { const p = KG.mkPlayer(c.key); KG.drawKid(p, 65, 152, .95, { tag: false }); }
     else KG.drawAdult(65, 152, .95, c.key);
     x.restore();
   });

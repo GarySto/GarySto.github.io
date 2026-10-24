@@ -23,7 +23,7 @@ Use **Microsoft Edge** or **Google Chrome** so your family settings carry across
 |---|---|---|
 | **Seek & Find** | Two players on one keyboard, or either on their own | The older child reads clues and solves times tables, division and halves to work out what to find. The younger child hears big pictures read aloud and counts them. Then everyone finds the grown-up who's hiding. |
 | **Times Table Pegs** | Older child | Every times table from 1 × 1 to 12 × 12 plus division, in a glowing peg game. Pick all of them or just the ones being practised. Wrong answers come back a little later. |
-| **Paint Splash** | Younger child, older one can join | Colours and shapes. Run through paint buckets to paint the floor, then jump in the bubble bath to wipe it clean. |
+| **Paint Splash** | Younger child, older one can join | Colours and shapes. Run through paint buckets to paint the floor, then stand in the bubble bath for a moment to wipe it clean. |
 
 No adverts, no accounts, no timers and nobody loses. Works with a keyboard, a mouse, a tablet or two gamepads.
 

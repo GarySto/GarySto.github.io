@@ -215,15 +215,17 @@ const KG = (() => {
     const s = sc * p.s, wv = p.moving ? Math.sin(p.walk) : 0, bob = p.moving ? Math.abs(Math.sin(p.walk)) * 3 : 0, jump = opt.jump || 0, f = p.face || 1;
     ell(x, y, 22 * s, 7 * s, "rgba(0,0,0,.16)", 0);
     ctx.save(); ctx.translate(x, y - bob - jump); ctx.scale(s, s);
+    const L = p.id === "bell" ? 14 : 0;   // the older child is taller: longer legs, everything above them lifts up
+    ctx.translate(0, -L);
     if (o.pack) rr(-17 * f - 9, -58, 18, 26, 6, "#7a4a22", 2.5);
     if (o.cape) { const fl = Math.sin(performance.now() / 200) * 3; poly([[-12, -58], [12, -58], [20 + fl, -8], [-20 + fl, -8]], o.cape, 2.5); }
     if (o.wings) { const fl = 1 + Math.sin(performance.now() / 160) * .08; ell(-24 * fl, -62, 18, 11, "rgba(205,235,255,.85)", 2.5, -.5); ell(24 * fl, -62, 18, 11, "rgba(205,235,255,.85)", 2.5, .5); ell(-19 * fl, -44, 11, 7, "rgba(255,214,240,.85)", 2.5, .4); ell(19 * fl, -44, 11, 7, "rgba(255,214,240,.85)", 2.5, -.4); }
     kidHairBack(lk, 34 * p.hair, hc);
     // legs and shoes (both shoes always match)
     const legCol = o.bottom === "leggings" ? o.leg : SKIN;
-    if (o.bottom !== "gown") { rr(-10 + wv * 3, -24, 8, 22, 4, legCol, 2.5); rr(2 - wv * 3, -24, 8, 22, 4, legCol, 2.5); }
-    ell(-6 + wv * 3, -2, 7.5, 4.5, o.shoe, 2.5); ell(6 - wv * 3, -2, 7.5, 4.5, o.shoe, 2.5);
-    if (o.shoeTrim) { line(-10 + wv * 3, -2, -2 + wv * 3, -2, o.shoeTrim, 2.5); line(2 - wv * 3, -2, 10 - wv * 3, -2, o.shoeTrim, 2.5); }
+    if (o.bottom !== "gown") { rr(-10 + wv * 3, -24, 8, 22 + L, 4, legCol, 2.5); rr(2 - wv * 3, -24, 8, 22 + L, 4, legCol, 2.5); }
+    ell(-6 + wv * 3, -2 + L, 7.5, 4.5, o.shoe, 2.5); ell(6 - wv * 3, -2 + L, 7.5, 4.5, o.shoe, 2.5);
+    if (o.shoeTrim) { line(-10 + wv * 3, -2 + L, -2 + wv * 3, -2 + L, o.shoeTrim, 2.5); line(2 - wv * 3, -2 + L, 10 - wv * 3, -2 + L, o.shoeTrim, 2.5); }
     if (o.hat === "dino") { poly([[-8 * f, -26], [-30 * f, -12], [-10 * f, -16]], o.top, 2.5); }
     // arms
     const up = opt.wave ? 26 : 0, sleeve = o.bottom === "dress" || o.bottom === "gown" ? SKIN : o.top;
@@ -231,7 +233,7 @@ const KG = (() => {
     line(13, -52, 22 - wv * 4, -34 - up, INK, 8); line(13, -52, 22 - wv * 4, -34 - up, sleeve, 4);
     circ(-22 + (opt.wave ? -7 : wv * 4), -34 - up, 3, SKIN, 1.5); circ(22 - wv * 4, -34 - up, 3, SKIN, 1.5);
     // body
-    if (o.bottom === "gown") { poly([[-12, -58], [12, -58], [24, -6], [-24, -6]], o.top); line(-22, -12, 22, -12, o.trim, 4); line(-13, -40, 13, -40, o.trim, 3); }
+    if (o.bottom === "gown") { poly([[-12, -58], [12, -58], [24 + L * .3, -6 + L], [-24 - L * .3, -6 + L]], o.top); line(-22 - L * .25, -12 + L, 22 + L * .25, -12 + L, o.trim, 4); line(-13, -40, 13, -40, o.trim, 3); }
     else if (o.bottom === "dress") { poly([[-12, -58], [12, -58], [20, -20], [-20, -20]], o.top); line(-17, -26, 17, -26, shade(o.top, -.2), 3); circ(0, -46, 3, "#fff", 1.5); }
     else {
       if (o.bottom === "shorts") { rr(-13, -34, 26, 14, 4, o.shorts, 2.5); }
@@ -260,7 +262,7 @@ const KG = (() => {
     else if (o.hat === "band") { rr(-24, -100, 48, 8, 4, "#ff4d6d", 2.5); }
     else if (o.hat === "explorer") { ell(0, -101, 32, 7, "#c9a46a", 2.5); ctx.beginPath(); ctx.ellipse(0, -103, 19, 15, 0, Math.PI, 0); ctx.closePath(); ctx.fillStyle = "#d8b67a"; ctx.fill(); stroke(2.5); line(-18, -105, 18, -105, "#7a4a22", 3); }
     ctx.restore();
-    if (opt.tag !== false) nameTag(p.name, p.col, x, y - (122 * s) - bob - jump);
+    if (opt.tag !== false) nameTag(p.name, p.col, x, y - ((122 + L) * s) - bob - jump);
   }
 
   // ---------- the grown-ups: adult1 hides in Seek & Find, adult2 cheers at the end ----------

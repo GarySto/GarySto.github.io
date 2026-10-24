@@ -63,7 +63,7 @@ const { W, H, INK, rand, randInt, pick, shuffle, clamp, circ, ell, rr, poly, lin
 const ctx = KG.stage(document.getElementById("game"));
 KG.chrome();
 
-const BX0 = 330, BX1 = 1262, LX = 796, LY = 52, PEG_R = 12, BALL_R = 10, G = 760, SPEED = 640, MAX_BALLS = 9;
+const BX0 = 330, BX1 = 1262, LX = 796, LY = 52, PEG_R = 12, BALL_R = 10, G = 760, SPEED = 700, MAX_BALLS = 9;
 // Every level uses the tables Bell picked (all 1 to 12 by default) with division mixed in.
 // Later levels ask more division and lean on the trickier facts (6, 7, 8, 9, 11, 12).
 const LEVELS = [
@@ -97,8 +97,28 @@ function layout(kind) {
   if (kind === "arches") for (let k = 0; k < 4; k++) for (let i = 0; i <= 16; i++) { const a = Math.PI + i / 16 * Math.PI; pts.push([cx + Math.cos(a) * (150 + k * 85), 600 + Math.sin(a) * (110 + k * 85)]); }
   if (kind === "diamond") for (let r = 0; r < 13; r++) { const n = 7 - Math.abs(6 - r); for (let c = 0; c < n * 2 - 1; c++) pts.push([cx + (c - (n - 1)) * 54, 165 + r * 36]); }
   if (kind === "spiral") { for (let i = 0; i < 70; i++) { const a = i * .42, rad = 30 + i * 3.6; pts.push([cx + Math.cos(a) * rad * 1.35, 390 + Math.sin(a) * rad * .95]); } }
-  return pts.filter(([x, y]) => x > BX0 + 22 && x < BX1 - 22 && y > 140 && y < 640 && Math.hypot(x - LX, y - LY) > 110)
+  return pts.filter(([x, y]) => x > BX0 + 22 && x < BX1 - 22 && y > 140 && y < 640 && Math.hypot(x - LX, y - LY) > 110 && reachable(x, y))
     .filter((p, i, a) => a.findIndex(q => Math.hypot(q[0] - p[0], q[1] - p[1]) < PEG_R * 2.6) === i);
+}
+// every peg must be hittable straight from the cannon: trace every aim the cannon allows (bouncing off the side walls)
+// and keep only pegs the ball can actually touch
+const REACH = (() => {
+  const cells = new Set(), C = 6, dt = 1 / 240;
+  for (let a = .12; a <= Math.PI - .12; a += .006) {
+    const b = { x: LX + Math.cos(a) * 46, y: LY + Math.sin(a) * 46, vx: Math.cos(a) * SPEED, vy: Math.sin(a) * SPEED };
+    for (let i = 0; i < 900 && b.y < H; i++) {
+      b.vy += G * dt; b.x += b.vx * dt; b.y += b.vy * dt;
+      if (b.x < BX0 + BALL_R) { b.x = BX0 + BALL_R; b.vx = Math.abs(b.vx) * .9; }
+      if (b.x > BX1 - BALL_R) { b.x = BX1 - BALL_R; b.vx = -Math.abs(b.vx) * .9; }
+      cells.add(Math.round(b.x / C) + "," + Math.round(b.y / C));
+    }
+  }
+  return { cells, C };
+})();
+function reachable(x, y) {
+  const { cells, C } = REACH, r = Math.ceil((PEG_R + BALL_R - 7) / C), cx = Math.round(x / C), cy = Math.round(y / C);
+  for (let i = -r; i <= r; i++) for (let j = -r; j <= r; j++) if (i * i + j * j <= r * r && cells.has((cx + i) + "," + (cy + j))) return true;
+  return false;
 }
 function startLevel(n) {
   S.level = n; const L = LEVELS[n], pts = shuffle(layout(L.layout));

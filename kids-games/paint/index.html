@@ -28,7 +28,7 @@
 <canvas id="game" aria-label="Paint Splash game"></canvas>
 <div id="menu" class="overlay">
   <h1 class="title">Paint Splash <span data-name="lala" data-suffix="'s painting game">La La's painting game</span></h1>
-  <p class="sub">Run through a paint bucket to pick a colour, then run around to paint the floor. Jump in the bubble bath to wipe it all clean!</p>
+  <p class="sub">Run through a paint bucket to pick a colour, then run around to paint the floor. Stand in the bubble bath for a moment to wipe it all clean!</p>
   <div class="btns">
     <button class="l" data-mode="lala">Just <span data-name="lala">La La</span></button>
     <button class="go" data-mode="together"><span data-name="lala">La La</span> and <span data-name="bell">Bell</span></button>
@@ -52,13 +52,14 @@
 const { W, H, INK, rand, pick, clamp, circ, ell, rr, poly, line, txt, star4, star5, sfx, speak } = KG;
 const ctx = KG.stage(document.getElementById("game"));
 KG.chrome();
-const FX0 = 40, FX1 = 1240, FY0 = 168, FY1 = 692;   // the painting floor
+const FX0 = 40, FX1 = 1060, FY0 = 262, FY1 = 700;   // the painting mat, with a strip of grass between it and the buckets
 const paint = document.createElement("canvas"); paint.width = W; paint.height = H; const pctx = paint.getContext("2d");
 const BUCKETS = [
   { name: "red", col: "#ef4444" }, { name: "orange", col: "#fb923c" }, { name: "yellow", col: "#facc15" }, { name: "green", col: "#22c55e" },
   { name: "blue", col: "#3b82f6" }, { name: "purple", col: "#a855f7" }, { name: "pink", col: "#f472b6" }, { name: "rainbow", col: "rainbow" }
 ].map((b, i) => Object.assign(b, { x: 92 + i * 128, y: 118 }));
-const TUB = { x: 1162, y: 120 };
+const TUB = { x: 1170, y: 470 };   // the bubble bath sits off the mat on the right, away from the buckets
+const BATH_HOLD = 1.3;              // seconds to stay in the bath before it wipes, so a quick bump never does
 const SHAPES = ["star", "heart", "circle", "square", "triangle"];
 const S = { screen: "title", mode: "lala", players: [], t: 0, ask: null, nextAsk: 18, wipe: null, splats: [], parts: [], said: "" };
 
@@ -132,19 +133,22 @@ function update(dt) {
     const pd = pads[i]; if (pd) { dx += Math.abs(pd.axes[0]) > .3 ? pd.axes[0] : 0; dy += Math.abs(pd.axes[1]) > .3 ? pd.axes[1] : 0; const a = pd.buttons[0] && pd.buttons[0].pressed; if (a && !p.padA) stamp(p); p.padA = a; }
     if (!dx && !dy && p.target) { const vx = p.target.x - p.x, vy = p.target.y - p.y, d = Math.hypot(vx, vy); if (d > 8) { dx = vx / d; dy = vy / d; } }
     const mag = Math.hypot(dx, dy); if (mag > 1) { dx /= mag; dy /= mag; }
-    p.x = clamp(p.x + dx * 330 * dt, FX0 + 20, FX1 - 20); p.y = clamp(p.y + dy * 300 * dt, FY0 - 30, FY1);
+    p.x = clamp(p.x + dx * 330 * dt, FX0 + 20, W - 40); p.y = clamp(p.y + dy * 300 * dt, 160, FY1);
     p.moving = mag > .1; if (p.moving) { p.walk += dt * 11; if (Math.abs(dx) > .2) p.face = dx > 0 ? 1 : -1; }
     // paint with the feet while on the floor
-    if (p.moving && p.y > FY0 + 12 && !S.wipe) brush(p, p.x, p.y - 4); else p.last = null;
+    if (p.moving && p.y > FY0 + 12 && p.x < FX1 - 6 && !S.wipe) brush(p, p.x, p.y - 4); else p.last = null;
     // buckets
     BUCKETS.forEach(b => {
-      if (Math.hypot(b.x - p.x, (b.y + 30) - p.y) < 52 && p.paint !== b) {
+      if (p.y < FY0 - 12 && Math.hypot(b.x - p.x, (b.y + 30) - p.y) < 56 && p.paint !== b) {
         p.paint = b; sfx.splash(); burst(b.x, b.y, 16, [b.col === "rainbow" ? "#ff5fa8" : b.col, "#fff"]);
         if (S.ask && S.ask.b === b && p.id === "lala") { speak(`Yes! ${cap(b.name)}! Well done ${KG.name("lala")}!`); S.ask = null; S.nextAsk = S.t + 25; sfx.done(); burst(b.x, b.y, 40, ["#ffd23f", "#fff", "#ff7ab6"]); }
         else speak(cap(b.name) + "!");
       }
     });
-    if (Math.hypot(TUB.x - p.x, (TUB.y + 30) - p.y) < 60) startWipe();
+    // bubble bath: stay in it for a moment to wash the picture away
+    const inBath = Math.hypot(TUB.x - p.x, (TUB.y + 30) - p.y) < 64;
+    if (inBath) { if (!p.bathDone) { if (!p.bathT) speak("Stay in the bubble bath to wash it all away!"); p.bathT = (p.bathT || 0) + dt; if (p.bathT >= BATH_HOLD) { startWipe(); p.bathT = 0; p.bathDone = true; } } }
+    else { p.bathT = 0; p.bathDone = false; }
   });
   // gentle colour challenge for La La
   if (!S.ask && S.t > S.nextAsk) { const b = pick(BUCKETS.filter(x => x.name !== "rainbow" && x !== S.players[0].paint)); S.ask = { b, t: S.t }; speak(`${KG.name("lala")}, can you find the ${b.name} bucket?`); }
@@ -178,6 +182,8 @@ function drawTub() {
   rr(x - 52, y - 20, 104, 50, [8, 8, 26, 26], "#7cc6ff");
   [[-30, -26, 14], [-8, -32, 17], [16, -28, 15], [36, -22, 12]].forEach(([dx, dy, r], i) => circ(x + dx, y + dy + Math.sin(S.t * 3 + i) * 2, r, "#ffffff", 2.5));
   txt("bubble bath", x, y + 18, 15, INK, "center", 700);
+  const hold = Math.max(0, ...S.players.map(p => p.bathDone ? 0 : (p.bathT || 0)));
+  if (hold > 0) { ctx.beginPath(); ctx.arc(x, y + 4, 70, -Math.PI / 2, -Math.PI / 2 + Math.min(1, hold / BATH_HOLD) * Math.PI * 2); ctx.strokeStyle = "#3b82f6"; ctx.lineWidth = 8; ctx.lineCap = "round"; ctx.stroke(); }
 }
 function draw() {
   drawRoom();
