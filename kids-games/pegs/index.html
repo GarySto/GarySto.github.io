@@ -16,6 +16,8 @@
 <meta property="og:url" content="https://garystow.co.uk/kids-games/pegs/">
 <meta property="og:image" content="https://garystow.co.uk/assets/play-preview.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/kids-games/manifest.webmanifest">
+<meta name="theme-color" content="#7c3aed">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap">
@@ -37,7 +39,7 @@ kbd{background:#3a2c8a;color:#fff;border-color:#7f6bff}
 <body>
 <canvas id="game" aria-label="Times Table Pegs game"></canvas>
 <div id="menu" class="overlay">
-  <h1 class="title">Times Table Pegs <span>Bell's challenge</span></h1>
+  <h1 class="title">Times Table Pegs <span data-name="bell" data-suffix="'s challenge">Bell's challenge</span></h1>
   <p class="sub">Answer times tables and division to earn balls, from 1 × 1 all the way to 12 × 12. Fire them at the pegs and clear every orange one to win the level. Five levels to beat!</p>
   <div class="tables" id="tables" aria-label="Which times tables?"><b>Which tables?</b><button type="button" data-t="all">All 1 to 12</button></div>
   <div class="btns"><button class="go" id="start">Start</button></div>
@@ -51,6 +53,7 @@ kbd{background:#3a2c8a;color:#fff;border-color:#7f6bff}
 <div class="chrome right"><button id="mute" type="button">Sound on</button><button id="fs" type="button">Full screen</button></div>
 
 <script src="../shared.js"></script>
+<script>KG.applyNames();</script>
 <script>
 "use strict";
 /* Times Table Pegs: Bell answers times tables (and later division) to earn balls,
@@ -60,7 +63,7 @@ const { W, H, INK, rand, randInt, pick, shuffle, clamp, circ, ell, rr, poly, lin
 const ctx = KG.stage(document.getElementById("game"));
 KG.chrome();
 
-const BX0 = 330, BX1 = 1262, LX = 796, LY = 52, PEG_R = 12, BALL_R = 10, G = 760, SPEED = 640, MAX_BALLS = 9;
+const BX0 = 330, BX1 = 1262, LX = 796, LY = 52, PEG_R = 12, BALL_R = 10, G = 760, SPEED = 700, MAX_BALLS = 9;
 // Every level uses the tables Bell picked (all 1 to 12 by default) with division mixed in.
 // Later levels ask more division and lean on the trickier facts (6, 7, 8, 9, 11, 12).
 const LEVELS = [
@@ -83,7 +86,7 @@ const S = { screen: "title", level: 0, pegs: [], balls: 3, ball: null, aim: Math
   bucket: { x: 800, dir: 1 }, msg: null, shotHits: [], stuckT: 0, qStart: 0, cheer: 0, lastQ: "", stars: [] };
 S.stars = Array.from({ length: 90 }, () => ({ x: rand(0, W), y: rand(0, H), r: rand(.6, 2), p: rand(0, 6) }));
 let best = 0; try { best = +localStorage.getItem("kg_pegs_best") || 0; } catch (e) {}
-document.getElementById("best").textContent = best ? `Best score on this computer: ${best}` : "Made by Gary for Bell.";
+document.getElementById("best").textContent = best ? `Best score on this computer: ${best}` : "Made by Gary for his girls.";
 
 // ---------- peg layouts ----------
 function layout(kind) {
@@ -94,8 +97,28 @@ function layout(kind) {
   if (kind === "arches") for (let k = 0; k < 4; k++) for (let i = 0; i <= 16; i++) { const a = Math.PI + i / 16 * Math.PI; pts.push([cx + Math.cos(a) * (150 + k * 85), 600 + Math.sin(a) * (110 + k * 85)]); }
   if (kind === "diamond") for (let r = 0; r < 13; r++) { const n = 7 - Math.abs(6 - r); for (let c = 0; c < n * 2 - 1; c++) pts.push([cx + (c - (n - 1)) * 54, 165 + r * 36]); }
   if (kind === "spiral") { for (let i = 0; i < 70; i++) { const a = i * .42, rad = 30 + i * 3.6; pts.push([cx + Math.cos(a) * rad * 1.35, 390 + Math.sin(a) * rad * .95]); } }
-  return pts.filter(([x, y]) => x > BX0 + 22 && x < BX1 - 22 && y > 140 && y < 640 && Math.hypot(x - LX, y - LY) > 110)
+  return pts.filter(([x, y]) => x > BX0 + 22 && x < BX1 - 22 && y > 140 && y < 640 && Math.hypot(x - LX, y - LY) > 110 && reachable(x, y))
     .filter((p, i, a) => a.findIndex(q => Math.hypot(q[0] - p[0], q[1] - p[1]) < PEG_R * 2.6) === i);
+}
+// every peg must be hittable straight from the cannon: trace every aim the cannon allows (bouncing off the side walls)
+// and keep only pegs the ball can actually touch
+const REACH = (() => {
+  const cells = new Set(), C = 6, dt = 1 / 240;
+  for (let a = .12; a <= Math.PI - .12; a += .006) {
+    const b = { x: LX + Math.cos(a) * 46, y: LY + Math.sin(a) * 46, vx: Math.cos(a) * SPEED, vy: Math.sin(a) * SPEED };
+    for (let i = 0; i < 900 && b.y < H; i++) {
+      b.vy += G * dt; b.x += b.vx * dt; b.y += b.vy * dt;
+      if (b.x < BX0 + BALL_R) { b.x = BX0 + BALL_R; b.vx = Math.abs(b.vx) * .9; }
+      if (b.x > BX1 - BALL_R) { b.x = BX1 - BALL_R; b.vx = -Math.abs(b.vx) * .9; }
+      cells.add(Math.round(b.x / C) + "," + Math.round(b.y / C));
+    }
+  }
+  return { cells, C };
+})();
+function reachable(x, y) {
+  const { cells, C } = REACH, r = Math.ceil((PEG_R + BALL_R - 7) / C), cx = Math.round(x / C), cy = Math.round(y / C);
+  for (let i = -r; i <= r; i++) for (let j = -r; j <= r; j++) if (i * i + j * j <= r * r && cells.has((cx + i) + "," + (cy + j))) return true;
+  return false;
 }
 function startLevel(n) {
   S.level = n; const L = LEVELS[n], pts = shuffle(layout(L.layout));
@@ -169,8 +192,8 @@ function endShot() {
   setTimeout(() => {
     if (S.pegs.every(p => p.type !== "orange" || p.gone)) {
       sfx.win(); S.score += S.balls * 100;
-      if (S.level >= LEVELS.length - 1) { S.screen = "end"; S.endT = S.t; saveBest(); speak("You did it, Bell! You are the Times Table Pegs champion!"); KG.track("game_complete", { game_name: "pegs" }); }
-      else { S.screen = "levelup"; S.endT = S.t; speak(`Level ${S.level + 1} complete! Brilliant, Bell!`); }
+      if (S.level >= LEVELS.length - 1) { S.screen = "end"; S.endT = S.t; saveBest(); speak(`You did it, ${KG.name("bell")}! You are the Times Table Pegs champion!`); KG.track("game_complete", { game_name: "pegs" }); }
+      else { S.screen = "levelup"; S.endT = S.t; speak(`Level ${S.level + 1} complete! Brilliant, ${KG.name("bell")}!`); }
     }
   }, hits.length * 45 + 300);
 }
