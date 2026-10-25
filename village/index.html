@@ -250,13 +250,16 @@ const buildings = BUILDINGS.map(b => ({kind: "b", id: b[0], name: b[1], team: b[
   if (st) { st.net = ["game", "m1", "m2"].reduce((t, k) => t + ((F[k] || {}).net || 0), 0);
     st.name = "Harvest Store · all 3 models" + (PRIVATE ? (st.net >= 0 ? " · +£" : " · −£") + Math.abs(st.net).toFixed(0) : st.net > 0 ? " · stocked" : st.net < 0 ? " · bin day" : ""); } }
 const houses = [];
-const maxArticle = Math.max(0, ...DATA.pages.map(p => p[4]));   // 23 Oct 2026: the trophy goes to the most-visited page of any kind
+// 23 Oct 2026 (Gary): the trophy goes to the article driving the most visits. Header pages (home, work, village...) never compete.
+// A tie goes to the better click-through rate from search (only counted with 20+ impressions).
+const ctrOf = p => (p[5] >= 20 ? (p[6] || 0) / p[5] : 0);
+const BEST = DATA.pages.filter(p => p[3] !== "Site page" && p[4] > 0).sort((a, b) => b[4] - a[4] || ctrOf(b) - ctrOf(a))[0];
 DATA.pages.forEach((p, i) => {
   const [slug, title, path, section, views, imps] = p, col = i % 8, row = Math.floor(i / 8);
   const tier = views >= 20 ? 5 : views >= 6 ? 4 : views >= 3 ? 3 : views >= 1 ? 2 : 1, size = [0, 1.05, 1.15, 1.35, 1.55, 1.85][tier];
   houses.push({kind: "h", id: "page:" + slug, slug, title, path: path || "/articles/" + slug + "/", section, views, imps, tier,
     x: 1 + col * 2.3 + (1.9 - size) / 2, y: 22.3 + row * 3.5 + (1.9 - size) / 2, w: size, d: size, floors: [0, .8, 1, 1.4, 1.8, 2.4][tier],
-    trophy: views === maxArticle && views > 0, garden: imps >= 20, work: 0, pop: 0});
+    trophy: !!BEST && section !== "Site page" && slug === BEST[0], garden: imps >= 20, work: 0, pop: 0});
 });
 // the construction site: the next page is always being built
 const NEXT = DATA.next_house || {title: "Next article"};
@@ -986,7 +989,7 @@ function renderSelected() {
   if (s.kind === "h") {
     selName.textContent = s.title;
     selBody.innerHTML = `<div class="kv"><b>Section</b><span>${esc(s.section)}</span><b>Visits, 28 days</b><span>${s.views}</span><b>Google impressions</b><span>${s.imps}</span>
-      <b>House</b><span>${["", "Cottage", "House", "Two storeys", "Manor", "Grand hall"][s.tier]}${s.trophy ? " · trophy: most-visited page" : ""}${s.garden ? " · flower garden: 20+ impressions" : ""}</span></div>
+      <b>House</b><span>${["", "Cottage", "House", "Two storeys", "Manor", "Grand hall"][s.tier]}${s.trophy ? " · trophy: the article driving the most visits" : ""}${s.garden ? " · flower garden: 20+ impressions" : ""}</span></div>
       <a href="https://garystow.co.uk${s.path}" target="_blank" rel="noopener">Open the page ↗</a>`; return; }
   selName.textContent = s.name; const e = latest[s.id];
   const wadeNote = s.role === "wade" ? `<p style="margin:0"><b>Right now:</b> the ${esc(byId[wadeTarget].name)} is waiting on Wade, who is ${esc(wadeMsg)}. Follow the purple beam.</p>` : "";
