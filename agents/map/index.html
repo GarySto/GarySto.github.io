@@ -1,0 +1,424 @@
+<!-- PAGE: AGENT MAP (garystow.co.uk/agents/map/) - built by site_agent_map.py, refreshed every evening by village_publish.py. Edit the template in Scripts\agent_map, not this file. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Agent Map: 62 AI Agents and How They Connect</title>
+<meta name="description" content="An interactive 3D map of the 62 AI agents I run in my own time, every hand-off between them, and a self-check that turns any break red.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/agents/map/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Agent Map: 62 AI Agents and How They Connect">
+<meta property="og:description" content="An interactive 3D map of the 62 AI agents I run in my own time, every hand-off between them, and a self-check that turns any break red.">
+<meta property="og:url" content="https://garystow.co.uk/agents/map/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Agent Map: 62 AI Agents and How They Connect">
+<meta name="twitter:description" content="An interactive 3D map of the 62 AI agents I run in my own time, every hand-off between them, and a self-check that turns any break red.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/assets/site.css?v=8096f9d0">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "The Agent Map",
+  "url": "https://garystow.co.uk/agents/map/",
+  "description": "An interactive 3D map of the 62 AI agents I run in my own time, every hand-off between them, and a self-check that turns any break red.",
+  "isPartOf": { "@type": "WebSite", "name": "Gary Stow", "url": "https://garystow.co.uk/" },
+  "author": { "@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/" }
+}
+</script>
+<style>
+/* Agent map: a night-sky stage so the lights read clearly, with large, high-contrast text in the side panel. */
+.map-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
+.map-stat{padding:1.6rem 4rem 1.6rem 4rem;border-right:1px solid var(--rule)}
+.map-stat:last-child{border-right:none}
+.map-stat b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,5vw,4.2rem);line-height:1;color:var(--ink)}
+.map-stat span{display:block;margin-top:.5rem;font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.map-stat.ok b{color:#1f7a45}.map-stat.bad b{color:#c0141f}
+@media (max-width:900px){.map-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.map-stat{padding:1.2rem 1.25rem}.map-stat:nth-child(2){border-right:none}.map-stat:nth-child(-n+2){border-bottom:1px solid var(--rule)}}
+section.map-sky{background:#070a12;color:#f4f6fb;padding:2rem 4rem 2.5rem;border-bottom:none}
+.map-sky .controls{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1rem}
+.map-sky .controls button{font-family:var(--sans);font-size:1.05rem;font-weight:500;padding:.55rem 1rem;border-radius:10px;border:2px solid #34405a;background:#111827;color:#f4f6fb;cursor:pointer}
+.map-sky .controls button[aria-pressed="true"]{border-color:#f4f6fb;background:#1d2840}
+.map-sky .controls button:focus-visible,.map-panel button:focus-visible{outline:3px solid #9db8ff;outline-offset:2px}
+.map-legend{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-bottom:1rem;font-size:1.02rem;color:#d5dbe6}
+.map-legend i{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:.45rem;vertical-align:-1px}
+.map-layout{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:1rem}
+.map-stage{position:relative;min-width:0;border:2px solid #2a3346;border-radius:14px;overflow:hidden;background:radial-gradient(ellipse at center,#121a2e 0%,#070a12 70%)}
+.map-stage canvas{display:block;width:100%;height:min(78vh,820px);touch-action:none;cursor:grab}
+.map-hint{position:absolute;left:14px;bottom:12px;color:#c3cad6;font-size:1rem;pointer-events:none}
+.map-panel{background:#111827;border:2px solid #2a3346;border-radius:14px;padding:1.2rem;display:flex;flex-direction:column;gap:.8rem;min-width:0;max-height:min(78vh,820px);overflow:auto;font-size:1.12rem;line-height:1.55;font-weight:400;color:#f4f6fb}
+.map-panel h2{font-family:var(--sans);font-weight:700;font-size:1.5rem;line-height:1.25;margin:0;color:#fff}
+.map-panel p{margin:0}
+.map-panel .sub{font-weight:700;margin-top:.3rem}
+.map-panel ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.map-panel li button{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;padding:.45rem .7rem;border-radius:8px;border:2px solid #2a3346;font-size:1.05rem}
+.map-panel li button:hover{border-color:#9db8ff}
+.map-panel .muted{color:#c3cad6;font-size:1rem}
+.chip{display:inline-block;font-size:.9rem;font-weight:700;padding:.1rem .65rem;border-radius:999px;border:2px solid currentColor;margin:0 .4rem .3rem 0}
+.map-back{font:inherit;font-weight:700;padding:.5rem 1rem;border-radius:10px;border:2px solid #34405a;background:transparent;color:#f4f6fb;cursor:pointer}
+.map-noscript{padding:1rem;font-size:1.1rem}
+@media (max-width:900px){section.map-sky{padding:1.25rem 1rem 2rem}.map-layout{grid-template-columns:1fr}.map-stage canvas{height:min(68vh,560px)}.map-panel{max-height:none}}
+.map-read{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2.5rem 3rem}
+.map-read h3{font-family:var(--serif);font-weight:400;font-size:1.6rem;margin-bottom:.6rem}
+.map-read p{margin-bottom:1rem}
+@media (max-width:900px){.map-read{grid-template-columns:1fr}}
+.agent-list details{border-top:1px solid var(--rule);padding:1rem 0}
+.agent-list summary{cursor:pointer;font-family:var(--serif);font-size:1.5rem}
+.agent-list dl{margin-top:1rem;display:grid;grid-template-columns:minmax(0,16rem) minmax(0,1fr);gap:.6rem 1.5rem}
+.agent-list dt{font-weight:500}
+.agent-list dd{margin:0}
+@media (max-width:700px){.agent-list dl{grid-template-columns:1fr}.agent-list dd{margin-bottom:.6rem}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <script src="/assets/nav.js"></script>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <nav id="site-nav" aria-label="Main">
+    <a href="/work/" class="active">Work</a>
+    <a href="/village/" class="nav-sub">The Village</a>
+    <a href="/agents/" class="nav-sub">AI teams and agents</a>
+    <a href="/lab/" class="nav-sub">Trading Research Lab</a>
+    <a href="/articles/">Articles</a>
+    <a href="/news/" class="nav-sub">News roundup</a>
+    <a href="/guides/">Guides</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/#about">About</a>
+    <a href="/contact/">Contact</a>
+    <a href="/guides/how-to-use-ai-to-find-jobs-that-fit-you/" class="nav-cta">Free AI Job Finder &#8594;</a>
+  </nav>
+</header>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="hero-label">AI &amp; agents · The agent map</div>
+  <h1>62 agents. <em>One map.</em></h1>
+  <p class="hero-intro">Every light on this sphere is an automation I have built in my own time, and every line is a hand-off from one agent to the next. A small moving light shows which way the work flows. If a hand-off breaks, or an agent ends up on its own with nothing connected to it, it turns red.</p>
+  <p class="hero-intro"><a href="/village/">See the same teams as a living village &#8594;</a></p>
+</div>
+
+<div class="map-stats" aria-label="The map at a glance">
+  <div class="map-stat"><b>62</b><span>Agents running</span></div>
+  <div class="map-stat"><b>74</b><span>Hand-offs between them</span></div>
+  <div class="map-stat"><b>3</b><span>Teams pulling toward 2 goals</span></div>
+  <div class="map-stat ok"><b>0</b><span>Problems right now: all green</span></div>
+</div>
+
+<!-- THE SPHERE -->
+<section class="map-sky" id="map" aria-label="Interactive agent map">
+  <div class="map-legend">
+    <span><i style="background:#ffc857"></i>Website team</span>
+    <span><i style="background:#5ee0ff"></i>Trading team</span>
+    <span><i style="background:#ff7ad9"></i>Career and outreach</span>
+    <span><i style="background:#9db8ff"></i>Gary and Wade</span>
+    <span><i style="background:#ffffff"></i>The two goals (centre)</span>
+    <span><i style="background:#ff3b47"></i>Broken or on its own</span>
+  </div>
+  <div class="controls" role="group" aria-label="Show on the map">
+    <button data-f="all" aria-pressed="true">Everything</button>
+    <button data-f="web" aria-pressed="false">Website</button>
+    <button data-f="trade" aria-pressed="false">Trading</button>
+    <button data-f="career" aria-pressed="false">Career</button>
+    <button data-f="bad" aria-pressed="false">Only problems</button>
+    <button id="spin" aria-pressed="true">Auto-spin on</button>
+  </div>
+  <div class="map-layout">
+    <div class="map-stage"><canvas id="c" aria-label="A 3D sphere of every agent. Drag to turn it, scroll or pinch to zoom, and click a light to read about that agent. The same information is listed in the panel and further down the page."></canvas><div class="map-hint">Drag to turn · scroll or pinch to zoom · click a light</div></div>
+    <aside class="map-panel" id="panel" aria-live="polite"><noscript><p class="map-noscript">The interactive map needs JavaScript. Every agent and what it does is listed further down this page.</p></noscript></aside>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Why this map exists</h2>
+  </div>
+  <div class="map-read">
+    <div>
+      <h3>The village shows the work. This shows the wiring.</h3>
+      <p>My <a href="/village/">village</a> draws my AI teams as a little town, with people carrying work between buildings. It is the easiest way I have found to explain what the system does, and my family love it. What it cannot show is a hand-off that has quietly stopped. A busy-looking village can still have a broken link in the middle of it.</p>
+      <p>In late October I ran a full check of everything, because new articles had stopped appearing and an idea I had submitted had disappeared. Every agent looked as if it was working. The problem was in the connections between them, and nothing was watching those.</p>
+    </div>
+    <div>
+      <h3>Every line is checked, not just every agent</h3>
+      <p>So I built a check that knows every agent and every hand-off, and asks of each one: did it run, did it produce something real, and did that reach the next agent? It runs every 30 minutes on my own PC. Anything that fails turns into a red line on this map and a job for my automation team to root-cause, rather than something I only notice a week later.</p>
+      <p>It also looks for agents left on their own. An agent with nothing coming in and nothing going out is doing work nobody uses, so it is flagged just like a break.</p>
+    </div>
+    <div>
+      <h3>How it grew to 62</h3>
+      <p>This started as one trading scanner. Every agent since has been added for a reason: each time a real problem came up, I built something to catch it permanently instead of fixing it by hand once. That rule is why the map keeps getting bigger, and why each new agent has to connect into the rest before it counts.</p>
+      <p>62 agents and 74 hand-offs running at the same time, from my home PC and GitHub, is the bit I am proudest of. It is far too many to hold in my head, which is exactly why it needed a map.</p>
+    </div>
+    <div>
+      <h3>How to read it</h3>
+      <p>The website team sits on one side of the sphere, the trading team on the other, and career and outreach underneath. My two goals glow at the centre, and every chain of agents should eventually lead to one of them. Click any light to see its job, what it receives and where it sends its work.</p>
+      <p>Some agents are marked <strong>private</strong>. They stay on the map so you can see they are connected, but what they do is kept to myself. The dashboards where I make decisions are shown simply as internal dashboards.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EVERY AGENT -->
+<section id="every-agent" class="agent-list">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Every agent on the map</h2>
+  </div>
+  <p style="margin-bottom:1.5rem;max-width:65ch">Last checked 31 Oct 2026, 19:35. This public copy refreshes every evening.</p>
+  <details open>
+    <summary>The two goals (2)</summary>
+    <dl>
+      <dt>GOAL: raise Gary&#x27;s profile</dt><dd>The first goal at the centre of everything: to be known as a practical AI person in performance marketing. Search visibility, articles, posts and outreach all feed it.</dd>
+      <dt>GOAL: financial growth</dt><dd>The second goal: long-term financial growth and stability for Gary&#x27;s family. Career moves and the trading system (which has to prove itself on practice money first) feed it.</dd>
+    </dl>
+  </details>
+  <details open>
+    <summary>Gary and Wade (2)</summary>
+    <dl>
+      <dt>Gary (decides)</dt><dd>Gary himself. He only sees what genuinely needs a human decision: drafts to approve, changes to the site and anything that touches trading. Everything else the teams handle on their own.</dd>
+      <dt>Wade (local AI)</dt><dd>Gary&#x27;s local AI model, running on his home PC through LM Studio. Wade drafts articles, runs the website departments and the Supervisor, and scores work for the other teams. A queue makes jobs take turns so he never overloads.</dd>
+    </dl>
+  </details>
+  <details>
+    <summary>Website team (32)</summary>
+    <dl>
+      <dt>Data pull</dt><dd>Pulls search, analytics and behaviour data for the website every day, so every other agent works from real numbers. If the PC was off, the Catch-Up restarts it.</dd>
+      <dt>Industry Watch</dt><dd>Reads AI, search and marketing news so the Content Engine knows what is happening this week.</dd>
+      <dt>Listening Post</dt><dd>Reads around 18 news feeds each week, has Wade summarise the best stories, and builds the public News roundup every two weeks.</dd>
+      <dt>Content Engine</dt><dd>Decides what to write next, one job an hour: Gary&#x27;s own requests first, then his ideas, his best LinkedIn posts, target search terms and the news.</dd>
+      <dt>Content Writer</dt><dd>Wade drafting an article from Gary&#x27;s own facts, notes and feedback, kept inside a size budget so nothing gets cut off.</dd>
+      <dt>Truth check</dt><dd>Reads every finished draft against its sources and blocks anything invented about Gary. One rewrite is allowed; after that the topic goes to a person.</dd>
+      <dt>Notebook (notes)</dt><dd>The team&#x27;s own labelled notes, such as lessons from past mistakes. Agents pull only the notes they need, and the notes are condensed when they grow too long.</dd>
+      <dt>Weekly Review</dt><dd>The weekly website review. A triage step decides which departments to call, they run, and then the Supervisor and Manager take over. It re-runs itself if a step fails.</dd>
+      <dt>6 SEO departments</dt><dd>Six specialist departments: SEO, content, AI visibility, user experience, page speed and technical SEO. An issue has to be seen twice before it counts.</dd>
+      <dt>Website Supervisor</dt><dd>Turns what the departments find into root-caused fixes. Rules in code drop anything already handled, merge repeats into one &#x27;stuck&#x27; card and file every card in the right place.</dd>
+      <dt>Website Manager</dt><dd>Builds the short list of what needs Gary&#x27;s decision, leaving out anything already handled.</dd>
+      <dt>Internal dashboard (website) (private)</dt><dd>An internal dashboard where Gary makes the website decisions. Its details are kept private.</dd>
+      <dt>Website Executor</dt><dd>Turns an approved YES into a real change on its own branch, then merges it only after the layout and SEO checks pass.</dd>
+      <dt>Article queue</dt><dd>Releases approved articles at a steady pace, two a week and at least three days apart, never on the same day as a guide.</dd>
+      <dt>Guide queue</dt><dd>Releases approved guides at a steady pace.</dd>
+      <dt>Image Briefs</dt><dd>Writes image prompts in Gary&#x27;s house style for any article that needs a picture.</dd>
+      <dt>Image Inbox</dt><dd>Watches for Gary&#x27;s finished images, puts the right one on the right article and takes it live.</dd>
+      <dt>SEO Auto-Fixer</dt><dd>Fixes basic SEO by itself with no approval needed: page titles, descriptions, image alt text and related links.</dd>
+      <dt>Goal Strategist</dt><dd>Works back from Gary&#x27;s goal search terms, fixes plain faults daily and judges the bigger strategy every 90 days.</dd>
+      <dt>Standards Watch</dt><dd>Watches Google&#x27;s and Bing&#x27;s rule pages for changes, and makes sure every change gets a decision.</dd>
+      <dt>Shipped Closer</dt><dd>Closes recommendations whose work has already gone live, so nothing is asked twice.</dd>
+      <dt>Results Tracker</dt><dd>Judges each shipped change on its own measure, such as page speed for a speed fix, after 28 and 90 days.</dd>
+      <dt>Rubric Calibration</dt><dd>Checks whether the quality score actually predicts what Gary approves, and learns from every decision he makes.</dd>
+      <dt>Indexing Chaser</dt><dd>Checks which pages Google and Bing have found, and tells Bing the moment a page changes.</dd>
+      <dt>System Auditor</dt><dd>Checks every automation is running, producing real output and connected, and says why when one is not.</dd>
+      <dt>Catch-Up</dt><dd>Runs every 30 minutes: restarts anything that was missed while the PC was off, wakes Wade, releases queued articles and runs the check behind this map.</dd>
+      <dt>Website Task Health</dt><dd>Reads the result of every website scheduled task and explains any failure in plain English.</dd>
+      <dt>Village Publish</dt><dd>Publishes the public Village every evening, and this map with it.</dd>
+      <dt>Kids Games go-live</dt><dd>Publishes the Kids Games pages.</dd>
+      <dt>Syndication (dev.to)</dt><dd>Shares finished technical articles on dev.to with a link back to the original, one at a time.</dd>
+      <dt>Website repo sync</dt><dd>Keeps Gary&#x27;s local copy of the website in step with the live version.</dd>
+      <dt>garystow.co.uk (live)</dt><dd>This website: articles, guides, news, tools and games. Almost every website agent ends up here.</dd>
+    </dl>
+  </details>
+  <details>
+    <summary>Trading team (24)</summary>
+    <dl>
+      <dt>Trading runs (GitHub)</dt><dd>The trading system&#x27;s scheduled runs: scanning the market and placing practice orders for each strategy on a timetable.</dd>
+      <dt>Analyst</dt><dd>Reads every trading signal every 30 minutes and flags anything odd in the data.</dd>
+      <dt>Recommender</dt><dd>Turns the Analyst&#x27;s confirmed findings into proposals for the Supervisor.</dd>
+      <dt>Fill Analyst</dt><dd>Measures how many orders actually fill, and works out why the others do not.</dd>
+      <dt>Game Activity Monitor</dt><dd>Checks that the premarket strategy traded in its window, or explains why it did not.</dd>
+      <dt>Game Freshness Watchdog</dt><dd>Makes sure the premarket strategy&#x27;s list of shares is fresh before the market opens.</dd>
+      <dt>No-Trade Watchdog</dt><dd>Tells a strategy that is quiet on purpose apart from one that is broken.</dd>
+      <dt>Performance Watch</dt><dd>Tracks each strategy&#x27;s results against its goals.</dd>
+      <dt>Premarket Shadow</dt><dd>Tests premarket ideas in shadow, with no orders placed.</dd>
+      <dt>Box Shadow</dt><dd>Tests another strategy idea in shadow, with no orders placed.</dd>
+      <dt>Data Coverage</dt><dd>Checks every price-data feed is still updating and fills any gaps in the history.</dd>
+      <dt>Reddit Ticker Watch</dt><dd>Watches Reddit for shares that are suddenly getting attention.</dd>
+      <dt>Research Lab</dt><dd>Runs strategy experiments every week. Anything it finds goes to Gary as a proposal, never straight into the trading code.</dd>
+      <dt>Ignore List Review</dt><dd>Reviews shares the broker will not trade, so they are skipped before an order is even tried.</dd>
+      <dt>Trading Supervisor</dt><dd>Root-causes everything the trading departments raise and deals with the noise itself.</dd>
+      <dt>Trading Manager</dt><dd>Builds Gary&#x27;s trading decision list and goal status, counting every decision that is waiting.</dd>
+      <dt>Internal dashboard (trading) (private)</dt><dd>An internal dashboard where Gary makes the trading decisions. Its details are kept private.</dd>
+      <dt>Decision Processor</dt><dd>Records Gary&#x27;s YES and NO decisions so the Executor knows what it is allowed to do.</dd>
+      <dt>Trading Executor</dt><dd>Does approved trading work on its own branch, never directly on the live code.</dd>
+      <dt>Goals Dispatcher</dt><dd>Sends the trading goals to the Executor to investigate.</dd>
+      <dt>Team Performance</dt><dd>Measures how often the team&#x27;s own proposals turn out to be right, so the team improves its own process.</dd>
+      <dt>Task Health Watchdog</dt><dd>Checks every scheduled task across the whole system and explains any failure.</dd>
+      <dt>Go-Live Scorecard</dt><dd>Decides whether a strategy is ready for real money: clean days, shadow results and practice profit after costs.</dd>
+      <dt>Wade Repo Auto Pull</dt><dd>Keeps the trading code on Gary&#x27;s PC up to date every 30 minutes.</dd>
+    </dl>
+  </details>
+  <details>
+    <summary>Career and outreach (2)</summary>
+    <dl>
+      <dt>Observatory (private)</dt><dd>A private agent. It stays on the map so you can see it is connected, but what it does is kept private.</dd>
+      <dt>Outreach team (private)</dt><dd>A private agent. It stays on the map so you can see it is connected, but what it does is kept private.</dd>
+    </dl>
+  </details>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-band">
+  <div class="section-header" style="justify-content: center; margin-bottom: 1.5rem;">
+    <span class="section-num">03</span>
+  </div>
+  <h2>Want to talk about this?</h2>
+  <p>If you are building your own team of agents and want to compare notes, get in touch. Everything here is a personal project, built in my own time with my own tools, and reflects my own views rather than any employer's.</p>
+  <div class="cta-row">
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
+    <a href="/agents/" class="btn">More about my AI teams</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="/contact/">Contact</a>
+    <a href="/news/">News</a>
+    <a href="/village/">Village</a>
+    <a href="/lab/">Lab</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="https://github.com/GarySto" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="/kids-games/" onclick="if(window.gtag)gtag('event','kids_games_link_click',{link_location:'footer'})">Kids games</a>
+    <a href="/privacy/">Privacy</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+const COL={web:'#ffc857',trade:'#5ee0ff',career:'#ff7ad9',goal:'#ffffff',hub:'#9db8ff'};
+const BAD='#ff3b47';
+const teamName={web:'Website team',trade:'Trading team',career:'Career and outreach',goal:'Goal',hub:'Centre'};
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const SPIN=0.0009;            // radians per frame: slow enough to read the labels as they pass
+const FLOW_SECONDS=7;         // how long a light takes to travel along a hand-off
+let N=[],E=[],byId={};
+const cv=document.getElementById('c'),cx=cv.getContext('2d'),panel=document.getElementById('panel');
+let W=0,H=0;
+function size(){const d=Math.min(2,window.devicePixelRatio||1);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);}
+window.addEventListener('resize',size);size();
+let rx=-0.25,ry=0.6,zoom=1,spin=!reduce,filter='all',sel=null,hover=null,drag=false;
+function place(){
+  const bands={web:[-170,-12,-0.86,0.86],trade:[12,170,-0.86,0.86],career:[-35,35,-0.98,-0.72],hub:[-25,25,0.70,0.95]};
+  const G=Math.PI*(3-Math.sqrt(5));
+  ['web','trade','career','hub'].forEach(t=>{const L=N.filter(n=>n.team===t);const [l0,l1,y0,y1]=bands[t];
+    L.forEach((n,i)=>{const f=(i+0.5)/L.length;const y=y1-(y1-y0)*f;const r=Math.sqrt(1-y*y);
+      const lon=(l0+((i*G*180/Math.PI*0.62)%(l1-l0)+(l1-l0))%(l1-l0))*Math.PI/180;n.p=[r*Math.sin(lon),y,r*Math.cos(lon)];});});
+  N.filter(n=>n.team==='goal').forEach((n,i)=>n.p=[i?0.22:-0.22,i?-0.08:0.08,0]);
+  N.forEach(n=>{n.inner=n.team==='goal';n.bad=!n.ok||n.alone;});
+  E.forEach((e,i)=>{e.off=(i*0.618)%1;});
+}
+function rot(p){let [x,y,z]=p;let c=Math.cos(ry),s=Math.sin(ry);[x,z]=[x*c+z*s,-x*s+z*c];c=Math.cos(rx);s=Math.sin(rx);[y,z]=[y*c-z*s,y*s+z*c];return [x,y,z];}
+function proj(p){const R=Math.min(W,H)*0.40*zoom;const q=rot(p);const k=3.2/(3.2-q[2]);return {x:W/2+q[0]*R*k,y:H/2-q[1]*R*k,z:q[2],k};}
+function lerp(a,b,t){return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];}
+function slerp(a,b,t){const dot=Math.max(-1,Math.min(1,a[0]*b[0]+a[1]*b[1]+a[2]*b[2]));const om=Math.acos(dot);if(om<1e-3)return a;const s=Math.sin(om);const A=Math.sin((1-t)*om)/s,B=Math.sin(t*om)/s;const lift=1+0.08*Math.sin(Math.PI*t);return [(A*a[0]+B*b[0])*lift,(A*a[1]+B*b[1])*lift,(A*a[2]+B*b[2])*lift];}
+function along(e,t){const a=byId[e.from].p,b=byId[e.to].p;return (byId[e.from].inner||byId[e.to].inner)?lerp(a,b,t):slerp(a,b,t);}
+function visible(n){if(filter==='all')return true;if(filter==='bad')return n.bad||E.some(e=>!e.ok&&(e.from===n.id||e.to===n.id));return n.team===filter||n.team==='goal'||n.team==='hub';}
+function related(id){const s=new Set([id]);E.forEach(e=>{if(e.from===id)s.add(e.to);if(e.to===id)s.add(e.from);});return s;}
+const t0=performance.now();
+function draw(now){
+  const t=(now-t0)/1000;if(spin&&!drag)ry+=SPIN;
+  cx.clearRect(0,0,W,H);const focus=sel||hover;const rel=focus?related(focus):null;
+  const R=Math.min(W,H)*0.40*zoom;cx.strokeStyle='rgba(157,184,255,0.10)';cx.lineWidth=1;cx.beginPath();cx.arc(W/2,H/2,R*1.07,0,7);cx.stroke();
+  const flows=[];
+  E.forEach(e=>{const a=byId[e.from],b=byId[e.to];if(!a||!b||!visible(a)||!visible(b))return;
+    const on=!rel||((e.from===focus||e.to===focus));
+    const steps=(a.inner||b.inner)?1:18;let zs=0;cx.beginPath();
+    for(let i=0;i<=steps;i++){const p=proj(along(e,i/steps));zs+=p.z;i?cx.lineTo(p.x,p.y):cx.moveTo(p.x,p.y);}
+    const depth=0.35+0.65*((zs/(steps+1))+1)/2;
+    if(!e.ok){cx.strokeStyle=`rgba(255,59,71,${0.6+0.4*Math.sin(t*5)})`;cx.lineWidth=7;}
+    else{cx.strokeStyle=on?`rgba(244,246,251,${(rel?0.9:0.30)*depth})`:'rgba(244,246,251,0.05)';cx.lineWidth=rel&&on?2.6:1.3;}
+    cx.stroke();
+    if(e.ok&&on&&!reduce)flows.push({e,depth,col:COL[a.team]||'#fff'});});
+  // the moving lights: a soft glow travelling from the sender to the receiver
+  flows.forEach(({e,depth,col})=>{const f=((t/FLOW_SECONDS)+e.off)%1;const q=proj(along(e,f));
+    const r=(rel?4.5:3.2)*q.k;const a=(rel?0.95:0.6)*depth*Math.sin(Math.PI*f);
+    const g=cx.createRadialGradient(q.x,q.y,0,q.x,q.y,r*3);g.addColorStop(0,col);g.addColorStop(1,'rgba(0,0,0,0)');
+    cx.globalAlpha=a;cx.fillStyle=g;cx.beginPath();cx.arc(q.x,q.y,r*3,0,7);cx.fill();
+    cx.globalAlpha=Math.min(1,a+0.1);cx.fillStyle='#fff';cx.beginPath();cx.arc(q.x,q.y,r*0.55,0,7);cx.fill();cx.globalAlpha=1;});
+  const P=N.filter(visible).map(n=>({n,q:proj(n.p)})).sort((a,b)=>a.q.z-b.q.z);P.forEach(o=>o.n._q=o.q);
+  P.forEach(({n,q})=>{const dim=rel&&!rel.has(n.id);const depth=0.45+0.55*(q.z+1)/2;
+    const col=n.bad?BAD:COL[n.team];const tw=reduce?1:0.75+0.25*Math.sin(t*2.2+n.p[0]*9+n.p[1]*7);
+    let r=(n.team==='goal'?13:n.team==='hub'?10:7)*q.k*(dim?0.7:1);if(n.bad&&!reduce)r*=1+0.25*Math.sin(t*6);
+    const a=(dim?0.18:1)*depth*tw;
+    const g=cx.createRadialGradient(q.x,q.y,0,q.x,q.y,r*3.2);g.addColorStop(0,col);g.addColorStop(0.25,col);g.addColorStop(1,'rgba(0,0,0,0)');
+    cx.globalAlpha=a*0.55;cx.fillStyle=g;cx.beginPath();cx.arc(q.x,q.y,r*3.2,0,7);cx.fill();
+    cx.globalAlpha=Math.min(1,a+0.15);cx.fillStyle=col;cx.beginPath();cx.arc(q.x,q.y,r,0,7);cx.fill();
+    if(n.private){cx.globalAlpha=Math.min(1,a+0.15);cx.setLineDash([3,3]);cx.strokeStyle=col;cx.lineWidth=1.5;cx.beginPath();cx.arc(q.x,q.y,r+4,0,7);cx.stroke();cx.setLineDash([]);}
+    if(n.id===sel){cx.globalAlpha=1;cx.strokeStyle='#fff';cx.lineWidth=3;cx.beginPath();cx.arc(q.x,q.y,r+7,0,7);cx.stroke();}
+    cx.globalAlpha=1;});
+  cx.textAlign='center';cx.textBaseline='bottom';const placed=[];
+  [...P].reverse().forEach(({n,q})=>{const show=(rel&&rel.has(n.id))||(!rel&&(q.z>(W<600?0.7:0.45)||n.team==='goal'||n.team==='hub'||n.bad));if(!show)return;
+    const big=rel&&rel.has(n.id);const label=n.label+(n.private?' (private)':'');
+    cx.font=`700 ${big?18:15}px "DM Sans", "Segoe UI", sans-serif`;
+    const w=cx.measureText(label).width+12,h=big?24:20,y=q.y-(n.team==='goal'?20:14)*q.k;
+    const x=Math.max(w/2+2,Math.min(W-w/2-2,q.x));   // keep every label fully inside the canvas (phones)
+    const box=[x-w/2,y-h,x+w/2,y];if(placed.some(b=>box[0]<b[2]&&box[2]>b[0]&&box[1]<b[3]&&box[3]>b[1]))return;placed.push(box);
+    cx.fillStyle='rgba(7,10,18,0.8)';cx.fillRect(x-w/2,y-h,w,h);cx.fillStyle=n.bad?BAD:'#f4f6fb';cx.fillText(label,x,y-2);});
+  requestAnimationFrame(draw);}
+let lx=0,ly=0,moved=0;const pts=new Map();let pinch0=0,zoom0=1;
+cv.addEventListener('pointerdown',e=>{cv.setPointerCapture(e.pointerId);pts.set(e.pointerId,[e.clientX,e.clientY]);drag=true;moved=0;lx=e.clientX;ly=e.clientY;
+  if(pts.size===2){const [a,b]=[...pts.values()];pinch0=Math.hypot(a[0]-b[0],a[1]-b[1]);zoom0=zoom;}});
+cv.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();if(pts.has(e.pointerId))pts.set(e.pointerId,[e.clientX,e.clientY]);
+  if(pts.size===2){const [a,b]=[...pts.values()];zoom=Math.max(0.6,Math.min(2.6,zoom0*Math.hypot(a[0]-b[0],a[1]-b[1])/pinch0));moved+=10;return;}
+  if(drag){const dx=e.clientX-lx,dy=e.clientY-ly;moved+=Math.abs(dx)+Math.abs(dy);ry+=dx*0.006;rx=Math.max(-1.4,Math.min(1.4,rx+dy*0.006));lx=e.clientX;ly=e.clientY;}
+  else{hover=pick(e.clientX-r.left,e.clientY-r.top);cv.style.cursor=hover?'pointer':'grab';}});
+const end=e=>{pts.delete(e.pointerId);if(pts.size===0)drag=false;};
+cv.addEventListener('pointerup',e=>{const r=cv.getBoundingClientRect();if(moved<6)select(pick(e.clientX-r.left,e.clientY-r.top));end(e);});
+cv.addEventListener('pointercancel',end);cv.addEventListener('pointerleave',()=>{hover=null;});
+cv.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(0.6,Math.min(2.6,zoom*(e.deltaY<0?1.08:0.93)));},{passive:false});
+function pick(x,y){let best=null,bd=26;N.forEach(n=>{if(!n._q||!visible(n))return;const d=Math.hypot(n._q.x-x,n._q.y-y)-(n._q.z*6);if(d<bd){bd=d;best=n.id;}});return best;}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function linkBtn(id,txt,ok){return `<li><button data-id="${id}"><strong style="color:${ok?'inherit':BAD}">${esc(txt)}</strong></button></li>`;}
+function edgeTxt(e,other){return byId[other].label+(e.what?' · '+e.what:'')+(e.ok?'':' · BROKEN');}
+function select(id){sel=id;
+  if(!id){panel.innerHTML=overview();bind();return;}
+  const n=byId[id];const ins=E.filter(e=>e.to===id),outs=E.filter(e=>e.from===id);
+  const state=!n.ok?['BROKEN',BAD]:n.alone?['ON ITS OWN',BAD]:['WORKING','#7fe0a0'];
+  panel.innerHTML=`<h2>${esc(n.label)}</h2><p><span class="chip" style="color:${COL[n.team]||'#fff'}">${teamName[n.team]}</span><span class="chip" style="color:${state[1]}">${state[0]}</span>${n.private?'<span class="chip" style="color:#e6e9f0">PRIVATE</span>':''}</p>
+  <p>${esc(n.desc)}</p>${!n.ok?'<p class="muted">This agent failed its last check, so my automation team is already looking at why.</p>':''}
+  ${ins.length?`<p class="sub">Receives work from</p><ul>${ins.map(e=>linkBtn(e.from,edgeTxt(e,e.from),e.ok)).join('')}</ul>`:''}
+  ${outs.length?`<p class="sub">Sends its work to</p><ul>${outs.map(e=>linkBtn(e.to,edgeTxt(e,e.to),e.ok)).join('')}</ul>`:''}
+  <p><button class="map-back">Back to the overview</button></p>`;bind();}
+function overview(){const bad=N.filter(n=>n.bad).length,be=E.filter(e=>!e.ok).length;
+  const list=['goal','hub','web','trade','career'].map(t=>`<p class="sub">${t==='goal'?'The two goals':t==='hub'?'Gary and Wade':teamName[t]}</p><ul>${N.filter(n=>n.team===t).map(n=>linkBtn(n.id,n.label+(n.private?' (private)':'')+(n.bad?' (problem)':''),!n.bad)).join('')}</ul>`).join('');
+  return `<h2>${bad+be?`${bad} agent(s) and ${be} hand-off(s) need attention`:`All ${N.length} agents connected and working`}</h2><p>Each light is one agent and each line is a hand-off. The small moving lights show which way the work flows. Click a light, or a name below, to see its job and everything it connects to.</p><p class="muted">Checked ${esc(window.__checked||'')}</p>${list}`;}
+function bind(){panel.querySelectorAll('button[data-id]').forEach(b=>b.onclick=()=>select(b.dataset.id));const bk=panel.querySelector('.map-back');if(bk)bk.onclick=()=>select(null);}
+document.querySelectorAll('.controls button[data-f]').forEach(b=>b.onclick=()=>{filter=b.dataset.f;document.querySelectorAll('.controls button[data-f]').forEach(x=>x.setAttribute('aria-pressed',x===b));});
+const sp=document.getElementById('spin');function spinLabel(){sp.setAttribute('aria-pressed',spin);sp.textContent=spin?'Auto-spin on':'Auto-spin off';}spinLabel();sp.onclick=()=>{spin=!spin;spinLabel();};
+fetch('agent_map.json',{cache:'no-cache'}).then(r=>r.json()).then(d=>{N=d.nodes;E=d.edges;window.__checked=d.checked;N.forEach(n=>byId[n.id]=n);
+  E=E.filter(e=>byId[e.from]&&byId[e.to]);place();select(null);requestAnimationFrame(draw);})
+ .catch(()=>{panel.innerHTML='<p class="map-noscript">The map could not load just now. Every agent is listed further down this page.</p>';});
+})();
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script src="/assets/consent.js?v=20261024"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<!-- Microsoft UET -->
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+</body>
+</html>
