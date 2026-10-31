@@ -28,6 +28,10 @@ practical guides and articles on AI tools.
 
 ## Recent articles
 
+- [62 AI Agents and the Broken Links Between Them: Why I Built an Agent Map](https://garystow.co.uk/articles/62-ai-agents-and-the-broken-links-between-them-why-i-built/):
+  every one of my agents looked busy, yet no new writing was coming
+  through. The problem was in the hand-offs between them, so I built a
+  map that checks every link and turns any break red.
 - [Prompt Engineering for Marketers: The Six Parts I Teach](https://garystow.co.uk/articles/prompt-engineering-for-marketers-the-six-parts-i-teach/):
   the prompt structure I hand to rooms of marketers, why one
   spreadsheet can give you a summary or a plan depending on how you
