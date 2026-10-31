@@ -28,6 +28,11 @@ practical guides and articles on AI tools.
 
 ## Recent articles
 
+- [My Website Is a Map of My ADHD Brain, and I'm Holding Myself to Account](https://garystow.co.uk/articles/my-website-is-a-map-of-my-adhd-brain-and-i-m-holding-myself/):
+  what started as a simple site to show my work has spiralled into
+  guides, free tools and games for my daughters. This is me being
+  honest about the project creep, and holding myself to account for
+  it.
 - [62 AI Agents and the Broken Links Between Them: Why I Built an Agent Map](https://garystow.co.uk/articles/62-ai-agents-and-the-broken-links-between-them-why-i-built/):
   every one of my agents looked busy, yet no new writing was coming
   through. The problem was in the hand-offs between them, so I built a
