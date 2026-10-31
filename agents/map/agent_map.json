@@ -1,0 +1,1009 @@
+{
+"checked": "31 Oct 2026, 19:35",
+"nodes": [
+{
+"id": "goal_profile",
+"label": "GOAL: raise Gary's profile",
+"team": "goal",
+"ok": true,
+"private": false,
+"desc": "The first goal at the centre of everything: to be known as a practical AI person in performance marketing. Search visibility, articles, posts and outreach all feed it.",
+"alone": false
+},
+{
+"id": "goal_money",
+"label": "GOAL: financial growth",
+"team": "goal",
+"ok": true,
+"private": false,
+"desc": "The second goal: long-term financial growth and stability for Gary's family. Career moves and the trading system (which has to prove itself on practice money first) feed it.",
+"alone": false
+},
+{
+"id": "gary",
+"label": "Gary (decides)",
+"team": "hub",
+"ok": true,
+"private": false,
+"desc": "Gary himself. He only sees what genuinely needs a human decision: drafts to approve, changes to the site and anything that touches trading. Everything else the teams handle on their own.",
+"alone": false
+},
+{
+"id": "wade",
+"label": "Wade (local AI)",
+"team": "hub",
+"ok": true,
+"private": false,
+"desc": "Gary's local AI model, running on his home PC through LM Studio. Wade drafts articles, runs the website departments and the Supervisor, and scores work for the other teams. A queue makes jobs take turns so he never overloads.",
+"alone": false
+},
+{
+"id": "datapull",
+"label": "Data pull",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Pulls search, analytics and behaviour data for the website every day, so every other agent works from real numbers. If the PC was off, the Catch-Up restarts it.",
+"alone": false
+},
+{
+"id": "industry",
+"label": "Industry Watch",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Reads AI, search and marketing news so the Content Engine knows what is happening this week.",
+"alone": false
+},
+{
+"id": "listening",
+"label": "Listening Post",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Reads around 18 news feeds each week, has Wade summarise the best stories, and builds the public News roundup every two weeks.",
+"alone": false
+},
+{
+"id": "engine",
+"label": "Content Engine",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Decides what to write next, one job an hour: Gary's own requests first, then his ideas, his best LinkedIn posts, target search terms and the news.",
+"alone": false
+},
+{
+"id": "writer",
+"label": "Content Writer",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Wade drafting an article from Gary's own facts, notes and feedback, kept inside a size budget so nothing gets cut off.",
+"alone": false
+},
+{
+"id": "truth",
+"label": "Truth check",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Reads every finished draft against its sources and blocks anything invented about Gary. One rewrite is allowed; after that the topic goes to a person.",
+"alone": false
+},
+{
+"id": "notebook",
+"label": "Notebook (notes)",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "The team's own labelled notes, such as lessons from past mistakes. Agents pull only the notes they need, and the notes are condensed when they grow too long.",
+"alone": false
+},
+{
+"id": "review",
+"label": "Weekly Review",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "The weekly website review. A triage step decides which departments to call, they run, and then the Supervisor and Manager take over. It re-runs itself if a step fails.",
+"alone": false
+},
+{
+"id": "depts",
+"label": "6 SEO departments",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Six specialist departments: SEO, content, AI visibility, user experience, page speed and technical SEO. An issue has to be seen twice before it counts.",
+"alone": false
+},
+{
+"id": "supervisor_w",
+"label": "Website Supervisor",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Turns what the departments find into root-caused fixes. Rules in code drop anything already handled, merge repeats into one 'stuck' card and file every card in the right place.",
+"alone": false
+},
+{
+"id": "manager_w",
+"label": "Website Manager",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Builds the short list of what needs Gary's decision, leaving out anything already handled.",
+"alone": false
+},
+{
+"id": "dashboard_w",
+"label": "Internal dashboard (website)",
+"team": "web",
+"ok": true,
+"private": true,
+"desc": "An internal dashboard where Gary makes the website decisions. Its details are kept private.",
+"alone": false
+},
+{
+"id": "executor_w",
+"label": "Website Executor",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Turns an approved YES into a real change on its own branch, then merges it only after the layout and SEO checks pass.",
+"alone": false
+},
+{
+"id": "article_q",
+"label": "Article queue",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Releases approved articles at a steady pace, two a week and at least three days apart, never on the same day as a guide.",
+"alone": false
+},
+{
+"id": "guide_q",
+"label": "Guide queue",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Releases approved guides at a steady pace.",
+"alone": false
+},
+{
+"id": "imgbrief",
+"label": "Image Briefs",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Writes image prompts in Gary's house style for any article that needs a picture.",
+"alone": false
+},
+{
+"id": "imginbox",
+"label": "Image Inbox",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Watches for Gary's finished images, puts the right one on the right article and takes it live.",
+"alone": false
+},
+{
+"id": "seofix",
+"label": "SEO Auto-Fixer",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Fixes basic SEO by itself with no approval needed: page titles, descriptions, image alt text and related links.",
+"alone": false
+},
+{
+"id": "strategist",
+"label": "Goal Strategist",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Works back from Gary's goal search terms, fixes plain faults daily and judges the bigger strategy every 90 days.",
+"alone": false
+},
+{
+"id": "standards",
+"label": "Standards Watch",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Watches Google's and Bing's rule pages for changes, and makes sure every change gets a decision.",
+"alone": false
+},
+{
+"id": "shipped",
+"label": "Shipped Closer",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Closes recommendations whose work has already gone live, so nothing is asked twice.",
+"alone": false
+},
+{
+"id": "results",
+"label": "Results Tracker",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Judges each shipped change on its own measure, such as page speed for a speed fix, after 28 and 90 days.",
+"alone": false
+},
+{
+"id": "rubric",
+"label": "Rubric Calibration",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Checks whether the quality score actually predicts what Gary approves, and learns from every decision he makes.",
+"alone": false
+},
+{
+"id": "indexing",
+"label": "Indexing Chaser",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Checks which pages Google and Bing have found, and tells Bing the moment a page changes.",
+"alone": false
+},
+{
+"id": "auditor",
+"label": "System Auditor",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Checks every automation is running, producing real output and connected, and says why when one is not.",
+"alone": false
+},
+{
+"id": "catchup",
+"label": "Catch-Up",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Runs every 30 minutes: restarts anything that was missed while the PC was off, wakes Wade, releases queued articles and runs the check behind this map.",
+"alone": false
+},
+{
+"id": "taskhealth_w",
+"label": "Website Task Health",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Reads the result of every website scheduled task and explains any failure in plain English.",
+"alone": false
+},
+{
+"id": "village",
+"label": "Village Publish",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Publishes the public Village every evening, and this map with it.",
+"alone": false
+},
+{
+"id": "kids",
+"label": "Kids Games go-live",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Publishes the Kids Games pages.",
+"alone": false
+},
+{
+"id": "syndication",
+"label": "Syndication (dev.to)",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Shares finished technical articles on dev.to with a link back to the original, one at a time.",
+"alone": false
+},
+{
+"id": "reposync",
+"label": "Website repo sync",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Keeps Gary's local copy of the website in step with the live version.",
+"alone": false
+},
+{
+"id": "site",
+"label": "garystow.co.uk (live)",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "This website: articles, guides, news, tools and games. Almost every website agent ends up here.",
+"alone": false
+},
+{
+"id": "observatory",
+"label": "Observatory",
+"team": "career",
+"ok": true,
+"private": true,
+"desc": "A private agent. It stays on the map so you can see it is connected, but what it does is kept private.",
+"alone": false
+},
+{
+"id": "outreach",
+"label": "Outreach team",
+"team": "career",
+"ok": true,
+"private": true,
+"desc": "A private agent. It stays on the map so you can see it is connected, but what it does is kept private.",
+"alone": false
+},
+{
+"id": "actions",
+"label": "Trading runs (GitHub)",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "The trading system's scheduled runs: scanning the market and placing practice orders for each strategy on a timetable.",
+"alone": false
+},
+{
+"id": "analyst",
+"label": "Analyst",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Reads every trading signal every 30 minutes and flags anything odd in the data.",
+"alone": false
+},
+{
+"id": "recommender",
+"label": "Recommender",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Turns the Analyst's confirmed findings into proposals for the Supervisor.",
+"alone": false
+},
+{
+"id": "fill",
+"label": "Fill Analyst",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Measures how many orders actually fill, and works out why the others do not.",
+"alone": false
+},
+{
+"id": "gameact",
+"label": "Game Activity Monitor",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Checks that the premarket strategy traded in its window, or explains why it did not.",
+"alone": false
+},
+{
+"id": "gamefresh",
+"label": "Game Freshness Watchdog",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Makes sure the premarket strategy's list of shares is fresh before the market opens.",
+"alone": false
+},
+{
+"id": "notrade",
+"label": "No-Trade Watchdog",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Tells a strategy that is quiet on purpose apart from one that is broken.",
+"alone": false
+},
+{
+"id": "perf",
+"label": "Performance Watch",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Tracks each strategy's results against its goals.",
+"alone": false
+},
+{
+"id": "premarket",
+"label": "Premarket Shadow",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Tests premarket ideas in shadow, with no orders placed.",
+"alone": false
+},
+{
+"id": "box",
+"label": "Box Shadow",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Tests another strategy idea in shadow, with no orders placed.",
+"alone": false
+},
+{
+"id": "coverage",
+"label": "Data Coverage",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Checks every price-data feed is still updating and fills any gaps in the history.",
+"alone": false
+},
+{
+"id": "reddit",
+"label": "Reddit Ticker Watch",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Watches Reddit for shares that are suddenly getting attention.",
+"alone": false
+},
+{
+"id": "lab",
+"label": "Research Lab",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Runs strategy experiments every week. Anything it finds goes to Gary as a proposal, never straight into the trading code.",
+"alone": false
+},
+{
+"id": "ignore",
+"label": "Ignore List Review",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Reviews shares the broker will not trade, so they are skipped before an order is even tried.",
+"alone": false
+},
+{
+"id": "supervisor_t",
+"label": "Trading Supervisor",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Root-causes everything the trading departments raise and deals with the noise itself.",
+"alone": false
+},
+{
+"id": "manager_t",
+"label": "Trading Manager",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Builds Gary's trading decision list and goal status, counting every decision that is waiting.",
+"alone": false
+},
+{
+"id": "dashboard_t",
+"label": "Internal dashboard (trading)",
+"team": "trade",
+"ok": true,
+"private": true,
+"desc": "An internal dashboard where Gary makes the trading decisions. Its details are kept private.",
+"alone": false
+},
+{
+"id": "decisions",
+"label": "Decision Processor",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Records Gary's YES and NO decisions so the Executor knows what it is allowed to do.",
+"alone": false
+},
+{
+"id": "executor_t",
+"label": "Trading Executor",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Does approved trading work on its own branch, never directly on the live code.",
+"alone": false
+},
+{
+"id": "goals_t",
+"label": "Goals Dispatcher",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Sends the trading goals to the Executor to investigate.",
+"alone": false
+},
+{
+"id": "teamperf",
+"label": "Team Performance",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Measures how often the team's own proposals turn out to be right, so the team improves its own process.",
+"alone": false
+},
+{
+"id": "taskhealth_t",
+"label": "Task Health Watchdog",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Checks every scheduled task across the whole system and explains any failure.",
+"alone": false
+},
+{
+"id": "scorecard",
+"label": "Go-Live Scorecard",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Decides whether a strategy is ready for real money: clean days, shadow results and practice profit after costs.",
+"alone": false
+},
+{
+"id": "wadepull",
+"label": "Wade Repo Auto Pull",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "Keeps the trading code on Gary's PC up to date every 30 minutes.",
+"alone": false
+}
+],
+"edges": [
+{
+"from": "datapull",
+"to": "depts",
+"what": "search and analytics data",
+"ok": true
+},
+{
+"from": "datapull",
+"to": "strategist",
+"what": "search data",
+"ok": true
+},
+{
+"from": "datapull",
+"to": "engine",
+"what": "queries with no page",
+"ok": true
+},
+{
+"from": "datapull",
+"to": "indexing",
+"what": "index status",
+"ok": true
+},
+{
+"from": "industry",
+"to": "engine",
+"what": "this week's news",
+"ok": true
+},
+{
+"from": "listening",
+"to": "site",
+"what": "news page every 2 weeks",
+"ok": true
+},
+{
+"from": "engine",
+"to": "writer",
+"what": "one writing job an hour",
+"ok": true
+},
+{
+"from": "wade",
+"to": "writer",
+"what": "drafting",
+"ok": true
+},
+{
+"from": "notebook",
+"to": "writer",
+"what": "lessons from past drafts",
+"ok": true
+},
+{
+"from": "writer",
+"to": "truth",
+"what": "every finished draft",
+"ok": true
+},
+{
+"from": "truth",
+"to": "gary",
+"what": "drafts to review",
+"ok": true
+},
+{
+"from": "gary",
+"to": "article_q",
+"what": "approved articles",
+"ok": true
+},
+{
+"from": "gary",
+"to": "guide_q",
+"what": "approved guides",
+"ok": true
+},
+{
+"from": "article_q",
+"to": "imginbox",
+"what": "released articles",
+"ok": true
+},
+{
+"from": "imgbrief",
+"to": "gary",
+"what": "image prompts",
+"ok": true
+},
+{
+"from": "imginbox",
+"to": "site",
+"what": "articles go live with their image",
+"ok": true
+},
+{
+"from": "guide_q",
+"to": "site",
+"what": "guides drip live",
+"ok": true
+},
+{
+"from": "rubric",
+"to": "writer",
+"what": "what Gary approves",
+"ok": true
+},
+{
+"from": "review",
+"to": "depts",
+"what": "Triage calls departments",
+"ok": true
+},
+{
+"from": "wade",
+"to": "review",
+"what": "Triage and departments",
+"ok": true
+},
+{
+"from": "depts",
+"to": "supervisor_w",
+"what": "confirmed issues",
+"ok": true
+},
+{
+"from": "standards",
+"to": "supervisor_w",
+"what": "rule changes at Google/Bing",
+"ok": true
+},
+{
+"from": "auditor",
+"to": "supervisor_w",
+"what": "automations not working",
+"ok": true
+},
+{
+"from": "results",
+"to": "supervisor_w",
+"what": "did shipped fixes work",
+"ok": true
+},
+{
+"from": "shipped",
+"to": "supervisor_w",
+"what": "what's already live",
+"ok": true
+},
+{
+"from": "strategist",
+"to": "supervisor_w",
+"what": "what blocks each goal term",
+"ok": true
+},
+{
+"from": "supervisor_w",
+"to": "manager_w",
+"what": "root-caused fixes",
+"ok": true
+},
+{
+"from": "manager_w",
+"to": "dashboard_w",
+"what": "",
+"ok": true
+},
+{
+"from": "dashboard_w",
+"to": "gary",
+"what": "",
+"ok": true
+},
+{
+"from": "gary",
+"to": "executor_w",
+"what": "YES on a fix",
+"ok": true
+},
+{
+"from": "executor_w",
+"to": "site",
+"what": "merged changes",
+"ok": true
+},
+{
+"from": "seofix",
+"to": "site",
+"what": "titles, meta, alt text",
+"ok": true
+},
+{
+"from": "strategist",
+"to": "site",
+"what": "sitemap and resubmits",
+"ok": true
+},
+{
+"from": "indexing",
+"to": "site",
+"what": "IndexNow pings",
+"ok": true
+},
+{
+"from": "village",
+"to": "site",
+"what": "public village",
+"ok": true
+},
+{
+"from": "kids",
+"to": "site",
+"what": "kids games pages",
+"ok": true
+},
+{
+"from": "reposync",
+"to": "site",
+"what": "repo kept in step",
+"ok": true
+},
+{
+"from": "site",
+"to": "syndication",
+"what": "cross-posts",
+"ok": true
+},
+{
+"from": "catchup",
+"to": "review",
+"what": "re-runs missed reviews",
+"ok": true
+},
+{
+"from": "catchup",
+"to": "auditor",
+"what": "runs the audit",
+"ok": true
+},
+{
+"from": "taskhealth_w",
+"to": "auditor",
+"what": "task results",
+"ok": true
+},
+{
+"from": "site",
+"to": "goal_profile",
+"what": "search impressions",
+"ok": true
+},
+{
+"from": "syndication",
+"to": "goal_profile",
+"what": "reach",
+"ok": true
+},
+{
+"from": "outreach",
+"to": "goal_profile",
+"what": "",
+"ok": true
+},
+{
+"from": "observatory",
+"to": "goal_money",
+"what": "",
+"ok": true
+},
+{
+"from": "wade",
+"to": "observatory",
+"what": "",
+"ok": true
+},
+{
+"from": "observatory",
+"to": "gary",
+"what": "",
+"ok": true
+},
+{
+"from": "wadepull",
+"to": "actions",
+"what": "latest trading code",
+"ok": true
+},
+{
+"from": "actions",
+"to": "analyst",
+"what": "signals and trades",
+"ok": true
+},
+{
+"from": "analyst",
+"to": "recommender",
+"what": "confirmed issues",
+"ok": true
+},
+{
+"from": "recommender",
+"to": "supervisor_t",
+"what": "proposals",
+"ok": true
+},
+{
+"from": "fill",
+"to": "supervisor_t",
+"what": "fill rates",
+"ok": true
+},
+{
+"from": "gameact",
+"to": "supervisor_t",
+"what": "did the Game trade",
+"ok": true
+},
+{
+"from": "notrade",
+"to": "supervisor_t",
+"what": "quiet models",
+"ok": true
+},
+{
+"from": "perf",
+"to": "supervisor_t",
+"what": "performance",
+"ok": true
+},
+{
+"from": "taskhealth_t",
+"to": "supervisor_t",
+"what": "task results",
+"ok": true
+},
+{
+"from": "coverage",
+"to": "supervisor_t",
+"what": "data gaps",
+"ok": true
+},
+{
+"from": "premarket",
+"to": "scorecard",
+"what": "shadow trades",
+"ok": true
+},
+{
+"from": "box",
+"to": "scorecard",
+"what": "shadow trades",
+"ok": true
+},
+{
+"from": "reddit",
+"to": "analyst",
+"what": "ticker chatter",
+"ok": true
+},
+{
+"from": "supervisor_t",
+"to": "manager_t",
+"what": "briefings",
+"ok": true
+},
+{
+"from": "manager_t",
+"to": "dashboard_t",
+"what": "",
+"ok": true
+},
+{
+"from": "dashboard_t",
+"to": "gary",
+"what": "",
+"ok": true
+},
+{
+"from": "gary",
+"to": "decisions",
+"what": "YES / NO",
+"ok": true
+},
+{
+"from": "decisions",
+"to": "executor_t",
+"what": "approved work",
+"ok": true
+},
+{
+"from": "executor_t",
+"to": "actions",
+"what": "fixes on branches",
+"ok": true
+},
+{
+"from": "teamperf",
+"to": "manager_t",
+"what": "proposal accuracy",
+"ok": true
+},
+{
+"from": "goals_t",
+"to": "executor_t",
+"what": "goals to investigate",
+"ok": true
+},
+{
+"from": "lab",
+"to": "scorecard",
+"what": "strategy tests",
+"ok": true
+},
+{
+"from": "ignore",
+"to": "actions",
+"what": "tickers to skip",
+"ok": true
+},
+{
+"from": "gamefresh",
+"to": "supervisor_t",
+"what": "stale Game data",
+"ok": true
+},
+{
+"from": "scorecard",
+"to": "goal_money",
+"what": "real-money readiness",
+"ok": true
+},
+{
+"from": "actions",
+"to": "goal_money",
+"what": "demo trading",
+"ok": true
+},
+{
+"from": "gary",
+"to": "goal_profile",
+"what": "",
+"ok": true
+}
+]
+}
