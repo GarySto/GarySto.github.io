@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>62 AI Agents and the Broken Links Between Them: Why I Built an Agent Map — Gary Stow</title>
+<meta name="description" content="Every one of my agents looked busy, yet no new writing was coming through. The problem was in the hand-offs between them, so I built a map that checks ever">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/articles/62-ai-agents-and-the-broken-links-between-them-why-i-built/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="62 AI Agents and the Broken Links Between Them: Why I Built an Agent Map">
+<meta property="og:description" content="Every one of my agents looked busy, yet no new writing was coming through. The problem was in the hand-offs between them, so I built a map that checks ever">
+<meta property="og:url" content="https://garystow.co.uk/articles/62-ai-agents-and-the-broken-links-between-them-why-i-built/">
+<meta property="og:image" content="https://garystow.co.uk/articles/62-ai-agents-and-the-broken-links-between-them-why-i-built/62-ai-agents-and-the-broken-links-between-them-why-i-built.webp">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "62 AI Agents and the Broken Links Between Them: Why I Built an Agent Map",
+  "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
+  "datePublished": "2026-10-31",
+  "url": "https://garystow.co.uk/articles/62-ai-agents-and-the-broken-links-between-them-why-i-built/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/assets/site.css?v=8096f9d0">
+<script src="/assets/consent.js?v=20261024"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+<style>
+/* 8 Oct 2026: code in step-by-step articles - large, high contrast, never wider than the page */
+.article-body pre.code-block { background: #1d1a16; color: #f5f2eb; padding: 1.1rem 1.25rem; margin: 1.25rem 0 1.75rem; overflow-x: auto; max-width: 100%; border-radius: 4px; font-size: 0.95rem; line-height: 1.55; }
+.article-body pre.code-block code { font-family: var(--mono, monospace); background: none; padding: 0; color: inherit; white-space: pre; }
+.article-body code { font-family: var(--mono, monospace); background: #ece6da; padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.92em; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <script src="/assets/nav.js"></script>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <nav id="site-nav" aria-label="Main">
+    <a href="/work/">Work</a>
+    <a href="/village/" class="nav-sub">The Village</a>
+    <a href="/agents/" class="nav-sub">AI teams and agents</a>
+    <a href="/lab/" class="nav-sub">Trading Research Lab</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/news/" class="nav-sub">News roundup</a>
+    <a href="/guides/">Guides</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/#about">About</a>
+    <a href="/contact/">Contact</a>
+    <a href="/guides/how-to-use-ai-to-find-jobs-that-fit-you/" class="nav-cta">Free AI Job Finder &#8594;</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/articles/" class="article-back">← All articles</a>
+  <div class="hero-label">Building in public</div>
+  <h1>62 AI Agents and the Broken Links Between Them: Why I Built an Agent Map</h1>
+  <div class="article-meta">31 October 2026 · Gary Stow, performance marketing and AI</div>
+  <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Written by Gary Stow with help from AI tools. Every fact is checked and every article is approved by Gary before it goes live.</p>
+</div>
+
+<section>
+  <img src="/articles/62-ai-agents-and-the-broken-links-between-them-why-i-built/62-ai-agents-and-the-broken-links-between-them-why-i-built.webp" width="1500" height="1000" fetchpriority="high" decoding="async" alt="a single concrete, everyday moment or object that stands for this idea: 62 AI Agents and the Broken Links Between Them: Why I Built an Agent Map" class="article-hero-img">
+  <div class="article-body">
+
+    <p>On Saturday 31st October I was looking at my dashboard and noticed we weren't seeing any new bits of writing. I had submitted an idea a week earlier that seemed to have disappeared, and the last draft I had seen contained invented details. Something was wrong, and nothing in the system had told me.</p>
+
+    <h3>I asked Claude to review everything</h3>
+
+    <p>I asked Claude to do a complete review of every section and every agent, scored red, amber or green. I didn't want a report full of reds, so the brief was to keep fixing and re-checking until the whole system was green, and only then move on to the trading side.</p>
+
+    <p>What the review found was mostly in the connections between agents, not in the agents themselves. Each agent looked busy, but work was not reaching the next agent. Several agents were sending work to <a href="/articles/build-your-own-local-ai-assistant/">Wade</a>, my local AI model, at the same time, and the overlapping requests overloaded it, so the fix was a queue so jobs take turns, and setting Wade to handle one request at a time. In case you are wondering about the name, Wade is named after Wade Wilson, better known as Deadpool, a character I related to a lot and who felt like a help to me back then, so it felt like the perfect name for something that works alongside me and helps me.</p>
+
+    <p>Elsewhere, a safety check was reading the wrong part of my facts file, so the list of things my articles must never claim was being skipped. That check exists because I make AI <a href="/articles/the-independent-audit-why-i-make-ai-check-its-own-work/">check its own work</a>, and it had quietly stopped doing its job. And the website Supervisor's list was still showing me cards that had already been handled, so the real decisions were buried underneath them. None of those would have shown up by looking at any single agent on its own, because each one was running and producing something while the chain between them was broken.</p>
+
+    <h3>Why the village could not show it</h3>
+
+    <p>I already have <a href="/village/">a village</a> that draws my <a href="/agents/">AI teams</a> as a little town, with people carrying work between buildings. The village shows how things work in a nice, beautiful way, but what it doesn't do is show if there's a break in the map. A busy-looking village can still have a broken link right in the middle of it, so I built a second view with a different job: the agent map shows where there are breakages or problems, or if any of the agents are currently left on their own.</p>
+
+    <h3>How the agent map works</h3>
+
+    <p><a href="/agents/map/">The agent map</a> is an interactive 3D sphere on my site. Each light is an agent, each line is a hand-off, and a small moving light shows the direction the work flows. Broken links turn red, so a problem is something you can see rather than a silence you only notice a week later, and you can click any agent to see its job and what it connects to.</p>
+
+    <p>Behind it is an ecosystem check that knows every agent and every hand-off between them. It runs every 30 minutes and asks of each one three questions: whether it ran, whether it produced something real, and whether that reached the next agent. An agent that is left on its own, with nothing coming in and nothing going out, gets flagged in the same way as a break. Some agents are marked private on the map, so they stay on it and the connections are visible, but their job is kept private, and the dashboards where I make my decisions are shown only as internal dashboards.</p>
+
+    <h3>62 agents running at once</h3>
+
+    <p>The map has 62 agents and 74 hand-offs. That is an impressive number of agents to have running at one time, and seeing them all lit up together shows how big the project is and how it has grown over time, with new agents coming in.</p>
+
+    <p>It started as one trading scanner, and every agent since was added because a real problem came up and I wanted a permanent check for it rather than a one-off fix. That is exactly why it needed a map, because nobody can hold 74 hand-offs in their head and spot the one that has quietly stopped. On 31st October, after the fixes, the check showed all 62 agents and all 74 hand-offs green.</p>
+
+    <h3>A system that learns from its own breaks</h3>
+
+    <p>What I'm looking for is to build a self-learning and self-improving autonomous agent system on my own PC. One of the challenges was that it wasn't doing that with the current or previous breakages, because nothing was watching the links between agents, so nothing could learn from them.</p>
+
+    <p>Going forward I'm hoping the agent map and the ecosystem check will start to make that happen. If one of the hand-offs breaks tomorrow, it turns red on the map and becomes a job for my automation team to root-cause, instead of something I discover on a Saturday by noticing what isn't there.</p>
+
+    <h3>Build your own agent map</h3>
+
+    <p>The agent map page is a single HTML page that reads one data file listing the agents and the hand-offs between them, so the same idea can be reused by anyone with their own list of agents. If you are building your own team of agents, you can paste this prompt into Claude or ChatGPT, fill in your own agents, and get a first version of your own map.</p>
+
+    <pre class="code-block"><code>Build me a single self-contained HTML page that draws my AI agents as an interactive 3D sphere.
+
+Data: put this JSON in a &lt;script&gt; block at the top so I can edit it later.
+{
+  "agents": [
+    {"id": "writer", "name": "Content Writer", "team": "website", "job": "Drafts articles", "ok": true}
+  ],
+  "handoffs": [
+    {"from": "writer", "to": "checker", "what": "every finished draft", "ok": true}
+  ]
+}
+(Replace the example with my real agents: [LIST YOUR AGENTS, WHAT EACH ONE DOES, AND WHO IT SENDS WORK TO].)
+
+Drawing:
+Use a plain HTML canvas, no libraries. Place each agent as a glowing light on a sphere, grouped by team, one colour per team.
+Draw each hand-off as a curved line between the two lights, with a small light travelling along it from sender to receiver so the direction of flow is visible.
+Any hand-off with "ok": false is a thick, flashing red line. Any agent with "ok": false, or with no working hand-offs in or out, turns red.
+The sphere spins slowly on its own. Drag to turn it, scroll or pinch to zoom, and a button turns the spin off.
+
+Panel:
+Clicking a light opens a side panel with the agent's name, team, job, what it receives and where it sends its work. Each of those is a button that jumps to that agent.
+With nothing selected, the panel says how many agents and hand-offs are broken and lists every agent by team.
+
+Accessibility: large text, high contrast, keyboard-usable buttons, and no sideways scrolling on a phone.</code></pre>
+
+    <p>When you have your map, the useful habit is to check the links as well as the agents, because that is where my problems were hiding.</p>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Want to talk about 62 AI Agents and the Broken Links Between Them: Why I Built an Agent Map?</h2>
+  <p>Get in touch if this is relevant to what you're working on.</p>
+  <div class="cta-row">
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
+    <a href="/articles/" class="btn">More articles</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="/contact/">Contact</a>
+    <a href="/news/">News</a>
+    <a href="/village/">Village</a>
+    <a href="/lab/">Lab</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="https://github.com/GarySto" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="/privacy/">Privacy</a>
+  </div>
+</footer>
+
+</body>
+</html>
