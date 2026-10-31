@@ -13,7 +13,7 @@
   var MENU = [
     ["Home", "/", null],
     ["My work", null, [
-      ["/work/", "Momentum Scanner", "My automated trading scanner"],
+      ["/work/#project", "Momentum Scanner", "My automated trading scanner, how it works"],
       ["/agents/", "AI teams and agents", "Everything I have built in my own time"],
       ["/agents/map/", "The Agent Map", "All my AI agents on one interactive sphere"],
       ["/village/", "The Village", "My AI teams at work, drawn as a town"],
@@ -45,7 +45,9 @@
     ".menu-btn{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;padding:0;background:transparent;" +
     "border:2px solid transparent;border-radius:8px;cursor:pointer;flex:none}" +
     ".menu-btn:hover{border-color:var(--ink)}" +
-    ".menu-bars{display:flex;flex-direction:column;gap:6px;width:30px}.menu-bars span{display:block;height:3px;background:var(--ink);border-radius:2px}" +
+    ".menu-float{position:fixed;top:12px;left:12px;z-index:250;background:#fffdf8;border:2px solid #0f0f0f;box-shadow:0 2px 10px rgba(0,0,0,.3)}" +
+    ".menu-bars{display:flex;flex-direction:column;gap:6px;width:30px}.menu-bars span{display:block;height:3px;background:var(--ink,#0f0f0f);border-radius:2px}" +
+    ".sm{--ink:#0f0f0f;--sans:'DM Sans',Segoe UI,sans-serif;--serif:'DM Serif Display',Georgia,serif;font-family:var(--sans)}" +
     ".menu-btn:focus-visible,.sm a:focus-visible,.sm button:focus-visible{outline:3px solid #b23a09;outline-offset:3px}" +
     ".sm-shade{position:fixed;inset:0;z-index:299;background:rgba(15,15,15,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;transition:opacity .25s}" +
     ".sm{position:fixed;top:0;left:0;bottom:0;z-index:300;width:min(460px,100vw);background:#fffdf8;color:var(--ink);" +
@@ -78,7 +80,10 @@
 
   function build() {
     var header = document.querySelector("header"), logo = header && header.querySelector(".logo");
-    if (!header || !logo || document.getElementById("site-menu")) return false;
+    if (document.getElementById("site-menu")) return false;
+    /* Pages with their own full-screen layout (the Village, the Lab) have no site header, so the same button
+       floats in the top-left corner instead (31 Oct 2026: Gary, "it's not persistent across pages"). */
+    var floating = !(header && logo);
     var style = document.createElement("style");
     style.textContent = CSS;
     document.head.appendChild(style);
@@ -124,11 +129,16 @@
     btn.setAttribute("aria-expanded", "false");
     btn.setAttribute("aria-label", "Open the full site menu");
     btn.innerHTML = '<span class="menu-bars" aria-hidden="true"><span></span><span></span><span></span></span>';
-    var wrap = document.createElement("div");
-    wrap.className = "menu-brand";
-    header.insertBefore(wrap, logo);
-    wrap.appendChild(btn);
-    wrap.appendChild(logo);
+    if (floating) {
+      btn.classList.add("menu-float");
+      document.body.appendChild(btn);
+    } else {
+      var wrap = document.createElement("div");
+      wrap.className = "menu-brand";
+      header.insertBefore(wrap, logo);
+      wrap.appendChild(btn);
+      wrap.appendChild(logo);
+    }
 
     var topLevel = panel.querySelector(".sm-top"), closeBtn = panel.querySelector(".sm-close");
     function showSub(id) {
