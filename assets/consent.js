@@ -35,6 +35,7 @@
   if (choice) w.clarity("consentv2", s.clarity);
 
   function apply(c) {
+    choice = c;
     try { localStorage.setItem(KEY, c); } catch (e) {}
     var n = signals(c);
     w.gtag("consent", "update", n.google);
@@ -45,8 +46,10 @@
 
   var css = "#gs-consent{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:760px;margin:0 auto;" +
     "background:#0f0f0f;color:#fff;border-radius:14px;padding:20px 22px;box-shadow:0 8px 30px rgba(0,0,0,.35);" +
-    "font-family:'DM Sans',system-ui,sans-serif;font-size:18px;line-height:1.5;font-weight:400}" +
-    "#gs-consent h2{font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:24px;margin:0 0 6px}" +
+    /* Phone and computer fonts only: with the site's web fonts the banner text re-wrapped when they
+       arrived, and that jump scored about 0.16 CLS on every first visit. */
+    "font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;font-size:18px;line-height:1.5;font-weight:400}" +
+    "#gs-consent h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:24px;margin:0 0 6px}" +
     "#gs-consent p{margin:0}#gs-consent a{color:#fff;text-decoration:underline;text-underline-offset:3px}" +
     "#gs-consent .gs-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}" +
     "#gs-consent button{font:inherit;font-weight:600;font-size:18px;padding:12px 24px;border-radius:999px;cursor:pointer;min-width:140px;min-height:48px}" +
@@ -76,6 +79,13 @@
     var openers = document.querySelectorAll("[data-consent-open]");
     for (var i = 0; i < openers.length; i++) openers[i].addEventListener("click", function (e) { e.preventDefault(); show(); });
   }
+
+  /* 31 Oct 2026: on a first visit this banner is the largest thing on a phone screen, so it is what
+     PageSpeed scores as LCP. Waiting for DOMContentLoaded made it paint after the first frame, and the
+     lab test then counted the analytics and font downloads against it. Now it goes up in the first
+     frame (as soon as <body> exists). DOMContentLoaded stays as a fallback; show() never doubles up. */
+  function showEarly() { if (document.body) show(); else requestAnimationFrame(showEarly); }
+  if (!choice) showEarly();
 
   function ready() { wireOpeners(); if (!choice) show(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ready); else ready();
