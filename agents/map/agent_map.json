@@ -1,5 +1,5 @@
 {
-"checked": "31 Oct 2026, 19:35",
+"checked": "2 Nov 2026, 19:35",
 "nodes": [
 {
 "id": "goal_profile",
@@ -89,6 +89,24 @@
 "ok": true,
 "private": false,
 "desc": "Reads every finished draft against its sources and blocks anything invented about Gary. One rewrite is allowed; after that the topic goes to a person.",
+"alone": false
+},
+{
+"id": "editor",
+"label": "Editor (Gemini)",
+"team": "web",
+"ok": false,
+"private": false,
+"desc": "An independent marker from a different AI company. Every week it marks every live article out of 100, from the point of view of a reader deciding whether to link to it, use it or come back to it. 80 is the pass mark.",
+"alone": false
+},
+{
+"id": "upgrader",
+"label": "Content Upgrader",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "Claude rewriting the weakest live articles from Gary's own facts until the Editor marks them 80 or more. Gary approves each one before the live page changes, and anything only Gary can add becomes a short weekly question.",
 "alone": false
 },
 {
@@ -554,10 +572,10 @@
 "id": "wadepull",
 "label": "Wade Repo Auto Pull",
 "team": "trade",
-"ok": true,
+"ok": false,
 "private": false,
 "desc": "Keeps the trading code on Gary's PC up to date every 30 minutes.",
-"alone": false
+"alone": true
 }
 ],
 "edges": [
@@ -619,6 +637,30 @@
 "from": "writer",
 "to": "truth",
 "what": "every finished draft",
+"ok": true
+},
+{
+"from": "site",
+"to": "editor",
+"what": "every live page, marked out of 100 each week",
+"ok": true
+},
+{
+"from": "editor",
+"to": "upgrader",
+"what": "the weakest pages and what to fix",
+"ok": false
+},
+{
+"from": "upgrader",
+"to": "truth",
+"what": "every rewrite",
+"ok": true
+},
+{
+"from": "upgrader",
+"to": "editor",
+"what": "rewrites to re-mark (80 to pass)",
 "ok": true
 },
 {
@@ -847,7 +889,7 @@
 "from": "wadepull",
 "to": "actions",
 "what": "latest trading code",
-"ok": true
+"ok": false
 },
 {
 "from": "actions",
