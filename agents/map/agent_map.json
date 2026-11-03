@@ -1,5 +1,5 @@
 {
-"checked": "2 Nov 2026, 19:35",
+"checked": "3 Nov 2026, 19:35",
 "nodes": [
 {
 "id": "goal_profile",
@@ -95,7 +95,7 @@
 "id": "editor",
 "label": "Editor (Gemini)",
 "team": "web",
-"ok": false,
+"ok": true,
 "private": false,
 "desc": "An independent marker from a different AI company. Every week it marks every live article out of 100, from the point of view of a reader deciding whether to link to it, use it or come back to it. 80 is the pass mark.",
 "alone": false
@@ -572,10 +572,10 @@
 "id": "wadepull",
 "label": "Wade Repo Auto Pull",
 "team": "trade",
-"ok": false,
+"ok": true,
 "private": false,
 "desc": "Keeps the trading code on Gary's PC up to date every 30 minutes.",
-"alone": true
+"alone": false
 }
 ],
 "edges": [
@@ -649,7 +649,7 @@
 "from": "editor",
 "to": "upgrader",
 "what": "the weakest pages and what to fix",
-"ok": false
+"ok": true
 },
 {
 "from": "upgrader",
@@ -889,7 +889,7 @@
 "from": "wadepull",
 "to": "actions",
 "what": "latest trading code",
-"ok": false
+"ok": true
 },
 {
 "from": "actions",
