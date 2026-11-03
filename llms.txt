@@ -28,6 +28,11 @@ practical guides and articles on AI tools.
 
 ## Recent articles
 
+- [MCP Explained for PPC Managers, Without the Jargon](https://garystow.co.uk/articles/mcp-explained-for-ppc-managers-without-the-jargon/):
+  what the Model Context Protocol actually is, the cable analogy I use
+  to explain it, what it changes about an account audit, and why I
+  still want my own finger on the button before anything changes in a
+  live account.
 - [Why I Built Free Learning Games My Daughters Can Play Together](https://garystow.co.uk/articles/why-i-built-free-learning-games-for-my-daughters/): why Gary built four free, ad-free learning games for his daughters, aged three and eight, so they can play together at their own levels. Times tables, spelling, colours and counting, built with AI in the evenings.
 - [My Website Is a Map of My ADHD Brain, and I'm Holding Myself to Account](https://garystow.co.uk/articles/my-website-is-a-map-of-my-adhd-brain-and-i-m-holding-myself/):
   what started as a simple site to show my work has spiralled into
