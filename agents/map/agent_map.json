@@ -1,5 +1,5 @@
 {
-"checked": "3 Nov 2026, 19:35",
+"checked": "4 Nov 2026, 19:35",
 "nodes": [
 {
 "id": "goal_profile",
@@ -383,7 +383,7 @@
 "id": "recommender",
 "label": "Recommender",
 "team": "trade",
-"ok": true,
+"ok": false,
 "private": false,
 "desc": "Turns the Analyst's confirmed findings into proposals for the Supervisor.",
 "alone": false
@@ -907,7 +907,7 @@
 "from": "recommender",
 "to": "supervisor_t",
 "what": "proposals",
-"ok": true
+"ok": false
 },
 {
 "from": "fill",
