@@ -25,6 +25,8 @@
 <style>
 html,body{background:#86c96a}
 .overlay{background:radial-gradient(ellipse at center,rgba(255,250,240,.82),rgba(255,250,240,.25) 75%)}
+/* 6 Nov 2026: on short screens (phones, iPad landscape with the Safari bar) the start menu scrolls instead of cutting off the title */
+@media (max-height:720px){#menu{justify-content:flex-start;overflow-y:auto;touch-action:pan-y}}
 .levels{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;max-width:46rem;background:var(--cream);border:3px solid var(--ink);border-radius:18px;padding:12px 14px;box-shadow:0 5px 0 var(--ink)}
 .levels b{width:100%;font-size:1.15rem}
 .levels button{font:inherit;font-weight:700;font-size:1.05rem;line-height:1.15;padding:8px 14px;border-radius:14px;border:3px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer}
@@ -60,6 +62,7 @@ html,body{background:#86c96a}
     <div><b>Keyboard</b>Press <kbd>1</kbd> <kbd>2</kbd> or <kbd>3</kbd> to shoot that balloon.</div>
   </div>
   <p class="made" id="best"></p>
+  <p class="made">Grown-ups: <a href="/kids-games/grammar/">what children learn in grammar and punctuation, year by year</a>.</p>
 </div>
 <div id="done" class="overlay" hidden>
   <div class="card">
