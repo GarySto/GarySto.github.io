@@ -3,22 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What Microsoft Clarity's AI Visibility Actually Shows You</title>
-<meta name="description" content="Grounding queries, share of authority and query fan-out: what Microsoft Clarity&#x27;s new AI Visibility features measure, and what mine shows so far.">
+<title>Microsoft Clarity AI Visibility: What It Shows (Real Data) — Gary Stow</title>
+<meta name="description" content="What Microsoft Clarity&#x27;s AI Visibility dashboards measure, from bot activity to citations, with my own real numbers from a small, young website.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://garystow.co.uk/articles/understanding-microsoft-clarity-ai-visibility/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="What Microsoft Clarity's AI Visibility Actually Shows You">
-<meta property="og:description" content="Grounding queries, share of authority, and query fan-out — what Clarity's AI Visibility features actually measure, and what mine is showing me so far.">
+<meta property="og:title" content="Microsoft Clarity AI Visibility: What It Shows (Real Data)">
+<meta property="og:description" content="What Microsoft Clarity&#x27;s AI Visibility dashboards measure, from bot activity to citations, with my own real numbers from a small, young website.">
 <meta property="og:url" content="https://garystow.co.uk/articles/understanding-microsoft-clarity-ai-visibility/">
 <meta property="og:image" content="https://garystow.co.uk/articles/understanding-microsoft-clarity-ai-visibility/understanding-microsoft-clarity-ai-visibility.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "What Microsoft Clarity's AI Visibility Actually Shows You",
+  "headline": "Microsoft Clarity AI Visibility: What It Shows (Real Data)",
   "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
   "datePublished": "2026-09-05",
+  "dateModified": "2026-11-06",
   "url": "https://garystow.co.uk/articles/understanding-microsoft-clarity-ai-visibility/"
 }
 </script>
@@ -27,6 +28,22 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="/assets/site.css?v=8096f9d0">
+<script src="/assets/consent.js?v=20261024"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
 </head>
 <body>
 
@@ -52,44 +69,86 @@
 <div class="page-hero">
   <a href="/articles/" class="article-back">← All articles</a>
   <div class="hero-label">Building in public</div>
-  <h1>What Microsoft Clarity's AI Visibility Actually Shows You.</h1>
+  <h1>Microsoft Clarity AI Visibility: What It Shows (Real Data)</h1>
   <div class="article-meta">5 September 2026 · Gary Stow, performance marketing and AI</div>
   <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Written by Gary Stow with help from AI tools. Every fact is checked and every article is approved by Gary before it goes live.</p>
 </div>
 
 <section>
-  <img src="/articles/understanding-microsoft-clarity-ai-visibility/understanding-microsoft-clarity-ai-visibility.webp" srcset="/articles/understanding-microsoft-clarity-ai-visibility/understanding-microsoft-clarity-ai-visibility-480.webp 480w, /articles/understanding-microsoft-clarity-ai-visibility/understanding-microsoft-clarity-ai-visibility-720.webp 720w, /articles/understanding-microsoft-clarity-ai-visibility/understanding-microsoft-clarity-ai-visibility-960.webp 960w, /articles/understanding-microsoft-clarity-ai-visibility/understanding-microsoft-clarity-ai-visibility.webp 1200w" sizes="(max-width: 900px) calc(100vw - 4rem), 900px" width="1200" height="800" fetchpriority="high" decoding="async" alt="Microsoft Clarity AI Visibility dashboard concept — grounding queries, share of authority, citations" class="article-hero-img">
+  <img src="/articles/understanding-microsoft-clarity-ai-visibility/understanding-microsoft-clarity-ai-visibility.webp" width="1200" height="800" fetchpriority="high" decoding="async" alt="Microsoft Clarity AI Visibility: What It Shows (Real Data)" class="article-hero-img">
   <div class="article-body">
 
-    <p>In <a href="/articles/website-seo-and-llm-readiness/">my last piece on getting a site ready for AI search</a>, I ended on a slightly deflating note: the crawlers were visiting my site, but nothing was citing it back yet. Since then I've spent more time in Microsoft Clarity's AI Visibility reporting, and it's worth explaining properly what it's actually measuring, because it's a genuinely different lens on discovery to anything I've used before.</p>
+    <p>In <a href="/articles/website-seo-and-llm-readiness/">my last piece on getting a site ready for AI search</a> I ended on a slightly deflating note, because the crawlers were visiting but nothing was citing the site back. The screenshots I took of my Microsoft Clarity dashboards on 5th November 2026 show where things stand now. They cover the last seven days on garystow.co.uk with Cloudflare connected as the provider, and they tell a story in two halves that I want to walk through properly, because it is a different lens on discovery to anything I have used before.</p>
 
-    <h3>Search terms tell you what. Grounding queries tell you how.</h3>
-    <p>Anyone who's spent time in paid search knows search terms inside out, the actual words someone typed before they clicked. AI-powered discovery doesn't work the same way. When someone asks an AI assistant a question, the system typically doesn't just look up that exact phrase. It breaks the question apart into several related retrieval queries, run in parallel, checked against web content, then stitched together into one answer. This is sometimes called query fan-out, and it means a single question can pull from half a dozen different angles before you ever see a reply.</p>
-    <p>Clarity surfaces this as grounding queries, which show the topics and phrasing an AI system actually used to connect your content to a question, rather than the question itself. It's a layer of discovery that simply wasn't visible before this kind of reporting existed.</p>
+    <p>Clarity has also changed a lot, it used to be known as a free heatmap and session recording tool, and it is now becoming an AI visibility tool that Microsoft is actively pushing, so it is worth knowing what the new reports do and do not tell you.</p>
+
+    <h3>Why I switched Clarity's AI reporting on</h3>
+
+    <p>The top of the search results page is changing. On Google and on Bing the whole top section is now an AI response, and in my opinion that is the future and it is here to stay. I launched this website to build my career further in this area, and one of the real problems is that there is very little visibility of how AI uses a site or what it can see. A couple of paid tools do exist, but they are expensive and my philosophy has always been to use free tools wherever I can.</p>
+
+    <p>My goal was simple and small, which was to get cited. If I could write something good enough for an AI answer to reference it, I would be buzzing, and that has not happened yet. I did not expect much going in, because I am a tiny website, a drop in the ocean, and very few people know I exist.</p>
+
+    <h3>What the bot activity report shows</h3>
+
+    <p>The AI Bot Activity report comes from Microsoft's January 2026 update, and it works from server-side logs supplied by a connected CDN such as Cloudflare, Fastly or Amazon CloudFront, rather than from the Clarity tracking script. It shows how AI systems, search crawlers and agents reach a site, and it does not block anything. You will find it under Dashboards, then AI Visibility, then AI Bot Activity.</p>
+
+    <p>In my seven days there were 12.87k requests in total, and 77.73% of them (10.00k) were likely human. The other 2,866 requests, or 22.27% of everything, came from bots. By operator, Google made up 36.57% of bot requests (1,048), then python-requests at 13.12% (376), Ahrefs at 10.47% (300) and Microsoft at 6.52% (187). Further down were Golang at 5.30%, Apple at 4.05%, OpenAI at 3.38% (97) and Semrush at 3.28%.</p>
+
+    <p>The split by purpose is just as interesting. Search engine optimisation tools accounted for 42.92% of bot traffic and automation and tooling for 19.82%, while AI crawlers made up 14.79% (424 requests), AI search 8.62% (247) and search engine crawlers 4.54%. AI assistants came to 1.71% (49 requests). The single most requested path was robots.txt, and violations sat at 0%.</p>
+
+    <p>What I found eye-opening is how much bot activity there is on a site as small as mine. Being found by that many sources, even if they are not reading or interacting with the content, raises questions I cannot yet answer. I would love to know what they do with the information and why they crawl me at all, and whether they are simply checking in case I come up with something good one day.</p>
+
+    <h3>Crawling is not the same as citing</h3>
+
+    <p>The thing that confused me when I first opened the AI Visibility section was the difference between a crawl bot and a citation. A crawler requesting your pages tells you that you can be found, whereas a citation tells you that an AI system actually used your content in an answer. The plumbing from my last article, including the sitemap, robots.txt, structured data and llms.txt, is what earns the crawl, and getting cited is a separate and later step that depends on having something worth referencing.</p>
+
+    <h3>Grounding queries and query fan-out</h3>
+
+    <p>Anyone who has spent time in paid search knows search terms inside out, because they are the actual words someone typed before they clicked. AI discovery does not work the same way. When someone asks an AI assistant a question, the system typically does not look up that exact phrase, and instead breaks the question into several related retrieval queries that run in parallel, get checked against web content and are stitched into one answer. This is often called query fan-out, and it means a single question can draw on half a dozen angles before the reader sees a reply.</p>
+
+    <p>Clarity's Citations reports, which became generally available on 13th May 2026, surface this as grounding queries. These show the topics and phrasing an AI system used to find your content, rather than the question the person asked. Search terms tell you what someone typed, while grounding queries tell you how an AI went looking, and that layer of discovery simply was not visible before this kind of reporting existed.</p>
 
     <h3>Share of authority is the new "where do I rank"</h3>
-    <p>The old competitive question in SEO was where you ranked for a keyword. The AI-era version is different: when an AI system answers something related to your field, how often is your content actually part of that answer, compared to everyone else covering the same ground? Clarity calls this share of authority, and it's a genuinely new kind of competitive intelligence, less about position on a page and more about whether you're in the conversation at all.</p>
 
-    <h3>What this actually looks like on my own dashboard right now</h3>
-    <p>Honestly, still early days. Bot traffic is real and growing, Microsoft, Google, Apple and ByteDance crawlers are all visiting regularly, but citations are sitting at zero and share of authority has nothing to show yet. That's not a broken setup, it's what a brand-new site with a handful of indexed pages looks like at this stage. The plumbing from my last article, sitemap, robots.txt, structured data, llms.txt, is what earns the crawl. Getting cited is a separate, later step that depends on having enough indexed, specific content that an AI system would actually want to reference.</p>
+    <p>The old competitive question in SEO was where you ranked for a keyword. The AI-era version asks how often your content forms part of an answer, compared with every other domain covering the same queries, and Clarity calls this share of authority. Alongside it the Citations dashboard shows page citations, AI referral traffic and your cited pages with trends over time. It is less about position on a page and more about whether you are in the conversation at all.</p>
 
-    <h3>Why this matters beyond just this site</h3>
-    <p>What's changing here isn't just a new report to check, it's the customer journey itself. A growing share of research now happens inside an AI conversation before anyone reaches a website at all, which means the old assumption that visibility starts with a click is no longer reliable on its own. Clarity pairing AI Visibility with its existing behavioural tools, heatmaps, session recordings, rage-click detection, is a genuinely sensible response to that: understanding how you're discovered and understanding what happens once someone actually lands are now two halves of the same problem, not two separate tools.</p>
+    <p>Some setup details matter here, microsoft's documentation says you may need to verify domain ownership by connecting Bing Webmaster Tools or Google Search Console, and a project covering several domains has to pick one at setup and cannot change it yet.</p>
 
-    <h3>Where I'm taking this next</h3>
-    <p>More indexed articles, more structured data, and patience. I'll check back on this dashboard in a month or two and either report real citations starting to show, or an honest account of why they haven't. If you're watching your own AI Visibility numbers and seeing something different, especially if you're further along than zero citations, I'd genuinely like to compare notes.</p>
+    <h3>My Local AI topic and why zero does not surprise me</h3>
 
-    <p class="contact-direct">Watching your own AI Visibility numbers, or found something Clarity's reporting doesn't explain well? Email me at <!--email_off--><a href="mailto:garystow.hq@gmail.com?subject=Clarity%20AI%20Visibility">garystow.hq@gmail.com</a><!--/email_off--> — I read everything myself.</p>
+    <p>In July 2026 Clarity added topic analysis, which groups related grounding queries into automatically generated topics with a citation count and share of authority for each one. It is still in beta. I have one topic set up, called Local AI, which last ran on 10th October 2026, and it shows 0% competitive share and a 0% citation rate.</p>
+
+    <p>I am not surprised, I am proud of what I have built and I love what <a href="/articles/build-your-own-local-ai-assistant/">Wade</a> and the team produce, but I am also quite late, because many more advanced people set up <a href="/guides/how-to-run-a-free-local-ai-model-with-lm-studio-and-use-it/">LM Studio</a> well before me and have established pages that probably rank significantly higher. If this was a marathon I would be middle of the pack at best. The reason anyone gets a citation is that they have something different, which gives the answer engines a reason to point to them, so to lead in this space I need to catch up and find new angles.</p>
+
+    <h3>Setting it up took minutes</h3>
+
+    <p>The site runs on <a href="/guides/how-to-host-a-website-for-free-on-github-pages-with-your/">GitHub Pages</a>, which I stumbled on through a recommendation from Claude, and I had not even realised I could build a full website that way. Installing Clarity is covered in Microsoft Learn's setup guide. You create a project and then paste the tracking code into the head of your site, use the NPM package, or use an integration for platforms such as WordPress, Shopify, Squarespace and Wix. To check it works, you can look for live users in the project or open your browser's Network tab and look for POST requests to clarity.ms/collect.</p>
+
+    <p>Connecting Cloudflare was not much of an issue either. A lot of it was paint by numbers, and when I got stuck I took screenshots and shared them with an AI assistant, which got me through the questions quickly. There are many settings, and it is easy to tick the wrong box or miss one when you are starting out.</p>
+
+    <p>Is it worth turning on, I would say yes straight away, because it is free and gives you first-party data about how AI systems are treating your site. People in business regularly ask what AI is doing with their website, and this is the answer, so it takes a few minutes to turn on and costs nothing.</p>
+
+    <h3>A note for teams with strict rules</h3>
+
+    <p>This is my opinion and not advice. The worry for cautious teams is usually GDPR, meaning the capture of user data and behaviour and whether you could see bank details or login information. From my understanding, Microsoft's documentation says sensitive content is masked by default, bot detection is on by default and cookies are on by default to link pages into one session, and Clarity cannot capture content inside canvas elements or third-party iframes. It should also not be used on sites or apps aimed at under-18s. Please check all of that with your own compliance team before you rely on it.</p>
+
+    <h3>Why this matters beyond one site</h3>
+
+    <p>What is changing here is the customer journey itself and not just a new report to check. A growing share of research now happens inside an AI conversation before anyone reaches a website, so the old assumption that visibility starts with a click is no longer reliable on its own. Clarity pairing AI Visibility with its heatmaps and session recordings is a sensible response, because understanding how you are discovered and understanding what happens once someone lands are now two halves of the same problem.</p>
+
+    <h3>Where I am taking this next</h3>
+
+    <p>My plan is more articles, more structured data and some patience. I will check this dashboard again in a month or two and report either real citations starting to show or an honest account of why they have not. If you are further along than zero citations I would genuinely like to hear how you got there.</p>
 
   </div>
 </section>
 
 <section id="contact" class="contact-band">
-  <h2>Watching your own AI Visibility numbers?</h2>
-  <p>If you're seeing something different on your own dashboard, especially further along than zero citations, get in touch, I'd genuinely like to compare notes.</p>
+  <h2>Want to talk about Microsoft Clarity AI Visibility: What It Shows (Real Data)?</h2>
+  <p>Get in touch if this is relevant to what you're working on.</p>
   <div class="cta-row">
     <a href="/contact/" class="btn btn-accent">Contact ↗</a>
-    <a href="/articles/website-seo-and-llm-readiness/" class="btn">Read the SEO &amp; LLM readiness piece</a>
+    <a href="/articles/" class="btn">More articles</a>
   </div>
 </section>
 
@@ -102,29 +161,9 @@
     <a href="/lab/">Lab</a>
     <a href="https://linkedin.com/in/garystow" target="_blank" rel="noopener">LinkedIn ↗</a>
     <a href="https://github.com/GarySto" target="_blank" rel="noopener">GitHub ↗</a>
-    <a href="/kids-games/" onclick="if(window.gtag)gtag('event','kids_games_link_click',{link_location:'footer'})">Kids games</a>
     <a href="/privacy/">Privacy</a>
   </div>
 </footer>
 
-<!-- Google tag (gtag.js) -->
-<script src="/assets/consent.js?v=20261024"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-5S939E9N5T');
-</script>
-<!-- Microsoft Clarity -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "y7l6l2ea33");
-</script>
-<!-- Microsoft UET -->
-<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
 </body>
 </html>
