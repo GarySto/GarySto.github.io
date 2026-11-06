@@ -1,0 +1,642 @@
+<!-- PAGE: KIDS GAMES / PUNCTUATION ARCHERY (garystow.co.uk/kids-games/punctuation/) -->
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Free Punctuation Game: Speech Marks, Full Stops, Commas and Apostrophes</title>
+<meta name="description" content="A free punctuation game for Years 1 to 4. Pull back your bow and shoot the balloon with the right full stop, comma, apostrophe or speech mark. No adverts, no sign-up, works on iPad.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/kids-games/punctuation/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Punctuation Archery: a free punctuation game I made for my daughter">
+<meta property="og:description" content="Shoot the balloon that finishes the sentence. Get it wrong and someone throws a tomato at you.">
+<meta property="og:url" content="https://garystow.co.uk/kids-games/punctuation/">
+<meta property="og:image" content="https://garystow.co.uk/assets/play-preview.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/kids-games/manifest.webmanifest">
+<meta name="theme-color" content="#7c3aed">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="../shared.css?v=20261024c">
+<style>
+html,body{background:#86c96a}
+.overlay{background:radial-gradient(ellipse at center,rgba(255,250,240,.82),rgba(255,250,240,.25) 75%)}
+.levels{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;max-width:46rem;background:var(--cream);border:3px solid var(--ink);border-radius:18px;padding:12px 14px;box-shadow:0 5px 0 var(--ink)}
+.levels b{width:100%;font-size:1.15rem}
+.levels button{font:inherit;font-weight:700;font-size:1.05rem;line-height:1.15;padding:8px 14px;border-radius:14px;border:3px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer}
+.levels button small{display:block;font-weight:600;font-size:.82rem;opacity:.8}
+.levels button[aria-pressed="true"]{background:var(--sun)}
+#done{align-items:flex-start;justify-content:center;padding-left:max(16px,5vw);background:linear-gradient(90deg,rgba(255,250,240,.9),rgba(255,250,240,.6) 45%,rgba(255,250,240,0) 62%)}
+#done .card{background:var(--cream);border:3px solid var(--ink);border-radius:22px;box-shadow:0 6px 0 var(--ink);padding:18px 22px;max-width:30rem;text-align:left;display:flex;flex-direction:column;gap:10px}
+#done h2{font-size:clamp(1.8rem,4.5vw,2.8rem);line-height:1.05}
+#done .big{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700}
+#done .rank{color:var(--bell)}
+#done p{font-size:clamp(1rem,2.2vw,1.2rem);font-weight:600}
+#done .btns{justify-content:flex-start}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": ["VideoGame", "LearningResource"], "name": "Punctuation Archery", "url": "https://garystow.co.uk/kids-games/punctuation/", "description": "A free punctuation game for Years 1 to 4. Pull back your bow and shoot the balloon with the right full stop, comma, apostrophe or speech mark. No adverts, no sign-up, works on iPad.", "inLanguage": "en-GB", "isAccessibleForFree": true, "typicalAgeRange": "6-9", "learningResourceType": "Educational game", "teaches": ["Capital letters, full stops, question marks and exclamation marks", "Commas in lists", "Commas after fronted adverbials", "Apostrophes for missing letters and possession, including plural possession", "Inverted commas (speech marks) with punctuation inside"], "gamePlatform": "Web browser", "playMode": ["SinglePlayer"], "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"}, "isPartOf": {"@type": "CollectionPage", "name": "Kids Games", "url": "https://garystow.co.uk/kids-games/"}, "educationalAlignment": {"@type": "AlignmentObject", "alignmentType": "educationalSubject", "targetName": "National curriculum in England: English, vocabulary, grammar and punctuation (Appendix 2)", "targetUrl": "https://www.gov.uk/government/publications/national-curriculum-in-england-english-programmes-of-study"}}
+</script>
+</head>
+<body>
+<canvas id="game" aria-label="Punctuation Archery game"></canvas>
+<div id="menu" class="overlay">
+  <h1 class="title">Punctuation Archery <span data-name="bell" data-suffix="'s challenge">Bell's challenge</span></h1>
+  <p class="sub">Shoot the balloon that finishes the sentence. Get it right to score points and win awards. Get it wrong and… splat! Watch out for tomatoes.</p>
+  <div class="levels" id="levels" aria-label="Which punctuation?">
+    <b>What shall we practise?</b>
+    <button type="button" data-l="ends">Full stops and capitals<small>Years 1 and 2</small></button>
+    <button type="button" data-l="commas">Commas and apostrophes<small>Years 2 to 4</small></button>
+    <button type="button" data-l="speech">Speech marks<small>Years 3 and 4</small></button>
+    <button type="button" data-l="mixed">Mixed challenge<small>Year 4</small></button>
+  </div>
+  <div class="btns"><button class="go" id="start">Start</button></div>
+  <div class="keys">
+    <div><b>Aim and shoot</b>Hold down, pull back like a bow string, then let go. On an iPad, drag your finger back and let go.</div>
+    <div><b>Keyboard</b>Press <kbd>1</kbd> <kbd>2</kbd> or <kbd>3</kbd> to shoot that balloon.</div>
+  </div>
+  <p class="made" id="best"></p>
+</div>
+<div id="done" class="overlay" hidden>
+  <div class="card">
+    <h2 id="d-title">Round complete!</h2>
+    <div class="big">Score: <span id="d-score">0</span></div>
+    <div class="big">You climbed to <span class="rank" id="d-rank">Archer</span></div>
+    <p id="d-best"></p>
+    <p id="d-next"></p>
+    <div class="btns"><button class="go" id="again">Play again</button><button class="b" id="pick">Pick a level</button></div>
+  </div>
+</div>
+<div class="rotate">Turn sideways for a bigger range</div>
+<div class="chrome left"><a href="/kids-games/">← Kids Games</a></div>
+<div class="chrome right"><button id="mute" type="button">Sound on</button><button id="fs" type="button">Full screen</button></div>
+
+<script src="../shared.js?v=20261024c"></script>
+<script>KG.applyNames();</script>
+<script src="sentences.js?v=20261106a"></script>
+<script>
+"use strict";
+/* Punctuation Archery. A stick person walks out, picks up a bow, and the camera moves over their shoulder
+   onto a shooting range. A sentence sits on a big board with a gap in it. Balloons float above it, each
+   carrying a punctuation mark (or a word). Pull back and let go to shoot the balloon that finishes the
+   sentence. Right: points, stars and awards. Wrong: someone runs out and throws a tomato at you, then a
+   short tip, and you shoot again. Sentences you slip on come back once at the end of the round.
+   Points climb a ladder of ranks, and the best score for each level is kept on this device. */
+const { W, H, INK, rand, pick, shuffle, clamp, circ, ell, rr, poly, line, txt, star5, sfx, speak, tone } = KG;
+const ctx = KG.stage(document.getElementById("game"));
+KG.chrome();
+
+// ---------- sentences ----------
+function parse(src, set) {
+  const parts = [], gaps = [], re = /\[([^\]]+)\]/g; let i = 0, m;
+  while ((m = re.exec(src))) {
+    if (m.index > i) parts.push({ t: src.slice(i, m.index) });
+    let body = m[1], tip = null; const k = body.indexOf("~");
+    if (k >= 0) { tip = body.slice(k + 1).trim(); body = body.slice(0, k); }
+    const o = body.split("|"), g = { a: o[0], wrong: o.slice(1), tip, n: gaps.length };
+    gaps.push(g); parts.push({ g }); i = re.lastIndex;
+  }
+  if (i < src.length) parts.push({ t: src.slice(i) });
+  const full = parts.map(p => p.g ? p.g.a : p.t).join("");
+  return { src, set, parts, gaps, full };
+}
+const BANK = {}; for (const k in PUNCT_SETS) BANK[k] = PUNCT_SETS[k].map(s => parse(s, k));
+const LEVELS = {
+  ends: { label: "Full stops and capitals", mix: { ends: 10 }, drift: 14 },
+  commas: { label: "Commas and apostrophes", mix: { commas: 10 }, drift: 26 },
+  speech: { label: "Speech marks", mix: { speech: 8 }, drift: 26 },
+  mixed: { label: "Mixed challenge", mix: { ends: 2, commas: 4, speech: 4 }, drift: 38 }
+};
+// each set is a shuffled deck, so the next round uses sentences you have not just had
+const decks = {};
+function draw(set, n) {
+  const out = [];
+  while (out.length < n) {
+    if (!decks[set] || !decks[set].length) decks[set] = shuffle(BANK[set]);
+    out.push(decks[set].pop());
+  }
+  return out;
+}
+const textAfter = (s, g) => { const i = s.parts.findIndex(p => p.g === g); return s.parts.slice(i + 1).map(p => p.g ? p.g.a : p.t).join(""); };
+function tipFor(s, g) {
+  if (g.tip) return g.tip;
+  const a = g.a, nx = s.gaps[g.n + 1];
+  if (a !== a.toLowerCase() && g.wrong.includes(a.toLowerCase())) {
+    if (a === "I") return "The word I on its own is always a capital letter.";
+    return s.parts[0].g === g ? "Every sentence starts with a capital letter." : "Names of people, places and days start with a capital letter.";
+  }
+  if (s.set === "speech") {
+    if (a === "“") return "Speech marks open with a 66, right before the first spoken word.";
+    if (a === "”") return "Speech marks close with a 99, straight after the spoken words and their punctuation.";
+    if (a === ",") return nx && nx.a === "”" ? "When the speaker comes after the speech, use a comma inside the speech marks, not a full stop." : "Put a comma after the words that say who is speaking, before the speech marks open.";
+    if (a === "?") return "A spoken question ends with a question mark, inside the speech marks.";
+    if (a === "!") return "A shout or an exclamation ends with an exclamation mark, inside the speech marks.";
+    if (a === ".") return "The full stop goes inside the speech marks, before the 99.";
+  }
+  if (a === ",") return / and /.test(textAfter(s, g)) ? "Use commas to split up the things in a list. No comma before the and." : "Put a comma after a fronted adverbial: the words at the start that say when, where or how.";
+  if (a === ".") return "A telling sentence (a statement) ends with a full stop.";
+  if (a === "?") return "An asking sentence (a question) ends with a question mark.";
+  if (a === "!") return "A shout or a 'What a…' or 'How…' sentence ends with an exclamation mark.";
+  if (a.includes("'")) {
+    if (/n't$|'m$|'re$|'ll$|'ve$/.test(a) || a === "It's") return "The apostrophe goes where letters are missing: do not becomes don't.";
+    if (/s'$/.test(a)) return "Lots of owners ending in s: the apostrophe goes after the s, like the girls' coats.";
+    return "One owner: add an apostrophe and s, like Sam's coat.";
+  }
+  return "Read the sentence out loud and listen for where it pauses and stops.";
+}
+
+// ---------- layout constants ----------
+const GRIP = { x: 560, y: 600 }, GRAV = 620, SPD0 = 820, SPD1 = 1650;
+const BOARD = { x: 150, y: 322, w: 980, h: 190 };
+const COLS = ["#ffd3e8", "#ddd0ff", "#c9f2d9", "#ffe9a8", "#cfe8ff", "#ffd6b8"];
+const RANKS = [{ n: "Beginner", p: 0 }, { n: "Apprentice", p: .25 }, { n: "Archer", p: .45 }, { n: "Sharpshooter", p: .65 }, { n: "Punctuation Pro", p: .8 }, { n: "Grammar Legend", p: .92 }];
+const AWARDS = { 5: "Sharp Eye award!", 10: "Bullseye award!", 15: "Legend award!", 20: "Unstoppable award!" };
+
+const S = { mode: "menu", t: 0, level: "mixed", introDone: false, it: 0, hinted: false, fade: 0 };
+try { const l = localStorage.getItem("kg_archery_level"); if (LEVELS[l]) S.level = l; } catch (e) {}
+// links from the grammar pages can pick the level, for example ?level=speech
+{ const l = new URLSearchParams(location.search).get("level"); if (LEVELS[l]) S.level = l; }
+let R = null, cur = null, balloons = [], A = null, FM = null, T = null, parts = [], pops = [], award = null, gapPos = null;
+const aim = { on: false, sx: 0, sy: 0, px: 0, py: 0, moved: 0 };
+const lockUntil = { t: 0 };
+
+const loadBest = l => { try { return JSON.parse(localStorage.getItem("kg_archery_best_" + l)) || { score: 0, rank: 0 }; } catch (e) { return { score: 0, rank: 0 }; } };
+const saveBest = (l, b) => { try { localStorage.setItem("kg_archery_best_" + l, JSON.stringify(b)); } catch (e) {} };
+
+// ---------- menu ----------
+const menu = document.getElementById("menu"), done = document.getElementById("done");
+const lvBtns = [...document.querySelectorAll("#levels button")];
+function showLevel() {
+  lvBtns.forEach(b => b.setAttribute("aria-pressed", b.dataset.l === S.level ? "true" : "false"));
+  const b = loadBest(S.level);
+  document.getElementById("best").textContent = b.score ? `Best on ${LEVELS[S.level].label}: ${b.score} points, ${RANKS[b.rank].n}` : "Made by Gary for his girls.";
+}
+lvBtns.forEach(b => b.onclick = () => { S.level = b.dataset.l; try { localStorage.setItem("kg_archery_level", S.level); } catch (e) {} showLevel(); sfx.ping(); });
+showLevel();
+document.getElementById("start").onclick = () => { KG.unlockAudio(); start(); };
+document.getElementById("again").onclick = () => { KG.unlockAudio(); start(); };
+document.getElementById("pick").onclick = () => { done.hidden = true; menu.hidden = false; S.mode = "menu"; showLevel(); };
+
+function start() {
+  menu.hidden = true; done.hidden = true;
+  const L = LEVELS[S.level]; let q = [];
+  for (const k in L.mix) q = q.concat(draw(k, L.mix[k]));
+  q = shuffle(q).map(s => ({ s, retry: false }));
+  R = { queue: q, base: q.length, idx: -1, score: 0, streak: 0, bestStreak: 0, stars: q.map(() => 0), retries: 0, shots: 0 };
+  balloons = []; A = null; FM = null; T = null; parts = []; pops = []; award = null; cur = null;
+  if (!S.introDone) { S.mode = "intro"; S.it = 0; } else { S.mode = "play"; S.fade = .5; nextSentence(); }
+}
+// what a perfect round would score, streak bonuses included, so ranks mean the same on every level
+function maxPoints(q) { let m = 0, st = 0; q.forEach(x => { x.s.gaps.forEach(() => { st++; m += 100 + Math.min(st - 1, 5) * 10; }); m += 50; }); return m; }
+function skipIntro() { if (S.mode === "intro") beginPlay(); }
+function beginPlay() { S.introDone = true; S.mode = "play"; S.fade = .7; nextSentence(); speak("Shoot the balloon that finishes the sentence!"); }
+
+// ---------- round flow ----------
+function nextSentence() {
+  R.idx++;
+  if (R.idx >= R.queue.length) return endRound();
+  const q = R.queue[R.idx];
+  cur = { s: q.s, retry: q.retry, gi: 0, miss: false, gapMiss: false, tip: null, done: false, doneT: 0 };
+  makeBalloons(true);
+}
+function makeBalloons(rise) {
+  const g = cur.s.gaps[cur.gi], opts = shuffle([g.a, ...g.wrong]);
+  const slots = opts.length === 2 ? [420, 860] : [300, 640, 980];
+  balloons = opts.map((o, i) => {
+    ctx.font = `700 ${o.length === 1 ? 110 : 46}px Fredoka, sans-serif`;
+    const tw = ctx.measureText(o).width;
+    return { o, ok: o === g.a, x0: slots[i] + rand(-35, 35), y0: rand(150, 205), x: slots[i], y: 900, rx: Math.max(58, tw / 2 + 32), ry: 66,
+      col: COLS[(R.idx * 3 + i) % COLS.length], ph: rand(0, 6), rise: rise ? 1 : 0, alive: true, leave: false, key: i + 1 };
+  });
+  updateBalloons(0);
+}
+function updateBalloons(dt) {
+  const drift = LEVELS[S.level].drift;
+  balloons.forEach(b => {
+    if (b.leave) { b.y -= 520 * dt; b.x += Math.sin(S.t * 4 + b.ph) * 2; return; }
+    b.rise = Math.max(0, b.rise - dt / .8);
+    const e = b.rise * b.rise;
+    b.x = b.x0 + Math.sin(S.t * .7 + b.ph) * drift;
+    b.y = b.y0 + Math.sin(S.t * 1.6 + b.ph) * 8 + e * 330;
+  });
+  balloons = balloons.filter(b => b.alive && b.y > -200);
+}
+const canShoot = () => S.mode === "play" && cur && !cur.done && !A && !FM && S.t >= lockUntil.t && balloons.some(b => b.alive && !b.leave && b.rise < .3);
+
+function hit(b) {
+  b.alive = false; burst(b.x, b.y, b.col, 26); tone(900, 0, .06, "square", .05); tone(500, .03, .08, "triangle", .08);
+  if (b.ok) correct(b); else wrong(b);
+}
+function correct(b) {
+  const g = cur.s.gaps[cur.gi];
+  let pts = cur.gapMiss ? 40 : 100;
+  if (!cur.gapMiss) { R.streak++; R.bestStreak = Math.max(R.bestStreak, R.streak); if (R.streak > 1) pts += Math.min(R.streak - 1, 5) * 10; }
+  R.score += pts; pops.push({ text: "+" + pts, x: b.x, y: b.y - 20, t: 0, col: "#ffcf33" });
+  sfx.pick();
+  if (AWARDS[R.streak] && !cur.gapMiss) { award = { text: AWARDS[R.streak], t: 0 }; setTimeout(() => sfx.win(), 350); }
+  FM = { o: g.a, x: b.x, y: b.y, t: 0 };
+  balloons.forEach(o => { if (o.alive) o.leave = true; });
+  cur.gapMiss = false; cur.tip = null;
+}
+function landMark() {
+  FM = null; cur.gi++;
+  if (cur.gi < cur.s.gaps.length) { makeBalloons(true); return; }
+  cur.done = true; cur.doneT = S.t;
+  if (!cur.miss) { R.score += 50; R.stars[Math.min(R.idx, R.base - 1)] = 1; pops.push({ text: "Perfect! +50", x: W / 2, y: BOARD.y - 14, t: 0, col: "#ffcf33" }); }
+  else if (!cur.retry && R.retries < 3) { R.retries++; R.queue.push({ s: cur.s, retry: true }); }
+  sfx.done(); burst(W / 2, BOARD.y + BOARD.h / 2, "#ffcf33", 40);
+  const said = cur.s.full; setTimeout(() => speak(said, 1.1), 300);
+}
+function wrong(b) {
+  cur.miss = true; cur.gapMiss = true; R.streak = 0;
+  cur.tip = tipFor(cur.s, cur.s.gaps[cur.gi]);
+  sfx.boop();
+  T = { t: 0, tx: rand(560, 760), ty: rand(250, 360), blobs: makeSplat(), said: false };
+  lockUntil.t = S.t + 1.4;
+}
+function endRound() {
+  S.mode = "end"; S.endT = S.t;
+  const pct = clamp(R.score / maxPoints(R.queue), 0, 1);   // retried sentences count, so a slip costs something
+  let rank = 0; RANKS.forEach((r, i) => { if (pct >= r.p) rank = i; });
+  const prev = loadBest(S.level), isBest = R.score > prev.score;
+  if (isBest) saveBest(S.level, { score: R.score, rank: Math.max(rank, prev.rank) });
+  R.rank = rank; R.prevRank = prev.score ? prev.rank : -1;
+  document.getElementById("d-title").textContent = isBest && prev.score ? "New best score!" : "Round complete!";
+  document.getElementById("d-score").textContent = R.score;
+  document.getElementById("d-rank").textContent = RANKS[rank].n;
+  document.getElementById("d-best").textContent = isBest ? (prev.score ? `Your old best was ${prev.score}.` : "That's your first score on this level.") : `Your best on this level is ${prev.score}.`;
+  document.getElementById("d-next").textContent = rank < RANKS.length - 1 ? `Score higher to climb to ${RANKS[rank + 1].n}.` : "You reached the top of the ladder!";
+  setTimeout(() => { if (S.mode === "end") { done.hidden = false; sfx.win(); speak(`You climbed to ${RANKS[rank].n}!`); } }, 1600 + rank * 380);
+}
+
+// ---------- input ----------
+const cvs = document.getElementById("game");
+function aimVec() {
+  let dx = aim.sx - aim.px, dy = aim.sy - aim.py; const L = Math.hypot(dx, dy);
+  if (L < 4) return { d: defDir(), p: 0 };
+  let a = Math.atan2(dy, dx); if (a > 0) a = a > Math.PI / 2 ? -Math.PI + .12 : -.12;
+  a = clamp(a, -Math.PI + .12, -.12);
+  return { d: { x: Math.cos(a), y: Math.sin(a) }, p: clamp(L / 230, 0, 1) };
+}
+function defDir() { const dx = 640 - GRIP.x, dy = 210 - GRIP.y, L = Math.hypot(dx, dy); return { x: dx / L, y: dy / L }; }
+cvs.addEventListener("pointerdown", e => {
+  if (S.mode === "intro") { skipIntro(); return; }
+  if (S.mode !== "play") return;
+  const p = KG.toWorld(e); aim.on = true; aim.sx = aim.px = p.x; aim.sy = aim.py = p.y; aim.moved = 0;
+  try { cvs.setPointerCapture(e.pointerId); } catch (er) {}
+});
+cvs.addEventListener("pointermove", e => {
+  if (!aim.on) return; const p = KG.toWorld(e); aim.moved = Math.max(aim.moved, Math.hypot(p.x - aim.sx, p.y - aim.sy)); aim.px = p.x; aim.py = p.y;
+});
+const release = () => {
+  if (!aim.on) return; aim.on = false;
+  const v = aimVec();
+  if (!canShoot()) return;
+  if (v.p < .12) { pops.push({ text: "Pull back further, then let go!", x: 780, y: 640, t: 0, col: "#fff" }); return; }
+  fire(v.d, v.p);
+};
+cvs.addEventListener("pointerup", release);
+cvs.addEventListener("pointercancel", () => { aim.on = false; });
+addEventListener("keydown", e => {
+  if (S.mode === "intro") { skipIntro(); return; }
+  const n = parseInt(e.key, 10);
+  if (S.mode === "play" && n >= 1 && n <= 3 && canShoot()) {
+    const b = balloons.find(o => o.key === n && o.alive && !o.leave); if (!b) return;
+    const dx = b.x - GRIP.x, dy = b.y - GRIP.y, L = Math.hypot(dx, dy);
+    fire({ x: dx / L, y: dy / L }, .8, b);
+  }
+});
+function fire(d, p, home) {
+  const sp = SPD0 + p * (SPD1 - SPD0);
+  A = { x: GRIP.x + d.x * 60, y: GRIP.y + d.y * 60, vx: d.x * sp, vy: d.y * sp, home: home || null, t: 0 };
+  S.hinted = true; R.shots++; lastDir = d;
+  tone(190, 0, .14, "triangle", .14); tone(120, .02, .2, "sine", .1);
+}
+
+// ---------- effects ----------
+function burst(x, y, col, n) { for (let i = 0; i < n; i++) { const a = rand(0, Math.PI * 2), s = rand(120, 420); parts.push({ x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 120, col: pick([col, "#ffcf33", "#ffffff", "#ff9ccf", "#7fd3ff"]), life: rand(.6, 1.1), rot: rand(0, 6), vr: rand(-8, 8) }); } }
+function makeSplat() {
+  const b = []; for (let i = 0; i < 11; i++) { const a = i / 11 * Math.PI * 2 + rand(-.2, .2); b.push({ a, d: rand(.75, 1.05), r: rand(.28, .45) }); }
+  const drops = []; for (let i = 0; i < 7; i++) drops.push({ a: rand(0, Math.PI * 2), d: rand(1.3, 1.9), r: rand(.06, .13) });
+  const seeds = []; for (let i = 0; i < 9; i++) seeds.push({ a: rand(0, Math.PI * 2), d: rand(.1, .6), rot: rand(0, 3) });
+  const drips = []; for (let i = 0; i < 4; i++) drips.push({ x: rand(-.7, .7), sp: rand(30, 75), w: rand(.08, .14) });
+  return { b, drops, seeds, drips };
+}
+
+// ---------- update ----------
+function update(dt) {
+  S.t += dt; S.fade = Math.max(0, S.fade - dt);
+  parts.forEach(p => { p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 700 * dt; p.life -= dt; p.rot += p.vr * dt; }); parts = parts.filter(p => p.life > 0);
+  pops.forEach(p => { p.t += dt; p.y -= 40 * dt; }); pops = pops.filter(p => p.t < 1.8);
+  if (award) { award.t += dt; if (award.t > 2.6) award = null; }
+  if (S.mode === "intro") { S.it += dt; if (S.it > 4.7) beginPlay(); return; }
+  if (S.mode === "menu") { if (!balloons.length) demoBalloons(); updateBalloons(dt); return; }
+  if (S.mode !== "play") return;
+  updateBalloons(dt);
+  if (A) {
+    A.t += dt;
+    if (A.home) { const b = A.home; if (!b.alive || b.leave) A.home = null; else { const dx = b.x - A.x, dy = b.y - A.y, L = Math.hypot(dx, dy) || 1; A.vx = dx / L * 1500; A.vy = dy / L * 1500; } }
+    else A.vy += GRAV * dt;
+    A.x += A.vx * dt; A.y += A.vy * dt;
+    for (const b of balloons) {
+      if (!b.alive || b.leave) continue;
+      const ex = (A.x - b.x) / (b.rx + 6), ey = (A.y - b.y) / (b.ry + 6);
+      if (ex * ex + ey * ey <= 1) { A = null; hit(b); break; }
+    }
+    if (A && (A.x < -80 || A.x > W + 80 || A.y < -120 || A.y > H + 60)) { A = null; pops.push({ text: "Missed! Have another go.", x: 780, y: 640, t: 0, col: "#fff" }); }
+  }
+  if (FM) { FM.t += dt; if (FM.t >= .45) landMark(); }
+  if (T) {
+    T.t += dt;
+    if (T.t >= 1.35 && !T.said) { T.said = true; sfx.splash(); tone(140, 0, .25, "sawtooth", .07); sfx.giggle(); setTimeout(() => speak("Splat! " + (cur && cur.tip ? cur.tip : "")), 250); }
+    if (T.t > 3.6) T = null;
+  }
+  if (cur && cur.done && S.t - cur.doneT > 2.6) nextSentence();
+}
+function demoBalloons() {
+  balloons = ["“", "?", ",", "!", "'", "."].map((o, i) => ({ o, ok: false, x0: 130 + i * 204, y0: rand(130, 230), x: 0, y: 0, rx: 58, ry: 66, col: COLS[i], ph: rand(0, 6), rise: 0, alive: true, leave: false, key: 0 }));
+}
+
+// ---------- drawing: scenery ----------
+function sky(horizon) {
+  const g = ctx.createLinearGradient(0, 0, 0, horizon); g.addColorStop(0, "#7cc8ff"); g.addColorStop(1, "#d9f1ff");
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, horizon);
+  circ(1150, 90, 46, "#ffe066", 0);
+  for (let i = 0; i < 4; i++) { const x = ((i * 380 + S.t * 14) % (W + 300)) - 150, y = 70 + (i % 2) * 70; [[0, 0, 32], [30, -12, 38], [62, 0, 30]].forEach(c => circ(x + c[0], y + c[1], c[2], "rgba(255,255,255,.9)", 0)); }
+}
+function drawRange() {
+  const HZ = 300; sky(HZ);
+  ctx.fillStyle = "#9bd27e"; ctx.beginPath(); ctx.moveTo(0, HZ);
+  for (let x = 0; x <= W; x += 40) ctx.lineTo(x, HZ - 30 - Math.sin(x / 170) * 22 - Math.sin(x / 61) * 6);
+  ctx.lineTo(W, HZ); ctx.fill();
+  ctx.fillStyle = "#86c96a"; ctx.fillRect(0, HZ, W, H - HZ);
+  for (let i = -4; i <= 4; i++) { ctx.beginPath(); ctx.moveTo(640 + i * 30, HZ); ctx.lineTo(640 + i * 420, H); ctx.strokeStyle = "rgba(255,255,255,.28)"; ctx.lineWidth = 4; ctx.stroke(); }
+  [[230, 286], [1050, 286], [470, 292], [810, 292]].forEach(([x, y]) => { line(x, y, x, y + 14, "#7a4a22", 3); [14, 10, 6, 2.5].forEach((r, k) => circ(x, y - 4, r, ["#fff", "#e23b3b", "#fff", "#e23b3b"][k], k ? 0 : 1.5)); });
+}
+function drawBoard() {
+  const B = BOARD;
+  rr(B.x + 90, B.y + B.h, 22, 140, 4, "#8a5a2b", 3); rr(B.x + B.w - 112, B.y + B.h, 22, 140, 4, "#8a5a2b", 3);
+  rr(B.x - 14, B.y - 14, B.w + 28, B.h + 28, 30, "#b77a3e", 5);
+  rr(B.x, B.y, B.w, B.h, 22, "#fffaf0", 4);
+}
+function layoutSentence(s, gi, fs) {
+  ctx.font = `600 ${fs}px Fredoka, sans-serif`;
+  const units = [];
+  s.parts.forEach(p => { if (p.g) units.push({ g: p.g }); else p.t.split(/( )/).forEach(w => { if (w === " ") units.push({ sp: 1 }); else if (w) units.push({ w }); }); });
+  units.forEach(u => {
+    if (u.sp) u.wd = ctx.measureText(" ").width;
+    else if (u.w) u.wd = ctx.measureText(u.w).width;
+    else u.wd = u.g.n < gi ? ctx.measureText(u.g.a).width + 2 : Math.max(40, Math.max(...[u.g.a, ...u.g.wrong].map(o => ctx.measureText(o).width)) + 22);
+  });
+  const chunks = []; let c = null;
+  units.forEach(u => { if (u.sp) { c = null; chunks.push({ sp: 1, wd: u.wd }); } else { if (!c) { c = { us: [], wd: 0 }; chunks.push(c); } c.us.push(u); c.wd += u.wd; } });
+  const lines = []; let ln = { cs: [], wd: 0 }; const MAXW = BOARD.w - 70;
+  chunks.forEach(ch => {
+    if (ch.sp) { if (ln.cs.length) ln.cs.push(ch); return; }
+    if (ln.wd + ch.wd > MAXW && ln.cs.length) { while (ln.cs.length && ln.cs[ln.cs.length - 1].sp) ln.cs.pop(); ln.wd = ln.cs.reduce((a, x) => a + x.wd, 0); lines.push(ln); ln = { cs: [], wd: 0 }; }
+    ln.cs.push(ch); ln.wd = ln.cs.reduce((a, x) => a + x.wd, 0);
+  });
+  if (ln.cs.length) lines.push(ln);
+  return lines;
+}
+function drawSentence() {
+  if (!cur) return;
+  const s = cur.s, gi = cur.done ? s.gaps.length : cur.gi;
+  let fs = 50, lines = layoutSentence(s, gi, fs);
+  while (lines.length > 2 && fs > 34) { fs -= 6; lines = layoutSentence(s, gi, fs); }
+  const lh = fs * 1.4, cy = BOARD.y + BOARD.h / 2, top = cy - lines.length * lh / 2;
+  gapPos = null;
+  lines.forEach((ln, li) => {
+    let x = W / 2 - ln.wd / 2; const by = top + lh * (li + .5) + fs * .36;
+    ln.cs.forEach(ch => {
+      if (ch.sp) { x += ch.wd; return; }
+      ch.us.forEach(u => {
+        if (u.w) { txt(u.w, x, by, fs, cur.done ? "#0f7a45" : INK, "left", 600); }
+        else if (u.g.n < gi) { txt(u.g.a, x + 1, by, fs, "#0f7a45", "left", 700); }
+        else if (u.g.n === gi) {
+          const pulse = .5 + .5 * Math.sin(S.t * 6);
+          rr(x + 3, by - fs * .82, u.wd - 6, fs * 1.02, 12, cur.gapMiss ? "#ffd0c9" : `rgba(255,${200 + pulse * 30 | 0},${60 + pulse * 40 | 0},1)`, 3.5);
+          gapPos = { x: x + u.wd / 2, y: by - fs * .3, fs };
+        } else rr(x + 5, by - fs * .7, u.wd - 10, fs * .82, 10, "#ece5d3", 2);
+        x += u.wd;
+      });
+    });
+  });
+  if (cur.retry && !cur.done) { rr(W / 2 - 120, BOARD.y - 30, 240, 34, 17, "#ddd0ff", 2.5); txt("Have another go!", W / 2, BOARD.y - 5, 20, INK, "center"); }
+}
+function drawTip() {
+  if (!cur || !cur.tip || cur.done || (T && T.t < 2.5)) return;
+  const a = T ? clamp((T.t - 2.5) * 4, 0, 1) : 1, cx = 975;
+  const lines = KG.wrap(cur.tip, 500, 26), h = lines.length * 34 + 24, y = BOARD.y + BOARD.h + 22;
+  ctx.globalAlpha = a; rr(cx - 280, y, 560, h, 20, "#fff3b0", 3.5);
+  lines.forEach((l, i) => txt(l, cx, y + 42 + i * 34, 26, INK, "center", 600)); ctx.globalAlpha = 1;
+}
+function drawLabel(o, x, y, size) {
+  ctx.font = `700 ${size}px Fredoka, sans-serif`; ctx.textAlign = "center"; ctx.textBaseline = "alphabetic";
+  const m = ctx.measureText(o), asc = m.actualBoundingBoxAscent || size * .7, desc = m.actualBoundingBoxDescent || 0;
+  ctx.fillStyle = INK; ctx.fillText(o, x, y + (asc - desc) / 2);
+}
+function drawBalloon(b) {
+  const { x, y } = b, by = y + b.ry;
+  ctx.beginPath(); ctx.moveTo(x, by + 8);
+  for (let i = 1; i <= 7; i++) ctx.lineTo(x + Math.sin(S.t * 3 + b.ph + i) * 5, by + 8 + i * 13);
+  ctx.strokeStyle = "rgba(45,35,64,.65)"; ctx.lineWidth = 2.5; ctx.stroke();
+  poly([[x - 10, by + 11], [x + 10, by + 11], [x, by - 3]], b.col, 2.5);
+  ell(x, y, b.rx, b.ry, b.col, 4.5);
+  ell(x - b.rx * .42, y - b.ry * .45, b.rx * .14, b.ry * .2, "rgba(255,255,255,.85)", 0, -.5);
+  drawLabel(b.o, x, y, b.o.length === 1 ? 110 : 46);
+  if (b.key && S.mode === "play") { const kx = x + b.rx * .78, ky = y + b.ry * .72; circ(kx, ky, 16, "#fff", 2.5); txt(String(b.key), kx, ky + 7, 20, INK, "center"); }
+}
+
+// ---------- drawing: people, bow, arrow ----------
+// side-on stick person. o: face (1 right, -1 left), walk phase, walking, bend 0..1, arms [front, back] angles from straight down
+function stickSide(x, fy, s, o = {}) {
+  const f = o.face || 1, sw = o.walking ? Math.sin(o.walk) : .35, lw = 7 * s;
+  const hip = [x, fy - 64 * s - (o.walking ? Math.abs(Math.cos(o.walk)) * 5 * s : 0)], L = 64 * s;
+  [sw, -sw].forEach(k => { const a = k * .55; line(hip[0], hip[1], hip[0] + Math.sin(a) * L * f, hip[1] + Math.cos(a) * L, INK, lw); });
+  const bend = o.bend || 0, neck = [hip[0] + Math.sin(bend) * 72 * s * f, hip[1] - Math.cos(bend) * 72 * s];
+  line(hip[0], hip[1], neck[0], neck[1], INK, lw);
+  const ux = (neck[0] - hip[0]) / (72 * s), uy = (neck[1] - hip[1]) / (72 * s);
+  const head = [neck[0] + ux * 28 * s, neck[1] + uy * 28 * s];
+  const sh = [hip[0] + (neck[0] - hip[0]) * .85, hip[1] + (neck[1] - hip[1]) * .85];
+  const arms = o.arms || [-sw * .6 + bend, sw * .6 + bend], hands = [];
+  arms.forEach(a => { const hx = sh[0] + Math.sin(a) * 56 * s * f, hy = sh[1] + Math.cos(a) * 56 * s; line(sh[0], sh[1], hx, hy, INK, lw); hands.push([hx, hy]); });
+  circ(head[0], head[1], 23 * s, o.headCol || "#fff", 5 * s);
+  if (o.band) { ctx.save(); ctx.beginPath(); ctx.arc(head[0], head[1], 21 * s, 0, Math.PI * 2); ctx.clip(); ctx.fillStyle = o.band; ctx.fillRect(head[0] - 30 * s, head[1] - 12 * s, 60 * s, 8 * s); ctx.restore(); }
+  circ(head[0] + 9 * s * f, head[1] - 2 * s, 3 * s, INK, 0);
+  ctx.beginPath(); ctx.arc(head[0] + 8 * s * f, head[1] + 6 * s, 7 * s, f > 0 ? .1 : Math.PI * .45, f > 0 ? Math.PI * .55 : Math.PI * .9); ctx.strokeStyle = INK; ctx.lineWidth = 2.5 * s; ctx.stroke();
+  return { hands, head, sh };
+}
+function bowSide(x, y, s, f, held) {
+  ctx.beginPath(); ctx.arc(x - 30 * s * f, y, 54 * s, -1.05, 1.05); if (f < 0) { ctx.beginPath(); ctx.arc(x + 30 * s, y, 54 * s, Math.PI - 1.05, Math.PI + 1.05); }
+  ctx.strokeStyle = INK; ctx.lineWidth = 11 * s; ctx.stroke(); ctx.strokeStyle = "#a8692f"; ctx.lineWidth = 6 * s; ctx.stroke();
+  const tx = x - 30 * s * f + Math.cos(1.05) * 54 * s * f;
+  line(tx, y - Math.sin(1.05) * 54 * s, tx, y + Math.sin(1.05) * 54 * s, "#555", 2);
+}
+function drawArrowAt(x, y, d, s) {
+  const L = 170 * s, tx = x - d.x * L, ty = y - d.y * L, px = -d.y, py = d.x;
+  line(tx, ty, x, y, INK, 8 * s); line(tx, ty, x, y, "#c98a4b", 4.5 * s);
+  poly([[x + d.x * 22 * s, y + d.y * 22 * s], [x + px * 10 * s, y + py * 10 * s], [x - px * 10 * s, y - py * 10 * s]], "#9aa3ad", 2.5 * s);
+  [1, -1].forEach(k => poly([[tx, ty], [tx + d.x * 26 * s, ty + d.y * 26 * s], [tx + d.x * 8 * s + px * 14 * s * k, ty + d.y * 8 * s + py * 14 * s * k], [tx - d.x * 4 * s + px * 12 * s * k, ty - d.y * 4 * s + py * 12 * s * k]], "#ff5d8f", 2 * s));
+}
+function drawArcher() {
+  const v = aim.on ? aimVec() : { d: lastDir || defDir(), p: 0 };
+  if (aim.on) lastDir = v.d; else if (!A && !T && !FM && canShoot()) lastDir = null;
+  const d = v.d, p = v.p, G = GRIP, px = -d.y, py = d.x;
+  // preview of the arrow's path while pulling back
+  if (aim.on && p >= .12 && canShoot()) {
+    const sp = SPD0 + p * (SPD1 - SPD0); let x = G.x + d.x * 60, y = G.y + d.y * 60, vx = d.x * sp, vy = d.y * sp;
+    for (let i = 0; i < 22; i++) { const dt = .024; vy += GRAV * dt; x += vx * dt; y += vy * dt; if (i % 2 === 0) { ctx.globalAlpha = 1 - i / 24; circ(x, y, 6, "#fff", 2.5); } }
+    ctx.globalAlpha = 1;
+  }
+  // body seen from behind
+  line(120, 720, 380, 706, INK, 14);
+  line(250, 712, 250, 760, INK, 14);
+  // bow arm (out to the grip) and draw arm (back to the string)
+  const N = { x: G.x - d.x * (30 + p * 110), y: G.y - d.y * (30 + p * 110) };
+  line(370, 706, G.x - d.x * 4, G.y - d.y * 4, INK, 12);
+  // bow
+  const t1 = [G.x + px * 98 - d.x * 30, G.y + py * 98 - d.y * 30], t2 = [G.x - px * 98 - d.x * 30, G.y - py * 98 - d.y * 30], c = [G.x + d.x * 52, G.y + d.y * 52];
+  ctx.beginPath(); ctx.moveTo(t1[0], t1[1]); ctx.quadraticCurveTo(c[0], c[1], t2[0], t2[1]);
+  ctx.strokeStyle = INK; ctx.lineWidth = 15; ctx.stroke(); ctx.strokeStyle = "#a8692f"; ctx.lineWidth = 9; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(t1[0], t1[1]); ctx.lineTo(N.x, N.y); ctx.lineTo(t2[0], t2[1]); ctx.strokeStyle = "#4a4a4a"; ctx.lineWidth = 3; ctx.stroke();
+  if (!A && canShoot()) drawArrowAt(N.x + d.x * 170, N.y + d.y * 170, d, 1);
+  line(340, 712, N.x, N.y, INK, 12); circ(N.x, N.y, 9, "#fff", 3);
+  circ(G.x, G.y, 10, "#fff", 3);
+  // head from behind, with a sweatband
+  const hx = 250, hy = 628;
+  circ(hx - 80, hy + 6, 13, "#fff", 4); circ(hx + 80, hy + 6, 13, "#fff", 4);
+  circ(hx, hy, 80, "#fff", 6);
+  ctx.save(); ctx.beginPath(); ctx.arc(hx, hy, 77, 0, Math.PI * 2); ctx.clip(); ctx.fillStyle = "#7c3aed"; ctx.fillRect(hx - 90, hy - 30, 180, 22); ctx.restore();
+  [[-14, -78, -22, -98], [0, -80, 0, -102], [14, -78, 22, -98]].forEach(q => line(hx + q[0], hy + q[1], hx + q[2], hy + q[3], INK, 5));
+  if (!S.hinted && canShoot() && !aim.on) {
+    const k = (S.t * .8) % 1, ax = G.x + 40 - k * 110, ay = G.y - 40 + k * 70;
+    ctx.globalAlpha = 1 - k * .6; circ(ax, ay, 18, "rgba(255,255,255,.9)", 3); ctx.globalAlpha = 1;
+    rr(G.x + 90, G.y - 70, 380, 52, 26, "rgba(255,255,255,.95)", 3); txt("Hold, pull back, let go!", G.x + 280, G.y - 35, 26, INK, "center");
+  }
+}
+let lastDir = null;
+function drawThrowerAndTomato() {
+  if (!T) return;
+  const t = T.t; let x, arms = null, face = -1, walking = false;
+  if (t < .55) { x = W + 80 - (W + 80 - 1010) * (t / .55); walking = true; }
+  else if (t < .85) { x = 1010; arms = [-2.6, .4]; }
+  else if (t < 2.2) { x = 1010; arms = t < 1.1 ? [1.9, .4] : [Math.sin(t * 14) * .3 + 2.6, -Math.sin(t * 14) * .3 + 2.6]; }
+  else { x = 1010 + (t - 2.2) * 700; face = 1; walking = true; }
+  const P = stickSide(x, 640, 1.15, { face, walking, walk: t * 16, arms, headCol: "#fff" });
+  if (t < .85) circ(P.hands[0][0], P.hands[0][1], 11, "#e0302a", 2.5);
+  if (t >= 1.35 && t < 2.2) KG.bubble("Ha ha!", P.head[0], P.head[1] - 44, 26);
+  if (t >= .85 && t < 1.35) {
+    const k = (t - .85) / .5, sx = 1010 - 50, sy = 520, r = 11 + k * k * 150;
+    const x2 = sx + (T.tx - sx) * k, y2 = sy + (T.ty - sy) * k - Math.sin(k * Math.PI) * 140;
+    circ(x2, y2, r, "#e0302a", 3); ell(x2 - r * .3, y2 - r * .35, r * .22, r * .14, "rgba(255,255,255,.6)", 0, -.5);
+    poly([[x2 - r * .25, y2 - r * .9], [x2 + r * .25, y2 - r * .9], [x2, y2 - r * 1.15]], "#3f9b3f", 2);
+  }
+}
+// the splat is painted on its own little canvas first, so it fades out as one piece
+const splatCv = document.createElement("canvas"); splatCv.width = splatCv.height = 1200;
+function drawSplat() {
+  if (!T || T.t < 1.35) return;
+  const k = T.t - 1.35, a = k < 1.1 ? .95 : clamp(.95 - (k - 1.1) * .8, 0, 1), R0 = 190, sp = T.blobs, c = splatCv.getContext("2d");
+  c.setTransform(2, 0, 0, 2, 0, 0); c.clearRect(0, 0, 600, 600);
+  const x = 300, y = 260, dot = (px, py, r) => { c.beginPath(); c.arc(px, py, r, 0, Math.PI * 2); c.fill(); };
+  c.fillStyle = "#d42a24";
+  sp.drips.forEach(d => { const w = d.w * R0; c.beginPath(); c.roundRect(x + d.x * R0 - w / 2, y, w, R0 * .7 + Math.min(k, 2) * d.sp, w / 2); c.fill(); });
+  dot(x, y, R0 * .82);
+  sp.b.forEach(o => dot(x + Math.cos(o.a) * R0 * o.d, y + Math.sin(o.a) * R0 * o.d, R0 * o.r));
+  sp.drops.forEach(o => dot(x + Math.cos(o.a) * R0 * o.d * .8, y + Math.sin(o.a) * R0 * o.d * .8, R0 * o.r));
+  c.fillStyle = "#ff5a4a"; dot(x - 20, y - 22, R0 * .5);
+  c.fillStyle = "#ffe08a"; sp.seeds.forEach(o => { c.beginPath(); c.ellipse(x + Math.cos(o.a) * R0 * o.d, y + Math.sin(o.a) * R0 * o.d, 9, 5, o.rot, 0, Math.PI * 2); c.fill(); });
+  c.fillStyle = "rgba(255,255,255,.5)"; c.beginPath(); c.ellipse(x - 60, y - 70, 34, 18, -.6, 0, Math.PI * 2); c.fill();
+  ctx.globalAlpha = a; ctx.drawImage(splatCv, T.tx - 300, T.ty - 260 + k * 10, 600, 600); ctx.globalAlpha = 1;
+  if (k < 1.6) txt("SPLAT!", T.tx, T.ty + 14 + k * 10, 64, "#fff", "center", 700, 10);
+}
+
+// ---------- drawing: HUD, effects, intro, end ----------
+function drawHUD() {
+  rr(16, 14, 236, 54, 27, "rgba(255,255,255,.95)", 3); txt(`Score ${R.score}`, 134, 51, 30, INK, "center");
+  const n = Math.min(R.idx + 1, R.queue.length);
+  rr(W - 290, 14, 274, 54, 27, "rgba(255,255,255,.95)", 3); txt(`Sentence ${n} of ${R.queue.length}`, W - 153, 50, 26, INK, "center");
+  const sx = W / 2 - (R.base - 1) * 19;
+  for (let i = 0; i < R.base; i++) star5(sx + i * 38, 41, 16, R.stars[i] ? "#ffcf33" : "rgba(255,255,255,.6)", 2.5);
+  if (R.streak >= 2) { rr(16, 76, 190, 40, 20, "#ff9f1c", 3); txt(`Streak ${R.streak}`, 111, 104, 24, INK, "center"); }
+}
+function drawFX() {
+  parts.forEach(p => { ctx.save(); ctx.globalAlpha = clamp(p.life * 2, 0, 1); ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.fillStyle = p.col; ctx.fillRect(-7, -4, 14, 8); ctx.restore(); });
+  pops.forEach(p => { ctx.globalAlpha = clamp(1.8 - p.t, 0, 1); txt(p.text, p.x, p.y, 34, p.col, "center", 700, 7); }); ctx.globalAlpha = 1;
+  if (FM && gapPos) { const k = FM.t / .45, e = 1 - (1 - k) * (1 - k), x = FM.x + (gapPos.x - FM.x) * e, y = FM.y + (gapPos.y - FM.y) * e; drawLabel(FM.o, x, y - Math.sin(k * Math.PI) * 60, FM.o.length === 1 ? 110 - 50 * e : 46); }
+  if (award) {
+    const k = award.t, s = k < .3 ? k / .3 : 1, a = clamp(2.6 - k, 0, 1);
+    ctx.globalAlpha = a; ctx.save(); ctx.translate(W / 2, 150); ctx.scale(s * .85, s * .85);
+    poly([[-60, 40], [-24, 40], [-38, 130], [-58, 110]], "#2b6fd6", 3); poly([[60, 40], [24, 40], [38, 130], [58, 110]], "#2b6fd6", 3);
+    for (let i = 0; i < 16; i++) { const a2 = i / 16 * Math.PI * 2; circ(Math.cos(a2) * 62, Math.sin(a2) * 62, 18, "#ffcf33", 3); }
+    circ(0, 0, 66, "#ffcf33", 0); circ(0, 0, 48, "#fff", 4); star5(0, 0, 32, "#ffcf33", 3);
+    ctx.restore(); txt(award.text, W / 2, 292, 48, "#fff", "center", 700, 10); ctx.globalAlpha = 1;
+  }
+  if (cur && cur.done && S.mode === "play") { const k = S.t - cur.doneT; if (k > .2) { ctx.globalAlpha = clamp((k - .2) * 3, 0, 1) * clamp(2.6 - k, 0, 1) * 1.5; txt(cur.miss ? "Sentence complete!" : "Perfect sentence!", W / 2, 584, 40, "#ffcf33", "center", 700, 9); ctx.globalAlpha = 1; } }
+}
+function drawIntro() {
+  const t = S.it, HZ = 560;
+  let z = 1; const cx = 700, cy = 420;
+  if (t > 3.6) { const k = clamp((t - 3.6) / 1.1, 0, 1); z = 1 + k * k * 3.2; }
+  ctx.save(); ctx.translate(cx, cy); ctx.scale(z, z); ctx.translate(-cx, -cy);
+  sky(HZ); ctx.fillStyle = "#86c96a"; ctx.fillRect(-W, HZ, W * 3, H * 2);
+  ctx.fillStyle = "#9bd27e"; ctx.fillRect(-W, HZ, W * 3, 10);
+  // a bow resting on a little stand, and targets at the end of the range
+  rr(818, 470, 12, 92, 3, "#8a5a2b", 2.5); rr(868, 470, 12, 92, 3, "#8a5a2b", 2.5); rr(810, 470, 78, 12, 4, "#8a5a2b", 2.5);
+  [[1120, 470], [1230, 470]].forEach(([x, y]) => { rr(x - 6, y + 20, 12, 70, 3, "#8a5a2b", 2); [44, 33, 22, 11].forEach((r, k) => circ(x, y, r, ["#fff", "#e23b3b", "#fff", "#e23b3b"][k], k ? 0 : 3)); });
+  const walkEnd = 2.4, px = -80 + (Math.min(t, walkEnd) / walkEnd) * (760 - -80);
+  let bend = 0, arms = null, bowHeld = t > 2.75;
+  if (t > walkEnd && t <= 3.1) bend = Math.sin((t - walkEnd) / .7 * Math.PI) * .9;
+  if (t > 3.1) arms = [1.55, 1.2];
+  const P = stickSide(px, HZ, 1.6, { face: 1, walking: t < walkEnd, walk: t * 11, bend, arms, band: "#7c3aed" });
+  if (!bowHeld) bowSide(850, 452, 1.1, 1);
+  else bowSide(P.hands[0][0] + 26, P.hands[0][1], 1.3, 1, true);
+  ctx.restore();
+  if (t > 4) { ctx.fillStyle = `rgba(255,255,255,${clamp((t - 4) / .7, 0, 1)})`; ctx.fillRect(0, 0, W, H); }
+  if (t < 3.6) { ctx.globalAlpha = .85; txt("Tap to skip", W - 24, H - 60, 22, INK, "right", 600); ctx.globalAlpha = 1; }
+}
+function drawLadder() {
+  const k = S.t - S.endT, x0 = 880, x1 = 990, top = 205, bot = 685, gap = (bot - top) / (RANKS.length - 1);
+  ctx.fillStyle = "rgba(255,250,240,.35)"; ctx.fillRect(0, 0, W, H);
+  line(x0, bot + 40, x0, top - 40, "#8a5a2b", 14); line(x1, bot + 40, x1, top - 40, "#8a5a2b", 14);
+  RANKS.forEach((r, i) => {
+    const y = bot - i * gap, got = i <= R.rank;
+    line(x0, y, x1, y, "#a8692f", 10);
+    rr(x1 + 22, y - 24, 250, 44, 22, got ? "#ffcf33" : "rgba(255,255,255,.85)", 3); txt(r.n, x1 + 147, y + 8, 24, INK, "center");
+    if (i === R.prevRank) { line(x0 - 30, y, x0 - 30, y - 60, INK, 4); poly([[x0 - 30, y - 60], [x0 - 90, y - 48], [x0 - 30, y - 36]], "#ff5d8f", 3); txt("Best", x0 - 58, y - 42, 15, "#fff", "center"); }
+  });
+  const climb = clamp((k - .5) / (.38 * Math.max(R.rank, .5)), 0, 1) * R.rank, yy = bot - climb * gap;
+  const moving = climb < R.rank && k > .5;
+  stickSide((x0 + x1) / 2, yy - 4, 1, { face: 1, walking: moving, walk: k * 12, arms: moving ? [Math.PI - .4 + Math.sin(k * 12) * .3, Math.PI - .4 - Math.sin(k * 12) * .3] : [2.4 + Math.sin(k * 7) * .25, -2.4 - Math.sin(k * 7) * .25], band: "#7c3aed" });
+  if (!moving && k > 1) for (let i = 0; i < 2; i++) if (Math.random() < .2) burst((x0 + x1) / 2 + rand(-60, 60), yy - 40, "#ffcf33", 2);
+}
+
+// ---------- main loop ----------
+let last = performance.now();
+function frame(now) {
+  const dt = Math.min(.05, (now - last) / 1000); last = now; update(dt);
+  KG.begin("#7cc8ff", "#86c96a", 300);
+  if (S.mode === "intro") drawIntro();
+  else {
+    drawRange();
+    balloons.forEach(drawBalloon);
+    if (S.mode === "play") { drawBoard(); drawSentence(); }
+    if (S.mode === "play") { drawTip(); drawThrowerAndTomato(); drawArcher(); if (A) drawArrowAt(A.x, A.y, (() => { const L = Math.hypot(A.vx, A.vy) || 1; return { x: A.vx / L, y: A.vy / L }; })(), clamp(.55 + .45 * (A.y - 120) / (GRIP.y - 120), .5, 1)); drawSplat(); drawHUD(); }
+    if (S.mode === "end") { drawLadder(); }
+    drawFX();
+    if (S.fade > 0) { ctx.fillStyle = `rgba(255,255,255,${clamp(S.fade / .7, 0, 1)})`; ctx.fillRect(0, 0, W, H); }
+  }
+  KG.end();
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+// test hook for automated checks (no effect on play)
+window.__PA = { S, get R() { return R; }, get cur() { return cur; }, get balloons() { return balloons; }, BANK, tipFor, parse };
+</script>
+</body>
+</html>

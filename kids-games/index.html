@@ -8,12 +8,12 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Free Learning Games Siblings Can Play Together, No Ads</title>
-<meta name="description" content="Free learning games for kids aged 3 to 11 that siblings can play together: times tables, spelling, colours and counting. No adverts, accounts or tracking.">
+<meta name="description" content="Free learning games for kids aged 3 to 11 that siblings can play together: times tables, spelling, punctuation, colours and counting. No adverts, accounts or tracking.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://garystow.co.uk/kids-games/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kids Games: free games I made for my daughters">
-<meta property="og:description" content="A co-op seek and find, a times tables peg game, a painting game and a spelling game, built with AI for my girls.">
+<meta property="og:description" content="A co-op seek and find, a times tables peg game, a painting game, a spelling game and a punctuation archery game, built with AI for my girls.">
 <meta property="og:url" content="https://garystow.co.uk/kids-games/">
 <meta property="og:image" content="https://garystow.co.uk/assets/play-preview.jpg">
 <meta property="og:image:width" content="1200">
@@ -25,7 +25,8 @@
 {"@type":"VideoGame","name":"Seek and Find","url":"https://garystow.co.uk/kids-games/seek/","playMode":["CoOp","SinglePlayer"],"gamePlatform":"Web browser","isAccessibleForFree":true},
 {"@type":"VideoGame","name":"Times Table Pegs","url":"https://garystow.co.uk/kids-games/pegs/","playMode":"SinglePlayer","gamePlatform":"Web browser","isAccessibleForFree":true},
 {"@type":"VideoGame","name":"Paint Splash","url":"https://garystow.co.uk/kids-games/paint/","playMode":["SinglePlayer","CoOp"],"gamePlatform":"Web browser","isAccessibleForFree":true},
-{"@type":"VideoGame","name":"Spell & Build","url":"https://garystow.co.uk/kids-games/spell/","playMode":"SinglePlayer","gamePlatform":"Web browser","isAccessibleForFree":true}]}
+{"@type":"VideoGame","name":"Spell & Build","url":"https://garystow.co.uk/kids-games/spell/","playMode":"SinglePlayer","gamePlatform":"Web browser","isAccessibleForFree":true},
+{"@type":"VideoGame","name":"Punctuation Archery","url":"https://garystow.co.uk/kids-games/punctuation/","playMode":"SinglePlayer","gamePlatform":"Web browser","isAccessibleForFree":true}]}
 </script>
 <link rel="manifest" href="/kids-games/manifest.webmanifest">
 <meta name="theme-color" content="#7c3aed">
@@ -143,6 +144,15 @@ footer{text-align:center;padding:30px 0 40px;font-weight:600}
         <span class="go">Play</span>
       </div>
     </a>
+    <a class="card" href="/kids-games/punctuation/" data-game="punctuation">
+      <canvas id="t-punct" width="720" height="440" aria-hidden="true"></canvas>
+      <div class="body">
+        <div class="who"><span class="b" data-name="bell">Bell</span></div>
+        <h2>Punctuation Archery</h2>
+        <p>Pull back your bow and shoot the balloon that finishes the sentence: full stops, commas, apostrophes and speech marks. Get it wrong and someone throws a tomato at you!</p>
+        <span class="go">Play</span>
+      </div>
+    </a>
   </section>
 
   <section class="panel">
@@ -190,11 +200,12 @@ footer{text-align:center;padding:30px 0 40px;font-weight:600}
       <li><b>Times Table Pegs:</b> every times table from 1 × 1 to 12 × 12 plus the matching division, with the trickier facts turning up more as the levels go on. She can also pick just the tables she wants to practise. Questions she gets wrong come back a little later, the way a good teacher would do it.</li>
       <li><b>Paint Splash:</b> colour names, shapes and cause and effect, with a gentle voice that asks her to find a colour every so often.</li>
       <li><b>Spell &amp; Build:</b> the national curriculum spelling lists from Year 1 to Year 6, or this week's words from school. She reads a dictionary-style clue, works out the word and spells it, and every word builds a different picture. Help only appears after a few tries, and there's a spelling test mode that reads 15 or 20 words aloud and marks them at the end, just like school. You can also <a href="/kids-games/spelling-lists/">print the spelling list for each year group</a>.</li>
+      <li><b>Punctuation Archery:</b> capital letters, full stops, question and exclamation marks, commas, apostrophes and speech marks, from Year 1 to Year 4 of the national curriculum. Every sentence is written by hand and checked. A wrong answer earns a cartoon tomato and a short tip, and any sentence she slips on comes back at the end of the round. There's also a <a href="/kids-games/grammar/">grammar and punctuation guide for each year group</a>.</li>
     </ul>
     <p>There are no adverts, no accounts and nothing to buy, and these pages don't use analytics, advertising tags or cookies. Nobody loses, and each game has a natural place to stop, which helps at bedtime. They work with a keyboard, a mouse, a tablet or two gamepads.</p>
     <p>Want to change more than names and looks? All of the code is free on <a href="https://github.com/GarySto/kids-games" target="_blank" rel="noopener">GitHub</a>, with simple steps for making your own copy. Teachers and clubs can find a printable summary on the <a href="/kids-games/for-teachers/">Kids Games for teachers</a> page.</p>
   </section>
-  <footer><a href="/articles/why-i-built-free-learning-games-for-my-daughters/">Read how I built them</a> · <a href="/kids-games/spelling-lists/">Spelling lists</a> · <a href="/kids-games/for-teachers/">For teachers</a> · <a href="/">garystow.co.uk</a> · <a href="/privacy/">Privacy</a></footer>
+  <footer><a href="/articles/why-i-built-free-learning-games-for-my-daughters/">Read how I built them</a> · <a href="/kids-games/spelling-lists/">Spelling lists</a> · <a href="/kids-games/grammar/">Grammar and punctuation</a> · <a href="/kids-games/for-teachers/">For teachers</a> · <a href="/">garystow.co.uk</a> · <a href="/privacy/">Privacy</a></footer>
 </div>
 
 <script src="shared.js?v=20261024c"></script>
@@ -246,6 +257,20 @@ function drawThumbs() {
     rr(-120, -22, 240, 22, 8, "#9aa4b2"); rr(-52, -310, 104, 290, 46, "#f1f5f9"); poly([[-50, -296], [50, -296], [0, -392]], "#ef4444"); circ(0, -210, 28, "#7cc6ff");
     x.restore();
     KG.drawKid(KG.mkPlayer("bell"), 250, 212, .62, { wave: true, tag: false });
+  });
+  thumb("t-punct", x => {
+    const g = x.createLinearGradient(0, 0, 0, 110); g.addColorStop(0, "#7cc8ff"); g.addColorStop(1, "#d9f1ff"); x.fillStyle = g; x.fillRect(0, 0, 360, 110);
+    x.fillStyle = "#86c96a"; x.fillRect(0, 108, 360, 112); circ(326, 26, 14, "#ffe066", 0);
+    [["“", 88, 46, "#ffd3e8"], ["!", 180, 38, "#ddd0ff"], ["?", 272, 48, "#c9f2d9"]].forEach(([ch, bx, by, c]) => {
+      line(bx, by + 30, bx + 3, by + 58, "rgba(45,35,64,.6)", 1.5); ell(bx, by, 25, 29, c, 2.5); ell(bx - 9, by - 12, 4, 6, "rgba(255,255,255,.85)", 0, -.5);
+      x.font = "700 40px Fredoka, sans-serif"; x.textAlign = "center"; x.textBaseline = "alphabetic"; const m = x.measureText(ch); x.fillStyle = KG.INK; x.fillText(ch, bx, by + ((m.actualBoundingBoxAscent || 28) - (m.actualBoundingBoxDescent || 0)) / 2);
+    });
+    rr(30, 98, 300, 62, 12, "#b77a3e", 2.5); rr(38, 105, 284, 48, 9, "#fffaf0", 2);
+    txt("“Sit down", 64, 137, 21, KG.INK, "left", 600); rr(158, 117, 20, 26, 6, "#ffcf33", 2); txt("shouted.", 186, 137, 21, KG.INK, "left", 600);
+    line(214, 196, 186, 84, KG.INK, 4); line(214, 196, 186, 84, "#c98a4b", 2); poly([[184, 76], [180, 88], [191, 86]], "#9aa3ad", 1.5);
+    circ(62, 204, 30, "#fff", 3); x.save(); x.beginPath(); x.arc(62, 204, 28, 0, 7); x.clip(); x.fillStyle = "#7c3aed"; x.fillRect(30, 188, 64, 8); x.restore();
+    x.beginPath(); x.arc(214, 214, 44, -2.7, -.44); x.strokeStyle = KG.INK; x.lineWidth = 7; x.stroke(); x.strokeStyle = "#a8692f"; x.lineWidth = 4; x.stroke();
+    line(214 + Math.cos(-2.7) * 44, 214 + Math.sin(-2.7) * 44, 214 + Math.cos(-.44) * 44, 214 + Math.sin(-.44) * 44, "#4a4a4a", 1.5);
   });
 }
 function drawOutfits() {
