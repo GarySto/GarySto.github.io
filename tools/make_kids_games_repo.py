@@ -22,7 +22,7 @@ def clean_html(html, depth):
     html = re.sub(r'<!-- PAGE: [^>]*-->\n?', "", html)
     html = re.sub(r'href="/assets/favicon-[^"]*"', f'href="{up}icon-192.png"', html)
     html = html.replace('href="/kids-games/manifest.webmanifest"', f'href="{up}manifest.webmanifest"')
-    for g in ("seek", "pegs", "paint"):
+    for g in ("seek", "pegs", "paint", "spell", "punctuation"):
         html = html.replace(f'href="/kids-games/{g}/"', f'href="{up}{g}/index.html"')
     html = html.replace('href="/kids-games/"', f'href="{up}index.html"').replace('location.href = "/kids-games/"', f'location.href = "{up}index.html"')
     for path in ("/work/#play", "/village/", "/privacy/"):

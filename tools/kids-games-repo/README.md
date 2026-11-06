@@ -26,6 +26,7 @@ Use **Microsoft Edge** or **Google Chrome** so your family settings carry across
 | **Times Table Pegs** | Older child | Every times table from 1 × 1 to 12 × 12 plus division, in a glowing peg game. Pick all of them or just the ones being practised. Wrong answers come back a little later. |
 | **Paint Splash** | Younger child, older one can join | Colours and shapes. Run through paint buckets to paint the floor, then stand in the bubble bath for a moment to wipe it clean. |
 | **Spell & Build** | Older child, younger one when she's ready | Spelling. Read a dictionary-style clue, work out the word and spell it, and every word builds a different picture. National curriculum lists from Year 1 to Year 6, or type in this week's words from school. Help only appears after a few tries, and a test mode reads 15 or 20 words aloud and marks them at the end. |
+| **Punctuation Archery** | Older child (about 6 to 9) | Punctuation from Year 1 to Year 4: capital letters, full stops, question and exclamation marks, commas, apostrophes and speech marks. Pull back the bow and shoot the balloon that finishes the sentence. Get it wrong and someone throws a tomato at you, then a short tip, and the sentence comes back at the end of the round. |
 
 No adverts, no accounts, no timers and nobody loses. Works with a keyboard, a mouse, a tablet or two gamepads.
 
@@ -57,6 +58,8 @@ Want to change more than that? You don't need to be a coder. Open the file below
 | `paint/index.html` | Paint Splash: the paint colours, shapes and the bubble bath |
 | `spell/index.html` | Spell & Build: the clues, the hints, the pictures and the spelling test |
 | `spell/words.js` | The spelling lists, with a clue and a sentence for every word. Add your own words here |
+| `punctuation/index.html` | Punctuation Archery: the bow, the balloons, the tomato thrower and the ranks ladder |
+| `punctuation/sentences.js` | The punctuation sentences, written by hand. Each [ ] is a gap: the right answer first, then the wrong balloons. Add your own here |
 | `sw.js`, `manifest.webmanifest` | Let the browser keep an offline copy and give the games their own icon |
 
 Everything is drawn in code, so there are no image files to replace.
