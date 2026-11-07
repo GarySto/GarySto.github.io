@@ -119,13 +119,13 @@ a{color:#9fd0ff}
   </div>
 
   <aside>
-    <section class="card" id="noticeCard" hidden>
-      <h2>For Gary: reports to read</h2>
-      <div id="notices"></div>
-    </section>
     <section class="card hall">
       <h2>Waiting at the Town Hall</h2>
       <div id="queue"></div>
+    </section>
+    <section class="card" id="noticeCard" hidden>
+      <h2>This week's reading (Saturdays)</h2>
+      <div id="notices"></div>
     </section>
     <section class="card" id="selCard">
       <h2 id="selName">Click a building or a person</h2>
@@ -180,48 +180,58 @@ const BUILDINGS = [
   ["hall","Town Hall","hall","hall",21,9,4,4,2.4,"Where you decide. Anything that needs a YES arrives here as a solution with a recommendation, and its owner waits outside on Main Street until you answer."],
   ["wade","Wade's Tower","wade","wade",22,2.5,2,2,6,"Wade is your local AI, running in LM Studio on your own PC. The Supervisors, the Managers and the Content Writer don't think for themselves: they send their work up here, Wade writes the answer, and it beams back. No token bill."],
   ["cc","Claude Code Workshop","build","cc",21,17,4,3,1.6,"Where real code gets written. The Executors bring approved jobs; Claude Code's builders write it on their own branch and carry it out to the houses. Nothing reaches the live site until the layout and SEO checks pass."],
-  ["wsup","Website Supervisor","web","sup",9,9.5,3,3,2.6,"Reads every department's findings, finds the real cause and turns each one into a solution with a recommendation. Wade does the thinking."],
-  ["wman","Website Manager","web","man",14.2,10.3,3,2.4,2.1,"The one voice you deal with for the website. Walks what needs you down Main Street to the Town Hall."],
+  ["wsup","Website Supervisor","web","sup",0.6,0.9,3,3,2.6,"Reads every department's findings, finds the real cause and turns each one into a solution with a recommendation. Wade does the thinking."],
+  ["wman","Website Manager","web","man",4.2,0.9,3,2.4,2.1,"The one voice you deal with for the website. Walks what needs you down Main Street to the Town Hall."],
   ["wexe","Website Executor","web","exe",14.6,16.2,2.6,2.2,1.7,"Turns your YES into a job and takes it to the Claude Code Workshop. Trivial fixes it does itself."],
-  ["seo","SEO Analyst","web","dept",0.6,1,2,2.2,1.6,"Tracks rankings in Google and Bing and spots searches you have no page for yet."],
-  ["writer","Content Writer","web","dept",3,1,2,2.2,1.6,"Drafts articles in your voice from your brain dumps and your facts file. Wade writes the words."],
-  ["rubric","Quality Rubric","web","dept",5.4,1,2,2.2,1.2,"Scores every draft out of 100 before it can reach you."],
-  ["claims","Claim Checker","web","dept",0.6,4.3,2,2.2,1.2,"Blocks any 'I did' sentence that isn't in your facts file."],
-  ["tech","Technical SEO","web","dept",3,4.3,2,2.2,1.2,"Broken links, crawl errors, structured data and page speed."],
-  ["aivis","AI Visibility Watch","web","dept",5.4,4.3,2,2.2,1.4,"Checks how your site shows up inside AI assistants such as Copilot."],
-  ["stdw","Standards Watch","web","dept",0.6,7.6,2,2.2,1.4,"Reads Google's and Bing's own rule pages every evening and raises any change.",1],
-  ["layout","Layout Guard","web","dept",3,7.6,2,2.2,1.2,"Opens every page in a hidden browser before and after a change and blocks anything that breaks the look."],
-  ["audit","System Auditor","web","dept",5.4,7.6,2,2.2,1.4,"Checks every 30 minutes that each automation really did its job."],
-  ["fixer","SEO Auto-Fixer","web","dept",3,10.9,2,2.2,1.4,"Fixes basic SEO by itself every evening and merges it: alt text, long descriptions, missing links.",1],
-  ["synd","Cross-posting Desk","web","dept",12.3,10.3,1.6,1.6,1.2,"Re-posts your technical articles on dev.to, one a week, a week after they go live on your site. Each post credits garystow.co.uk as the original. Nothing goes up without your YES.",1],
-  ["guides","Guides Library","web","dept",12.4,6.6,2.4,2.4,2.4,"Step-by-step guides on AI tools, PPC and the systems Gary built. Every guide passes the automatic checks (Guide Standard, copied wording, screenshots, links, topic list), then waits here for Gary to read and approve it. Approved guides go live by themselves, up to 4 a week, at least 2 days apart.",1],
-  ["tsup","Trading Supervisor","trade","sup",34,9.5,3,3,2.6,"Triages everything the trading departments raise and root-causes it before you see it. Wade does the thinking."],
-  ["tman","Trading Manager","trade","man",28.8,10.3,3,2.4,2.1,"Your one contact for trading. Walks what needs you to the Town Hall and fills the trading dashboard."],
-  ["texe","Trading Executor","trade","exe",28.8,16.2,2.6,2.2,1.7,"Turns an approved YES into action. Code work goes to the Claude Code Workshop on its own branch."],
-  ["analyst","Analyst","trade","dept",39.4,1,2,2.2,1.6,"Reads every scan and trade and writes down what it sees, with numbers."],
-  ["recom","Recommender","trade","dept",41.8,1,2,2.2,1.2,"Proposes changes to the strategies. Never changes them without your YES."],
-  ["fill","Fill Analyst","trade","dept",44.2,1,2,2.2,1.2,"Works out why an order didn't fill, or filled at a worse price."],
-  ["perf","Performance Watch","trade","dept",39.4,4.3,2,2.2,1.4,"Tracks each strategy in pounds after fees against the go-live scorecard."],
-  ["fresh","Game Freshness Watchdog","trade","dept",41.8,4.3,2,2.2,1.2,"Makes sure the Game never trades on yesterday's premarket data."],
-  ["act","Trading Activity Monitor","trade","dept",44.2,4.3,2,2.2,1.4,"Health light, brakes, resting orders and the daily email after the US close."],
-  ["health","Task Health Watchdog","trade","dept",41.8,7.6,2,2.2,1.4,"Checks every scheduled job on your PC, and names the cause when one fails."],
-  ["growth","Growth Review","trade","dept",39.4,7.6,2,2.2,1.4,"Compares this month with last month for both teams, every day. Every flat or falling number needs a reason and an action, or it is flagged as a gap in the team.",1],
-  ["branch","Branch Watch","trade","dept",44.2,7.6,2,2.2,1.2,"Makes sure every finished fix is merged and live, so the Executor's work never sits waiting on a branch.",1],
-  ["lab","Research Lab","labs","dept",41.3,16.0,2.6,2.2,2.0,"The Labs team, in lab coats. Tests every trading idea against simply owning the market, costs included, before any money goes near it. Nothing reaches the trading system without Gary's YES.",1],
-  ["bench","Backtest Bench","labs","dept",44.9,15.6,1.6,1.4,1.0,"Runs each idea over years of real prices and splits the years, so a rule that only worked once is caught."],
-  ["shadowb","Shadow Books","labs","dept",44.9,18.4,1.6,1.4,1.0,"Forward tests with no money: frozen premarket rules and box bounces, scored on real prices every weeknight."],
-  ["datadesk","Data Desk","labs","dept",41.5,19.6,1.6,1.4,1.0,"Checks every price folder is still updating each morning and fills in missing history."],
-  ["bear","Bear Squad Dojo","bear","dept",36,16.6,3,2.4,1.5,"The ninjas test making money when the market falls, using inverse funds, on paper only. They never place an order: a model only goes live with Gary's YES.",1],
+  ["seo","SEO Analyst","web","dept",10.8,0.9,2,2.2,1.6,"Tracks rankings in Google and Bing and spots searches you have no page for yet."],
+  ["writer","Content Writer","web","dept",13.4,0.9,2,2.2,1.6,"Drafts articles in your voice from your brain dumps and your facts file. Wade writes the words."],
+  ["rubric","Quality Rubric","web","dept",16.2,4.65,2,2.2,1.2,"Scores every draft out of 100 before it can reach you."],
+  ["claims","Claim Checker","web","dept",0.6,7.6,2,2.2,1.2,"Blocks any 'I did' sentence that isn't in your facts file."],
+  ["tech","Technical SEO","web","dept",3.2,7.6,2,2.2,1.2,"Broken links, crawl errors, structured data and page speed."],
+  ["aivis","AI Visibility Watch","web","dept",0.6,4.65,2,2.2,1.4,"Checks how your site shows up inside AI assistants such as Copilot."],
+  ["stdw","Standards Watch","web","dept",3.2,4.65,2,2.2,1.4,"Reads Google's and Bing's own rule pages every evening and raises any change.",1],
+  ["layout","Layout Guard","web","dept",5.8,7.6,2,2.2,1.2,"Opens every page in a hidden browser before and after a change and blocks anything that breaks the look."],
+  ["audit","System Auditor","web","dept",5.8,4.65,2,2.2,1.4,"Checks every 30 minutes that each automation really did its job, and since 7 Nov once a day that every report has a reader and every result flows back to whoever decided."],
+  ["fixer","SEO Auto-Fixer","web","dept",8.4,4.65,2,2.2,1.4,"Fixes basic SEO by itself every evening and merges it: alt text, long descriptions, missing links.",1],
+  ["synd","Cross-posting Desk","web","dept",8.4,7.6,1.6,1.6,1.2,"Re-posts your technical articles on dev.to, one a week, a week after they go live on your site. Each post credits garystow.co.uk as the original. Nothing goes up without your YES.",1],
+  ["guides","Guides Library","web","dept",7.8,0.9,2.4,2.4,2.4,"Step-by-step guides on AI tools, PPC and the systems Gary built. Every guide passes the automatic checks (Guide Standard, copied wording, screenshots, links, topic list), then waits here for Gary to read and approve it. Approved guides go live by themselves, up to 4 a week, at least 2 days apart.",1],
+  ["tsup","Trading Supervisor","trade","sup",33.9,0.9,3,3,2.6,"Triages everything the trading departments raise and root-causes it before you see it. Wade does the thinking."],
+  ["tman","Trading Manager","trade","man",37.5,0.9,3,2.4,2.1,"Your one contact for trading. Walks what needs you to the Town Hall and fills the trading dashboard."],
+  ["texe","Trading Executor","trade","exe",41.1,0.9,2.6,2.2,1.7,"Turns an approved YES into action. Code work goes to the Claude Code Workshop on its own branch."],
+  ["analyst","Analyst","trade","dept",44.3,0.9,2,2.2,1.6,"Reads every scan and trade and writes down what it sees, with numbers."],
+  ["recom","Recommender","trade","dept",44.3,4.65,2,2.2,1.2,"Proposes changes to the strategies. Never changes them without your YES."],
+  ["fill","Fill Analyst","trade","dept",33.9,7.6,2,2.2,1.2,"Works out why an order didn't fill, or filled at a worse price."],
+  ["perf","Performance Watch","trade","dept",33.9,4.65,2,2.2,1.4,"Tracks each strategy in pounds after fees against the go-live scorecard."],
+  ["fresh","Game Freshness Watchdog","trade","dept",36.5,7.6,2,2.2,1.2,"Makes sure the Game never trades on yesterday's premarket data."],
+  ["act","Trading Activity Monitor","trade","dept",36.5,4.65,2,2.2,1.4,"Health light, brakes, resting orders and the daily email after the US close."],
+  ["health","Task Health Watchdog","trade","dept",39.1,4.65,2,2.2,1.4,"Checks every scheduled job on your PC, and names the cause when one fails."],
+  ["growth","Growth Review","trade","dept",41.7,4.65,2,2.2,1.4,"Compares this month with last month for both teams, every day. Every flat or falling number needs a reason and an action, or it is flagged as a gap in the team.",1],
+  ["branch","Branch Watch","trade","dept",39.1,7.6,2,2.2,1.2,"Makes sure every finished fix is merged and live, so the Executor's work never sits waiting on a branch.",1],
+  ["lab","Research Lab","labs","dept",32.9,16.4,2.6,2.2,2.0,"The Labs team, in lab coats. Tests every trading idea against simply owning the market, costs included, before any money goes near it. Nothing reaches the trading system without Gary's YES.",1],
+  ["bench","Backtest Bench","labs","dept",36.1,16.4,1.6,1.4,1.0,"Runs each idea over years of real prices and splits the years, so a rule that only worked once is caught."],
+  ["shadowb","Shadow Books","labs","dept",38.3,16.4,1.6,1.4,1.0,"Forward tests with no money: frozen premarket rules and box bounces, scored on real prices every weeknight."],
+  ["datadesk","Data Desk","labs","dept",40.5,16.4,1.6,1.4,1.0,"Checks every price folder is still updating each morning and fills in missing history."],
+  ["bear","Bear Squad Dojo","bear","dept",28.4,16.3,3,2.4,1.5,"The ninjas test making money when the market falls, using inverse funds, on paper only. They never place an order: a model only goes live with Gary's YES.",1],
   ["store","Harvest Store","store","store",44,29.6,3,2.4,1.5,"Everything the three strategy fields have harvested, added together. Crates of flowers when the combined result is up; the bin fills with wilted stems when it is down. Demo money after fees.",1],
-  ["obs","The Observatory","obs","dept",15.2,1.2,2.6,2.6,2.4,"Scans the horizon every evening for new opportunities, scores each one against a rubric, and only brings the best to the Town Hall. Nothing happens without Gary's YES.",1],
-  ["obsl","Lookout","obs","dept",14.9,4.5,1.5,1.4,1.0,"Scans the horizon every evening and keeps only what fits."],
-  ["obss","Star Chart Room","obs","dept",16.6,4.5,1.5,1.4,1.0,"Scores each find against a rubric; only the best go to the Town Hall."],
-  ["obse","Instrument Workshop","obs","dept",18.3,4.5,1.5,1.4,1.0,"Turns a YES into finished work, ready for Gary to use. Never acts on its own."],
-  ["outr","Outreach Office","out","dept",8.6,1.2,2.6,2.4,2.0,"Finds newsletters, podcasts, events and communities where Gary's articles genuinely help, and puts up to three personal notes on his desk each week. Every note is fact-checked and Gary sends it himself: nothing is ever sent automatically.",1],
-  ["outs","Scout","out","dept",8.3,4.4,1.5,1.4,1.0,"Opens each target's website and finds the right way in: an email, a submission form or a community's posting rules."],
-  ["outw","Pitch Writer","out","dept",10.0,4.4,1.5,1.4,1.0,"Wade drafts each note from the real article text and Gary's facts file. A second check rejects anything invented, and failed drafts try again next week."],
-  ["outl","Link Watcher","out","dept",11.7,4.4,1.5,1.4,1.0,"Counts the websites that link to garystow.co.uk, so the Outreach Office knows which notes actually worked."],
-  ["listen","Listening Post (Learning & Industry)","learn","dept",10.4,16.6,2.2,1.8,2.2,"Reads search, PPC and AI news, learning pieces and what's trending every week. Wade picks what matters and suggests article ideas to the Content Writer. Headlines and links come straight from the sources.",1],
+  ["obs","The Observatory","obs","dept",0.6,16.3,2.6,2.6,2.4,"Scans the horizon every evening for new opportunities, scores each one against a rubric, and only brings the best to the Town Hall. Nothing happens without Gary's YES.",1],
+  ["obsl","Lookout","obs","dept",0.6,19.35,1.5,1.4,1.0,"Scans the horizon every evening and keeps only what fits."],
+  ["obss","Star Chart Room","obs","dept",2.7,19.35,1.5,1.4,1.0,"Scores each find against a rubric; only the best go to the Town Hall."],
+  ["obse","Instrument Workshop","obs","dept",4.8,19.35,1.5,1.4,1.0,"Turns a YES into finished work, ready for Gary to use. Never acts on its own."],
+  ["outr","Outreach Office","out","dept",7.2,16.3,2.6,2.4,2.0,"Finds newsletters, podcasts, events and communities where Gary's articles genuinely help, and puts up to three personal notes on his desk each week. Every note is fact-checked and Gary sends it himself: nothing is ever sent automatically.",1],
+  ["outs","Scout","out","dept",7.2,19.35,1.5,1.4,1.0,"Opens each target's website and finds the right way in: an email, a submission form or a community's posting rules."],
+  ["outw","Pitch Writer","out","dept",9.3,19.35,1.5,1.4,1.0,"Wade drafts each note from the real article text and Gary's facts file. A second check rejects anything invented, and failed drafts try again next week."],
+  ["outl","Link Watcher","out","dept",11.4,19.35,1.5,1.4,1.0,"Counts the websites that link to garystow.co.uk, so the Outreach Office knows which notes actually worked."],
+  ["listen","Listening Post (Learning & Industry)","learn","dept",10.4,16.3,2.2,1.8,2.2,"Reads search, PPC and AI news, learning pieces and what's trending every week. Wade picks what matters and suggests article ideas to the Content Writer. Headlines and links come straight from the sources.",1],
+  ["editor","Editor (Gemini)","web","dept",11.0,4.65,2,2.2,1.4,"Marks every live page out of 100 each week, with what would make it better. 80 is the bar. A different AI from the writers, so nobody marks their own work.",1],
+  ["upgrader","Content Upgrader","web","dept",16.0,0.9,2,2.2,1.6,"Rewrites the weakest pages from your facts file until the Editor marks them 80+. Since 7 Nov it cuts a copied or unsourced sentence instead of binning the whole rewrite, and asks the Researcher for sources.",1],
+  ["research","Researcher","web","dept",13.6,4.65,2,2.2,1.4,"Builds a sourced brief from the web: every outside fact needs a real link. Since 7 Nov it also feeds the Upgrader, so rewritten explainers keep their sources.",1],
+  ["gsup","Goal Supervisors","hall","dept",26.6,0.9,2.6,2.4,2.2,"One for the website, one for trading. Every day they aim the teams at your goals and break loops; every Saturday they think about what would move the goals most, judged by real results, not busy-work. They leave themselves notes so each week starts from what they learned.",1],
+  ["indaud","Independent Auditor","hall","dept",29.8,0.9,2,2.2,1.6,"A separate worker that checks every Goal Supervisor move against the evidence before it happens. Your rule: never check your own work.",1],
+  ["followup","Did-It-Work Desk","hall","dept",29.4,4.05,2,2.2,1.4,"Goes back to every trading change you approved and compares the trades before and after it, once 10+ trades have closed. A change that looks worse goes to the Trading Supervisor.",1],
+  ["ideat","Idea Tester","labs","dept",42.7,16.4,1.6,1.4,1.0,"Takes each idea the Trading Supervisor proposes and replays it on years of real prices against the current rule, costs included. Its verdict goes back to the Supervisor.",1],
+  ["combo","Combo Scout","labs","dept",44.9,16.4,1.6,1.4,1.0,"Searches hundreds of Game combinations every week; one only reaches you if it holds up on unseen days, two weeks running, and then going forward.",1],
+  ["qdesk","Questions Desk","hall","dept",26.6,7.0,1.8,1.6,1.2,"When the writers aren't sure something about you is true, they ask here instead of guessing. Your answer goes straight into your facts file. Open it: localhost:5007/questions",1],
+  ["results","Results Office","hall","dept",26.6,4.05,2.2,2,1.4,"One log of what actually came of the work: replies, links earned, job applications, interviews, enquiries, money in, and the trading weeks. Every Supervisor judges itself by this. Log what it can't see: localhost:5007/outcomes",1],
 ];
 // Every strategy field starts the same size, then grows or shrinks with its real result after fees (demo account for now).
 const FIELD_BASE = [["game","The Game","Premarket runners, scalp 10%",29.5,22.5],["m1","Model 1","Same-day continuation",38.5,22.5],["m2","Model 2","Range-bound bouncy ball",29.5,29],["shadow","Shadow","Paper test: unfilled Game orders bought at the open",36.8,29]];
@@ -278,15 +288,19 @@ buildings.filter(b => b.role === "dept").forEach(b => FLOWS.push([b.id, destOf(b
 FLOWS.push(["writer","guides",COL.web,1],["wsup","wman",COL.web,2],["tsup","tman",COL.trade,2],["wman","hall",COL.hall,3],["tman","hall",COL.hall,3],
   ["hall","wexe",COL.web,5],["hall","texe",COL.trade,5],["wexe","cc",COL.web,6],["texe","cc",COL.trade,6],["cc","site",COL.web,7],["cc","field:game",COL.trade,7]);
 
-function zoneOf(x, y) {
+function zoneOf(x, y) {   // 7 Nov 2026 redesign: website | Wade + Town Hall | oversight | trading, career + labs south
   if (y > 13.3 && y < 15.9) return "street";
-  if (x >= 20 && x < 26.2 && y >= 7.5 && y < 21) return "plaza";
-  if (x >= .3 && x < 20 && y >= .3 && y < 21) return "web";
-  if (x >= 26.2 && x < 47.6 && y >= .3 && y < 21) return "trade";
+  if (x >= 19.8 && x < 26.2 && y >= .3 && y < 21) return "plaza";
+  if (x >= 26.2 && x < 33.6 && y >= .3 && y < 13.3) return "over";
+  if (x >= .3 && x < 19.8 && y >= .3 && y < 13.3) return "web";
+  if (x >= .3 && x < 14 && y >= 15.9 && y < 21) return "career";
+  if (x >= 14 && x < 19.8 && y >= 15.9 && y < 21) return "web";
+  if (x >= 33.6 && x < 47.6 && y >= .3 && y < 13.3) return "trade";
+  if (x >= 26.2 && x < 47.6 && y >= 15.9 && y < 21) return "trade";
   if (x >= .3 && x < 19.6 && y >= 21.5 && y < RIVER_Y) return "homes";
   return "grass";
 }
-const ZONE_FILL = {web: "#dfe7ef", trade: "#f1e1d2", plaza: "#f3e2b0", homes: "#a8d86e", grass: "#86c157", street: "#c9b27a"};
+const ZONE_FILL = {web: "#dfe7ef", trade: "#f1e1d2", plaza: "#f3e2b0", over: "#f6ebc6", career: "#efdcea", homes: "#a8d86e", grass: "#86c157", street: "#c9b27a"};
 
 // scenery
 const trees = [], tufts = [];
@@ -403,7 +417,7 @@ const FUN = (() => {
   }
   function hint() {
     if (!gary) return;
-    const z = zoneOf(gary.x, gary.y), where = {web: "the website district", trade: "the trading district", homes: "the housing district, among the web pages", plaza: "near the Town Hall", grass: gary.y > 21 ? "the countryside between the houses and the fields" : "the countryside on the edge of town", street: "on Main Street"}[z] || "somewhere in the village";
+    const z = zoneOf(gary.x, gary.y), where = {web: "the website district", trade: "the trading district", homes: "the housing district, among the web pages", plaza: "near the Town Hall", over: "in the oversight block", career: "with the career and outreach team", grass: gary.y > 21 ? "the countryside between the houses and the fields" : "the countryside on the edge of town", street: "on Main Street"}[z] || "somewhere in the village";
     selName.textContent = foundAt ? "Already found him" : "Where's Gary?";
     selBody.innerHTML = foundAt ? `<p style="margin:0">Nice work. He moves to a new hiding place tomorrow.</p>` :
       `<p style="margin:0">Gary is hiding in the village. Look for a <b style="color:var(--gold)">gold cap with a G</b> peeking out from behind a tree, then click him.</p><p style="margin:0"><b>Hint:</b> today he's in ${where}.</p>`;
@@ -926,7 +940,7 @@ function frame(now) {
   if (labelMode > 0) FIELDS.forEach(f => { const p = iso(f[3] + f[5] / 2, f[4] - .2), net = f[7].net || 0;
     const tag = PRIVATE ? (net >= 0 ? " · +£" : " · −£") + Math.abs(net).toFixed(0) : net > 0 ? " · growing" : net < 0 ? " · wilting" : "";
     label(f[1] + (f[0] === "shadow" ? " · paper test" : " · demo") + tag, p.x, p.y - 6, {size: 15, bg: net > 0 ? "#d9f7c4" : net < 0 ? "#ffd6cc" : "#ffe2b8", stripe: COL.trade}); });
-  if (labelMode > 0) [["WEBSITE TEAMS", 10, .2, COL.web], ["TRADING TEAMS", 37, .2, COL.trade], ["MAIN STREET", 6, 15.8, "#a8894a"], ["HOUSES · the web pages", 10, RIVER_Y + .1, "#4f9a2a"], ["STRATEGY FIELDS", 37, 34.5, "#a86e3c"]]
+  if (labelMode > 0) [["WEBSITE TEAMS", 10, .2, COL.web], ["OVERSIGHT", 29.9, .2, "#b8860b"], ["TRADING TEAMS", 40.6, .2, COL.trade], ["CAREER + OUTREACH", 6.5, 21.25, COL.out], ["LABS", 40, 18.6, COL.labs], ["MAIN STREET", 33.2, 14.9, "#a8894a"], ["HOUSES · the web pages", 10, RIVER_Y + .1, "#4f9a2a"], ["STRATEGY FIELDS", 37, 34.5, "#a86e3c"]]
     .forEach(([t, x, y, c]) => { const p = iso(x, y); label(t, p.x, p.y, {size: 17, bg: c, fg: "#fff"}); });
   FUN.over(dt);
   requestAnimationFrame(frame);
@@ -1023,7 +1037,7 @@ function renderNotices() {
   document.getElementById("noticeCard").hidden = false; noticesEl.innerHTML = "";
   const fresh = list.filter(n => n.new).length;
   const head = document.createElement("p"); head.style.margin = "0";
-  head.innerHTML = fresh ? `<span class="pill new">${fresh} new</span> The main ones also send a messenger to wait outside the Town Hall.` : `<span class="pill ok">All read</span> Nothing new since you last looked.`;
+  head.innerHTML = fresh ? `<span class="pill new">${fresh} new</span> The main ones also send a messenger to wait outside the Town Hall.` : `<span class="pill ok">All read</span> Nothing to read until Saturday. Every report is still on the board if you want it.`;
   noticesEl.appendChild(head);
   list.filter(n => n.new).slice(0, 8).forEach(n => { const a = document.createElement("a"); a.className = "owner"; a.href = n.link; a.style.textDecoration = "none";
     a.innerHTML = `<span class="bang">!</span><span>${esc(n.title)}<br><span style="font-weight:400">${esc(byId[n.from] ? byId[n.from].name : "")} · ${esc(n.updated)}</span></span>`; noticesEl.appendChild(a); });
