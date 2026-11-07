@@ -28,6 +28,11 @@ practical guides and articles on AI tools.
 
 ## Recent articles
 
+- [How to Automate PPC Reporting with AI and Still Trust the Numbers](https://garystow.co.uk/articles/how-to-automate-ppc-reporting-with-ai-and-still-trust-the/):
+  the questions a PPC report has always had to answer, which parts I'd
+  hand to AI today, which part has to stay with a person, and the
+  three checks I run because AI can quietly round or mix up the
+  numbers.
 - [MCP Explained for PPC Managers, Without the Jargon](https://garystow.co.uk/articles/mcp-explained-for-ppc-managers-without-the-jargon/):
   what the Model Context Protocol actually is, the cable analogy I use
   to explain it, what it changes about an account audit, and why I
