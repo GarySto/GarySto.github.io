@@ -28,6 +28,10 @@ practical guides and articles on AI tools.
 
 ## Recent articles
 
+- [Self-Improving AI Agents: How I Wired 70+ of Mine to Learn From Their Results](https://garystow.co.uk/articles/self-improving-ai-agents-how-i-wired-70-of-mine-to-learn/):
+  most AI agents never find out whether their work helped. Here is how
+  I closed that loop on 70+ home agents, with the real numbers from
+  one Saturday audit.
 - [How to Automate PPC Reporting with AI and Still Trust the Numbers](https://garystow.co.uk/articles/how-to-automate-ppc-reporting-with-ai-and-still-trust-the/):
   the questions a PPC report has always had to answer, which parts I'd
   hand to AI today, which part has to stay with a person, and the
