@@ -1,5 +1,5 @@
 {
-"checked": "5 Nov 2026, 19:35",
+"checked": "7 Nov 2026, 19:35",
 "nodes": [
 {
 "id": "goal_profile",
@@ -179,6 +179,15 @@
 "ok": true,
 "private": false,
 "desc": "Releases approved articles at a steady pace, two a week and at least three days apart, never on the same day as a guide.",
+"alone": false
+},
+{
+"id": "explained_q",
+"label": "Explained Simply queue",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "One of the newest agents on the team. Its public description is still being written.",
 "alone": false
 },
 {
@@ -576,6 +585,87 @@
 "private": false,
 "desc": "Keeps the trading code on Gary's PC up to date every 30 minutes.",
 "alone": false
+},
+{
+"id": "goalsup",
+"label": "Goal Supervisors (website + trading)",
+"team": "hub",
+"ok": true,
+"private": false,
+"desc": "One of the newest agents on the team. Its public description is still being written.",
+"alone": false
+},
+{
+"id": "indaud",
+"label": "Independent Auditor",
+"team": "hub",
+"ok": true,
+"private": false,
+"desc": "One of the newest agents on the team. Its public description is still being written.",
+"alone": false
+},
+{
+"id": "outcomes",
+"label": "Results log (what came of the work)",
+"team": "hub",
+"ok": true,
+"private": false,
+"desc": "One of the newest agents on the team. Its public description is still being written.",
+"alone": false
+},
+{
+"id": "questions",
+"label": "Questions Desk",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "One of the newest agents on the team. Its public description is still being written.",
+"alone": false
+},
+{
+"id": "researcher",
+"label": "Researcher",
+"team": "web",
+"ok": true,
+"private": false,
+"desc": "One of the newest agents on the team. Its public description is still being written.",
+"alone": false
+},
+{
+"id": "followup",
+"label": "Did-It-Work Desk",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "One of the newest agents on the team. Its public description is still being written.",
+"alone": false
+},
+{
+"id": "ideatester",
+"label": "Idea Tester",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "One of the newest agents on the team. Its public description is still being written.",
+"alone": false
+},
+{
+"id": "combo",
+"label": "Combo Scout",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "One of the newest agents on the team. Its public description is still being written.",
+"alone": false
+},
+{
+"id": "bear",
+"label": "Bear Squad (paper)",
+"team": "trade",
+"ok": true,
+"private": false,
+"desc": "One of the newest agents on the team. Its public description is still being written.",
+"alone": false
 }
 ],
 "edges": [
@@ -628,6 +718,72 @@
 "ok": true
 },
 {
+"from": "wade",
+"to": "engine",
+"what": "writing",
+"ok": true
+},
+{
+"from": "wade",
+"to": "depts",
+"what": "SEO analysis",
+"ok": true
+},
+{
+"from": "wade",
+"to": "supervisor_w",
+"what": "root-causing",
+"ok": true
+},
+{
+"from": "wade",
+"to": "strategist",
+"what": "goal planning",
+"ok": true
+},
+{
+"from": "wade",
+"to": "imgbrief",
+"what": "image prompts",
+"ok": true
+},
+{
+"from": "wade",
+"to": "listening",
+"what": "summaries",
+"ok": true
+},
+{
+"from": "wade",
+"to": "results",
+"what": "results notes",
+"ok": true
+},
+{
+"from": "wade",
+"to": "notebook",
+"what": "notes",
+"ok": true
+},
+{
+"from": "wade",
+"to": "shipped",
+"what": "closing the loop",
+"ok": true
+},
+{
+"from": "wade",
+"to": "analyst",
+"what": "trade analysis",
+"ok": true
+},
+{
+"from": "wade",
+"to": "recommender",
+"what": "proposals",
+"ok": true
+},
+{
 "from": "notebook",
 "to": "writer",
 "what": "lessons from past drafts",
@@ -665,14 +821,26 @@
 },
 {
 "from": "truth",
-"to": "gary",
-"what": "drafts to review",
+"to": "dashboard_w",
+"what": "",
 "ok": true
 },
 {
 "from": "gary",
 "to": "article_q",
 "what": "approved articles",
+"ok": true
+},
+{
+"from": "gary",
+"to": "explained_q",
+"what": "approved explainers",
+"ok": true
+},
+{
+"from": "explained_q",
+"to": "site",
+"what": "explainer pages",
 "ok": true
 },
 {
@@ -689,8 +857,8 @@
 },
 {
 "from": "imgbrief",
-"to": "gary",
-"what": "image prompts",
+"to": "dashboard_w",
+"what": "",
 "ok": true
 },
 {
@@ -1045,6 +1213,150 @@
 "from": "gary",
 "to": "goal_profile",
 "what": "",
+"ok": true
+},
+{
+"from": "outreach",
+"to": "outcomes",
+"what": "",
+"ok": true
+},
+{
+"from": "observatory",
+"to": "outcomes",
+"what": "",
+"ok": true
+},
+{
+"from": "perf",
+"to": "outcomes",
+"what": "trading weeks",
+"ok": true
+},
+{
+"from": "gary",
+"to": "outcomes",
+"what": "wins only he can see (/outcomes)",
+"ok": true
+},
+{
+"from": "outcomes",
+"to": "goalsup",
+"what": "real results to judge every move by",
+"ok": true
+},
+{
+"from": "outcomes",
+"to": "goal_money",
+"what": "money and job results",
+"ok": true
+},
+{
+"from": "outcomes",
+"to": "goal_profile",
+"what": "replies, links, invites",
+"ok": true
+},
+{
+"from": "goalsup",
+"to": "indaud",
+"what": "every move, checked by someone else",
+"ok": true
+},
+{
+"from": "goalsup",
+"to": "upgrader",
+"what": "which pages to improve first",
+"ok": true
+},
+{
+"from": "goalsup",
+"to": "engine",
+"what": "goal topics first",
+"ok": true
+},
+{
+"from": "goalsup",
+"to": "dashboard_w",
+"what": "",
+"ok": true
+},
+{
+"from": "goalsup",
+"to": "ideatester",
+"what": "ideas to test (no money)",
+"ok": true
+},
+{
+"from": "ideatester",
+"to": "goalsup",
+"what": "verdicts on each idea",
+"ok": true
+},
+{
+"from": "combo",
+"to": "goalsup",
+"what": "Game combinations that hold up",
+"ok": true
+},
+{
+"from": "bear",
+"to": "goalsup",
+"what": "falling-market test",
+"ok": true
+},
+{
+"from": "lab",
+"to": "goalsup",
+"what": "strategy tests",
+"ok": true
+},
+{
+"from": "premarket",
+"to": "goalsup",
+"what": "shadow trades",
+"ok": true
+},
+{
+"from": "decisions",
+"to": "followup",
+"what": "every change Gary approved",
+"ok": true
+},
+{
+"from": "followup",
+"to": "goalsup",
+"what": "did each change help?",
+"ok": true
+},
+{
+"from": "researcher",
+"to": "upgrader",
+"what": "sourced facts for rewrites",
+"ok": true
+},
+{
+"from": "researcher",
+"to": "writer",
+"what": "sourced facts for new articles",
+"ok": true
+},
+{
+"from": "gary",
+"to": "questions",
+"what": "facts about him",
+"ok": true
+},
+{
+"from": "questions",
+"to": "upgrader",
+"what": "answers go in his facts file",
+"ok": true
+},
+{
+"from": "upgrader",
+"to": "questions",
+"what": "'did you do this?'",
 "ok": true
 }
 ]
