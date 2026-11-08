@@ -259,7 +259,7 @@ const cv = document.getElementById("map"), ctx = cv.getContext("2d");
 const ctxRef = {c: ctx}; // ground is pre-rendered to its own canvas through the same helpers
 let cam = {x: 0, y: 0, z: 1}, showAll = false, labelMode = 1, showFlow = false, selected = null, dpr = 1, clock = 0, last = 0;
 const iso = (x, y, up = 0) => ({x: (x - y) * TW / 2, y: (x + y) * TH / 2 - up});
-const COL = {social: "#0a8fd6", labs: "#00b8c4", out: "#d9468f", learn: "#6f8f1f", web: "#3f8fe6", trade: "#ee6a3c", hall: "#ffc23d", build: "#43c271", wade: "#a97cf4", bear: "#3a3a46", obs: "#138a8a", store: "#b5482e"};
+const COL = {social: "#1f3566", labs: "#00b8c4", out: "#d9468f", learn: "#6f8f1f", web: "#3f8fe6", trade: "#ee6a3c", hall: "#ffc23d", build: "#43c271", wade: "#a97cf4", bear: "#3a3a46", obs: "#138a8a", store: "#b5482e"};
 const INK = "#1b1b1b";
 let seed = 21; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
 const K = () => 1 / Math.max(.6, Math.min(1.6, cam.z)); // keeps text the same size on screen
@@ -800,7 +800,7 @@ function workshopDraw(b) {
 }
 
 /* ================================================================ characters: big round heads, paper bodies, hop when walking (all original) */
-const HAT = {social: "#06679c", labs: "#00838c", out: "#b02d70", learn: "#4f6a12", web: "#2f6fd0", trade: "#c94a24", hall: "#ffc23d", build: "#ffcf2e", wade: "#5b3aa8", bear: "#1b1b1b", obs: "#0d5f63"};
+const HAT = {social: "#14234a", labs: "#00838c", out: "#b02d70", learn: "#4f6a12", web: "#2f6fd0", trade: "#c94a24", hall: "#ffc23d", build: "#ffcf2e", wade: "#5b3aa8", bear: "#1b1b1b", obs: "#0d5f63"};
 function drawPerson(p, sx, sy, sc, bobIn) {
   const q = sx !== undefined ? {x: sx, y: sy} : iso(p.x, p.y);
   const s = sc || (p.hero ? 1.9 : 1.6), moving = p.path && p.path.length;
@@ -812,6 +812,12 @@ function drawPerson(p, sx, sy, sc, bobIn) {
   ctx.fillStyle = shirt; ctx.beginPath(); ctx.moveTo(-6, 0); ctx.lineTo(6, 0); ctx.lineTo(5, -11); ctx.lineTo(-5, -11); ctx.closePath(); ctx.fill(); ctx.stroke();
   ctx.fillStyle = "#333"; ctx.fillRect(-6, -1.5, 12, 1.5);
   const OUT = p.outfit || (p.team === "obs" ? OUTFITS.snow : p.team === "labs" ? OUTFITS.lab : null);
+  if (p.team === "social" && !p.outfit) {   // 8 Nov 2026 (Gary): the Social team wear navy hoodies, jeans and skate trainers
+    ctx.fillStyle = "#1f3566"; ctx.beginPath(); ctx.moveTo(-6, -3.4); ctx.lineTo(6, -3.4); ctx.lineTo(5, -11); ctx.lineTo(-5, -11); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.lineWidth = .8; ctx.strokeRect(-3.2, -6.6, 6.4, 2.4); ctx.beginPath(); ctx.moveTo(-1.4, -11); ctx.lineTo(-1.6, -8.2); ctx.moveTo(1.4, -11); ctx.lineTo(1.6, -8.2); ctx.strokeStyle = "#e8eef8"; ctx.stroke(); ctx.strokeStyle = INK; ctx.lineWidth = 1.3;
+    ctx.fillStyle = "#4a78b8"; ctx.fillRect(-6, -3.4, 12, 3.4); ctx.strokeRect(-6, -3.4, 12, 3.4); ctx.beginPath(); ctx.moveTo(0, -3.4); ctx.lineTo(0, 0); ctx.stroke();
+    ctx.fillStyle = "#ffffff"; ctx.beginPath(); ctx.ellipse(-3.4, .4, 3.2, 1.6, 0, 0, 7); ctx.moveTo(6.6, .4); ctx.ellipse(3.4, .4, 3.2, 1.6, 0, 0, 7); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#e0412f"; ctx.fillRect(-6, .1, 5.2, .7); ctx.fillRect(.8, .1, 5.2, .7); }
   if (OUT) { ctx.fillStyle = OUT.top; ctx.beginPath(); ctx.moveTo(-6, -4); ctx.lineTo(5.6, -4); ctx.lineTo(5, -11); ctx.lineTo(-5, -11); ctx.closePath(); ctx.fill(); ctx.stroke();
     if (OUT.puffer) { ctx.lineWidth = .8; ctx.beginPath(); ctx.moveTo(-5.4, -6.5); ctx.lineTo(5.4, -6.5); ctx.moveTo(-5.2, -8.8); ctx.lineTo(5.2, -8.8); ctx.stroke(); ctx.lineWidth = 1.3; }
     ctx.fillStyle = OUT.bottom; ctx.fillRect(-6, -4, 12, OUT.shorts ? 2.4 : 4); ctx.strokeRect(-6, -4, 12, OUT.shorts ? 2.4 : 4);
@@ -829,6 +835,8 @@ function drawPerson(p, sx, sy, sc, bobIn) {
     ctx.fillStyle = "#0d5f63"; ctx.fillRect(-7.8, -22.5, 15.6, 2.6); ctx.strokeRect(-7.8, -22.5, 15.6, 2.6); ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(0, -29.6, 2.2, 0, 7); ctx.fill(); ctx.stroke(); }
   else if (p.team === "labs") { ctx.fillStyle = "#5a3a1a"; ctx.beginPath(); ctx.arc(0, -21.5, 7.4, Math.PI * 1.05, Math.PI * 1.95); ctx.fill();
     ctx.fillStyle = "#1b1b1b"; ctx.fillRect(-7.8, -19.4, 15.6, 2.2); ctx.fillStyle = "#bff4ff"; ctx.beginPath(); ctx.ellipse(-2.6, -18.3, 2.9, 2.5, 0, 0, 7); ctx.ellipse(2.6, -18.3, 2.9, 2.5, 0, 0, 7); ctx.fill(); ctx.stroke(); }
+  else if (p.team === "social") {   // hood up, face showing
+    ctx.fillStyle = "#1f3566"; ctx.beginPath(); ctx.arc(0, -17.5, 9.6, Math.PI * 0.92, Math.PI * 2.08); ctx.arc(0, -17.2, 7.2, Math.PI * 2.05, Math.PI * 0.95, true); ctx.closePath(); ctx.fill(); ctx.stroke(); }
   else if (p.team === "trade") { ctx.beginPath(); ctx.arc(0, -21.5, 7.2, Math.PI, 0); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.moveTo(4 * face, -22); ctx.lineTo(11 * face, -21); ctx.lineTo(4 * face, -20); ctx.closePath(); ctx.fill(); ctx.stroke(); }
   else { ctx.beginPath(); ctx.ellipse(0, -23, 7.8, 3, 0, 0, 7); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.arc(0, -23.5, 4.8, Math.PI, 0); ctx.fill(); ctx.stroke(); }
   FUN.hat(p);
