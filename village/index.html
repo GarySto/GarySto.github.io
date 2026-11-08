@@ -225,6 +225,10 @@ const BUILDINGS = [
   ["outs","Scout","out","dept",0.8,17.4,1.5,1.4,1.0,"Opens each target's website and finds the right way in: an email, a submission form or a community's posting rules."],
   ["outw","Pitch Writer","out","dept",0.8,19.3,1.5,1.4,1.0,"Wade drafts each note from the real article text and Gary's facts file. A second check rejects anything invented, and failed drafts try again next week."],
   ["outl","Link Watcher","out","dept",3.8,19.4,1.5,1.4,1.0,"Counts the websites that link to garystow.co.uk, so the Outreach Office knows which notes actually worked."],
+  ["sdesk","Social Desk (LinkedIn)","social","dept",21.6,27.6,2.4,2.2,1.6,"Gary's LinkedIn record: every post, its numbers from LinkedIn's weekly export, and whether the predictions came true. Posts are planned here with a date, a format and what each one is testing."],
+  ["swriter","Social Writer","social","dept",24.6,27.6,1.6,1.4,1.0,"Writes finished LinkedIn posts from Gary's own words. Only posts predicted 70+ reach him; MAYBE with notes gets a rewrite, and every NO reason and edit teaches it."],
+  ["sanalyst","Social Analyst","social","dept",24.6,29.5,1.6,1.4,1.0,"Measures what actually drives results (format, day, pillar, length, links, openings) and picks the one thing to test on the next post."],
+  ["scoach","Social Coach","social","dept",22.0,30.5,1.6,1.4,1.0,"Every Sunday turns the week's website articles, news and Gary's notes into the LinkedIn brief, and passes LinkedIn wins back to the website team."],
   ["listen","Listening Post (Learning & Industry)","learn","dept",9.1,16.3,2.2,1.8,2.2,"Reads search, PPC and AI news, learning pieces and what's trending every week. Wade picks what matters and suggests article ideas to the Content Writer. Headlines and links come straight from the sources."],
   ["editor","Editor (Gemini)","web","dept",3.2,7.6,2,2.2,1.4,"Marks every live page out of 100 each week, with what would make it better. 80 is the bar. A different AI from the writers, so nobody marks their own work."],
   ["upgrader","Content Upgrader","web","dept",3.2,4.65,2,2.2,1.6,"Rewrites the weakest pages from your facts file until the Editor marks them 80+. Since 7 Nov it cuts a copied or unsourced sentence instead of binning the whole rewrite, and asks the Researcher for sources."],
@@ -255,7 +259,7 @@ const cv = document.getElementById("map"), ctx = cv.getContext("2d");
 const ctxRef = {c: ctx}; // ground is pre-rendered to its own canvas through the same helpers
 let cam = {x: 0, y: 0, z: 1}, showAll = false, labelMode = 1, showFlow = false, selected = null, dpr = 1, clock = 0, last = 0;
 const iso = (x, y, up = 0) => ({x: (x - y) * TW / 2, y: (x + y) * TH / 2 - up});
-const COL = {labs: "#00b8c4", out: "#d9468f", learn: "#6f8f1f", web: "#3f8fe6", trade: "#ee6a3c", hall: "#ffc23d", build: "#43c271", wade: "#a97cf4", bear: "#3a3a46", obs: "#138a8a", store: "#b5482e"};
+const COL = {social: "#0a8fd6", labs: "#00b8c4", out: "#d9468f", learn: "#6f8f1f", web: "#3f8fe6", trade: "#ee6a3c", hall: "#ffc23d", build: "#43c271", wade: "#a97cf4", bear: "#3a3a46", obs: "#138a8a", store: "#b5482e"};
 const INK = "#1b1b1b";
 let seed = 21; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
 const K = () => 1 / Math.max(.6, Math.min(1.6, cam.z)); // keeps text the same size on screen
@@ -288,7 +292,7 @@ const front = id => { if (id.startsWith("field:")) { const f = FIELDS.find(f => 
 // work flows: [from, to, colour, step]
 const FLOWS = [];
 // where each department walks its work (11 Oct 2026: Outreach -> its office -> Town Hall; Listening Post -> Content Writer)
-const destOf = b => b.id === "guides" ? "hall" : b.team === "web" ? "wsup" : b.team === "obs" ? "hall" : b.team === "out" ? (b.id === "outr" ? "hall" : "outr") : b.team === "learn" ? "writer" : b.team === "labs" ? (b.id === "lab" ? "tsup" : "lab") : "tsup";
+const destOf = b => b.id === "guides" ? "hall" : b.team === "social" ? (b.id === "sdesk" ? "hall" : "sdesk") : b.team === "web" ? "wsup" : b.team === "obs" ? "hall" : b.team === "out" ? (b.id === "outr" ? "hall" : "outr") : b.team === "learn" ? "writer" : b.team === "labs" ? (b.id === "lab" ? "tsup" : "lab") : "tsup";
 buildings.filter(b => b.role === "dept").forEach(b => FLOWS.push([b.id, destOf(b), COL[b.team], 0]));
 FLOWS.push(["writer","guides",COL.web,1],["wsup","wman",COL.web,2],["tsup","tman",COL.trade,2],["wman","hall",COL.hall,3],["tman","hall",COL.hall,3],
   ["hall","wexe",COL.web,5],["hall","texe",COL.trade,5],["wexe","cc",COL.web,6],["texe","cc",COL.trade,6],["cc","site",COL.web,7],["cc","field:game",COL.trade,7]);
@@ -796,7 +800,7 @@ function workshopDraw(b) {
 }
 
 /* ================================================================ characters: big round heads, paper bodies, hop when walking (all original) */
-const HAT = {labs: "#00838c", out: "#b02d70", learn: "#4f6a12", web: "#2f6fd0", trade: "#c94a24", hall: "#ffc23d", build: "#ffcf2e", wade: "#5b3aa8", bear: "#1b1b1b", obs: "#0d5f63"};
+const HAT = {social: "#06679c", labs: "#00838c", out: "#b02d70", learn: "#4f6a12", web: "#2f6fd0", trade: "#c94a24", hall: "#ffc23d", build: "#ffcf2e", wade: "#5b3aa8", bear: "#1b1b1b", obs: "#0d5f63"};
 function drawPerson(p, sx, sy, sc, bobIn) {
   const q = sx !== undefined ? {x: sx, y: sy} : iso(p.x, p.y);
   const s = sc || (p.hero ? 1.9 : 1.6), moving = p.path && p.path.length;
@@ -954,7 +958,7 @@ function frame(now) {
   if (labelMode > 0) FIELDS.forEach(f => { const p = iso(f[3] + f[5] / 2, f[4] - .2), net = f[7].net || 0;
     const tag = PRIVATE ? (net >= 0 ? " · +£" : " · −£") + Math.abs(net).toFixed(0) : net > 0 ? " · growing" : net < 0 ? " · wilting" : "";
     label(f[1] + (f[0] === "shadow" ? " · paper test" : " · demo") + tag, p.x, p.y - 6, {size: 15, bg: net > 0 ? "#d9f7c4" : net < 0 ? "#ffd6cc" : "#ffe2b8", stripe: COL.trade}); });
-  if (labelMode > 0) [["WEBSITE TEAMS", 10, .2, COL.web], ["OVERSIGHT", 30.6, 12.4, "#b8860b"], ["TRADING TEAMS", 40.6, .2, COL.trade], ["OUTREACH", 6.9, 21.9, COL.out], ["OBSERVATORY", 17.4, 12.6, COL.obs], ["LABS", 40, 18.6, COL.labs], ["HOUSES · the web pages", 10, RIVER_Y + .1, "#4f9a2a"], ["STRATEGY FIELDS", 37, 34.5, "#a86e3c"]]
+  if (labelMode > 0) [["WEBSITE TEAMS", 10, .2, COL.web], ["OVERSIGHT", 30.6, 12.4, "#b8860b"], ["TRADING TEAMS", 40.6, .2, COL.trade], ["OUTREACH", 6.9, 21.9, COL.out], ["SOCIAL · LinkedIn", 25.8, 33.2, COL.social], ["OBSERVATORY", 17.4, 12.6, COL.obs], ["LABS", 40, 18.6, COL.labs], ["HOUSES · the web pages", 10, RIVER_Y + .1, "#4f9a2a"], ["STRATEGY FIELDS", 37, 34.5, "#a86e3c"]]
     .forEach(([t, x, y, c]) => { const p = iso(x, y); label(t, p.x, p.y, {size: 17, bg: c, fg: "#fff"}); });
   FUN.over(dt);
   requestAnimationFrame(frame);
