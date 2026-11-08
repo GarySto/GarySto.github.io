@@ -167,11 +167,15 @@ a{color:#9fd0ff}
    Private version (localhost:5007/village): the real Town Hall queue, and buttons that do exactly what the dashboard does.
    Public version (garystow.co.uk/village): public-safe data only, read-only. */
 async function loadData() {
-  try { const r = await fetch("village_data.json?ts=" + Date.now(), {cache: "no-store"}); if (r.ok) return await r.json(); } catch (e) {}
+  // 8 Nov 2026: one failed request (e.g. while GitHub Pages redeploys) showed "Could not load" for good. Try 4 times.
+  for (let i = 0; i < 4; i++) {
+    try { const r = await fetch("village_data.json?ts=" + Date.now(), {cache: "no-store"}); if (r.ok) return await r.json(); } catch (e) {}
+    await new Promise(res => setTimeout(res, 1500 * (i + 1)));
+  }
   return window.VILLAGE_FALLBACK || null;
 }
 const DATA = await loadData();
-if (!DATA) { document.getElementById("tWhat").textContent = "Could not load the village data. Is the dashboard running?"; return; }
+if (!DATA) { document.getElementById("tWhat").textContent = "Could not load the village data. Please refresh the page in a minute."; return; }
 const PRIVATE = DATA.mode === "private";
 /* ================================================================ LAYOUT: Main Street runs west to east; both
    business districts face it and walk their work along it to the Town Hall in the middle. */
