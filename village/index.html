@@ -183,6 +183,7 @@ const PRIVATE = DATA.mode === "private";
 const BUILDINGS = [
   ["hall","Town Hall","hall","hall",21,9,4,4,2.4,"Where you decide. Anything that needs a YES arrives here as a solution with a recommendation, and its owner waits outside on Main Street until you answer."],
   ["wade","Wade's Tower","wade","wade",22,2.5,2,2,6,"Wade is your local AI, running in LM Studio on your own PC. The Supervisors, the Managers and the Content Writer don't think for themselves: they send their work up here, Wade writes the answer, and it beams back. No token bill."],
+  ["gem","Gemini Studio","gemini","gemini",26.0,18.0,2.4,2.4,2.2,"Gemini is the team's second AI, from a different company to the writers on purpose. It marks every live page out of 100 every week as the Editor, says exactly what would make each one better, and checks every rewrite before it can reach you. 80 is the bar. Nobody marks their own homework."],
   ["cc","Claude Code Workshop","build","cc",21,17,4,3,1.6,"Where real code gets written. The Executors bring approved jobs; Claude Code's builders write it on their own branch and carry it out to the houses. Nothing reaches the live site until the layout and SEO checks pass."],
   ["wsup","Website Supervisor","web","sup",0.6,0.9,3,3,2.6,"Reads every department's findings, finds the real cause and turns each one into a solution with a recommendation. Wade does the thinking."],
   ["wman","Website Manager","web","man",4.2,0.9,3,2.4,2.1,"The one voice you deal with for the website. Walks what needs you down Main Street to the Town Hall."],
@@ -259,7 +260,7 @@ const cv = document.getElementById("map"), ctx = cv.getContext("2d");
 const ctxRef = {c: ctx}; // ground is pre-rendered to its own canvas through the same helpers
 let cam = {x: 0, y: 0, z: 1}, showAll = false, labelMode = 1, showFlow = false, selected = null, dpr = 1, clock = 0, last = 0;
 const iso = (x, y, up = 0) => ({x: (x - y) * TW / 2, y: (x + y) * TH / 2 - up});
-const COL = {social: "#1f3566", labs: "#00b8c4", out: "#d9468f", learn: "#6f8f1f", web: "#3f8fe6", trade: "#ee6a3c", hall: "#ffc23d", build: "#43c271", wade: "#a97cf4", bear: "#3a3a46", obs: "#138a8a", store: "#b5482e"};
+const COL = {gemini: "#4b5fd6", social: "#1f3566", labs: "#00b8c4", out: "#d9468f", learn: "#6f8f1f", web: "#3f8fe6", trade: "#ee6a3c", hall: "#ffc23d", build: "#43c271", wade: "#a97cf4", bear: "#3a3a46", obs: "#138a8a", store: "#b5482e"};
 const INK = "#1b1b1b";
 let seed = 21; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
 const K = () => 1 / Math.max(.6, Math.min(1.6, cam.z)); // keeps text the same size on screen
@@ -747,6 +748,23 @@ function townHall(b) {
   return {x: c.x, y: c.y - 70};
 }
 let wadeTop = {x: 0, y: 0};
+// 8 Nov 2026 (Gary: "there is no Gemini factory - it is part of the team now"): Gemini's own landmark, opposite
+// Wade's tower. A two-storey studio with a glass roof and the twin stars (Gemini = the twins) turning above it.
+function geminiDraw(b) {
+  const lift = b.floors * TH * .9; shadow(b.x, b.y, b.w, b.d);
+  walls(b.x, b.y, b.w, b.d, lift, "#e9ecff"); windows(b.x, b.y, b.w, b.d, lift, b.floors, "#c9d2ff"); door(b.x, b.y, b.w, b.d, "#2f3b8f");
+  poly([iso(b.x - .12, b.y - .12, lift), iso(b.x + b.w + .12, b.y - .12, lift), iso(b.x + b.w + .12, b.y + b.d + .12, lift), iso(b.x - .12, b.y + b.d + .12, lift)], "#4b5fd6");
+  poly([iso(b.x + .4, b.y + .4, lift + 3), iso(b.x + b.w - .4, b.y + .4, lift + 3), iso(b.x + b.w - .4, b.y + b.d - .4, lift + 3), iso(b.x + .4, b.y + b.d - .4, lift + 3)], "rgba(190,215,255,.85)", true);
+  const c = iso(b.x + b.w / 2, b.y + b.d / 2, lift), t = clock * 1.6;
+  const star = (x, y, r, col) => { ctx.fillStyle = col; ctx.strokeStyle = INK; ctx.lineWidth = 1.6; ctx.beginPath();
+    for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * .45 : r; ctx.lineTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr); }
+    ctx.closePath(); ctx.fill(); ctx.stroke(); };
+  ctx.fillStyle = "rgba(120,140,255,.25)"; ctx.beginPath(); ctx.arc(c.x, c.y - 34, 30 + Math.sin(t * 2) * 3, 0, 7); ctx.fill();
+  star(c.x + Math.cos(t) * 14, c.y - 34 + Math.sin(t) * 5, 9, "#ffd84d");
+  star(c.x - Math.cos(t) * 14, c.y - 34 - Math.sin(t) * 5, 9, "#9fb4ff");
+  return {x: c.x, y: c.y - 60};
+}
+
 function towerDraw(b) {
   const lift = b.floors * TH * .9; shadow(b.x, b.y, b.w, b.d);
   walls(b.x, b.y, b.w, b.d, lift, "#7d5cc4"); windows(b.x, b.y, b.w, b.d, lift, 5, "#e8dcff"); door(b.x, b.y, b.w, b.d, "#3e2a74");
@@ -867,6 +885,7 @@ function drawBuilding(b) {
   else if (b.role === "hall") top = townHall(b);
   else if (b.role === "wade") top = towerDraw(b);
   else if (b.role === "cc") top = workshopDraw(b);
+  else if (b.role === "gemini") top = geminiDraw(b);
   else if (b.role === "store") top = storeDraw(b);
   else top = office(b);
   const base = iso(b.x + b.w / 2, b.y + b.d);
