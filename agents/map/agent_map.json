@@ -1,5 +1,5 @@
 {
-"checked": "7 Nov 2026, 19:35",
+"checked": "8 Nov 2026, 19:35",
 "nodes": [
 {
 "id": "goal_profile",
@@ -131,7 +131,7 @@
 "id": "depts",
 "label": "6 SEO departments",
 "team": "web",
-"ok": true,
+"ok": false,
 "private": false,
 "desc": "Six specialist departments: SEO, content, AI visibility, user experience, page speed and technical SEO. An issue has to be seen twice before it counts.",
 "alone": false
@@ -371,6 +371,24 @@
 "alone": false
 },
 {
+"id": "social",
+"label": "Social desk (LinkedIn)",
+"team": "career",
+"ok": true,
+"private": false,
+"desc": "One of the newest agents on the team. Its public description is still being written.",
+"alone": false
+},
+{
+"id": "socialcoach",
+"label": "Social Coach (weekly LinkedIn brief)",
+"team": "career",
+"ok": true,
+"private": false,
+"desc": "One of the newest agents on the team. Its public description is still being written.",
+"alone": false
+},
+{
 "id": "actions",
 "label": "Trading runs (GitHub)",
 "team": "trade",
@@ -589,7 +607,7 @@
 {
 "id": "goalsup",
 "label": "Goal Supervisors (website + trading)",
-"team": "hub",
+"team": "over",
 "ok": true,
 "private": false,
 "desc": "One of the newest agents on the team. Its public description is still being written.",
@@ -598,7 +616,7 @@
 {
 "id": "indaud",
 "label": "Independent Auditor",
-"team": "hub",
+"team": "over",
 "ok": true,
 "private": false,
 "desc": "One of the newest agents on the team. Its public description is still being written.",
@@ -607,7 +625,7 @@
 {
 "id": "outcomes",
 "label": "Results log (what came of the work)",
-"team": "hub",
+"team": "over",
 "ok": true,
 "private": false,
 "desc": "One of the newest agents on the team. Its public description is still being written.",
@@ -634,7 +652,7 @@
 {
 "id": "followup",
 "label": "Did-It-Work Desk",
-"team": "trade",
+"team": "over",
 "ok": true,
 "private": false,
 "desc": "One of the newest agents on the team. Its public description is still being written.",
@@ -662,6 +680,15 @@
 "id": "bear",
 "label": "Bear Squad (paper)",
 "team": "trade",
+"ok": true,
+"private": false,
+"desc": "One of the newest agents on the team. Its public description is still being written.",
+"alone": false
+},
+{
+"id": "coach",
+"label": "Improvement Coach",
+"team": "over",
 "ok": true,
 "private": false,
 "desc": "One of the newest agents on the team. Its public description is still being written.",
@@ -895,7 +922,7 @@
 "from": "depts",
 "to": "supervisor_w",
 "what": "confirmed issues",
-"ok": true
+"ok": false
 },
 {
 "from": "standards",
@@ -1357,6 +1384,84 @@
 "from": "upgrader",
 "to": "questions",
 "what": "'did you do this?'",
+"ok": true
+},
+{
+"from": "auditor",
+"to": "coach",
+"what": "what's broken or unconnected",
+"ok": true
+},
+{
+"from": "outcomes",
+"to": "coach",
+"what": "results",
+"ok": true
+},
+{
+"from": "gary",
+"to": "social",
+"what": "LinkedIn numbers in Performance_Log.xlsx",
+"ok": true
+},
+{
+"from": "social",
+"to": "goalsup",
+"what": "LinkedIn record and rubric check",
+"ok": true
+},
+{
+"from": "social",
+"to": "outcomes",
+"what": "DMs, recruiters and leads from posts",
+"ok": true
+},
+{
+"from": "social",
+"to": "socialcoach",
+"what": "the LinkedIn record",
+"ok": true
+},
+{
+"from": "writer",
+"to": "socialcoach",
+"what": "new website articles to re-tell for LinkedIn",
+"ok": true
+},
+{
+"from": "socialcoach",
+"to": "gary",
+"what": "weekly brief, read by the Social media project",
+"ok": true
+},
+{
+"from": "socialcoach",
+"to": "goalsup",
+"what": "LinkedIn wins worth using on the website",
+"ok": true
+},
+{
+"from": "followup",
+"to": "coach",
+"what": "did approved changes help",
+"ok": true
+},
+{
+"from": "teamperf",
+"to": "coach",
+"what": "proposal accuracy",
+"ok": true
+},
+{
+"from": "goalsup",
+"to": "coach",
+"what": "the Supervisors' moves and verdicts",
+"ok": true
+},
+{
+"from": "coach",
+"to": "gary",
+"what": "ideas with the why (Decision Desk /cards)",
 "ok": true
 }
 ]
