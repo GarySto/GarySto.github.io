@@ -121,6 +121,7 @@ section.map-sky{background:#070a12;color:#f4f6fb;padding:2rem 4rem 2.5rem;border
     <span><i style="background:#ffc857"></i>Website team</span>
     <span><i style="background:#5ee0ff"></i>Trading team</span>
     <span><i style="background:#ff7ad9"></i>Career and outreach</span>
+    <span><i style="background:#b9f27c"></i>Oversight (checks the other teams)</span>
     <span><i style="background:#9db8ff"></i>Gary and Wade</span>
     <span><i style="background:#ffffff"></i>The two goals (centre)</span>
     <span><i style="background:#ff3b47"></i>Broken or on its own</span>
@@ -130,6 +131,7 @@ section.map-sky{background:#070a12;color:#f4f6fb;padding:2rem 4rem 2.5rem;border
     <button data-f="web" aria-pressed="false">Website</button>
     <button data-f="trade" aria-pressed="false">Trading</button>
     <button data-f="career" aria-pressed="false">Career</button>
+    <button data-f="over" aria-pressed="false">Oversight</button>
     <button data-f="bad" aria-pressed="false">Only problems</button>
     <button id="spin" aria-pressed="true">Auto-spin on</button>
   </div>
@@ -305,9 +307,9 @@ section.map-sky{background:#070a12;color:#f4f6fb;padding:2rem 4rem 2.5rem;border
 
 <script>
 (function(){
-const COL={web:'#ffc857',trade:'#5ee0ff',career:'#ff7ad9',goal:'#ffffff',hub:'#9db8ff'};
+const COL={web:'#ffc857',trade:'#5ee0ff',career:'#ff7ad9',over:'#b9f27c',goal:'#ffffff',hub:'#9db8ff'};
 const BAD='#ff3b47';
-const teamName={web:'Website team',trade:'Trading team',career:'Career and outreach',goal:'Goal',hub:'Centre'};
+const teamName={web:'Website team',trade:'Trading team',career:'Career and outreach',over:'Oversight',goal:'Goal',hub:'Centre'};
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const SPIN=0.0009;            // radians per frame: slow enough to read the labels as they pass
 const FLOW_SECONDS=7;         // how long a light takes to travel along a hand-off
@@ -318,9 +320,14 @@ function size(){const d=Math.min(2,window.devicePixelRatio||1);W=cv.clientWidth;
 window.addEventListener('resize',size);size();
 let rx=-0.25,ry=0.6,zoom=1,spin=!reduce,filter='all',sel=null,hover=null,drag=false;
 function place(){
-  const bands={web:[-170,-12,-0.86,0.86],trade:[12,170,-0.86,0.86],career:[-35,35,-0.98,-0.72],hub:[-25,25,0.70,0.95]};
+  // 8 Nov 2026: the Oversight team (added 7 Nov) had no place on the sphere, so the page crashed and stopped spinning.
+  // It now sits between the website and trading teams, and any team the page doesn't know yet goes in the centre band
+  // instead of breaking the page.
+  const bands={web:[-172,-58],trade:[22,172],over:[-48,12],career:[-35,35,-0.98,-0.72],hub:[-25,25,0.70,0.95]};
+  bands.web=[-172,-58,-0.86,0.86];bands.trade=[22,172,-0.86,0.86];bands.over=[-48,12,-0.86,0.86];
+  N.forEach(n=>{if(n.team!=='goal'&&!bands[n.team])n.team='hub';});
   const G=Math.PI*(3-Math.sqrt(5));
-  ['web','trade','career','hub'].forEach(t=>{const L=N.filter(n=>n.team===t);const [l0,l1,y0,y1]=bands[t];
+  ['web','trade','over','career','hub'].forEach(t=>{const L=N.filter(n=>n.team===t);const [l0,l1,y0,y1]=bands[t];
     L.forEach((n,i)=>{const f=(i+0.5)/L.length;const y=y1-(y1-y0)*f;const r=Math.sqrt(1-y*y);
       const lon=(l0+((i*G*180/Math.PI*0.62)%(l1-l0)+(l1-l0))%(l1-l0))*Math.PI/180;n.p=[r*Math.sin(lon),y,r*Math.cos(lon)];});});
   N.filter(n=>n.team==='goal').forEach((n,i)=>n.p=[i?0.22:-0.22,i?-0.08:0.08,0]);
@@ -400,7 +407,7 @@ function select(id){sel=id;
   ${outs.length?`<p class="sub">Sends its work to</p><ul>${outs.map(e=>linkBtn(e.to,edgeTxt(e,e.to),e.ok)).join('')}</ul>`:''}
   <p><button class="map-back">Back to the overview</button></p>`;bind();}
 function overview(){const bad=N.filter(n=>n.bad).length,be=E.filter(e=>!e.ok).length;
-  const list=['goal','hub','web','trade','career'].map(t=>`<p class="sub">${t==='goal'?'The two goals':t==='hub'?'Gary and Wade':teamName[t]}</p><ul>${N.filter(n=>n.team===t).map(n=>linkBtn(n.id,n.label+(n.private?' (private)':'')+(n.bad?' (problem)':''),!n.bad)).join('')}</ul>`).join('');
+  const list=['goal','hub','web','over','trade','career'].map(t=>`<p class="sub">${t==='goal'?'The two goals':t==='hub'?'Gary and Wade':teamName[t]}</p><ul>${N.filter(n=>n.team===t).map(n=>linkBtn(n.id,n.label+(n.private?' (private)':'')+(n.bad?' (problem)':''),!n.bad)).join('')}</ul>`).join('');
   return `<h2>${bad+be?`${bad} agent(s) and ${be} hand-off(s) need attention`:`All ${N.length} agents connected and working`}</h2><p>Each light is one agent and each line is a hand-off. The small moving lights show which way the work flows. Click a light, or a name below, to see its job and everything it connects to.</p><p class="muted">Checked ${esc(window.__checked||'')}</p>${list}`;}
 function bind(){panel.querySelectorAll('button[data-id]').forEach(b=>b.onclick=()=>select(b.dataset.id));const bk=panel.querySelector('.map-back');if(bk)bk.onclick=()=>select(null);}
 document.querySelectorAll('.controls button[data-f]').forEach(b=>b.onclick=()=>{filter=b.dataset.f;document.querySelectorAll('.controls button[data-f]').forEach(x=>x.setAttribute('aria-pressed',x===b));});
