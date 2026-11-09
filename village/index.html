@@ -175,7 +175,7 @@ async function loadData() {
   return window.VILLAGE_FALLBACK || null;
 }
 const DATA = await loadData();
-if (!DATA) { document.getElementById("tWhat").textContent = "Could not load the village data. Please refresh the page in a minute."; return; }
+if (!DATA) { document.getElementById("tWhat").textContent = "Could not load the village data. Is the dashboard running?"; return; }
 const PRIVATE = DATA.mode === "private";
 /* ================================================================ LAYOUT: Main Street runs west to east; both
    business districts face it and walk their work along it to the Town Hall in the middle. */
