@@ -28,6 +28,10 @@ practical guides and articles on AI tools.
 
 ## Recent articles
 
+- [Spotting Outliers in PPC Data: Real Insight or Just Noise](https://garystow.co.uk/articles/spotting-outliers-in-ppc-data-real-insight-or-just-noise/):
+  how I decide whether a strange number in a PPC account is worth
+  chasing, the five-step way I find the extremes, and why a slow climb
+  is harder to catch than a big spike.
 - [Self-Improving AI Agents: How I Wired 70+ of Mine to Learn From Their Results](https://garystow.co.uk/articles/self-improving-ai-agents-how-i-wired-70-of-mine-to-learn/):
   most AI agents never find out whether their work helped. Here is how
   I closed that loop on 70+ home agents, with the real numbers from
