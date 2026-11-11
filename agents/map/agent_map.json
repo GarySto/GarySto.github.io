@@ -1,5 +1,5 @@
 {
-"checked": "10 Nov 2026, 19:35",
+"checked": "11 Nov 2026, 19:35",
 "nodes": [
 {
 "id": "goal_profile",
@@ -41,10 +41,10 @@
 "id": "datapull",
 "label": "Data pull",
 "team": "web",
-"ok": false,
+"ok": true,
 "private": false,
 "desc": "Pulls search, analytics and behaviour data for the website every day, so every other agent works from real numbers. If the PC was off, the Catch-Up restarts it.",
-"alone": true
+"alone": false
 },
 {
 "id": "industry",
@@ -95,7 +95,7 @@
 "id": "editor",
 "label": "Editor (Gemini)",
 "team": "web",
-"ok": true,
+"ok": false,
 "private": false,
 "desc": "An independent marker from a different AI company. Every week it marks every live article out of 100, from the point of view of a reader deciding whether to link to it, use it or come back to it. 80 is the pass mark.",
 "alone": false
@@ -338,10 +338,10 @@
 "id": "reposync",
 "label": "Website repo sync",
 "team": "web",
-"ok": false,
+"ok": true,
 "private": false,
 "desc": "Keeps Gary's local copy of the website in step with the live version.",
-"alone": true
+"alone": false
 },
 {
 "id": "site",
@@ -410,7 +410,7 @@
 "id": "actions",
 "label": "Trading runs (GitHub)",
 "team": "trade",
-"ok": false,
+"ok": true,
 "private": false,
 "desc": "The trading system's scheduled runs: scanning the market and placing practice orders for each strategy on a timetable.",
 "alone": false
@@ -599,10 +599,10 @@
 "id": "taskhealth_t",
 "label": "Task Health Watchdog",
 "team": "trade",
-"ok": false,
+"ok": true,
 "private": false,
 "desc": "Checks every scheduled task across the whole system and explains any failure.",
-"alone": true
+"alone": false
 },
 {
 "id": "scorecard",
@@ -718,25 +718,25 @@
 "from": "datapull",
 "to": "depts",
 "what": "search and analytics data",
-"ok": false
+"ok": true
 },
 {
 "from": "datapull",
 "to": "strategist",
 "what": "search data",
-"ok": false
+"ok": true
 },
 {
 "from": "datapull",
 "to": "engine",
 "what": "queries with no page",
-"ok": false
+"ok": true
 },
 {
 "from": "datapull",
 "to": "indexing",
 "what": "index status",
-"ok": false
+"ok": true
 },
 {
 "from": "industry",
@@ -850,7 +850,7 @@
 "from": "editor",
 "to": "upgrader",
 "what": "the weakest pages and what to fix",
-"ok": true
+"ok": false
 },
 {
 "from": "upgrader",
@@ -1036,7 +1036,7 @@
 "from": "reposync",
 "to": "site",
 "what": "repo kept in step",
-"ok": false
+"ok": true
 },
 {
 "from": "site",
@@ -1108,7 +1108,7 @@
 "from": "actions",
 "to": "analyst",
 "what": "signals and trades",
-"ok": false
+"ok": true
 },
 {
 "from": "analyst",
@@ -1150,7 +1150,7 @@
 "from": "taskhealth_t",
 "to": "supervisor_t",
 "what": "task results",
-"ok": false
+"ok": true
 },
 {
 "from": "coverage",
@@ -1252,7 +1252,7 @@
 "from": "actions",
 "to": "goal_money",
 "what": "demo trading",
-"ok": false
+"ok": true
 },
 {
 "from": "gary",
