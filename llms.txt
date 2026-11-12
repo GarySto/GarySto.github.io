@@ -28,6 +28,10 @@ practical guides and articles on AI tools.
 
 ## Recent articles
 
+- [Why I Pause Before Trusting the AI Agents I Build](https://garystow.co.uk/articles/why-i-pause-before-trusting-the-ai-agents-i-build/):
+  A full health check of my home AI agents showed busy-looking agents
+  can still fail. Here is what broke, what I fixed and why I pause
+  before I trust any of them.
 - [Spotting Outliers in PPC Data: Real Insight or Just Noise](https://garystow.co.uk/articles/spotting-outliers-in-ppc-data-real-insight-or-just-noise/):
   how I decide whether a strange number in a PPC account is worth
   chasing, the five-step way I find the extremes, and why a slow climb
