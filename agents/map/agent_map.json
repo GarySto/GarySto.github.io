@@ -1,5 +1,5 @@
 {
-"checked": "11 Nov 2026, 19:35",
+"checked": "12 Nov 2026, 19:35",
 "nodes": [
 {
 "id": "goal_profile",
@@ -95,7 +95,7 @@
 "id": "editor",
 "label": "Editor (Gemini)",
 "team": "web",
-"ok": false,
+"ok": true,
 "private": false,
 "desc": "An independent marker from a different AI company. Every week it marks every live article out of 100, from the point of view of a reader deciding whether to link to it, use it or come back to it. 80 is the pass mark.",
 "alone": false
@@ -850,7 +850,7 @@
 "from": "editor",
 "to": "upgrader",
 "what": "the weakest pages and what to fix",
-"ok": false
+"ok": true
 },
 {
 "from": "upgrader",
