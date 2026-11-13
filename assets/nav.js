@@ -30,9 +30,14 @@
       ["/kids-games/spelling-lists/", "Spelling lists", "Year 1 to Year 6"],
       ["/kids-games/for-teachers/", "For teachers and parents", "How to use the games"]
     ]],
+    ["Work with me", null, [
+      ["/consulting/", "Consulting", "AI consulting for performance marketing teams"],
+      ["/consulting/independent-ai-review/", "Independent AI review", "A few weeks with your team, then a plan"],
+      ["/training/", "AI training", "Hands-on training for marketing teams"],
+      ["/speaking/", "Speaking", "Talks, panels and build days"]
+    ]],
     ["About me", null, [
       ["/#about", "About", "Who I am"],
-      ["/speaking/", "Speaking and training", "Talks, workshops and build days"],
       ["/privacy/", "Privacy", "What this site collects"]
     ]],
     ["Contact", "/contact/", null],
