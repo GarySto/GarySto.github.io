@@ -22,6 +22,14 @@ practical guides and articles on AI tools.
 - [AI & Agents](https://garystow.co.uk/agents/): personal AI projects,
   including Wade, the website automation team, the Research Lab and the
   Momentum Scanner, all built in Gary's own time.
+- [Consulting](https://garystow.co.uk/consulting/): paid AI consulting for
+  performance marketing and PPC teams in the UK. The main offer.
+- [Independent AI review](https://garystow.co.uk/consulting/independent-ai-review/):
+  Gary sits with a marketing team for a few weeks, reviews how AI is really
+  being used, and reports back with a plan.
+- [AI training for performance marketing teams](https://garystow.co.uk/training/):
+  hands-on training on prompt structure, expectations, and checking AI's work.
+- [Speaking](https://garystow.co.uk/speaking/): talks, panels and build days.
 - [Articles](https://garystow.co.uk/articles/): republished, longer
   versions of LinkedIn posts on building in public, AI and search, and
   performance marketing.
