@@ -1,5 +1,5 @@
 {
-"checked": "12 Nov 2026, 19:35",
+"checked": "13 Nov 2026, 19:35",
 "nodes": [
 {
 "id": "goal_profile",
@@ -599,10 +599,10 @@
 "id": "taskhealth_t",
 "label": "Task Health Watchdog",
 "team": "trade",
-"ok": true,
+"ok": false,
 "private": false,
 "desc": "Checks every scheduled task across the whole system and explains any failure.",
-"alone": false
+"alone": true
 },
 {
 "id": "scorecard",
@@ -1150,7 +1150,7 @@
 "from": "taskhealth_t",
 "to": "supervisor_t",
 "what": "task results",
-"ok": true
+"ok": false
 },
 {
 "from": "coverage",
