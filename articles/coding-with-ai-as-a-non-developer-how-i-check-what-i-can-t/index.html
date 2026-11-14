@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coding with AI as a Non-Developer: How I Check What I Can&#x27;t Write — Gary Stow</title>
+<meta name="description" content="I build working tools with AI without being a developer. How I check code I couldn&#x27;t have written myself, the bug that cost me a whole session, and what I ">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/articles/coding-with-ai-as-a-non-developer-how-i-check-what-i-can-t/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Coding with AI as a Non-Developer: How I Check What I Can&#x27;t Write">
+<meta property="og:description" content="I build working tools with AI without being a developer. How I check code I couldn&#x27;t have written myself, the bug that cost me a whole session, and what I ">
+<meta property="og:url" content="https://garystow.co.uk/articles/coding-with-ai-as-a-non-developer-how-i-check-what-i-can-t/">
+<!-- no og:image yet - add once a hero image exists -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Coding with AI as a Non-Developer: How I Check What I Can't Write",
+  "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
+  "datePublished": "2026-11-14",
+  "url": "https://garystow.co.uk/articles/coding-with-ai-as-a-non-developer-how-i-check-what-i-can-t/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/assets/site.css?v=8096f9d0">
+<script src="/assets/consent.js?v=20261024"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <script src="/assets/nav.js?v=63f857d8"></script>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <nav id="site-nav" aria-label="Main">
+    <a href="/work/">Work</a>
+    <a href="/village/" class="nav-sub">The Village</a>
+    <a href="/agents/" class="nav-sub">AI teams and agents</a>
+    <a href="/lab/" class="nav-sub">Trading Research Lab</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/news/" class="nav-sub">News roundup</a>
+    <a href="/guides/">Guides</a>
+    <a href="/consulting/">Consulting</a>
+    <a href="/training/" class="nav-sub">Training</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/#about">About</a>
+    <a href="/contact/">Contact</a>
+    <a href="/guides/how-to-use-ai-to-find-jobs-that-fit-you/" class="nav-cta">Free AI Job Finder &#8594;</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/articles/" class="article-back">← All articles</a>
+  <div class="hero-label">Building in public</div>
+  <h1>Coding with AI as a Non-Developer: How I Check What I Can&#x27;t Write</h1>
+  <div class="article-meta">14 November 2026 · Gary Stow, performance marketing and AI</div>
+  <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Written by Gary Stow with help from AI tools. Every fact is checked and every article is approved by Gary before it goes live.</p>
+</div>
+
+<section>
+  <!-- NO IMAGE YET: add articles/coding-with-ai-as-a-non-developer-how-i-check-what-i-can-t/coding-with-ai-as-a-non-developer-how-i-check-what-i-can-t.webp and this tag manually -->
+  <div class="article-body">
+
+    <p>Coding with AI as a non-developer means the AI writes the code while you decide what it should do and check whether it actually works. I'm not a developer and I won't pretend to be, but everything on this website, and the <a href="/agents/">automation teams</a> that run behind it, was built that way. The part nobody tells you about is the checking, so that's what this piece is about.</p>
+
+    <h3>How I check code I can't write</h3>
+
+    <p>I can't check code I couldn't have written, and I won't pretend otherwise. What I can do is apply the same principle I use for everything AI produces, which is to ask for an independent audit. A fresh pass looks for mistakes, issues and breaks, and then they get corrected before anything is used.</p>
+
+    <p>That habit matters more with code than with anything else, because broken code can look perfectly confident. A paragraph with a mistake in it usually reads oddly. A script with a mistake in it can look exactly like one that works. I go into the habit itself in <a href="/articles/the-independent-audit-why-i-make-ai-check-its-own-work/">the independent audit: why I make AI check its own work</a>.</p>
+
+    <h3>The bug that cost me a whole session</h3>
+
+    <p>My most frustrating bug was only a few weeks ago. Claude told me it had found a problem in my system, and we spent a whole session building the solution, only to realise at the very end that the solution already existed, because it had never been a problem in the first place. Claude hadn't checked the right folder, possibly because that folder wasn't linked to it, so the whole session was wasted on something that was already there.</p>
+
+    <p>The lesson I took from it is to look before you build. When something tells you there's a problem, check what already exists first, because the alarm can be right about the symptom and wrong about what's needed. It's an easy mistake to make when you can't read the code yourself, because the AI's explanation is the only map you have.</p>
+
+    <h3>What I wish I'd known about GitHub</h3>
+
+    <p>I wish there had been an idiot's guide to GitHub when I started. I didn't realise how valuable it was, what GitHub Actions could cost, or where the limits were, and I found all three out by running into them.</p>
+
+    <p>Since then I've shown a lot of people that you can host a website on GitHub, including people with their own businesses who now save on hosting fees. Even some experienced GitHub users I showed didn't know. I'm definitely not the man to write that idiot's guide, because I'm making this up as I go along, but that's rather the point. You don't need to know everything before you start.</p>
+
+    <h3>Act like a project manager</h3>
+
+    <p>The biggest shift for me is that coding with AI as a non-developer means acting more as a project manager than anything else. You validate the outputs, not the how. What matters is what exists afterwards, and you check everything the same way you would if you were managing a project or a team. You might not be the specialist, but you know what you expect at the very end, and that's the standard you hold the work to.</p>
+
+    <h3>What a non-developer needs instead of coding skills</h3>
+
+    <p>If you can't write code, these are the things that matter more than learning syntax:</p>
+
+    <ul>
+      <li><strong>Knowing what you want it to do.</strong> The AI can write the code, but it can't decide what the tool is for.</li>
+      <li><strong>Asking for the independent audit</strong> on anything you're going to rely on.</li>
+      <li><strong>Looking before you build,</strong> so you don't spend an evening fixing something that was never broken.</li>
+      <li><strong>Being honest about what you don't know,</strong> to yourself and to anyone you show the work to.</li>
+    </ul>
+
+    <h3>Where I'd start</h3>
+
+    <p>Pick one small, real problem you have, and ask an AI to build the simplest thing that solves it. Ask it to explain each step in plain English, then ask a fresh chat to audit what it built before you use it. I wrote about how I learned this way, and the first attempt that didn't work, in <a href="/articles/how-to-learn-ai-as-a-marketer-with-no-coding-background/">how to learn AI as a marketer with no coding background</a>.</p>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Want to talk about Coding with AI as a Non-Developer: How I Check What I Can&#x27;t Write?</h2>
+  <p>Get in touch if this is relevant to what you're working on.</p>
+  <div class="cta-row">
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
+    <a href="/articles/" class="btn">More articles</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="/contact/">Contact</a>
+    <a href="/news/">News</a>
+    <a href="/village/">Village</a>
+    <a href="/lab/">Lab</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="https://github.com/GarySto" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="/privacy/">Privacy</a>
+  </div>
+</footer>
+
+</body>
+</html>

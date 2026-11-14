@@ -36,6 +36,10 @@ practical guides and articles on AI tools.
 
 ## Recent articles
 
+- [Coding with AI as a Non-Developer: How I Check What I Can't Write](https://garystow.co.uk/articles/coding-with-ai-as-a-non-developer-how-i-check-what-i-can-t/):
+  I build working tools with AI without being a developer. How I check
+  code I couldn't have written myself, the bug that cost me a whole
+  session, and what I wish someone had told me about GitHub.
 - [Why I Pause Before Trusting the AI Agents I Build](https://garystow.co.uk/articles/why-i-pause-before-trusting-the-ai-agents-i-build/):
   A full health check of my home AI agents showed busy-looking agents
   can still fail. Here is what broke, what I fixed and why I pause
