@@ -36,6 +36,10 @@ practical guides and articles on AI tools.
 
 ## Recent articles
 
+- [How to Build a Marketing Dashboard People Actually Read](https://garystow.co.uk/articles/how-to-build-a-marketing-dashboard-people-actually-read/):
+  why I turned my AI dashboard into a little village instead of
+  another page of charts, what happened when people saw it, and the
+  questions I'd answer before building any marketing dashboard.
 - [Coding with AI as a Non-Developer: How I Check What I Can't Write](https://garystow.co.uk/articles/coding-with-ai-as-a-non-developer-how-i-check-what-i-can-t/):
   I build working tools with AI without being a developer. How I check
   code I couldn't have written myself, the bug that cost me a whole
