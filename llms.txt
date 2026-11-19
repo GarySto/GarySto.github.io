@@ -12,6 +12,8 @@ department, supervisor and manager roles that watches and improves that
 system, a local LLM assistant, a research lab for testing trading ideas, and
 practical guides and articles on AI tools.
 
+Certifications: Microsoft Certified: AI Business Professional (AB-730, 5 Nov 2026) and Microsoft Certified: AI Transformation Leader (AB-731, 19 Nov 2026).
+
 ## Primary pages
 
 - [Home](https://garystow.co.uk/): overview, about, and links to work,
