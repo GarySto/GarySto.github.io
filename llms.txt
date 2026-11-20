@@ -12,7 +12,7 @@ department, supervisor and manager roles that watches and improves that
 system, a local LLM assistant, a research lab for testing trading ideas, and
 practical guides and articles on AI tools.
 
-Certifications: Microsoft Certified: AI Business Professional (AB-730) and Microsoft Certified: AI Transformation Leader (AB-731).
+Certifications: Microsoft Certified: AI Business Professional (AB-730), Microsoft Certified: AI Transformation Leader (AB-731), Microsoft AI Nonprofit Advisor: AI for Funding, and Microsoft Advertising Performance Max.
 
 ## Primary pages
 
