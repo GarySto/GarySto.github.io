@@ -153,9 +153,9 @@
   <img src="/articles/how-i-put-my-home-ai-dashboards-on-my-phone-privately/how-i-put-my-home-ai-dashboards-on-my-phone-privately.webp" srcset="/articles/how-i-put-my-home-ai-dashboards-on-my-phone-privately/how-i-put-my-home-ai-dashboards-on-my-phone-privately-480.webp 480w, /articles/how-i-put-my-home-ai-dashboards-on-my-phone-privately/how-i-put-my-home-ai-dashboards-on-my-phone-privately-720.webp 720w, /articles/how-i-put-my-home-ai-dashboards-on-my-phone-privately/how-i-put-my-home-ai-dashboards-on-my-phone-privately-960.webp 960w, /articles/how-i-put-my-home-ai-dashboards-on-my-phone-privately/how-i-put-my-home-ai-dashboards-on-my-phone-privately.webp 1200w" sizes="(max-width: 900px) calc(100vw - 4rem), 900px" width="1200" height="800" fetchpriority="high" decoding="async" alt="A bustling street of commuters, each clutching a glowing orb that streams unseen data across the air" class="article-hero-img">
   <div class="article-body">
 
-    <p>My automation teams live on one PC at home. The website team, the trading team and the cartoon village that shows them all at work run as small web pages on that machine. If you have read <a href="/articles/how-to-build-a-live-village-dashboard-for-your-ai-agents/">how I built the village</a>, you will know the private version is where I say YES or NO to what the teams want to do.</p>
+    <p>My automation teams live on one PC at home. The website team, the trading team and the cartoon village that shows them all at work run as small web pages on that machine. If you have read <a href="/articles/how-to-build-a-live-village-dashboard-for-your-ai-agents/">how I built the village</a>, you'll know the private version is where I say YES or NO to what the teams want to do.</p>
 
-    <p>The catch was that those pages only opened on the PC itself. I am away from my desk a lot, so decisions piled up until I got home. I wanted the village on my phone, but I did not want to put my private dashboards on the public internet to get it.</p>
+    <p>The catch was that those pages only opened on the PC itself. I'm away from my desk a lot, so decisions piled up until I got home. I wanted the village on my phone, but I didn't want to put my private dashboards on the public internet to get it.</p>
 
     <h3>Step 1: Pick a private network, not a public website</h3>
 
@@ -176,21 +176,21 @@ tailscale serve --bg --https=8443 5006</code></pre>
 
     <h3>Step 4: Fix the errors I hit</h3>
 
-    <p>It did not work first time, and these are the five problems I hit, in order.</p>
+    <p>It didn't work first time, and these are the five problems I hit, in order.</p>
 
     <ol>
-      <li><strong>'tailscale' is not recognized.</strong> PowerShell had not picked up the new program. Opening a fresh window fixes it, or use the full path: <code>&amp; "C:\Program Files\Tailscale\tailscale.exe" serve --bg 5007</code>.</li>
-      <li><strong>unexpected state: NoState.</strong> The PC was not actually signed in, and the admin console showed the phone as Connected and the PC in grey. Clicking the Tailscale icon in the taskbar and choosing Log in fixed it.</li>
-      <li><strong>Serve is not enabled on your tailnet.</strong> It printed a link to switch the feature on, and although the serve still started, it is worth clicking that link once.</li>
+      <li><strong>'tailscale' isn't recognized.</strong> PowerShell hadn't picked up the new program. Opening a fresh window fixes it, or use the full path: <code>&amp; "C:\Program Files\Tailscale\tailscale.exe" serve --bg 5007</code>.</li>
+      <li><strong>unexpected state: NoState.</strong> The PC wasn't actually signed in, and the admin console showed the phone as Connected and the PC in grey. Clicking the Tailscale icon in the taskbar and choosing Log in fixed it.</li>
+      <li><strong>Serve isn't enabled on your tailnet.</strong> It printed a link to switch the feature on, and although the serve still started, it's worth clicking that link once.</li>
       <li><strong>A blank white page in Safari.</strong> Another browser on the same phone opened the village fine. Opening the simpler noticeboard page first, then the village, cleared it.</li>
-      <li><strong>Links that pointed nowhere.</strong> Some buttons in the village pointed at localhost, which means the phone itself, not the PC. I changed the village to swap those links for the private address when it is opened on another device.</li>
+      <li><strong>Links that pointed nowhere.</strong> Some buttons in the village pointed at localhost, which means the phone itself, not the PC. I changed the village to swap those links for the private address when it's opened on another device.</li>
     </ol>
 
     <h3>Step 5: Make it feel like an app</h3>
 
     <p>Two last settings make it stick: on the PC, tick Run unattended in the Tailscale preferences so it keeps working after a restart. On the iPhone, open the village in Safari, tap Share, then Add to Home Screen, and it opens like an app.</p>
 
-    <p>The one thing it cannot do is wake the PC up, so if the PC is off the pages do not load, which for me is a fair trade for keeping everything private.</p>
+    <p>The one thing it can't do is wake the PC up, so if the PC is off the pages don't load, which for me is a fair trade for keeping everything private.</p>
 
     <h3>What changed for me</h3>
 

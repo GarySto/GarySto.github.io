@@ -80,31 +80,31 @@
   <img src="/articles/local-ai-without-the-token-bill/local-ai-without-the-token-bill.webp" srcset="/articles/local-ai-without-the-token-bill/local-ai-without-the-token-bill-480.webp 480w, /articles/local-ai-without-the-token-bill/local-ai-without-the-token-bill-720.webp 720w, /articles/local-ai-without-the-token-bill/local-ai-without-the-token-bill-960.webp 960w, /articles/local-ai-without-the-token-bill/local-ai-without-the-token-bill.webp 1200w" sizes="(max-width: 900px) calc(100vw - 4rem), 900px" width="1200" height="800" fetchpriority="high" decoding="async" alt="Local AI Without the Token Bill: How I Keep Costs Low" class="article-hero-img">
   <div class="article-body">
 
-    <p>I keep seeing the same complaint on LinkedIn at the minute, which is that token burn is out of control, the costs keep climbing and nobody can justify the return. I understand why people say it, because I have seen the dashboards being shared, and for businesses that throw every request at the most expensive model available it is genuinely true. I don't think it is the whole story though, and I would rather show my working than just assert it.</p>
+    <p>I keep seeing the same complaint on LinkedIn at the minute, which is that token burn is out of control, the costs keep climbing and nobody can justify the return. I understand why people say it, because I've seen the dashboards being shared, and for businesses that throw every request at the most expensive model available it's genuinely true. I don't think it's the whole story though, and I'd rather show my working than just assert it.</p>
 
-    <p>Everything I have built at home, including <a href="/articles/ai-made-me-money-claims-tested/">the trading team</a> with its manager, supervisor and departments watching over it, plus Wade running underneath all of it, was done with no formal training and no computer science degree. The only ongoing spend was a Claude Pro subscription that I was already paying for anyway. I am not saying that to boast, since I am self-taught and still learning most of it as I go. I am saying it because the token burn complaint is rarely about AI being unaffordable and is usually about how it is being used.</p>
+    <p>Everything I've built at home, including <a href="/articles/ai-made-me-money-claims-tested/">the trading team</a> with its manager, supervisor and departments watching over it, plus Wade running underneath all of it, was done with no formal training and no computer science degree. The only ongoing spend was a Claude Pro subscription that I was already paying for anyway. I'm not saying that to boast, since I'm self-taught and still learning most of it as I go. I'm saying it because the token burn complaint is rarely about AI being unaffordable and is usually about how it's being used.</p>
 
     <h3>How I decide what stays local</h3>
 
-    <p>The thing that makes the difference is not which model is cheapest per token, it is deciding honestly which requests need a paid model at all.</p>
+    <p>The thing that makes the difference isn't which model is cheapest per token, it's deciding honestly which requests need a paid model at all.</p>
 
     <p>The first step auto-resolves anything that matches a confirmed, expected pattern, so no model is involved at all. The second step is where the money is saved, because routine work at a certain level goes to a free local model running on my own PC through <a href="/guides/how-to-run-a-free-local-ai-model-with-lm-studio-and-use-it/">LM Studio</a>. Checking whether something is broken, reading logs and writing up a plain diagnosis all sit there.</p>
 
     <p>One more rule sits across all three, which is that nothing marks its own homework. I wrote about why I do that in <a href="/articles/the-independent-audit-why-i-make-ai-check-its-own-work/">the independent audit</a>, and it matters even more when a small local model is doing the first pass.</p>
 
-    <p>There is no token bill because the only thing doing the work is hardware I already own. I covered the setup in more detail in my piece on <a href="/articles/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners/">running AI at home and LM Studio tips for beginners</a>.</p>
+    <p>There's no token bill because the only thing doing the work is hardware I already own. I covered the setup in more detail in my piece on <a href="/articles/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners/">running AI at home and LM Studio tips for beginners</a>.</p>
 
-    <p>The models I actually have loaded in LM Studio are OpenAI GPT-OSS 20B at 11.28 GB, which I run with a 32,768-token context, along with Qwen2.5 Coder 7B Instruct at 4.36 GB and Qwen2.5 Coder 14B at 8.37 GB. I also keep Qwen2.5 14B Instruct 1M at 8.37 GB and Gemma 4 E4B at 5.89 GB, plus Nomic Embed Text v1.5 for embeddings. I would love bigger models, but my PC is the limit, and that is the honest trade-off of working locally.</p>
+    <p>The models I actually have loaded in LM Studio are OpenAI GPT-OSS 20B at 11.28 GB, which I run with a 32,768-token context, along with Qwen2.5 Coder 7B Instruct at 4.36 GB and Qwen2.5 Coder 14B at 8.37 GB. I also keep Qwen2.5 14B Instruct 1M at 8.37 GB and Gemma 4 E4B at 5.89 GB, plus Nomic Embed Text v1.5 for embeddings. I'd love bigger models, but my PC is the limit, and that's the honest trade-off of working locally.</p>
 
-    <p>Getting that tier to work reliably took unglamorous engineering rather than just flipping a setting. The local model's context window was too small for the trade and pipeline data I was feeding it alongside a file to review, so requests were failing outright. I fixed it by widening the context and by stripping out anything the model did not need for that specific question.</p>
+    <p>Getting that tier to work reliably took unglamorous engineering rather than just flipping a setting. The local model's context window was too small for the trade and pipeline data I was feeding it alongside a file to review, so requests were failing outright. I fixed it by widening the context and by stripping out anything the model didn't need for that specific question.</p>
 
     <h3>The one thing I won't pretend away</h3>
 
-    <p>The hardware is the part I cannot wave away, because you do need a PC capable of running a local model reasonably well and that is not free. I have written a <a href="/articles/build-your-own-local-ai-assistant/">step-by-step beginner's guide to building a local AI assistant</a> that covers what to check first. It is a one-off cost rather than a monthly bill that climbs the more you use it, and if you already have a half-decent PC you may have most of what you need.</p>
+    <p>The hardware is the part I can't wave away, because you do need a PC capable of running a local model reasonably well and that isn't free. I've written a <a href="/articles/build-your-own-local-ai-assistant/">step-by-step beginner's guide to building a local AI assistant</a> that covers what to check first. It's a one-off cost rather than a monthly bill that climbs the more you use it, and if you already have a half-decent PC you may have most of what you need.</p>
 
     <h3>A keep-it-local checklist</h3>
 
-    <p>If you are looking at your own token bills, these are the questions I would ask of any request before it goes near a paid model.</p>
+    <p>If you're looking at your own token bills, these are the questions I'd ask of any request before it goes near a paid model.</p>
 
     <ul>
       <li>Does it match a pattern you have already confirmed, so a simple rule can answer it with no model at all?</li>
@@ -116,7 +116,7 @@
 
     <p>If the first three answers are yes, keep it local. If the fourth is yes, pay for the better model and be glad you only pay for it when it matters. The fifth applies to everything.</p>
 
-    <p>So if you are a business or an individual wondering whether AI is worth the money, I think the limiting factor is no longer the technology. It is whether you are willing to sort your requests honestly before you spend on them. If you want to see how this kind of system fits together as it grows, the <a href="/articles/62-ai-agents-and-the-broken-links-between-them-why-i-built/">agent map write-up</a> is the best next read.</p>
+    <p>So if you're a business or an individual wondering whether AI is worth the money, I think the limiting factor is no longer the technology. It's whether you're willing to sort your requests honestly before you spend on them. If you want to see how this kind of system fits together as it grows, the <a href="/articles/62-ai-agents-and-the-broken-links-between-them-why-i-built/">agent map write-up</a> is the best next read.</p>
 
   </div>
 </section>

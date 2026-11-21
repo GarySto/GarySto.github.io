@@ -83,7 +83,7 @@
 
     <h3>What the full check found</h3>
 
-    <p>I asked Claude to review every section and every agent, scoring each one red, amber or green. The surprise was that the faults were mostly in the connections between the agents rather than in the agents themselves, because work simply was not reaching the next one in the chain.</p>
+    <p>I asked Claude to review every section and every agent, scoring each one red, amber or green. The surprise was that the faults were mostly in the connections between the agents rather than in the agents themselves, because work simply wasn't reaching the next one in the chain.</p>
 
     <p>Several agents were sending jobs to <a href="/articles/build-your-own-local-ai-assistant/">Wade</a>, my local AI model, at the same moment, and the overlapping requests overloaded him, so the fix was a queue that makes the jobs take turns. I wrote up the whole story, including the map I built to spot broken links, in <a href="/articles/62-ai-agents-and-the-broken-links-between-them-why-i-built/">62 AI agents and the broken links between them</a>.</p>
 
@@ -93,11 +93,11 @@
 
     <h3>A fix for a problem that never existed</h3>
 
-    <p>My most frustrating example came when Claude told me it had found a problem in my system. We spent a whole session building the solution, and only at the very end did we realise the solution already existed, so there had never been a problem in the first place. Claude had not looked in the right folder, possibly because that folder was not linked to the chat.</p>
+    <p>My most frustrating example came when Claude told me it had found a problem in my system. We spent a whole session building the solution, and only at the very end did we realise the solution already existed, so there had never been a problem in the first place. Claude hadn't looked in the right folder, possibly because that folder wasn't linked to the chat.</p>
 
     <h3>Why I stop before I trust</h3>
 
-    <p>Getting a working prototype is exciting, and it is tempting to share it straight away or let it loose on real work. I would rather wait until something consistently adds value without surprises, because the failures that hurt are the quiet ones. One of my own bugs silently discarded most of a file's trading history for months, simply because the code wrote more columns than the file's header allowed, and I only found it much later. That story is told in <a href="/articles/start-small-the-mistakes-i-made-building-ai-tools/">start small, the mistakes I made building AI tools</a>.</p>
+    <p>Getting a working prototype is exciting, and it's tempting to share it straight away or let it loose on real work. I'd rather wait until something consistently adds value without surprises, because the failures that hurt are the quiet ones. One of my own bugs silently discarded most of a file's trading history for months, simply because the code wrote more columns than the file's header allowed, and I only found it much later. That story is told in <a href="/articles/start-small-the-mistakes-i-made-building-ai-tools/">start small, the mistakes I made building AI tools</a>.</p>
 
     <p>So my routine is now fairly simple. I start small and get a first version working with guard rails in place before I add any bells and whistles. I document every checkpoint and keep older files to fall back on, and I ask for an independent audit of anything important, which I explain in <a href="/articles/the-independent-audit-why-i-make-ai-check-its-own-work/">the independent audit</a>. At home I let the system change some things itself, but anything that goes live or goes public still needs my final click. If you want to build your first agent without spending money, my guide to <a href="/articles/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners/">running AI at home</a> is a good place to begin.</p>
 
