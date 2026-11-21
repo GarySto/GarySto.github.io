@@ -84,7 +84,7 @@
 
     <h3>Asking Claude to review everything</h3>
 
-    <p>I did not want a report full of reds, so the brief was to keep fixing and re-checking until the whole system was green, and only then to move on to the trading side.</p>
+    <p>I didn't want a report full of reds, so the brief was to keep fixing and re-checking until the whole system was green, and only then to move on to the trading side.</p>
 
     <p>What the review found sat mostly in the connections between agents rather than in the agents themselves. Several agents had been handing jobs to <a href="/articles/why-i-run-ai-at-home-and-lm-studio-tips-for-beginners/">Wade</a>, my local AI model, all at once, and the pile-up overloaded it. The cure was a queue so that jobs take turns, plus a setting that lets <a href="/articles/build-your-own-local-ai-assistant/">Wade</a> deal with a single request at a time.</p>
 
@@ -92,11 +92,11 @@
 
     <h3>Why my local AI is called Wade</h3>
 
-    <p>If you are wondering about the name, Wade is borrowed from Wade Wilson, better known as Deadpool. I spent a lot of time in hospital in the late 90s and early 2000s, and I loved a comic character who would not die when, at that stage of my life, I felt much the same. He also made me laugh at a time when a laugh meant a great deal to me, so when I built something to sit beside me and help, the name felt right. I tell the longer version of that story in <a href="/articles/type-1-diabetes-shaped-my-ppc-career/">my piece on type 1 diabetes and my PPC career</a>.</p>
+    <p>If you're wondering about the name, Wade is borrowed from Wade Wilson, better known as Deadpool. I spent a lot of time in hospital in the late 90s and early 2000s, and I loved a comic character who wouldn't die when, at that stage of my life, I felt much the same. He also made me laugh at a time when a laugh meant a great deal to me, so when I built something to sit beside me and help, the name felt right. I tell the longer version of that story in <a href="/articles/type-1-diabetes-shaped-my-ppc-career/">my piece on type 1 diabetes and my PPC career</a>.</p>
 
     <h3>Why the village could not show the breaks</h3>
 
-    <p>I already have <a href="/village/">a village</a> that draws my <a href="/agents/">AI teams</a> as a little town, with people carrying work between the buildings. It shows how things work in a nice, beautiful way, but it does not show whether there is a break in the map. A busy-looking village can hide a broken link right in the middle of it, so I built a second view with a different job, which is to show where things are breaking and whether any agent has been left on its own.</p>
+    <p>I already have <a href="/village/">a village</a> that draws my <a href="/agents/">AI teams</a> as a little town, with people carrying work between the buildings. It shows how things work in a nice, beautiful way, but it doesn't show whether there's a break in the map. A busy-looking village can hide a broken link right in the middle of it, so I built a second view with a different job, which is to show where things are breaking and whether any agent has been left on its own.</p>
 
     <h3>How the agent map works</h3>
 
@@ -108,21 +108,21 @@
 
     <p>The map holds 62 agents and 74 hand-offs, which is an impressive number to have running at one time. Seeing them all lit up together shows how big the project has become and how it has grown as new agents arrived.</p>
 
-    <p>It began as a single trading scanner, and every agent added since came from a real problem that I wanted a permanent check for rather than a one-off fix. That is exactly why it needed a map, because nobody can hold 74 hand-offs in their head and spot the one that has quietly stopped. After the fixes on 31st October the check showed all 62 agents and all 74 hand-offs green.</p>
+    <p>It began as a single trading scanner, and every agent added since came from a real problem that I wanted a permanent check for rather than a one-off fix. That's exactly why it needed a map, because nobody can hold 74 hand-offs in their head and spot the one that has quietly stopped. After the fixes on 31st October the check showed all 62 agents and all 74 hand-offs green.</p>
 
     <h3>Teaching the system to learn from its own breaks</h3>
 
-    <p>What I am really after is a self-learning, self-improving autonomous agent system running on my own PC. It was not doing that with the breakages I had just found, because nothing was watching the links between agents and so nothing could learn from them.</p>
+    <p>What I'm really after is a self-learning, self-improving autonomous agent system running on my own PC. It wasn't doing that with the breakages I had just found, because nothing was watching the links between agents and so nothing could learn from them.</p>
 
-    <p>I am hoping the agent map and the ecosystem check will now start to change that. If a hand-off breaks tomorrow, it will turn red on the map and become a job for my automation team to root-cause, instead of something I discover on a Saturday by noticing what is missing.</p>
+    <p>I'm hoping the agent map and the ecosystem check will now start to change that. If a hand-off breaks tomorrow, it will turn red on the map and become a job for my automation team to root-cause, instead of something I discover on a Saturday by noticing what is missing.</p>
 
     <h3>Build your own agent map</h3>
 
-    <p>The map page is a single HTML page that reads one data file listing the agents and the hand-offs between them, so anyone with their own list of agents can reuse the idea. If you are building a team of agents, you can paste the prompt below into Claude or ChatGPT, swap in your own agents and get a first version of your own map.</p>
+    <p>The map page is a single HTML page that reads one data file listing the agents and the hand-offs between them, so anyone with their own list of agents can reuse the idea. If you're building a team of agents, you can paste the prompt below into Claude or ChatGPT, swap in your own agents and get a first version of your own map.</p>
 
-    <p>&gt; Build me a single self-contained HTML page that draws my AI agents as an interactive 3D sphere. Put the data in a script block at the top so I can edit it later, as a list of agents and a list of hand-offs. Each agent needs an id, a name, a team, a job and a flag saying whether it is working. Each hand-off needs a sender, a receiver, a short description of what is passed on and the same working flag. Use my real agents, which are as follows, and for each one say what it does and who it sends work to. Here is where you list them. &gt; &gt; Use a plain HTML canvas with no libraries and place each agent as a glowing light on the sphere, grouped by team with one colour per team. Draw each hand-off as a curved line between two lights, with a small light travelling from sender to receiver so the direction of flow is visible. Any hand-off that is not working should be a thick, flashing red line, and any agent that is not working, or has no working hand-offs in or out, should turn red. The sphere should spin slowly by itself, turn when dragged, zoom with scroll or pinch, and have a button to stop the spin. &gt; &gt; Clicking a light should open a side panel showing the agent's name, team and job, what it receives and where it sends its work, with each of those as a button that jumps to that agent. With nothing selected, the panel should say how many agents and hand-offs are broken and list every agent by team. Use large text, high contrast, keyboard-usable buttons and no sideways scrolling on a phone.</p>
+    <p>&gt; Build me a single self-contained HTML page that draws my AI agents as an interactive 3D sphere. Put the data in a script block at the top so I can edit it later, as a list of agents and a list of hand-offs. Each agent needs an id, a name, a team, a job and a flag saying whether it is working. Each hand-off needs a sender, a receiver, a short description of what is passed on and the same working flag. Use my real agents, which are as follows, and for each one say what it does and who it sends work to. Here is where you list them. &gt; &gt; Use a plain HTML canvas with no libraries and place each agent as a glowing light on the sphere, grouped by team with one colour per team. Draw each hand-off as a curved line between two lights, with a small light travelling from sender to receiver so the direction of flow is visible. Any hand-off that isn't working should be a thick, flashing red line, and any agent that isn't working, or has no working hand-offs in or out, should turn red. The sphere should spin slowly by itself, turn when dragged, zoom with scroll or pinch, and have a button to stop the spin. &gt; &gt; Clicking a light should open a side panel showing the agent's name, team and job, what it receives and where it sends its work, with each of those as a button that jumps to that agent. With nothing selected, the panel should say how many agents and hand-offs are broken and list every agent by team. Use large text, high contrast, keyboard-usable buttons and no sideways scrolling on a phone.</p>
 
-    <p>Once you have your map, the habit worth keeping is to check the links as well as the agents, because that is where all of my problems were hiding.</p>
+    <p>Once you have your map, the habit worth keeping is to check the links as well as the agents, because that's where all of my problems were hiding.</p>
 
   </div>
 </section>
