@@ -38,6 +38,11 @@ Certifications: Microsoft Certified: AI Business Professional (AB-730), Microsof
 
 ## Recent articles
 
+- [How to Set Up an AI Agent Team with a Supervisor](https://garystow.co.uk/articles/how-to-set-up-an-ai-agent-team-with-a-supervisor/):
+  why I split my automation into departments with a Supervisor and a
+  Manager instead of one big agent, the flood of alerts that taught me
+  to answer each problem once, and what I'd tell anyone starting their
+  own team this weekend.
 - [How to Build a Marketing Dashboard People Actually Read](https://garystow.co.uk/articles/how-to-build-a-marketing-dashboard-people-actually-read/):
   why I turned my AI dashboard into a little village instead of
   another page of charts, what happened when people saw it, and the
