@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Set Up an AI Agent Team with a Supervisor — Gary Stow</title>
+<meta name="description" content="Why I split my automation into departments with a Supervisor and a Manager instead of one big agent, the flood of alerts that taught me to answer each prob">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/articles/how-to-set-up-an-ai-agent-team-with-a-supervisor/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Set Up an AI Agent Team with a Supervisor">
+<meta property="og:description" content="Why I split my automation into departments with a Supervisor and a Manager instead of one big agent, the flood of alerts that taught me to answer each prob">
+<meta property="og:url" content="https://garystow.co.uk/articles/how-to-set-up-an-ai-agent-team-with-a-supervisor/">
+<meta property="og:image" content="https://garystow.co.uk/articles/how-to-set-up-an-ai-agent-team-with-a-supervisor/how-to-set-up-an-ai-agent-team-with-a-supervisor.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Set Up an AI Agent Team with a Supervisor",
+  "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"},
+  "datePublished": "2026-11-21",
+  "url": "https://garystow.co.uk/articles/how-to-set-up-an-ai-agent-team-with-a-supervisor/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/assets/site.css?v=8096f9d0">
+<script src="/assets/consent.js?v=20261024"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5S939E9N5T');
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7l6l2ea33");
+</script>
+<script>(function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"73014612", enableAutoSpaTracking: true});</script>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Gary Stow</a>
+  <script src="/assets/nav.js?v=63f857d8"></script>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <nav id="site-nav" aria-label="Main">
+    <a href="/work/">Work</a>
+    <a href="/village/" class="nav-sub">The Village</a>
+    <a href="/agents/" class="nav-sub">AI teams and agents</a>
+    <a href="/lab/" class="nav-sub">Trading Research Lab</a>
+    <a href="/articles/" class="active">Articles</a>
+    <a href="/news/" class="nav-sub">News roundup</a>
+    <a href="/guides/">Guides</a>
+    <a href="/consulting/">Consulting</a>
+    <a href="/training/" class="nav-sub">Training</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/#about">About</a>
+    <a href="/contact/">Contact</a>
+    <a href="/guides/how-to-use-ai-to-find-jobs-that-fit-you/" class="nav-cta">Free AI Job Finder &#8594;</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <a href="/articles/" class="article-back">← All articles</a>
+  <div class="hero-label">Building in public</div>
+  <h1>How to Set Up an AI Agent Team with a Supervisor</h1>
+  <div class="article-meta">21 November 2026 · Gary Stow, performance marketing and AI</div>
+  <p class="article-disclosure" style="font-size:0.85rem;color:var(--muted);margin-top:0.6rem;font-style:italic">Written by Gary Stow with help from AI tools. Every fact is checked and every article is approved by Gary before it goes live.</p>
+</div>
+
+<section>
+  <img src="/articles/how-to-set-up-an-ai-agent-team-with-a-supervisor/how-to-set-up-an-ai-agent-team-with-a-supervisor.webp" width="1200" height="800" fetchpriority="high" decoding="async" alt="How to Set Up an AI Agent Team with a Supervisor" class="article-hero-img">
+  <div class="article-body">
+
+    <p>An AI agent team with a supervisor is a set of small agents that each do one job, with a supervisor agent that checks and root-causes what they find before anything reaches you. I run my automation this way, with departments that find issues, a Supervisor that works out the cause, a Manager, and a dashboard where I approve or decline what's recommended. This is why I built it like that, and how I'd start one.</p>
+
+    <h3>Why departments instead of one big agent</h3>
+
+    <p>If you had infinite money, you'd hire the very best person for each job, and you wouldn't ask one person to do two or three jobs at once. Agents cost far less than people, so you can afford to give each job its own specialist.</p>
+
+    <p>It also makes problems easier to fix. When something breaks, you know which department did it, so you find what broke and tweak that one place instead of untangling one huge agent that does everything.</p>
+
+    <h3>Why a Supervisor and a Manager</h3>
+
+    <p>I added the Supervisor and the Manager as guard rails, set up in a way my brain can follow. The departments report to them first, and I always know who I'm talking to and why. If one of them comes to me, it's because it genuinely needs to, which matters a lot when you have an ADHD brain and a lot of projects running at once.</p>
+
+    <p>The Supervisor's job is to turn a raw problem into a cause and a recommendation. The Manager's job is to bring me only what needs a decision, so I'm deciding things, not reading logs.</p>
+
+    <h3>The flood of alerts that changed how I built it</h3>
+
+    <p>Early on, I had hundreds of near-identical alerts waiting for me about the same problem. It was overwhelming, and it showed me the flaw straight away, because I didn't need telling about the same problem for every ticker in the US market. I made it one problem and then rolled that rule out everywhere else. If it's a recurring problem, I should only need to answer it once.</p>
+
+    <p>That one rule is probably the most useful thing in the whole setup, and it's worth building in from day one.</p>
+
+    <h3>Build the team, don't be the team</h3>
+
+    <p>The principle I keep coming back to is "build the team, don't be the team". If you keep doing the work for the agents, there's no point having them and you're wasting the resource you built. Identify the problem, build the team to fix it, and watch them fix it. Step in with advice, guidance and experience where it's needed, but trust what you've built, and if it doesn't work, keep tweaking it.</p>
+
+    <p>Build it once and the problem is solved for the future. If you're not willing to do that, it's honestly better not to build the team and just do the job yourself.</p>
+
+    <h3>What I'd tell you if you're starting this weekend</h3>
+
+    <ul>
+      <li><strong>Start clicking the button and write your ideas down.</strong> Until you put pen to paper it's a wishy-washy dream, and once you make some progress it snowballs.</li>
+      <li><strong>Know what you want the agent to do.</strong> Don't build for the sake of building.</li>
+      <li><strong>Set SMART goals,</strong> so you know when version one is finished and when it's time to move on to version two or three.</li>
+    </ul>
+
+    <p>If you want to see what a team like this looks like when it's running, I built a little village that shows mine at work, and wrote up <a href="/articles/how-to-build-a-live-village-dashboard-for-your-ai-agents/">how to build a live village dashboard for your AI agents</a>.</p>
+
+  </div>
+</section>
+
+<section id="contact" class="contact-band">
+  <h2>Want to talk about How to Set Up an AI Agent Team with a Supervisor?</h2>
+  <p>Get in touch if this is relevant to what you're working on.</p>
+  <div class="cta-row">
+    <a href="/contact/" class="btn btn-accent">Contact ↗</a>
+    <a href="/articles/" class="btn">More articles</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Gary Stow · 2026 · Built with Python, Streamlit &amp; Claude</div>
+  <div class="footer-links">
+    <a href="/contact/">Contact</a>
+    <a href="/news/">News</a>
+    <a href="/village/">Village</a>
+    <a href="/lab/">Lab</a>
+    <a href="https://linkedin.com/in/garystow" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="https://github.com/GarySto" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="/privacy/">Privacy</a>
+  </div>
+</footer>
+
+</body>
+</html>
