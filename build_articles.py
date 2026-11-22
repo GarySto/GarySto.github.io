@@ -55,8 +55,8 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
 }}
 </script>
 <!-- Google tag (gtag.js) -->
-<script src="/assets/consent.js?v=20261024"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
+<script src="/assets/consent.js?v=20261122"></script>
+<script type="text/plain" data-gs-after-paint data-src="https://www.googletagmanager.com/gtag/js?id=G-5S939E9N5T"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){{dataLayer.push(arguments);}}

@@ -89,4 +89,36 @@
 
   function ready() { wireOpeners(); if (!choice) show(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ready); else ready();
+
+  /* 22 Nov 2026: start the Google, Clarity and Microsoft tags only once the page has loaded and painted.
+     PageSpeed counts every download that starts before the main picture paints against LCP. On its test
+     machine the first paint sometimes lands at about 1.4 s, by which time the tags (about 230 KB over six
+     other sites) had all started, which turned a 1.4 s paint into a 4.4 to 6 s LCP score on /work/, /articles/
+     and two articles. Pages mark the tags <script type="text/plain" data-gs-after-paint> (data-src for a
+     file); this runs them in page order. Nothing is lost: the gtag, uetq and clarity queues above already
+     hold every call (consent defaults included) until the tags arrive. Pages with ordinary tags are unaffected. */
+  var tagsStarted = false;
+  function startTags() {
+    if (tagsStarted) return;
+    tagsStarted = true;
+    var list = document.querySelectorAll('script[type="text/plain"][data-gs-after-paint]');
+    for (var i = 0; i < list.length; i++) {
+      var old = list[i], s = document.createElement("script"), src = old.getAttribute("data-src");
+      if (src) { s.src = src; s.async = true; } else { s.text = old.text; }
+      old.parentNode.replaceChild(s, old);
+    }
+  }
+  function afterPaint() {
+    // A tab opened in the background never paints, so there is nothing to wait for.
+    if (document.visibilityState === "hidden") { startTags(); return; }
+    setTimeout(startTags, 3000); // safety net if no frame comes
+    // The main picture (fetchpriority="high") is decoded off the main thread and can paint a frame or two
+    // after "load", so wait for it to be decoded and then for two frames, so the frame showing it has
+    // reached the screen (that moment is the LCP time) before any tag starts.
+    var waits = [], hero = document.querySelectorAll('img[fetchpriority="high"]');
+    for (var i = 0; i < hero.length; i++) if (hero[i].decode) waits.push(hero[i].decode().catch(function () {}));
+    function nextFrame() { requestAnimationFrame(function () { requestAnimationFrame(function () { setTimeout(startTags, 0); }); }); }
+    if (waits.length && w.Promise) Promise.all(waits).then(nextFrame); else nextFrame();
+  }
+  if (document.readyState === "complete") afterPaint(); else w.addEventListener("load", afterPaint);
 })();
