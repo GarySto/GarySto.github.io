@@ -201,6 +201,7 @@ Certifications: Microsoft Certified: AI Business Professional (AB-730), Microsof
 
 ## Guides
 
+- [Automate PPC Reports with AI, Step by Step](https://garystow.co.uk/guides/automate-ppc-reports-with-ai-step-by-step/): A practical, step-by-step way to automate PPC reports with AI using Google's own tools, plus the checks that stop wrong numbers reaching your boss.
 - [How to Set Up Free Learning Games for Your Kids, and Make Them Look Like Your Family](https://garystow.co.uk/guides/how-to-set-up-free-learning-games-for-your-kids/): step-by-step setup of the free Kids Games on an iPad, iPhone, Windows or Mac computer or Android tablet, making the characters look like your family, adding this week's spellings and choosing times tables. Free to reuse under CC BY-NC 4.0.
 - [Negative Keywords: How to Find and Add Them with the Search Terms Report](https://garystow.co.uk/guides/negative-keywords-how-to-find-and-add-them-with-the-search/): A step-by-step guide, with annotated screenshots, to finding wasted spend in your search terms report, choosing a safe negative match type and adding negatives in Google Ads, plus a ready-made AI prompt that does the first pass for you.
 - [How to Use AI to Find Jobs That Actually Fit You: Free Prompts for Every Level](https://garystow.co.uk/guides/how-to-use-ai-to-find-jobs-that-fit-you/): Three free, copy-and-paste AI prompts that help you build your own job scoring rubric, check your CV against it and search the web for roles that fit. Starter, intermediate and advanced.
