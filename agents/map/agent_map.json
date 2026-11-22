@@ -1,5 +1,5 @@
 {
-"checked": "21 Nov 2026, 19:35",
+"checked": "22 Nov 2026, 19:37",
 "nodes": [
 {
 "id": "goal_profile",
@@ -122,7 +122,7 @@
 "id": "review",
 "label": "Weekly Review",
 "team": "web",
-"ok": false,
+"ok": true,
 "private": false,
 "desc": "The weekly website review. A triage step decides which departments to call, they run, and then the Supervisor and Manager take over. It re-runs itself if a step fails.",
 "alone": false
@@ -338,10 +338,10 @@
 "id": "reposync",
 "label": "Website repo sync",
 "team": "web",
-"ok": true,
+"ok": false,
 "private": false,
 "desc": "Keeps Gary's local copy of the website in step with the live version.",
-"alone": false
+"alone": true
 },
 {
 "id": "site",
@@ -928,7 +928,7 @@
 "from": "review",
 "to": "depts",
 "what": "Triage calls departments",
-"ok": false
+"ok": true
 },
 {
 "from": "wade",
@@ -1036,7 +1036,7 @@
 "from": "reposync",
 "to": "site",
 "what": "repo kept in step",
-"ok": true
+"ok": false
 },
 {
 "from": "site",
