@@ -1,5 +1,5 @@
 {
-"checked": "22 Nov 2026, 19:37",
+"checked": "23 Nov 2026, 19:35",
 "nodes": [
 {
 "id": "goal_profile",
@@ -338,10 +338,10 @@
 "id": "reposync",
 "label": "Website repo sync",
 "team": "web",
-"ok": false,
+"ok": true,
 "private": false,
 "desc": "Keeps Gary's local copy of the website in step with the live version.",
-"alone": true
+"alone": false
 },
 {
 "id": "site",
@@ -599,10 +599,10 @@
 "id": "taskhealth_t",
 "label": "Task Health Watchdog",
 "team": "trade",
-"ok": false,
+"ok": true,
 "private": false,
 "desc": "Checks every scheduled task across the whole system and explains any failure.",
-"alone": true
+"alone": false
 },
 {
 "id": "scorecard",
@@ -1036,7 +1036,7 @@
 "from": "reposync",
 "to": "site",
 "what": "repo kept in step",
-"ok": false
+"ok": true
 },
 {
 "from": "site",
@@ -1150,7 +1150,7 @@
 "from": "taskhealth_t",
 "to": "supervisor_t",
 "what": "task results",
-"ok": false
+"ok": true
 },
 {
 "from": "coverage",
