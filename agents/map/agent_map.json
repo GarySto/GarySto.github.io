@@ -1,5 +1,5 @@
 {
-"checked": "23 Nov 2026, 19:35",
+"checked": "25 Nov 2026, 19:35",
 "nodes": [
 {
 "id": "goal_profile",
@@ -77,7 +77,7 @@
 "id": "writer",
 "label": "Content Writer",
 "team": "web",
-"ok": true,
+"ok": false,
 "private": false,
 "desc": "Wade drafting an article from Gary's own facts, notes and feedback, kept inside a size budget so nothing gets cut off.",
 "alone": false
@@ -554,7 +554,7 @@
 "id": "dashboard_t",
 "label": "Internal dashboard (trading)",
 "team": "trade",
-"ok": true,
+"ok": false,
 "private": true,
 "desc": "An internal dashboard where Gary makes the trading decisions. Its details are kept private.",
 "alone": false
@@ -838,7 +838,7 @@
 "from": "writer",
 "to": "truth",
 "what": "every finished draft",
-"ok": true
+"ok": false
 },
 {
 "from": "site",
@@ -1192,7 +1192,7 @@
 "from": "dashboard_t",
 "to": "gary",
 "what": "",
-"ok": true
+"ok": false
 },
 {
 "from": "gary",
@@ -1444,7 +1444,7 @@
 "from": "writer",
 "to": "socialcoach",
 "what": "new website articles to re-tell for LinkedIn",
-"ok": true
+"ok": false
 },
 {
 "from": "socialcoach",
