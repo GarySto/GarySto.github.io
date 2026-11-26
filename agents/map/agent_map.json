@@ -1,5 +1,5 @@
 {
-"checked": "25 Nov 2026, 19:35",
+"checked": "26 Nov 2026, 19:36",
 "nodes": [
 {
 "id": "goal_profile",
@@ -86,16 +86,16 @@
 "id": "truth",
 "label": "Truth check",
 "team": "web",
-"ok": true,
+"ok": false,
 "private": false,
 "desc": "Reads every finished draft against its sources and blocks anything invented about Gary. One rewrite is allowed; after that the topic goes to a person.",
-"alone": false
+"alone": true
 },
 {
 "id": "editor",
 "label": "Editor (Gemini)",
 "team": "web",
-"ok": true,
+"ok": false,
 "private": false,
 "desc": "An independent marker from a different AI company. Every week it marks every live article out of 100, from the point of view of a reader deciding whether to link to it, use it or come back to it. 80 is the pass mark.",
 "alone": false
@@ -104,7 +104,7 @@
 "id": "upgrader",
 "label": "Content Upgrader",
 "team": "web",
-"ok": true,
+"ok": false,
 "private": false,
 "desc": "Claude rewriting the weakest live articles from Gary's own facts until the Editor marks them 80 or more. Gary approves each one before the live page changes, and anything only Gary can add becomes a short weekly question.",
 "alone": false
@@ -554,7 +554,7 @@
 "id": "dashboard_t",
 "label": "Internal dashboard (trading)",
 "team": "trade",
-"ok": false,
+"ok": true,
 "private": true,
 "desc": "An internal dashboard where Gary makes the trading decisions. Its details are kept private.",
 "alone": false
@@ -850,25 +850,25 @@
 "from": "editor",
 "to": "upgrader",
 "what": "the weakest pages and what to fix",
-"ok": true
+"ok": false
 },
 {
 "from": "upgrader",
 "to": "truth",
 "what": "every rewrite",
-"ok": true
+"ok": false
 },
 {
 "from": "upgrader",
 "to": "editor",
 "what": "rewrites to re-mark (80 to pass)",
-"ok": true
+"ok": false
 },
 {
 "from": "truth",
 "to": "dashboard_w",
 "what": "",
-"ok": true
+"ok": false
 },
 {
 "from": "gary",
@@ -1192,7 +1192,7 @@
 "from": "dashboard_t",
 "to": "gary",
 "what": "",
-"ok": false
+"ok": true
 },
 {
 "from": "gary",
@@ -1402,7 +1402,7 @@
 "from": "upgrader",
 "to": "questions",
 "what": "'did you do this?'",
-"ok": true
+"ok": false
 },
 {
 "from": "auditor",
