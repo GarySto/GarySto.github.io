@@ -1,5 +1,5 @@
 {
-"checked": "26 Nov 2026, 19:36",
+"checked": "27 Nov 2026, 19:36",
 "nodes": [
 {
 "id": "goal_profile",
@@ -77,7 +77,7 @@
 "id": "writer",
 "label": "Content Writer",
 "team": "web",
-"ok": false,
+"ok": true,
 "private": false,
 "desc": "Wade drafting an article from Gary's own facts, notes and feedback, kept inside a size budget so nothing gets cut off.",
 "alone": false
@@ -86,10 +86,10 @@
 "id": "truth",
 "label": "Truth check",
 "team": "web",
-"ok": false,
+"ok": true,
 "private": false,
 "desc": "Reads every finished draft against its sources and blocks anything invented about Gary. One rewrite is allowed; after that the topic goes to a person.",
-"alone": true
+"alone": false
 },
 {
 "id": "editor",
@@ -104,7 +104,7 @@
 "id": "upgrader",
 "label": "Content Upgrader",
 "team": "web",
-"ok": false,
+"ok": true,
 "private": false,
 "desc": "Claude rewriting the weakest live articles from Gary's own facts until the Editor marks them 80 or more. Gary approves each one before the live page changes, and anything only Gary can add becomes a short weekly question.",
 "alone": false
@@ -410,7 +410,7 @@
 "id": "actions",
 "label": "Trading runs (GitHub)",
 "team": "trade",
-"ok": true,
+"ok": false,
 "private": false,
 "desc": "The trading system's scheduled runs: scanning the market and placing practice orders for each strategy on a timetable.",
 "alone": false
@@ -626,7 +626,7 @@
 "id": "goalsup",
 "label": "Goal Supervisors",
 "team": "over",
-"ok": true,
+"ok": false,
 "private": false,
 "desc": "One for the website and one for trading. Every day they aim the teams at Gary's goals and break loops; every week they step back and think.",
 "alone": false
@@ -638,7 +638,7 @@
 "ok": true,
 "private": false,
 "desc": "A separate worker that checks every Goal Supervisor move against the evidence before it happens, so nobody marks their own homework.",
-"alone": false
+"alone": true
 },
 {
 "id": "outcomes",
@@ -838,7 +838,7 @@
 "from": "writer",
 "to": "truth",
 "what": "every finished draft",
-"ok": false
+"ok": true
 },
 {
 "from": "site",
@@ -856,19 +856,19 @@
 "from": "upgrader",
 "to": "truth",
 "what": "every rewrite",
-"ok": false
+"ok": true
 },
 {
 "from": "upgrader",
 "to": "editor",
 "what": "rewrites to re-mark (80 to pass)",
-"ok": false
+"ok": true
 },
 {
 "from": "truth",
 "to": "dashboard_w",
 "what": "",
-"ok": false
+"ok": true
 },
 {
 "from": "gary",
@@ -1108,7 +1108,7 @@
 "from": "actions",
 "to": "analyst",
 "what": "signals and trades",
-"ok": true
+"ok": false
 },
 {
 "from": "analyst",
@@ -1252,7 +1252,7 @@
 "from": "actions",
 "to": "goal_money",
 "what": "demo trading",
-"ok": true
+"ok": false
 },
 {
 "from": "gary",
@@ -1306,31 +1306,31 @@
 "from": "goalsup",
 "to": "indaud",
 "what": "every move, checked by someone else",
-"ok": true
+"ok": false
 },
 {
 "from": "goalsup",
 "to": "upgrader",
 "what": "which pages to improve first",
-"ok": true
+"ok": false
 },
 {
 "from": "goalsup",
 "to": "engine",
 "what": "goal topics first",
-"ok": true
+"ok": false
 },
 {
 "from": "goalsup",
 "to": "dashboard_w",
 "what": "",
-"ok": true
+"ok": false
 },
 {
 "from": "goalsup",
 "to": "ideatester",
 "what": "ideas to test (no money)",
-"ok": true
+"ok": false
 },
 {
 "from": "ideatester",
@@ -1402,7 +1402,7 @@
 "from": "upgrader",
 "to": "questions",
 "what": "'did you do this?'",
-"ok": false
+"ok": true
 },
 {
 "from": "auditor",
@@ -1444,7 +1444,7 @@
 "from": "writer",
 "to": "socialcoach",
 "what": "new website articles to re-tell for LinkedIn",
-"ok": false
+"ok": true
 },
 {
 "from": "socialcoach",
@@ -1516,7 +1516,7 @@
 "from": "goalsup",
 "to": "coach",
 "what": "the Supervisors' moves and verdicts",
-"ok": true
+"ok": false
 },
 {
 "from": "coach",
