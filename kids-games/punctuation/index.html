@@ -7,7 +7,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Free Punctuation Game: Speech Marks, Full Stops</title>
-<meta name="description" content="A free punctuation game for Years 1 to 4. Pull back your bow and shoot the balloon with the right full stop, comma, apostrophe or speech mark.">
+<meta name="description" content="A free punctuation game for Years 1 to 4. Pull back your bow and shoot the balloon with the right full stop, comma, apostrophe, speech mark or joining word.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://garystow.co.uk/kids-games/punctuation/">
 <meta property="og:type" content="website">
@@ -41,7 +41,7 @@ html,body{background:#86c96a}
 #done .btns{justify-content:flex-start}
 </style>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": ["VideoGame", "LearningResource"], "name": "Punctuation Archery", "url": "https://garystow.co.uk/kids-games/punctuation/", "description": "A free punctuation game for Years 1 to 4. Pull back your bow and shoot the balloon with the right full stop, comma, apostrophe or speech mark. No adverts, no sign-up, works on iPad.", "inLanguage": "en-GB", "isAccessibleForFree": true, "typicalAgeRange": "6-9", "learningResourceType": "Educational game", "teaches": ["Capital letters, full stops, question marks and exclamation marks", "Commas in lists", "Commas after fronted adverbials", "Apostrophes for missing letters and possession, including plural possession", "Inverted commas (speech marks) with punctuation inside"], "gamePlatform": "Web browser", "playMode": ["SinglePlayer"], "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"}, "isPartOf": {"@type": "CollectionPage", "name": "Kids Games", "url": "https://garystow.co.uk/kids-games/"}, "educationalAlignment": {"@type": "AlignmentObject", "alignmentType": "educationalSubject", "targetName": "National curriculum in England: English, vocabulary, grammar and punctuation (Appendix 2)", "targetUrl": "https://www.gov.uk/government/publications/national-curriculum-in-england-english-programmes-of-study"}}
+{"@context": "https://schema.org", "@type": ["VideoGame", "LearningResource"], "name": "Punctuation Archery", "url": "https://garystow.co.uk/kids-games/punctuation/", "description": "A free punctuation game for Years 1 to 4. Pull back your bow and shoot the balloon with the right full stop, comma, apostrophe or speech mark. No adverts, no sign-up, works on iPad.", "inLanguage": "en-GB", "isAccessibleForFree": true, "typicalAgeRange": "6-9", "learningResourceType": "Educational game", "teaches": ["Capital letters, full stops, question marks and exclamation marks", "Commas in lists", "Commas after fronted adverbials", "Apostrophes for missing letters and possession, including plural possession", "Inverted commas (speech marks) with punctuation inside", "Joining words (subordinating conjunctions) and the comma after a fronted subordinate clause"], "gamePlatform": "Web browser", "playMode": ["SinglePlayer"], "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"}, "isPartOf": {"@type": "CollectionPage", "name": "Kids Games", "url": "https://garystow.co.uk/kids-games/"}, "educationalAlignment": {"@type": "AlignmentObject", "alignmentType": "educationalSubject", "targetName": "National curriculum in England: English, vocabulary, grammar and punctuation (Appendix 2)", "targetUrl": "https://www.gov.uk/government/publications/national-curriculum-in-england-english-programmes-of-study"}}
 </script>
 </head>
 <body>
@@ -54,6 +54,7 @@ html,body{background:#86c96a}
     <button type="button" data-l="ends">Full stops and capitals<small>Years 1 and 2</small></button>
     <button type="button" data-l="commas">Commas and apostrophes<small>Years 2 to 4</small></button>
     <button type="button" data-l="speech">Speech marks<small>Years 3 and 4</small></button>
+    <button type="button" data-l="joining">Joining words<small>Years 3 and 4</small></button>
     <button type="button" data-l="mixed">Mixed challenge<small>Year 4</small></button>
   </div>
   <div class="btns"><button class="go" id="start">Start</button></div>
@@ -80,7 +81,7 @@ html,body{background:#86c96a}
 
 <script src="../shared.js?v=20261024c"></script>
 <script>KG.applyNames();</script>
-<script src="sentences.js?v=20261106a"></script>
+<script src="sentences.js?v=20261128a"></script>
 <script>
 "use strict";
 /* Punctuation Archery. A stick person walks out, picks up a bow, and the camera moves over their shoulder
@@ -112,7 +113,8 @@ const LEVELS = {
   ends: { label: "Full stops and capitals", mix: { ends: 10 }, drift: 14 },
   commas: { label: "Commas and apostrophes", mix: { commas: 10 }, drift: 26 },
   speech: { label: "Speech marks", mix: { speech: 8 }, drift: 26 },
-  mixed: { label: "Mixed challenge", mix: { ends: 2, commas: 4, speech: 4 }, drift: 38 }
+  joining: { label: "Joining words", mix: { joining: 10 }, drift: 22 },
+  mixed: { label: "Mixed challenge", mix: { ends: 2, commas: 3, speech: 3, joining: 2 }, drift: 38 }
 };
 // each set is a shuffled deck, so the next round uses sentences you have not just had
 const decks = {};

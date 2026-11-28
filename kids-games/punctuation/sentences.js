@@ -78,5 +78,29 @@ const PUNCT_SETS = {
     "[“|”|.]Can I have a drink[?|.|,][”|“|.] asked Ruby.",
     "Grandad chuckled and said[,|.|?] [“|”|.]That is a funny joke[.|,|?][”|“|,]",
     "[“|”|.]My tooth is wobbly[,|.|?][”|“|.] said Finn."
+  ],
+  // 28 Nov 2026 - Years 3 and 4: joining words (subordinating conjunctions) and the comma after a fronted
+  // subordinate clause. Every wrong balloon makes the sentence mean something silly or not make sense.
+  joining: [
+    "We stayed inside [because|although|unless~Because tells us WHY we stayed inside.] it was pouring with rain.",
+    "[Although|Because|Unless~Although shows a surprise: it was cold, but she still wore shorts.] it was freezing, Maya wore her shorts.",
+    "Brush your teeth [before|although|unless~Before tells us WHEN: first brush your teeth, then bed.] you go to bed.",
+    "Dad made a sandwich [because|although|until~Because tells us WHY: he was hungry.] he was hungry.",
+    "[When|Unless|Although~When tells us the TIME something happened.] the bell rang, everyone ran outside.",
+    "[If|Although|Until~If means it might happen: only if it is sunny.] it is sunny tomorrow, we will go to the beach.",
+    "The puppy slept [while|unless|although~While means AT THE SAME TIME.] we watched the film.",
+    "Wait here [until|because|although~Until tells us HOW LONG: keep waiting till the bus comes.] the bus comes.",
+    "[After|Unless|Although~After tells us the ORDER: first lunch, then football.] we had eaten lunch, we played football.",
+    "I will not go swimming [unless|because|although~Unless means EXCEPT IF: no swimming, except if you come too.] you come with me.",
+    "[Since|Although|Unless~Since can mean because: it was Ben's birthday, so we had cake.] it was Ben's birthday, we had cake.",
+    "The plants grew tall [because|although|unless~Because tells us WHY they grew.] we watered them every day.",
+    "[Although|Because|If~Although shows a surprise: he was tired, but he still finished.] he was tired, Sam finished the race.",
+    "When the bell rang[,|.|?~When the part with the joining word comes FIRST, put a comma after it.] everyone ran outside.",
+    "Because it was snowing[,|.|!~When the part with the joining word comes FIRST, put a comma after it.] school closed early.",
+    "If you are cold[,|.|?~When the part with the joining word comes FIRST, put a comma after it.] put on your coat.",
+    "Although the film was long[,|.|?~When the part with the joining word comes FIRST, put a comma after it.] we loved every minute.",
+    "As soon as the sun came up[,|.|?~When the part with the joining word comes FIRST, put a comma after it.] the birds started singing.",
+    "Before we crossed the road[,|.|!~When the part with the joining word comes FIRST, put a comma after it.] we looked both ways.",
+    "While Gran made tea[,|.|?~When the part with the joining word comes FIRST, put a comma after it.] we laid the table."
   ]
 };
