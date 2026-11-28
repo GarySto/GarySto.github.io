@@ -38,6 +38,9 @@ Certifications: Microsoft Certified: AI Business Professional (AB-730), Microsof
 
 ## Recent articles
 
+- [AB-730 Study Guide for the AI Business Professional Exam](https://garystow.co.uk/articles/ab-730-study-guide-for-the-ai-business-professional-exam/):
+  how I passed the AB-730 AI Business Professional exam, the free
+  resources I used, and what I'd do again if I were starting today.
 - [What Non-Technical Staff Should Learn First About AI](https://garystow.co.uk/articles/what-non-technical-staff-should-learn-first-about-ai/):
   the three things I'd teach anyone who isn't technical before they
   touch an AI tool, what I think people are really afraid of, and how
