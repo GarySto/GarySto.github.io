@@ -1,5 +1,5 @@
 {
-"checked": "27 Nov 2026, 19:36",
+"checked": "28 Nov 2026, 19:36",
 "nodes": [
 {
 "id": "goal_profile",
@@ -95,7 +95,7 @@
 "id": "editor",
 "label": "Editor (Gemini)",
 "team": "web",
-"ok": false,
+"ok": true,
 "private": false,
 "desc": "An independent marker from a different AI company. Every week it marks every live article out of 100, from the point of view of a reader deciding whether to link to it, use it or come back to it. 80 is the pass mark.",
 "alone": false
@@ -392,7 +392,7 @@
 "id": "socialanalyst",
 "label": "Social Analyst",
 "team": "career",
-"ok": true,
+"ok": false,
 "private": false,
 "desc": "Measures what actually drives Gary's LinkedIn results (format, day, topic, length, links) and picks the one thing to test on the next post.",
 "alone": false
@@ -410,7 +410,7 @@
 "id": "actions",
 "label": "Trading runs (GitHub)",
 "team": "trade",
-"ok": false,
+"ok": true,
 "private": false,
 "desc": "The trading system's scheduled runs: scanning the market and placing practice orders for each strategy on a timetable.",
 "alone": false
@@ -671,7 +671,7 @@
 "id": "followup",
 "label": "Did-It-Work Desk",
 "team": "over",
-"ok": true,
+"ok": false,
 "private": false,
 "desc": "Goes back to every trading change Gary approved and compares the trades before and after it.",
 "alone": false
@@ -850,7 +850,7 @@
 "from": "editor",
 "to": "upgrader",
 "what": "the weakest pages and what to fix",
-"ok": false
+"ok": true
 },
 {
 "from": "upgrader",
@@ -1108,7 +1108,7 @@
 "from": "actions",
 "to": "analyst",
 "what": "signals and trades",
-"ok": false
+"ok": true
 },
 {
 "from": "analyst",
@@ -1252,7 +1252,7 @@
 "from": "actions",
 "to": "goal_money",
 "what": "demo trading",
-"ok": false
+"ok": true
 },
 {
 "from": "gary",
@@ -1372,7 +1372,7 @@
 "from": "followup",
 "to": "goalsup",
 "what": "did each change help?",
-"ok": true
+"ok": false
 },
 {
 "from": "researcher",
@@ -1492,19 +1492,19 @@
 "from": "socialanalyst",
 "to": "socialwriter",
 "what": "what drives results, the next experiment",
-"ok": true
+"ok": false
 },
 {
 "from": "socialanalyst",
 "to": "socialcoach",
 "what": "what drives results",
-"ok": true
+"ok": false
 },
 {
 "from": "followup",
 "to": "coach",
 "what": "did approved changes help",
-"ok": true
+"ok": false
 },
 {
 "from": "teamperf",
