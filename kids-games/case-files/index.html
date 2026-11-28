@@ -1,0 +1,472 @@
+<!-- PAGE: KIDS GAMES / CASE FILES (garystow.co.uk/kids-games/case-files/) -->
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Free Detective Reading Game: Inference and Joining Words</title>
+<meta name="description" content="Case Files: a free detective game for Year 4. Read the clues, work out how people feel, prove it with evidence and use joining words to crack five cases. No adverts.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://garystow.co.uk/kids-games/case-files/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Case Files: a free detective reading game I made for my daughter">
+<meta property="og:description" content="Read between the lines, prove it with evidence and crack the case. Inference and joining words for Year 4, with no adverts.">
+<meta property="og:url" content="https://garystow.co.uk/kids-games/case-files/">
+<meta property="og:image" content="https://garystow.co.uk/assets/play-preview.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/kids-games/manifest.webmanifest">
+<meta name="theme-color" content="#0f1626">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Special+Elite&display=swap">
+<link rel="stylesheet" href="../shared.css?v=20261024c">
+<style>
+/* Case Files: a moody, rainy night-time street (drawn on the canvas) with a case folder on top (normal web page
+   parts, so the words stay big, sharp and readable on any screen). Colours keep strong contrast for low vision. */
+:root{--night:#0f1626;--paper:#fbf3df;--manila:#e6cf9c;--manila-d:#b8995c;--amber:#ffb547;--stamp:#c0392b;--good:#1e7a46;--ink2:#1f1a2e}
+html,body{background:var(--night)}
+.typed{font-family:"Special Elite","Courier New",monospace;letter-spacing:.02em}
+/* ---------- start menu ---------- */
+#menu{background:radial-gradient(ellipse at 30% 40%,rgba(15,22,38,.25),rgba(15,22,38,.85) 70%);color:#fff;justify-content:center;overflow-y:auto;touch-action:pan-y}
+#menu .title{color:var(--paper);-webkit-text-stroke:0;text-shadow:0 0 18px rgba(255,181,71,.55),0 4px 0 #000;font-family:"Special Elite","Courier New",monospace;font-weight:400;letter-spacing:.04em}
+#menu .title span{color:var(--amber);font-family:"Fredoka",sans-serif;font-weight:600;letter-spacing:0;text-shadow:0 3px 0 #000}
+#menu .sub{background:var(--paper);color:var(--ink2);box-shadow:0 5px 0 #000;border-color:#000}
+.casebook{display:grid;grid-template-columns:repeat(auto-fit,minmax(13.5rem,1fr));gap:12px;width:min(62rem,94vw)}
+.casebook button{position:relative;font:inherit;text-align:left;cursor:pointer;background:var(--manila);color:var(--ink2);border:3px solid #000;border-radius:6px 14px 14px 14px;padding:16px 14px 14px;box-shadow:0 6px 0 #000;min-height:7.2rem;transition:transform .08s}
+.casebook button::before{content:"";position:absolute;top:-14px;left:-3px;width:42%;height:16px;background:var(--manila);border:3px solid #000;border-bottom:0;border-radius:8px 8px 0 0}
+.casebook button:hover,.casebook button:focus-visible{transform:translateY(-3px);outline:none;background:#f1dcaa}
+.casebook .no{display:block;font-family:"Special Elite","Courier New",monospace;font-size:1rem;opacity:.8}
+.casebook .nm{display:block;font-weight:700;font-size:1.3rem;line-height:1.15;margin-top:4px}
+.casebook .pl{display:block;font-weight:600;font-size:.95rem;opacity:.75;margin-top:4px}
+.casebook .closed{position:absolute;right:8px;bottom:8px;transform:rotate(-12deg);font-family:"Special Elite","Courier New",monospace;color:var(--stamp);border:3px solid var(--stamp);border-radius:6px;padding:1px 8px;font-size:1rem;background:rgba(251,243,223,.6)}
+.casebook .stars{display:block;margin-top:6px;font-size:1.05rem;letter-spacing:2px}
+.rankline{font-size:clamp(1.05rem,2.4vw,1.3rem);font-weight:700;color:var(--amber);text-shadow:0 2px 0 #000}
+#menu .keys div{background:var(--paper);color:var(--ink2);border-color:#000}
+#menu .made,#menu .made a{color:#e8e2d0}
+/* ---------- the case folder ---------- */
+#file{position:fixed;z-index:3;right:2vw;top:3.5vh;bottom:9vh;width:min(58vw,800px);display:flex;flex-direction:column;filter:drop-shadow(0 18px 30px rgba(0,0,0,.55))}
+#file[hidden]{display:none}
+#file .tab{align-self:flex-start;margin-left:18px;background:var(--manila);border:3px solid #000;border-bottom:0;border-radius:10px 10px 0 0;padding:6px 18px 4px;font-family:"Special Elite","Courier New",monospace;font-size:1.15rem;color:var(--ink2);position:relative;top:3px}
+#file .folder{flex:1;min-height:0;background:var(--manila);border:3px solid #000;border-radius:4px 16px 16px 16px;padding:14px;display:flex}
+#file .sheet{position:relative;flex:1;min-height:0;overflow-y:auto;touch-action:pan-y;-webkit-overflow-scrolling:touch;background:var(--paper);border:2px solid var(--manila-d);border-radius:6px;padding:20px 26px 24px;color:var(--ink2);
+  background-image:repeating-linear-gradient(transparent 0 2.45rem,rgba(80,120,170,.13) 2.45rem calc(2.45rem + 1px));-webkit-user-select:text;user-select:text}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.casetitle{font-family:"Special Elite","Courier New",monospace;font-size:clamp(1.35rem,2.6vw,1.9rem);line-height:1.1}
+.steps{display:flex;gap:6px}
+.steps i{width:30px;height:30px;border-radius:50%;border:3px solid var(--ink2);display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.9rem;background:#fff}
+.steps i.on{background:var(--amber)}.steps i.ok{background:var(--good);color:#fff}
+.heading{display:inline-block;margin:6px 0 10px;font-family:"Special Elite","Courier New",monospace;font-size:1.15rem;background:var(--ink2);color:var(--paper);padding:3px 12px;border-radius:4px}
+.read{font-size:clamp(1.35rem,2.5vw,1.75rem);line-height:1.55;font-weight:500}
+.sent{border-radius:8px;padding:1px 3px;margin:0 -3px;transition:background .15s,box-shadow .15s}
+.pick .sent{cursor:pointer;background:rgba(255,181,71,.16);box-shadow:inset 0 -3px 0 rgba(255,181,71,.7)}
+.pick .sent:hover,.pick .sent:focus-visible{background:rgba(255,181,71,.45);outline:none}
+.sent.glow{animation:glow 1.2s ease-in-out infinite;background:rgba(255,181,71,.55)!important;box-shadow:0 0 0 3px var(--amber)!important}
+.pick.hinting .sent:not(.glow){background:transparent;box-shadow:none;opacity:.6}
+@keyframes glow{50%{background:rgba(255,181,71,.75)}}
+.sent.right{background:rgba(30,122,70,.22)!important;box-shadow:inset 0 -4px 0 var(--good)!important}
+.sent.wrong{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.sent{display:inline}
+.q{margin:16px 0 10px;font-weight:700;font-size:clamp(1.3rem,2.4vw,1.6rem)}
+.opts{display:flex;flex-wrap:wrap;gap:12px}
+.opts button{position:relative;font:inherit;font-weight:700;font-size:clamp(1.2rem,2.3vw,1.5rem);min-height:62px;padding:10px 22px 10px 40px;border:3px solid var(--ink2);border-radius:10px 999px 999px 10px;background:#fff;color:var(--ink2);cursor:pointer;box-shadow:0 5px 0 var(--ink2);transition:transform .08s}
+.opts button::before{content:"";position:absolute;left:13px;top:50%;width:13px;height:13px;margin-top:-6.5px;border-radius:50%;border:3px solid var(--ink2);background:var(--manila)}
+.opts button:hover,.opts button:focus-visible{transform:translateY(-3px);outline:none;background:#fff6dd}
+.opts button.right{background:#c9f0d6}.opts button.wrong{background:#f3d0cc;animation:shake .35s}
+.opts button:disabled{cursor:default;transform:none}
+.suspects{display:grid;gap:12px}
+.suspect{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;background:#fff;border:3px solid var(--ink2);border-radius:12px;padding:12px 14px}
+.suspect .who{font-weight:700;font-size:clamp(1.15rem,2.2vw,1.4rem);white-space:nowrap}
+.suspect .alibi{font-size:clamp(1.15rem,2.2vw,1.4rem);line-height:1.5}
+.suspect .mug{width:54px;height:54px;border-radius:10px;background:var(--ink2);display:grid;place-items:center;color:var(--paper);font-family:"Special Elite","Courier New",monospace;font-size:1.5rem}
+.note{margin-top:16px;border-radius:6px;padding:12px 16px;font-size:clamp(1.15rem,2.2vw,1.4rem);line-height:1.45;font-weight:600}
+.note.nudge{background:#fff1a8;border:3px solid #b99a00;transform:rotate(-.6deg)}
+.note.why{background:#d8f3e2;border:3px solid var(--good)}
+.note b{display:block;font-family:"Special Elite","Courier New",monospace;font-weight:400;margin-bottom:4px}
+.join{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:clamp(1.35rem,2.5vw,1.75rem);font-weight:600;line-height:1.5;background:#fff;border:3px dashed var(--manila-d);border-radius:12px;padding:14px 16px}
+.join .gap{display:inline-block;min-width:7.5rem;text-align:center;border-bottom:4px solid var(--amber);color:var(--good);font-weight:700}
+.clauses{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.clauses button{font:inherit;font-weight:600;font-size:clamp(1.3rem,2.4vw,1.65rem);text-align:left;padding:14px 18px;border-radius:12px;border:3px solid var(--ink2);background:#fff;color:var(--ink2);cursor:pointer;box-shadow:0 5px 0 var(--ink2)}
+.clauses button:hover,.clauses button:focus-visible{background:#fff6dd;outline:none}
+.clauses button.right{background:#c9f0d6}.clauses button.wrong{background:#f3d0cc;animation:shake .35s}
+.row{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px;align-items:center}
+.btn{font:inherit;font-weight:700;font-size:clamp(1.1rem,2.2vw,1.35rem);min-height:56px;padding:10px 24px;border-radius:999px;border:3px solid var(--ink2);background:var(--amber);color:var(--ink2);cursor:pointer;box-shadow:0 5px 0 var(--ink2)}
+.btn.soft{background:#fff}
+.btn:hover,.btn:focus-visible{transform:translateY(-2px);outline:none}
+.intro{font-size:clamp(1.3rem,2.5vw,1.7rem);line-height:1.5;font-weight:500}
+.stamp{position:absolute;right:16px;top:10px;transform:rotate(-14deg) scale(1);font-family:"Special Elite","Courier New",monospace;font-size:clamp(1.5rem,3.2vw,2.3rem);color:var(--stamp);border:5px double var(--stamp);border-radius:10px;padding:4px 18px;background:rgba(251,243,223,.55);pointer-events:none;animation:thump .45s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes thump{0%{transform:rotate(-14deg) scale(2.6);opacity:0}100%{transform:rotate(-14deg) scale(1);opacity:1}}
+.reveal{font-size:clamp(1.3rem,2.5vw,1.65rem);line-height:1.55;font-weight:500;margin-top:8px}
+.badge{display:flex;align-items:center;gap:14px;margin-top:14px;background:var(--ink2);color:var(--paper);border-radius:12px;padding:12px 16px;font-size:clamp(1.1rem,2.2vw,1.35rem);font-weight:600}
+.badge .bstar{font-size:1.6rem;letter-spacing:3px;color:var(--amber)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion: reduce){.stamp,.sent.glow,.opts button.wrong,.clauses button.wrong,.sent.wrong{animation:none}}
+/* phones and tall screens: the folder takes the bottom of the screen, the street stays visible above it */
+@media (max-aspect-ratio: 5/4){#file{left:2vw;right:2vw;width:auto;top:50vh;bottom:7vh}#game{transform:translateY(-25vh)}}
+@media (max-height:520px){#file{top:2vh;bottom:7vh}.read,.intro{font-size:1.2rem}}
+@media (max-width:480px){#fs{display:none}}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": ["VideoGame", "LearningResource"], "name": "Case Files", "url": "https://garystow.co.uk/kids-games/case-files/", "description": "A free detective reading game for Year 4. Read the clues, work out how people feel from what they do and say, prove it with evidence from the text, and use joining words to crack five cases. No adverts, no sign-up, works on iPad.", "inLanguage": "en-GB", "isAccessibleForFree": true, "typicalAgeRange": "7-10", "learningResourceType": "Educational game", "teaches": ["Inference: working out characters' feelings, thoughts and motives from their actions", "Justifying inferences with evidence from the text", "Joining words (subordinating conjunctions) for time and cause", "Main clauses and subordinate clauses"], "gamePlatform": "Web browser", "playMode": ["SinglePlayer"], "author": {"@type": "Person", "name": "Gary Stow", "url": "https://garystow.co.uk/"}, "isPartOf": {"@type": "CollectionPage", "name": "Kids Games", "url": "https://garystow.co.uk/kids-games/"}, "educationalAlignment": {"@type": "AlignmentObject", "alignmentType": "educationalSubject", "targetName": "National curriculum in England: English, Years 3 and 4 reading comprehension and grammar", "targetUrl": "https://www.gov.uk/government/publications/national-curriculum-in-england-english-programmes-of-study"}}
+</script>
+</head>
+<body>
+<canvas id="game" aria-label="A rainy night-time street with a detective under a lamp post"></canvas>
+
+<div id="menu" class="overlay">
+  <h1 class="title">Case Files <span>Detective <b data-name="bell" data-suffix="'s casebook" style="font-weight:inherit">Bell's casebook</b></span></h1>
+  <p class="sub">Read the clues, work out what people are feeling, prove it with evidence and crack the case. Real detectives read between the lines!</p>
+  <p class="rankline" id="rank">Rank: Trainee detective</p>
+  <div class="casebook" id="casebook" aria-label="Pick a case"></div>
+  <div class="keys">
+    <div><b>How to play</b>Tap an answer, then tap the sentence that proves it. Wrong answers never lose anything: you get a clue and try again.</div>
+    <div><b>Read it to me</b>Tap <b style="display:inline">Read it to me</b> in any case file to hear the words.</div>
+  </div>
+  <p class="made">Grown-ups: <a href="/kids-games/grammar/">what children learn in grammar and punctuation, year by year</a>.</p>
+</div>
+
+<section id="file" hidden aria-live="polite">
+  <div class="tab typed" id="tab">CASE FILE 1</div>
+  <div class="folder"><div class="sheet" id="sheet"></div></div>
+</section>
+
+<div class="rotate">Turn sideways for a bigger case file</div>
+<div class="chrome left"><a href="/kids-games/">← Kids Games</a><button id="cases" type="button" hidden>Casebook</button></div>
+<div class="chrome right"><button id="mute" type="button">Sound on</button><button id="fs" type="button">Full screen</button></div>
+
+<script src="../shared.js?v=20261024c"></script>
+<script>KG.applyNames();</script>
+<script src="cases.js?v=20261128a"></script>
+<script>
+"use strict";
+/* Case Files (28 Nov 2026). Made for Bell after her Year 4 teacher asked her to work on reading between the lines
+   (inference) and on grammar. Five cases, five steps each: two "how do they feel / what does it mean, and prove it"
+   steps, a joining word, a main-clause spot and an accusation backed by a clue. Nothing is ever lost for a wrong
+   answer: a nudge appears, and after two tries the proof glows. Progress and stars stay on this device only. */
+const { W, H, INK, rand, pick, shuffle, clamp, circ, ell, rr, poly, line, sfx, speak, tone } = KG;
+const ctx = KG.stage(document.getElementById("game"));
+KG.chrome();
+const CASES = window.CASE_FILES;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const NAME = () => KG.name("bell");
+const fill = s => s.replace(/\{name\}/g, NAME());
+const splitSentences = t => (t.match(/[^.!?]+[.!?]+["”]?\s*/g) || [t]).map(x => x.trim());
+const RANKS = ["Trainee detective", "Rookie detective", "Junior detective", "Detective", "Senior detective", "Chief inspector"];
+const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// ---------- saved progress (this device only) ----------
+let saved = {};
+try { saved = JSON.parse(localStorage.getItem("kg_casefiles") || "{}") || {}; } catch (e) { saved = {}; }
+const save = () => { try { localStorage.setItem("kg_casefiles", JSON.stringify(saved)); } catch (e) {} };
+const solvedCount = () => CASES.filter(c => saved[c.id]).length;
+
+// ---------- state ----------
+const G = { c: null, ci: 0, si: 0, phase: "intro", tries: 0, firstTry: [], t: 0, mood: 0 };
+
+// ---------- the start menu ----------
+function showMenu() {
+  G.c = null; $("file").hidden = true; $("menu").hidden = false; $("cases").hidden = true;
+  $("rank").textContent = "Rank: " + RANKS[solvedCount()] + (solvedCount() ? `  (${solvedCount()} of ${CASES.length} cases closed)` : "");
+  $("casebook").innerHTML = CASES.map((c, i) => {
+    const st = saved[c.id];
+    return `<button type="button" data-i="${i}"><span class="no">CASE ${i + 1}</span><span class="nm">${esc(c.title)}</span><span class="pl">${esc(c.place)}</span>` +
+      (st ? `<span class="stars" aria-label="${st} of 5 clues first time">${"★".repeat(st)}${"☆".repeat(5 - st)}</span><span class="closed">CLOSED</span>` : "") + `</button>`;
+  }).join("");
+  $("casebook").querySelectorAll("button").forEach(b => b.onclick = () => { KG.unlockAudio(); openCase(+b.dataset.i); });
+}
+$("cases").onclick = () => { speechSynthesis && speechSynthesis.cancel && speechSynthesis.cancel(); showMenu(); };
+
+// ---------- running a case ----------
+function openCase(i) {
+  G.ci = i; G.c = CASES[i]; G.si = -1; G.phase = "intro"; G.firstTry = []; G.mood = 0;
+  $("menu").hidden = true; $("file").hidden = false; $("cases").hidden = false; $("tab").textContent = `CASE FILE ${i + 1}`;
+  KG.track("game_start", { game_name: "case-files", case_id: G.c.id });
+  render();
+}
+function stepsBar() {
+  return `<div class="steps" aria-label="Progress">` + [0, 1, 2, 3, 4].map(k =>
+    `<i class="${k < G.si || (k === G.si && G.phase === "solved") ? "ok" : k === G.si ? "on" : ""}">${k < G.si || (k === G.si && G.phase === "solved") ? "✓" : k + 1}</i>`).join("") + `</div>`;
+}
+function header() { return `<div class="top"><div class="casetitle">${esc(G.c.title)}</div>${G.si >= 0 && G.si < 5 ? stepsBar() : ""}</div>`; }
+const readBtn = text => `<button class="btn soft" type="button" data-say="${esc(text)}">\u{1F50A} Read it to me</button>`;
+function sheet(html) {
+  const s = $("sheet"); s.innerHTML = html; s.scrollTop = 0;
+  s.querySelectorAll("[data-say]").forEach(b => b.onclick = () => speak(b.dataset.say, 1.02, true, .9));
+  const first = s.querySelector(".opts button, .clauses button, .pick .sent, .btn:not(.soft)");
+  if (first && !matchMedia("(pointer: coarse)").matches) first.focus({ preventScroll: true });
+}
+function render() {
+  const c = G.c;
+  if (G.si < 0) {
+    sheet(header() + `<p class="heading">New case: ${esc(c.place)}</p><p class="intro">${esc(fill(c.intro))}</p>
+      <div class="row"><button class="btn" id="go" type="button">Open the case →</button>${readBtn(fill(c.intro))}</div>`);
+    $("go").onclick = () => { sfx.pick(); next(); };
+    return;
+  }
+  if (G.si >= c.steps.length) return closeCase();
+  const s = c.steps[G.si];
+  ({ infer: renderInfer, join: renderJoin, main: renderMain, accuse: renderAccuse })[s.type](s);
+}
+function next() { G.si++; G.phase = "ask"; G.tries = 0; render(); }
+function nudge(text) {
+  const old = $("sheet").querySelector(".note.nudge"); if (old) old.remove();
+  if (!text) return;
+  const n = document.createElement("div"); n.className = "note nudge"; n.innerHTML = `<b>Hmm, look again…</b>${esc(text)}`;
+  $("sheet").appendChild(n); n.scrollIntoView({ block: "nearest", behavior: reduce ? "auto" : "smooth" });
+}
+function solved(why, extra = "") {
+  G.phase = "solved"; if (G.firstTry[G.si] === undefined) G.firstTry[G.si] = G.tries === 0;
+  sfx.done(); G.mood = 1;
+  const top = $("sheet").querySelector(".top"); if (top) top.outerHTML = header();
+  const old = $("sheet").querySelector(".note.nudge"); if (old) old.remove();
+  const n = document.createElement("div"); n.innerHTML = `<div class="note why"><b>Clue cracked!</b>${esc(why)}</div>${extra}
+    <div class="row"><button class="btn" id="nx" type="button">${G.si + 1 >= G.c.steps.length ? "Close the case →" : "Next clue →"}</button></div>`;
+  $("sheet").appendChild(n); $("nx").onclick = () => { sfx.pick(); next(); };
+  if (!matchMedia("(pointer: coarse)").matches) $("nx").focus({ preventScroll: true });
+  n.scrollIntoView({ block: "nearest", behavior: reduce ? "auto" : "smooth" });
+}
+function wrongTap(el) { sfx.boop(); el.classList.remove("wrong"); void el.offsetWidth; el.classList.add("wrong"); G.tries++; }
+
+// -- infer: answer, then prove it --
+function renderInfer(s) {
+  const sents = s.text.map((t, i) => `<span class="sent" data-i="${i}">${esc(t)}</span>`).join(" ");
+  sheet(header() + `<p class="heading">${esc(s.heading)}</p><p class="read" id="passage">${sents}</p>
+    <p class="q" id="q">${esc(s.q)}</p><div class="opts" id="opts">${s.options.map((o, i) => `<button type="button" data-i="${i}">${esc(o)}</button>`).join("")}</div>
+    <div class="row">${readBtn(s.text.join(" ") + " " + s.q + " Is it: " + s.options.join(", or ") + "?")}</div>`);
+  $("opts").querySelectorAll("button").forEach(b => b.onclick = () => {
+    const i = +b.dataset.i;
+    if (i !== s.answer) { wrongTap(b); nudge(s.nudge[i]); return; }
+    b.classList.add("right"); sfx.ping(2); $("opts").querySelectorAll("button").forEach(x => x.disabled = true);
+    nudge(""); askProof(s);
+  });
+}
+function askProof(s) {
+  G.proofTries = 0;
+  $("q").innerHTML = `\u{1F50D} ${esc(s.proofQ)} <span style="font-weight:500">Tap it in the story above.</span>`;
+  const p = $("passage"); p.classList.add("pick");
+  p.querySelectorAll(".sent").forEach(el => {
+    el.tabIndex = 0; el.setAttribute("role", "button");
+    const go = () => {
+      if (G.phase === "solved") return;
+      const i = +el.dataset.i;
+      if (s.proof.includes(i)) { p.classList.remove("pick", "hinting"); p.querySelectorAll(".sent").forEach(x => x.classList.remove("glow")); el.classList.add("right"); solved(s.why); return; }
+      wrongTap(el); G.proofTries++;
+      nudge(G.proofTries >= 2 ? "Look at the glowing sentence. What does the person DO or SAY there?" : "Good try! That sentence doesn't show it. Look for what the person DOES or SAYS.");
+      if (G.proofTries >= 2) { p.classList.add("hinting"); p.querySelectorAll(".sent").forEach(x => { if (s.proof.includes(+x.dataset.i)) x.classList.add("glow"); }); }
+    };
+    el.onclick = go; el.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } };
+  });
+}
+
+// -- join: pick the joining word --
+function renderJoin(s) {
+  sheet(header() + `<p class="heading">${esc(s.heading)}</p><p class="intro">${esc(s.setup)}</p>
+    <div class="join" style="margin-top:12px"><span>${esc(s.a)}</span><span class="gap" id="gap">?</span><span>${esc(s.b)}</span></div>
+    <p class="q">Which joining word fits?</p><div class="opts" id="opts">${s.options.map((o, i) => `<button type="button" data-i="${i}">${esc(o)}</button>`).join("")}</div>
+    <div class="row">${readBtn(s.setup + " " + s.a + ", blank, " + s.b + " Is it: " + s.options.join(", or ") + "?")}</div>`);
+  $("opts").querySelectorAll("button").forEach(b => b.onclick = () => {
+    const i = +b.dataset.i;
+    if (i !== s.answer) { wrongTap(b); nudge(s.nudge[i]); return; }
+    b.classList.add("right"); $("opts").querySelectorAll("button").forEach(x => x.disabled = true);
+    $("gap").textContent = s.options[i]; solved(s.why);
+  });
+}
+
+// -- main: which part could stand alone? --
+function renderMain(s) {
+  sheet(header() + `<p class="heading">${esc(s.heading)}</p><p class="intro">${esc(s.setup)}</p>
+    <div class="clauses" id="cl">${s.parts.map((p, i) => `<button type="button" data-i="${i}">${esc(p)}</button>`).join("")}</div>
+    <div class="row">${readBtn(s.setup + " " + s.parts.join(" "))}</div>`);
+  $("cl").querySelectorAll("button").forEach(b => b.onclick = () => {
+    const i = +b.dataset.i;
+    if (i !== s.main) { wrongTap(b); nudge("Read that part on its own, out loud. Does it make sense, or are you waiting for more?"); return; }
+    b.classList.add("right"); $("cl").querySelectorAll("button").forEach(x => x.disabled = true); solved(s.why);
+  });
+}
+
+// -- accuse: who did it, then the proof --
+function renderAccuse(s) {
+  const cards = s.suspects.map((p, k) => `<div class="suspect"><div class="mug" aria-hidden="true">#${k + 1}</div><div><div class="who">${esc(p.name)}</div>
+    <div class="alibi">${splitSentences(p.text).map((t, j) => `<span class="sent" data-k="${k}" data-j="${j}">${esc(t)}</span>`).join(" ")}</div></div></div>`).join("");
+  sheet(header() + `<p class="heading">${esc(s.heading)}</p><div class="suspects" id="sus">${cards}</div>
+    <p class="q" id="q">${esc(s.q)}</p><div class="opts" id="opts">${s.suspects.map((p, i) => `<button type="button" data-i="${i}">${esc(p.name)}</button>`).join("")}</div>
+    <div class="row">${readBtn(s.suspects.map(p => p.name + ". " + p.text).join(" ") + " " + s.q)}</div>`);
+  $("opts").querySelectorAll("button").forEach(b => b.onclick = () => {
+    const i = +b.dataset.i;
+    if (i !== s.answer) { wrongTap(b); nudge(s.nudge[i]); return; }
+    b.classList.add("right"); sfx.ping(3); $("opts").querySelectorAll("button").forEach(x => x.disabled = true); nudge("");
+    $("q").innerHTML = `\u{1F50D} ${esc(s.proofQ)} <span style="font-weight:500">Tap it in the suspect notes.</span>`;
+    const box = $("sus"); box.classList.add("pick"); G.proofTries = 0;
+    box.querySelectorAll(".sent").forEach(el => {
+      el.tabIndex = 0; el.setAttribute("role", "button");
+      const go = () => {
+        if (G.phase === "solved") return;
+        const k = +el.dataset.k, j = +el.dataset.j;
+        if (k === s.proofAt[0] && j === s.proofAt[1]) { box.classList.remove("pick", "hinting"); box.querySelectorAll(".sent").forEach(x => x.classList.remove("glow")); el.classList.add("right"); solved("That clue proves it! " + s.suspects[s.answer].name + " is the one.", ""); return; }
+        wrongTap(el); G.proofTries++;
+        nudge(k !== s.answer ? "That clue is about someone else. Look at the notes for " + s.suspects[s.answer].name + "." : "Close! Which part actually connects them to what happened?");
+        if (G.proofTries >= 2) { box.classList.add("hinting"); box.querySelectorAll(".sent").forEach(x => { if (+x.dataset.k === s.proofAt[0] && +x.dataset.j === s.proofAt[1]) x.classList.add("glow"); }); }
+      };
+      el.onclick = go; el.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } };
+    });
+  });
+}
+
+// -- case closed --
+function closeCase() {
+  const c = G.c, stars = G.firstTry.filter(Boolean).length, before = solvedCount();
+  saved[c.id] = Math.max(saved[c.id] || 0, stars); save();
+  const after = solvedCount(), promoted = after > before;
+  const s = c.steps[c.steps.length - 1];
+  G.phase = "closed"; G.mood = 2; G.closedT = G.t;
+  sfx.win(); KG.track("game_complete", { game_name: "case-files", case_id: c.id });
+  const nextIdx = CASES.findIndex((x, i) => i > G.ci && !saved[x.id]), more = nextIdx >= 0 ? nextIdx : CASES.findIndex(x => !saved[x.id]);
+  sheet(`<div class="top" style="padding-right:12rem;min-height:4.2rem"><div class="casetitle">${esc(c.title)}</div></div><div class="stamp" aria-hidden="true">CASE CLOSED</div>
+    <p class="heading">What really happened</p><p class="reveal">${esc(s.reveal)}</p>
+    <div class="badge"><span class="bstar" aria-label="${stars} of 5 clues first time">${"★".repeat(stars)}${"☆".repeat(5 - stars)}</span>
+      <span>${stars === 5 ? "Every clue cracked first time. Brilliant detective work!" : stars >= 3 ? "Great detective work! You cracked " + stars + " clues first time." : "You never gave up, and that's what real detectives do. Case solved!"}</span></div>
+    ${promoted ? `<div class="badge"><span class="bstar">\u{1F396}️</span><span>Promoted! You are now a <b>${RANKS[after]}</b>.</span></div>` : ""}
+    <div class="row">${more >= 0 ? `<button class="btn" id="nc" type="button">Next case →</button>` : ""}<button class="btn soft" id="cb" type="button">Back to the casebook</button>${readBtn(s.reveal)}</div>`);
+  speak(`Case closed! ${s.reveal}`, 1.02, true, .92);
+  if (more >= 0) $("nc").onclick = () => { sfx.pick(); openCase(more); };
+  $("cb").onclick = () => { sfx.pick(); showMenu(); };
+  if (after === CASES.length && promoted) speak(`Amazing, ${NAME()}! You solved every case. You are the Chief Inspector!`, 1.05, false);
+}
+
+// ---------- the street at night (canvas) ----------
+const seeded = (() => { let s = 7; return () => (s = (s * 9301 + 49297) % 233280) / 233280; })();
+const FAR = [], NEAR = [];
+for (let x = -20; x < W + 40;) { const w = 70 + seeded() * 90; FAR.push({ x, w, h: 210 + seeded() * 190 }); x += w + 4; }
+for (let x = 440; x < W + 60;) { const w = 120 + seeded() * 110; const b = { x, w, h: 230 + seeded() * 150, win: [] };
+  for (let wy = 0; wy < 7; wy++) for (let wx = 0; wx < 6; wx++) if (seeded() < .55) b.win.push({ x: 16 + wx * ((w - 26) / 6), y: 30 + wy * 46, on: seeded() < .42, ph: seeded() * 6 });
+  NEAR.push(b); x += w + 8; }
+const RAIN = Array.from({ length: reduce ? 0 : 150 }, () => ({ x: rand(-40, W), y: rand(-H, H), l: rand(12, 26), v: rand(620, 900), a: rand(.18, .4) }));
+const SPLASH = [];
+const LAMP = { x: 128, y: 210 }, HERO = { x: 300, y: 656, s: 2.15 };
+const hero = KG.mkPlayer("bell", { face: 1 });
+
+function radial(x, y, r, inner, outer = "rgba(0,0,0,0)") {
+  const g = ctx.createRadialGradient(x, y, 0, x, y, r); g.addColorStop(0, inner); g.addColorStop(1, outer); return g;
+}
+function drawSky(t) {
+  const g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, "#060914"); g.addColorStop(.5, "#101d33"); g.addColorStop(1, "#18283e");
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  // moon behind thin clouds
+  ctx.fillStyle = radial(560, 108, 170, "rgba(255,236,190,.22)"); ctx.fillRect(360, 0, 400, 300);
+  circ(560, 108, 44, "#efe5c8", 0); circ(548, 98, 9, "rgba(190,178,150,.45)", 0); circ(574, 118, 6, "rgba(190,178,150,.4)", 0); circ(560, 126, 4, "rgba(190,178,150,.4)", 0);
+  for (let i = 0; i < 3; i++) { const cx = ((t * (8 + i * 4) + i * 420) % (W + 400)) - 200; ctx.globalAlpha = .18; ell(cx, 90 + i * 34, 180, 16, "#8da2c0", 0); ell(cx + 90, 100 + i * 34, 120, 12, "#8da2c0", 0); ctx.globalAlpha = 1; }
+}
+function drawCity(t) {
+  FAR.forEach(b => { ctx.fillStyle = "#16243a"; ctx.fillRect(b.x, 560 - b.h, b.w, b.h); });
+  NEAR.forEach(b => {
+    ctx.fillStyle = "#0c1424"; ctx.fillRect(b.x, 560 - b.h, b.w, b.h);
+    ctx.fillStyle = "#1b2a42"; ctx.fillRect(b.x, 560 - b.h, b.w, 6);
+    b.win.forEach(w => { if (560 - b.h + w.y + 26 > 548) return;
+      const on = w.on && !(Math.sin(t * .7 + w.ph * 3) > .985);
+      ctx.fillStyle = on ? "rgba(255,196,102,.85)" : "rgba(60,80,110,.55)"; ctx.fillRect(b.x + w.x, 560 - b.h + w.y, 14, 22);
+      if (on) { ctx.fillStyle = radial(b.x + w.x + 7, 560 - b.h + w.y + 11, 26, "rgba(255,190,90,.18)"); ctx.fillRect(b.x + w.x - 20, 560 - b.h + w.y - 16, 54, 54); } });
+  });
+}
+function drawPlace(t) {
+  // the building where the case happens, with its glowing sign
+  const c = G.c || CASES[0], bx = -10, bw = 470, top = 172;
+  ctx.fillStyle = "#121c2e"; ctx.fillRect(bx, top, bw, 560 - top);
+  ctx.fillStyle = "#1d2c45"; ctx.fillRect(bx, top, bw, 8);
+  for (let k = 0; k < 3; k++) { const wx = 250 + k * 66; ctx.fillStyle = k === 1 ? "rgba(255,196,102,.8)" : "rgba(52,72,104,.7)"; ctx.fillRect(wx, 330, 40, 60); line(wx + 20, 330, wx + 20, 390, "#0c1424", 3); line(wx, 360, wx + 40, 360, "#0c1424", 3); }
+  rr(250, 440, 76, 120, 4, "#0a1120", 0); circ(314, 502, 3, "#c9a45a", 0);
+  // sign
+  const flick = reduce ? 1 : (Math.sin(t * 13) > .97 ? .55 : 1), label = c.sign, sx = 196, sy = 194;
+  ctx.font = `400 34px "Special Elite","Courier New",monospace`; const tw = ctx.measureText(label).width + 40;
+  rr(sx, sy, tw, 50, 8, "#0a0f1c", 0); ctx.lineWidth = 3; ctx.strokeStyle = `rgba(255,181,71,${.85 * flick})`; ctx.beginPath(); ctx.roundRect(sx, sy, tw, 50, 8); ctx.stroke();
+  ctx.save(); ctx.shadowColor = "rgba(255,170,60,.9)"; ctx.shadowBlur = 18 * flick; ctx.fillStyle = `rgba(255,214,140,${flick})`; ctx.textAlign = "left"; ctx.fillText(label, sx + 20, sy + 37); ctx.restore();
+}
+function drawStreet(t) {
+  const g = ctx.createLinearGradient(0, 560, 0, H); g.addColorStop(0, "#1a2638"); g.addColorStop(1, "#0b111c"); ctx.fillStyle = g; ctx.fillRect(0, 560, W, H - 560);
+  line(0, 560, W, 560, "#2b3b55", 4);
+  // wet reflections of the lamp and lit windows
+  ctx.fillStyle = radial(LAMP.x, 600, 160, "rgba(255,181,71,.28)"); ctx.fillRect(LAMP.x - 160, 562, 320, 158);
+  for (let i = 0; i < 6; i++) { const y = 572 + i * 22, w = 16 + i * 10 + Math.sin(t * 2 + i) * 4; ctx.fillStyle = `rgba(255,190,100,${.22 - i * .03})`; ctx.fillRect(LAMP.x - w / 2, y, w, 6); }
+  for (let i = 0; i < 40; i++) { const x = (i * 97) % W, y = 600 + (i * 53) % 110; ctx.fillStyle = "rgba(140,170,210,.08)"; ctx.fillRect(x, y, 40 + (i % 5) * 14, 2); }
+}
+function drawLamp(t) {
+  const { x, y } = LAMP;
+  ctx.fillStyle = "#0a0f1a"; ctx.fillRect(x - 6, y, 12, 560 - y); rr(x - 16, 548, 32, 14, 3, "#0a0f1a", 0);
+  line(x, y + 4, x + 34, y - 10, "#0a0f1a", 8);
+  poly([[x + 18, y - 20], [x + 58, y - 20], [x + 50, y + 2], [x + 26, y + 2]], "#0a0f1a", 0);
+  const fl = reduce ? 1 : .94 + Math.sin(t * 17) * .03 + (Math.sin(t * 3.1) > .995 ? -.4 : 0);
+  ctx.save(); ctx.globalCompositeOperation = "lighter";
+  ctx.fillStyle = radial(x + 38, y + 4, 60, `rgba(255,210,140,${.9 * fl})`); ctx.fillRect(x - 30, y - 60, 140, 130);
+  const cone = ctx.createLinearGradient(0, y, 0, 600); cone.addColorStop(0, `rgba(255,190,100,${.32 * fl})`); cone.addColorStop(1, "rgba(255,190,100,0)");
+  ctx.fillStyle = cone; ctx.beginPath(); ctx.moveTo(x + 28, y + 2); ctx.lineTo(x + 48, y + 2); ctx.lineTo(x + 250, 600); ctx.lineTo(x - 170, 600); ctx.closePath(); ctx.fill();
+  ctx.restore();
+}
+function drawHat(x, y, S) {
+  // a detective's fedora, sitting on the head of whatever character the family has made
+  const brim = y - 130 * S, top = brim - 40 * S;
+  ctx.save(); ctx.translate(x, brim); ctx.rotate(-.06);
+  ctx.beginPath(); ctx.ellipse(0, 0, 58 * S, 11 * S, 0, 0, Math.PI * 2); ctx.fillStyle = "#3a2f28"; ctx.fill(); ctx.lineWidth = 3; ctx.strokeStyle = INK; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(-33 * S, -2 * S); ctx.lineTo(-30 * S, -38 * S); ctx.quadraticCurveTo(-14 * S, -46 * S, 0, -36 * S); ctx.quadraticCurveTo(14 * S, -46 * S, 30 * S, -38 * S); ctx.lineTo(33 * S, -2 * S);
+  ctx.quadraticCurveTo(0, 6 * S, -33 * S, -2 * S); ctx.closePath(); ctx.fillStyle = "#4d3e34"; ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(-32 * S, -12 * S); ctx.quadraticCurveTo(0, -4 * S, 32 * S, -12 * S); ctx.lineTo(32.5 * S, -4 * S); ctx.quadraticCurveTo(0, 4 * S, -32.5 * S, -4 * S); ctx.closePath();
+  ctx.fillStyle = "#1c1626"; ctx.fill();
+  ctx.beginPath(); ctx.ellipse(-22 * S, -28 * S, 4 * S, 9 * S, .3, 0, 7); ctx.fillStyle = "rgba(255,220,160,.18)"; ctx.fill();
+  ctx.restore();
+}
+function drawGlass(x, y, S, t) {
+  const bob = reduce ? 0 : Math.sin(t * 2.2) * 4 * S, lx = x + 66 * S, ly = y - 104 * S + bob;
+  line(x + 30 * S, y - 64 * S + bob, lx - 14 * S, ly + 14 * S, "#5a3a22", 9 * S);
+  circ(lx, ly, 22 * S, "rgba(190,225,255,.25)", 0); ctx.lineWidth = 6 * S; ctx.strokeStyle = "#c9a45a"; ctx.beginPath(); ctx.arc(lx, ly, 22 * S, 0, 7); ctx.stroke();
+  ctx.beginPath(); ctx.arc(lx - 6 * S, ly - 6 * S, 9 * S, 3.6, 4.6); ctx.strokeStyle = "rgba(255,255,255,.75)"; ctx.lineWidth = 3 * S; ctx.stroke();
+}
+function drawObject(t) {
+  // the evidence for this case, glinting on the pavement under the lamp
+  const c = G.c || CASES[0], x = 470, y = 640, gl = .5 + .5 * Math.sin(t * 3);
+  ctx.fillStyle = radial(x, y - 10, 60, `rgba(255,220,150,${.18 + gl * .12})`); ctx.fillRect(x - 60, y - 70, 120, 120);
+  ell(x, y + 14, 34, 7, "rgba(0,0,0,.35)", 0);
+  if (c.object === "medal") { poly([[x - 12, y - 46], [x - 2, y - 46], [x + 4, y - 16], [x - 6, y - 16]], "#2f6fdb", 2); poly([[x + 2, y - 46], [x + 12, y - 46], [x + 6, y - 16], [x - 4, y - 16]], "#d63b3b", 2); circ(x, y - 2, 17, "#f2c230", 3); circ(x, y - 2, 9, "#ffe27a", 2); }
+  else if (c.object === "cake") { poly([[x - 28, y + 10], [x + 28, y + 10], [x + 6, y - 22]], "#6b3e26", 3); line(x - 20, y + 2, x + 18, y + 2, "#f6e2c4", 4); circ(x + 4, y - 22, 6, "#d63b3b", 2); }
+  else if (c.object === "feather") { ctx.save(); ctx.translate(x, y - 4); ctx.rotate(-.5); ell(0, 0, 9, 30, "#f4f1ea", 3); line(0, 30, 0, -26, "#b9b2a4", 2); ctx.restore(); }
+  else if (c.object === "book") { rr(x - 26, y - 22, 52, 34, 4, "#2b5a8a", 3); rr(x - 22, y - 18, 8, 26, 2, "#1d3f62", 0); poly([[x + 2, y - 12], [x + 14, y - 4], [x + 2, y + 4], [x + 8, y - 4]], "#f2c230", 1.5); }
+  else { poly([[x - 16, y - 6], [x + 16, y - 6], [x, y - 44]], "#d63b3b", 3); circ(x, y - 44, 4, "#fff", 1.5); }
+  if (!reduce) { const sp = (t * 1.4) % 1; ctx.globalAlpha = 1 - sp; KG.star4(x + 20, y - 36 - sp * 10, 6 + sp * 4, "#fff"); ctx.globalAlpha = 1; }
+}
+function drawHero(t) {
+  const { x, y, s } = HERO, j = G.mood === 2 ? Math.abs(Math.sin((t - (G.closedT || 0)) * 7)) * 22 * Math.max(0, 1 - (t - (G.closedT || 0)) / 3) : 0;
+  hero.face = 1; hero.moving = false;
+  ctx.fillStyle = radial(x, y + 2, 120, "rgba(0,0,0,.45)"); ctx.fillRect(x - 120, y - 30, 240, 60);
+  KG.drawKid(hero, x, y, s, { tag: false, jump: j, wave: G.mood === 2 });
+  drawHat(x, y - j, s / 1.08 * 1.08);
+  drawGlass(x, y - j, s, t);
+}
+function drawRain(dt) {
+  ctx.strokeStyle = "rgba(170,200,240,.35)"; ctx.lineWidth = 1.6;
+  RAIN.forEach(r => { r.y += r.v * dt; r.x += r.v * .12 * dt; if (r.y > 640 + rand(0, 70)) { if (Math.random() < .25) SPLASH.push({ x: r.x, y: r.y, t: 0 }); r.y = rand(-120, -10); r.x = rand(-60, W); }
+    ctx.globalAlpha = r.a; ctx.beginPath(); ctx.moveTo(r.x, r.y); ctx.lineTo(r.x - r.l * .12, r.y - r.l); ctx.stroke(); });
+  ctx.globalAlpha = 1;
+  for (let i = SPLASH.length - 1; i >= 0; i--) { const p = SPLASH[i]; p.t += dt; if (p.t > .35) { SPLASH.splice(i, 1); continue; }
+    ctx.globalAlpha = .5 * (1 - p.t / .35); ell(p.x, p.y, 4 + p.t * 30, 1.5 + p.t * 5, null, 1.2); ctx.strokeStyle = "rgba(170,200,240,.6)"; ctx.stroke(); ctx.globalAlpha = 1; }
+}
+function drawFog(t) {
+  for (let i = 0; i < 3; i++) { const x = ((t * (14 + i * 6) + i * 500) % (W + 600)) - 300;
+    ctx.fillStyle = radial(x, 600 + i * 30, 300, "rgba(120,140,170,.10)"); ctx.fillRect(x - 300, 460, 600, 260); }
+  const v = ctx.createRadialGradient(W / 2, H / 2, H * .35, W / 2, H / 2, H * .95); v.addColorStop(0, "rgba(0,0,0,0)"); v.addColorStop(1, "rgba(0,0,0,.55)"); ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
+}
+let last = performance.now();
+function frame(now) {
+  const dt = Math.min(.05, (now - last) / 1000); last = now; G.t += dt;
+  KG.begin(null, "#0b111c", 0);
+  drawSky(G.t); drawCity(G.t); drawPlace(G.t); drawStreet(G.t); drawLamp(G.t); drawObject(G.t); drawHero(G.t); drawRain(dt); drawFog(G.t);
+  KG.end(); requestAnimationFrame(frame);
+}
+addEventListener("keydown", e => { if (e.key === "Escape" && G.c) showMenu(); });
+showMenu();
+(document.fonts && document.fonts.load ? Promise.all([document.fonts.load("700 20px Fredoka"), document.fonts.load('400 30px "Special Elite"')]) : Promise.resolve()).catch(() => {}).then(() => requestAnimationFrame(frame));
+
+// test hook for automated checks (no effect on play)
+window.__CF = { G, CASES, openCase, next, render, saved, showMenu };
+</script>
+</body>
+</html>

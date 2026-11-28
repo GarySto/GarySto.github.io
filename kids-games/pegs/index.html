@@ -276,10 +276,19 @@ function update(dt) {
   const bk = S.bucket; bk.x += bk.dir * 190 * dt; if (bk.x > BX1 - 70) bk.dir = -1; if (bk.x < BX0 + 70) bk.dir = 1;
   const b = S.ball;
   if (b) {
-    for (let i = 0; i < 6; i++) stepBall(b, dt / 6, true);
+    // 28 Nov 2026 (Gary: "the ball doesn't always register when it goes in the pot"): the bucket used to be checked
+    // once per frame in a 20px band, so on a slower iPad a fast ball jumped right over the band and fell through.
+    // Now every physics step checks whether the ball crossed the bucket's rim inside its opening.
+    const RIM = H - 38, HALF = 58 + BALL_R * .6;
+    let caught = false;
+    for (let i = 0; i < 8 && !caught; i++) {
+      const y0 = b.y; stepBall(b, dt / 8, true);
+      if (b.vy > 0 && y0 < RIM && b.y >= RIM && Math.abs(b.x - bk.x) < HALF) caught = true;
+      else if (b.y >= RIM && b.y < H && Math.abs(b.x - bk.x) < 44) caught = true;   // already inside the bucket
+    }
     if (Math.hypot(b.vx, b.vy) < 45) S.stuckT += dt; else S.stuckT = 0;
     if (S.stuckT > 1.2) { S.shotHits.forEach(p => { if (Math.hypot(p.x - b.x, p.y - b.y) < 40) p.gone = true; }); b.vy += 200; S.stuckT = 0; }
-    if (b.y > H - 34 && b.y < H - 14 && Math.abs(b.x - bk.x) < 58) { addBalls(1); popText("Free ball!", bk.x, H - 70, "#ff7ad9"); sfx.done(); endShot(); }
+    if (caught) { addBalls(1); popText("Free ball!", bk.x, H - 70, "#ff7ad9"); sfx.done(); burst(bk.x, RIM, 14, "#ff7ad9"); endShot(); }
     else if (b.y > H + 20) endShot();
   }
 }
